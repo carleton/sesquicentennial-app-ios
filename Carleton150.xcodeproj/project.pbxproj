@@ -1,0 +1,506 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */; };
+		71294DB01BC6FC1500B9F81B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAF1BC6FC1500B9F81B /* ViewController.swift */; };
+		71294DB31BC6FC1500B9F81B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71294DB11BC6FC1500B9F81B /* Main.storyboard */; };
+		71294DB51BC6FC1500B9F81B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71294DB41BC6FC1500B9F81B /* Assets.xcassets */; };
+		71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71294DB61BC6FC1500B9F81B /* LaunchScreen.storyboard */; };
+		71294DC31BC6FC1500B9F81B /* Carleton150Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DC21BC6FC1500B9F81B /* Carleton150Tests.swift */; };
+		71294DCE1BC6FC1500B9F81B /* Carleton150UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DCD1BC6FC1500B9F81B /* Carleton150UITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		71294DBF1BC6FC1500B9F81B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 71294DA21BC6FC1500B9F81B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 71294DA91BC6FC1500B9F81B;
+			remoteInfo = Carleton150;
+		};
+		71294DCA1BC6FC1500B9F81B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 71294DA21BC6FC1500B9F81B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 71294DA91BC6FC1500B9F81B;
+			remoteInfo = Carleton150;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		71294DAA1BC6FC1500B9F81B /* Carleton150.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carleton150.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		71294DAF1BC6FC1500B9F81B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		71294DB21BC6FC1500B9F81B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		71294DB41BC6FC1500B9F81B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		71294DB71BC6FC1500B9F81B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		71294DB91BC6FC1500B9F81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71294DBE1BC6FC1500B9F81B /* Carleton150Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Carleton150Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		71294DC21BC6FC1500B9F81B /* Carleton150Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carleton150Tests.swift; sourceTree = "<group>"; };
+		71294DC41BC6FC1500B9F81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71294DC91BC6FC1500B9F81B /* Carleton150UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Carleton150UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		71294DCD1BC6FC1500B9F81B /* Carleton150UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carleton150UITests.swift; sourceTree = "<group>"; };
+		71294DCF1BC6FC1500B9F81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		71294DA71BC6FC1500B9F81B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71294DBB1BC6FC1500B9F81B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71294DC61BC6FC1500B9F81B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		71294DA11BC6FC1500B9F81B = {
+			isa = PBXGroup;
+			children = (
+				71294DAC1BC6FC1500B9F81B /* Carleton150 */,
+				71294DC11BC6FC1500B9F81B /* Carleton150Tests */,
+				71294DCC1BC6FC1500B9F81B /* Carleton150UITests */,
+				71294DAB1BC6FC1500B9F81B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		71294DAB1BC6FC1500B9F81B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				71294DAA1BC6FC1500B9F81B /* Carleton150.app */,
+				71294DBE1BC6FC1500B9F81B /* Carleton150Tests.xctest */,
+				71294DC91BC6FC1500B9F81B /* Carleton150UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		71294DAC1BC6FC1500B9F81B /* Carleton150 */ = {
+			isa = PBXGroup;
+			children = (
+				71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */,
+				71294DAF1BC6FC1500B9F81B /* ViewController.swift */,
+				71294DB11BC6FC1500B9F81B /* Main.storyboard */,
+				71294DB41BC6FC1500B9F81B /* Assets.xcassets */,
+				71294DB61BC6FC1500B9F81B /* LaunchScreen.storyboard */,
+				71294DB91BC6FC1500B9F81B /* Info.plist */,
+			);
+			path = Carleton150;
+			sourceTree = "<group>";
+		};
+		71294DC11BC6FC1500B9F81B /* Carleton150Tests */ = {
+			isa = PBXGroup;
+			children = (
+				71294DC21BC6FC1500B9F81B /* Carleton150Tests.swift */,
+				71294DC41BC6FC1500B9F81B /* Info.plist */,
+			);
+			path = Carleton150Tests;
+			sourceTree = "<group>";
+		};
+		71294DCC1BC6FC1500B9F81B /* Carleton150UITests */ = {
+			isa = PBXGroup;
+			children = (
+				71294DCD1BC6FC1500B9F81B /* Carleton150UITests.swift */,
+				71294DCF1BC6FC1500B9F81B /* Info.plist */,
+			);
+			path = Carleton150UITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		71294DA91BC6FC1500B9F81B /* Carleton150 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71294DD21BC6FC1500B9F81B /* Build configuration list for PBXNativeTarget "Carleton150" */;
+			buildPhases = (
+				71294DA61BC6FC1500B9F81B /* Sources */,
+				71294DA71BC6FC1500B9F81B /* Frameworks */,
+				71294DA81BC6FC1500B9F81B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Carleton150;
+			productName = Carleton150;
+			productReference = 71294DAA1BC6FC1500B9F81B /* Carleton150.app */;
+			productType = "com.apple.product-type.application";
+		};
+		71294DBD1BC6FC1500B9F81B /* Carleton150Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71294DD51BC6FC1500B9F81B /* Build configuration list for PBXNativeTarget "Carleton150Tests" */;
+			buildPhases = (
+				71294DBA1BC6FC1500B9F81B /* Sources */,
+				71294DBB1BC6FC1500B9F81B /* Frameworks */,
+				71294DBC1BC6FC1500B9F81B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				71294DC01BC6FC1500B9F81B /* PBXTargetDependency */,
+			);
+			name = Carleton150Tests;
+			productName = Carleton150Tests;
+			productReference = 71294DBE1BC6FC1500B9F81B /* Carleton150Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		71294DC81BC6FC1500B9F81B /* Carleton150UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71294DD81BC6FC1500B9F81B /* Build configuration list for PBXNativeTarget "Carleton150UITests" */;
+			buildPhases = (
+				71294DC51BC6FC1500B9F81B /* Sources */,
+				71294DC61BC6FC1500B9F81B /* Frameworks */,
+				71294DC71BC6FC1500B9F81B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				71294DCB1BC6FC1500B9F81B /* PBXTargetDependency */,
+			);
+			name = Carleton150UITests;
+			productName = Carleton150UITests;
+			productReference = 71294DC91BC6FC1500B9F81B /* Carleton150UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		71294DA21BC6FC1500B9F81B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = edu.carleton.carleton150;
+				TargetAttributes = {
+					71294DA91BC6FC1500B9F81B = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+					71294DBD1BC6FC1500B9F81B = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = 71294DA91BC6FC1500B9F81B;
+					};
+					71294DC81BC6FC1500B9F81B = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = 71294DA91BC6FC1500B9F81B;
+					};
+				};
+			};
+			buildConfigurationList = 71294DA51BC6FC1500B9F81B /* Build configuration list for PBXProject "Carleton150" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 71294DA11BC6FC1500B9F81B;
+			productRefGroup = 71294DAB1BC6FC1500B9F81B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				71294DA91BC6FC1500B9F81B /* Carleton150 */,
+				71294DBD1BC6FC1500B9F81B /* Carleton150Tests */,
+				71294DC81BC6FC1500B9F81B /* Carleton150UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		71294DA81BC6FC1500B9F81B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */,
+				71294DB51BC6FC1500B9F81B /* Assets.xcassets in Resources */,
+				71294DB31BC6FC1500B9F81B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71294DBC1BC6FC1500B9F81B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71294DC71BC6FC1500B9F81B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		71294DA61BC6FC1500B9F81B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71294DB01BC6FC1500B9F81B /* ViewController.swift in Sources */,
+				71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71294DBA1BC6FC1500B9F81B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71294DC31BC6FC1500B9F81B /* Carleton150Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71294DC51BC6FC1500B9F81B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71294DCE1BC6FC1500B9F81B /* Carleton150UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		71294DC01BC6FC1500B9F81B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 71294DA91BC6FC1500B9F81B /* Carleton150 */;
+			targetProxy = 71294DBF1BC6FC1500B9F81B /* PBXContainerItemProxy */;
+		};
+		71294DCB1BC6FC1500B9F81B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 71294DA91BC6FC1500B9F81B /* Carleton150 */;
+			targetProxy = 71294DCA1BC6FC1500B9F81B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		71294DB11BC6FC1500B9F81B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				71294DB21BC6FC1500B9F81B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		71294DB61BC6FC1500B9F81B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				71294DB71BC6FC1500B9F81B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		71294DD01BC6FC1500B9F81B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		71294DD11BC6FC1500B9F81B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		71294DD31BC6FC1500B9F81B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Carleton150/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150.Carleton150;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		71294DD41BC6FC1500B9F81B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Carleton150/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150.Carleton150;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		71294DD61BC6FC1500B9F81B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = Carleton150Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150.Carleton150Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Carleton150.app/Carleton150";
+			};
+			name = Debug;
+		};
+		71294DD71BC6FC1500B9F81B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = Carleton150Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150.Carleton150Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Carleton150.app/Carleton150";
+			};
+			name = Release;
+		};
+		71294DD91BC6FC1500B9F81B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Carleton150UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150.Carleton150UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Carleton150;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		71294DDA1BC6FC1500B9F81B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Carleton150UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150.Carleton150UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Carleton150;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		71294DA51BC6FC1500B9F81B /* Build configuration list for PBXProject "Carleton150" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71294DD01BC6FC1500B9F81B /* Debug */,
+				71294DD11BC6FC1500B9F81B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		71294DD21BC6FC1500B9F81B /* Build configuration list for PBXNativeTarget "Carleton150" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71294DD31BC6FC1500B9F81B /* Debug */,
+				71294DD41BC6FC1500B9F81B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		71294DD51BC6FC1500B9F81B /* Build configuration list for PBXNativeTarget "Carleton150Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71294DD61BC6FC1500B9F81B /* Debug */,
+				71294DD71BC6FC1500B9F81B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		71294DD81BC6FC1500B9F81B /* Build configuration list for PBXNativeTarget "Carleton150UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71294DD91BC6FC1500B9F81B /* Debug */,
+				71294DDA1BC6FC1500B9F81B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 71294DA21BC6FC1500B9F81B /* Project object */;
+}
