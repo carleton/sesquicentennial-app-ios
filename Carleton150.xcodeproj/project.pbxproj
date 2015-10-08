@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0818F22FDFB5930AE1579E6E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C969F7CD920E28A28D103E84 /* libPods.a */; };
 		71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */; };
 		71294DB01BC6FC1500B9F81B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAF1BC6FC1500B9F81B /* ViewController.swift */; };
 		71294DB31BC6FC1500B9F81B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71294DB11BC6FC1500B9F81B /* Main.storyboard */; };
@@ -14,6 +15,7 @@
 		71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71294DB61BC6FC1500B9F81B /* LaunchScreen.storyboard */; };
 		71294DC31BC6FC1500B9F81B /* Carleton150Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DC21BC6FC1500B9F81B /* Carleton150Tests.swift */; };
 		71294DCE1BC6FC1500B9F81B /* Carleton150UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DCD1BC6FC1500B9F81B /* Carleton150UITests.swift */; };
+		717FE3E61BC7001D009CA507 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 717FE3E51BC7001D009CA507 /* Keys.plist */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3FBAB4B9CF8E6ECBB08983E6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		44F4A8948584594D31E6D696 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		71294DAA1BC6FC1500B9F81B /* Carleton150.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carleton150.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71294DAF1BC6FC1500B9F81B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +51,8 @@
 		71294DC91BC6FC1500B9F81B /* Carleton150UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Carleton150UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		71294DCD1BC6FC1500B9F81B /* Carleton150UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carleton150UITests.swift; sourceTree = "<group>"; };
 		71294DCF1BC6FC1500B9F81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		717FE3E51BC7001D009CA507 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		C969F7CD920E28A28D103E84 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0818F22FDFB5930AE1579E6E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +88,8 @@
 				71294DC11BC6FC1500B9F81B /* Carleton150Tests */,
 				71294DCC1BC6FC1500B9F81B /* Carleton150UITests */,
 				71294DAB1BC6FC1500B9F81B /* Products */,
+				B942DC4C5343322BBFFA7EAC /* Pods */,
+				93AFF1052C40EADBED9AA042 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +111,7 @@
 				71294DB11BC6FC1500B9F81B /* Main.storyboard */,
 				71294DB41BC6FC1500B9F81B /* Assets.xcassets */,
 				71294DB61BC6FC1500B9F81B /* LaunchScreen.storyboard */,
+				717FE3E51BC7001D009CA507 /* Keys.plist */,
 				71294DB91BC6FC1500B9F81B /* Info.plist */,
 			);
 			path = Carleton150;
@@ -125,6 +135,23 @@
 			path = Carleton150UITests;
 			sourceTree = "<group>";
 		};
+		93AFF1052C40EADBED9AA042 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C969F7CD920E28A28D103E84 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B942DC4C5343322BBFFA7EAC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3FBAB4B9CF8E6ECBB08983E6 /* Pods.debug.xcconfig */,
+				44F4A8948584594D31E6D696 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +159,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 71294DD21BC6FC1500B9F81B /* Build configuration list for PBXNativeTarget "Carleton150" */;
 			buildPhases = (
+				AFBD7EF8528EAAC4B5551C14 /* Check Pods Manifest.lock */,
 				71294DA61BC6FC1500B9F81B /* Sources */,
 				71294DA71BC6FC1500B9F81B /* Frameworks */,
 				71294DA81BC6FC1500B9F81B /* Resources */,
+				FA9517F0299527F650386F7C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -228,6 +257,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				717FE3E61BC7001D009CA507 /* Keys.plist in Resources */,
 				71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */,
 				71294DB51BC6FC1500B9F81B /* Assets.xcassets in Resources */,
 				71294DB31BC6FC1500B9F81B /* Main.storyboard in Resources */,
@@ -249,6 +279,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AFBD7EF8528EAAC4B5551C14 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FA9517F0299527F650386F7C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		71294DA61BC6FC1500B9F81B /* Sources */ = {
@@ -331,6 +394,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -376,6 +440,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -396,6 +461,7 @@
 		};
 		71294DD31BC6FC1500B9F81B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FBAB4B9CF8E6ECBB08983E6 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Carleton150/Info.plist;
@@ -407,6 +473,7 @@
 		};
 		71294DD41BC6FC1500B9F81B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44F4A8948584594D31E6D696 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Carleton150/Info.plist;
@@ -483,6 +550,7 @@
 				71294DD41BC6FC1500B9F81B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		71294DD51BC6FC1500B9F81B /* Build configuration list for PBXNativeTarget "Carleton150Tests" */ = {
 			isa = XCConfigurationList;
@@ -491,6 +559,7 @@
 				71294DD71BC6FC1500B9F81B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		71294DD81BC6FC1500B9F81B /* Build configuration list for PBXNativeTarget "Carleton150UITests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +568,7 @@
 				71294DDA1BC6FC1500B9F81B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
