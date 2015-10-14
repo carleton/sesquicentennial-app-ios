@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,21 +18,55 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wzj-au-GJO" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="1" width="600" height="600"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LABEL WOO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6Q-fC-NPG">
+                                        <rect key="frame" x="18" y="517" width="118" height="21"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="118" id="Lax-F9-O6X"/>
+                                            <constraint firstAttribute="height" constant="21" id="NCr-te-Ojg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LABEL WOO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48n-Vv-TH8">
+                                        <rect key="frame" x="18" y="546" width="118" height="21"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="fJX-p3-AKm"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="48n-Vv-TH8" firstAttribute="top" secondItem="H6Q-fC-NPG" secondAttribute="bottom" constant="8" symbolic="YES" id="29C-De-oo7"/>
+                                    <constraint firstItem="H6Q-fC-NPG" firstAttribute="trailing" secondItem="48n-Vv-TH8" secondAttribute="trailing" id="66A-uh-x88"/>
+                                    <constraint firstItem="H6Q-fC-NPG" firstAttribute="leading" secondItem="48n-Vv-TH8" secondAttribute="leading" id="XVv-Q7-ajx"/>
+                                    <constraint firstAttribute="bottom" secondItem="48n-Vv-TH8" secondAttribute="bottom" constant="33" id="iaN-qK-YPM"/>
+                                    <constraint firstItem="H6Q-fC-NPG" firstAttribute="leading" secondItem="Wzj-au-GJO" secondAttribute="leading" constant="18" id="izH-cH-vJX"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Wzj-au-GJO" secondAttribute="trailing" id="0FO-Th-vU9"/>
-                            <constraint firstItem="Wzj-au-GJO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="brD-Mw-v4r"/>
-                            <constraint firstItem="Wzj-au-GJO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="mRE-PA-DVr"/>
-                            <constraint firstItem="Wzj-au-GJO" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="y8a-jC-mwN"/>
+                            <constraint firstItem="Wzj-au-GJO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="1" id="ZrU-ZA-HeH"/>
+                            <constraint firstAttribute="trailing" secondItem="Wzj-au-GJO" secondAttribute="trailing" id="d1J-jC-hoQ"/>
+                            <constraint firstItem="Wzj-au-GJO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ewZ-zV-2i1"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Wzj-au-GJO" secondAttribute="bottom" constant="-1" id="kNL-Ep-n9N"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="latText" destination="H6Q-fC-NPG" id="2Or-sG-rhM"/>
+                        <outlet property="longText" destination="48n-Vv-TH8" id="Vor-sb-xVu"/>
                         <outlet property="mapView" destination="Wzj-au-GJO" id="q87-rK-Kei"/>
                     </connections>
                 </viewController>
