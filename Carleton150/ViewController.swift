@@ -27,6 +27,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
 
+        let circleCenter: CLLocationCoordinate2D = CLLocationCoordinate2DMake(44.46015, -93.15470)
+        let circle: GMSCircle = GMSCircle(position: circleCenter, radius: 40)
+        circle.fillColor = UIColor.redColor().colorWithAlphaComponent(0.5)
+        circle.map = mapView
+ 
+
         // brings text subviews in front of the map.
         mapView.bringSubviewToFront(latText)
         mapView.bringSubviewToFront(longText)
