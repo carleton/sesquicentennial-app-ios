@@ -34,7 +34,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
         
  
-
         // brings text subviews in front of the map.
         mapView.bringSubviewToFront(latText)
         mapView.bringSubviewToFront(longText)
@@ -69,7 +68,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     
     func regionWithGeotification(geotification: Geotification) -> CLCircularRegion {
-        print(geotification.coordinate)
         //initialize raius of geofence
         let region = CLCircularRegion(center: geotification.coordinate, radius: geotification.radius, identifier: geotification.identifier)
         //specify whether geofence events will be triggered when the device enters and leaves the defined geofence
@@ -79,7 +77,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func startMonitoringGeotification(geotification: Geotification) {
-        print("startMonitoringGeotification")
         if !CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) {
             print("Geofencing is not supported on this device!")
             return
@@ -91,7 +88,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func loadAllGeotifications(mapView:GMSMapView) {
         geotifications = []
-        let centers = [CLLocationCoordinate2DMake(44.46015, -93.15470), CLLocationCoordinate2DMake(44.46430023, -93.14958939),CLLocationCoordinate2DMake(44.46234939, -93.15400795),CLLocationCoordinate2DMake(44.459351, -93.158082)]
+        // DO NOT use the exact centers of the circles as your start location.
+        let centers = [CLLocationCoordinate2DMake(44.460151, -93.15470), CLLocationCoordinate2DMake(44.46430023, -93.14958939),CLLocationCoordinate2DMake(44.46234939, -93.15400795),CLLocationCoordinate2DMake(44.459351, -93.158082)]
 
             for circleCenter in centers {
                 let circle: GMSCircle = GMSCircle(position: circleCenter, radius: 30)
