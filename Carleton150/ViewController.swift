@@ -9,6 +9,8 @@
 import UIKit
 import GoogleMaps
 import CoreLocation
+import MapKit
+
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -17,25 +19,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: GMSMapView!
     let locationManager = CLLocationManager()
     let currentLocationMarker = GMSMarker()
-
+    let kSavedItemsKey = "savedItems"
+    var geotifications = [Geotification]()
+   
+//cmc cood: 44.46245572
+    //-93.15364614
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.requestAlwaysAuthorization()
         
         mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
-
-        let circleCenter: CLLocationCoordinate2D = CLLocationCoordinate2DMake(44.46015, -93.15470)
-        let circle: GMSCircle = GMSCircle(position: circleCenter, radius: 40)
-        circle.fillColor = UIColor.redColor().colorWithAlphaComponent(0.5)
-        circle.map = mapView
+        
  
 
         // brings text subviews in front of the map.
         mapView.bringSubviewToFront(latText)
         mapView.bringSubviewToFront(longText)
+        
+        loadAllGeotifications(mapView)
         
     }
 
@@ -45,13 +49,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
 
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedWhenInUse {
+        if status == .AuthorizedAlways {
             
             locationManager.startUpdatingLocation()
             
             mapView.myLocationEnabled = true
             mapView.settings.myLocationButton = true
         }
+        
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -61,9 +66,54 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         longText.text = String(format:"%f", location.coordinate.longitude)
         
     }
+    
+    
+    func regionWithGeotification(geotification: Geotification) -> CLCircularRegion {
+        print(geotification.coordinate)
+        //initialize raius of geofence
+        let region = CLCircularRegion(center: geotification.coordinate, radius: geotification.radius, identifier: geotification.identifier)
+        //specify whether geofence events will be triggered when the device enters and leaves the defined geofence
+        region.notifyOnEntry = true
+        region.notifyOnExit = true
+        return region
+    }
+    
+    func startMonitoringGeotification(geotification: Geotification) {
+        print("startMonitoringGeotification")
+        if !CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) {
+            print("Geofencing is not supported on this device!")
+            return
+        }
+        let region = regionWithGeotification(geotification)
+        locationManager.startMonitoringForRegion(region)
+    }
+    
+    
+    func loadAllGeotifications(mapView:GMSMapView) {
+        geotifications = []
+        let centers = [CLLocationCoordinate2DMake(44.46015, -93.15470), CLLocationCoordinate2DMake(44.46430023, -93.14958939),CLLocationCoordinate2DMake(44.46234939, -93.15400795),CLLocationCoordinate2DMake(44.459351, -93.158082)]
+
+            for circleCenter in centers {
+                let circle: GMSCircle = GMSCircle(position: circleCenter, radius: 30)
+                circle.fillColor = UIColor.orangeColor().colorWithAlphaComponent(0.5)
+                circle.map = mapView
+                let geotification = Geotification(coordinate: circleCenter, radius: 30, identifier: "xxx")
+                geotifications.append(geotification)
+                startMonitoringGeotification(geotification)
+            
+        }
+    }
+    
+    
+
 
     
 
+    
+    
+
+
+    
 }
 
 

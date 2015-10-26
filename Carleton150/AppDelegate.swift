@@ -8,13 +8,14 @@
 
 import UIKit
 import GoogleMaps
+import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate  {
 
     var window: UIWindow?
     var keys: NSDictionary?
-
+    let locationManager = CLLocationManager()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -26,7 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let googleMapsApiKey = keys?["GoogleMaps"] as? String
             GMSServices.provideAPIKey(googleMapsApiKey)
         }
-        
+        locationManager.delegate = self                // Add this line
+        locationManager.requestAlwaysAuthorization()   // And this one
         return true
     }
 
@@ -51,6 +53,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+
+    
+    func handleRegionEvent(region: CLRegion!) {
+        print("enter!")
+    }
+    
+    func handleRegionEvent2(region: CLRegion!) {
+        print("exit!")
+    }
+
+    //you fire locationManager(_:didEnterRegion:) when the device enters a CLRegion, while you fire locationManager(_:didExitRegion:) when the device exits a CLRegion
+    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            print("!")
+            handleRegionEvent(region)
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            handleRegionEvent2(region)
+        }
+    }
+    //retrieves the geotification note from the persistence store, given the geotification identifier.
+
 
 
 }

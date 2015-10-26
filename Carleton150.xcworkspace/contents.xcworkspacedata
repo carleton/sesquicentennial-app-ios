@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Geotify-Starter/Geotify/TestLocations.gpx">
+   </FileRef>
+   <FileRef
       location = "group:Carleton150.xcodeproj">
    </FileRef>
    <FileRef
