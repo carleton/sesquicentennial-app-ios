@@ -54,7 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-
     
     func handleRegionEvent(region: CLRegion!) {
         print("enter!")
@@ -66,10 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     //you fire locationManager(_:didEnterRegion:) when the device enters a CLRegion, while you fire locationManager(_:didExitRegion:) when the device exits a CLRegion
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        if region is CLCircularRegion {
-            print("!")
             handleRegionEvent(region)
-        }
     }
     
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
