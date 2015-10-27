@@ -19,11 +19,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: GMSMapView!
     let locationManager = CLLocationManager()
     let currentLocationMarker = GMSMarker()
-    let kSavedItemsKey = "savedItems"
     var geotifications = [Geotification]()
    
-//cmc cood: 44.46245572
-    //-93.15364614
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,9 +65,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     
     func regionWithGeotification(geotification: Geotification) -> CLCircularRegion {
-        //initialize raius of geofence
+        
+        // initialize radius of geofence
         let region = CLCircularRegion(center: geotification.coordinate, radius: geotification.radius, identifier: geotification.identifier)
-        //specify whether geofence events will be triggered when the device enters and leaves the defined geofence
+        
+        // specify whether geofence events will be triggered
+        // when the device enters and leaves the defined geofence
         region.notifyOnEntry = true
         region.notifyOnExit = true
         return region
@@ -101,17 +101,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
         }
     }
-    
-    
-
-
-    
-
-    
-    
-
-
-    
 }
 
 
