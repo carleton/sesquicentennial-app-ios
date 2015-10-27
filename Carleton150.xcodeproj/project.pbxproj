@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0818F22FDFB5930AE1579E6E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C969F7CD920E28A28D103E84 /* libPods.a */; };
 		6A3094401BD9CD4600A16342 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A30943F1BD9CD4600A16342 /* Geotification.swift */; };
 		71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */; };
 		71294DB01BC6FC1500B9F81B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAF1BC6FC1500B9F81B /* ViewController.swift */; };
@@ -17,6 +16,7 @@
 		71294DC31BC6FC1500B9F81B /* Carleton150Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DC21BC6FC1500B9F81B /* Carleton150Tests.swift */; };
 		71294DCE1BC6FC1500B9F81B /* Carleton150UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DCD1BC6FC1500B9F81B /* Carleton150UITests.swift */; };
 		717FE3E61BC7001D009CA507 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 717FE3E51BC7001D009CA507 /* Keys.plist */; };
+		DE91C2426C63D15AFB832D1D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B806A61E13CBDF524607BD9E /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +56,7 @@
 		71294DCF1BC6FC1500B9F81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71676CC11BDED61700F1183D /* Carleton150-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Carleton150-Bridging-Header.h"; sourceTree = "<group>"; };
 		717FE3E51BC7001D009CA507 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
-		C969F7CD920E28A28D103E84 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B806A61E13CBDF524607BD9E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0818F22FDFB5930AE1579E6E /* libPods.a in Frameworks */,
+				DE91C2426C63D15AFB832D1D /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,7 +145,7 @@
 		93AFF1052C40EADBED9AA042 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C969F7CD920E28A28D103E84 /* libPods.a */,
+				B806A61E13CBDF524607BD9E /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
