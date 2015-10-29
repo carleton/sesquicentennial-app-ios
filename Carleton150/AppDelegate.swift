@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             GMSServices.provideAPIKey(googleMapsApiKey)
         }
        
-        masterController =  self.window!.rootViewController as? ViewController
+        masterController = self.window!.rootViewController as? ViewController
         
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
@@ -63,7 +63,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     
     func handleRegionEntry(region: CLRegion!) {
-        print("enter!")
         let parameters = [
             "geofence": [
                 "location" : [
@@ -86,13 +85,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             let origin = json["content"][0]["landmarks"][0].string
             if let alertBox = self.alert {
                 if !alertBox.isBeingPresented() {
-                self.alert = UIAlertController(title: "You entered a Geofence!", message: origin, preferredStyle: UIAlertControllerStyle.Alert)
+                self.alert = UIAlertController(title: "You found a landmark!", message: origin, preferredStyle: UIAlertControllerStyle.Alert)
                 self.alert!.addAction(UIAlertAction(title: "Exit", style: UIAlertActionStyle.Default, handler: nil))
                 self.masterController.presentViewController(self.alert!, animated: true, completion: nil)
                 }
             }
             else {
-                self.alert = UIAlertController(title: "Alert", message: origin, preferredStyle: UIAlertControllerStyle.Alert)
+                self.alert = UIAlertController(title: "You found a landmark!", message: origin, preferredStyle: UIAlertControllerStyle.Alert)
                 self.alert!.addAction(UIAlertAction(title: "Exit", style: UIAlertActionStyle.Default, handler: nil))
                 self.masterController.presentViewController(self.alert!, animated: true, completion: nil)
             }

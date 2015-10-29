@@ -93,12 +93,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func loadAllGeotifications(mapView:GMSMapView) {
         geotifications = []
-        // DO NOT use the exact centers of the circles as your start location.
         let centers = [CLLocationCoordinate2DMake(44.460131, -93.15472)]
-//    <wpt lat="44.46013" lon="-93.15470">
-//        CLLocationCoordinate2DMake(44.460151, -93.15470)
-//        CLLocationCoordinate2DMake(44.46430023, -93.14958939)
-//        CLLocationCoordinate2DMake(44.46234939, -93.15400795)
             for circleCenter in centers {
                 let circle: GMSCircle = GMSCircle(position: circleCenter, radius: 30)
                 circle.fillColor = UIColor.orangeColor().colorWithAlphaComponent(0.5)
