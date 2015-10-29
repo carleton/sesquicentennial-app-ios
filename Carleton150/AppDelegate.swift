@@ -9,6 +9,8 @@
 import UIKit
 import GoogleMaps
 import CoreLocation
+import Alamofire
+import SwiftyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate  {
@@ -16,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     var keys: NSDictionary?
     let locationManager = CLLocationManager()
+    var masterController: UIViewController!
+    var alert: UIAlertController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -27,8 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             let googleMapsApiKey = keys?["GoogleMaps"] as? String
             GMSServices.provideAPIKey(googleMapsApiKey)
         }
-        locationManager.delegate = self                // Add this line
-        locationManager.requestAlwaysAuthorization()   // And this one
+       
+        masterController =  self.window!.rootViewController as? ViewController
+        
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
         return true
     }
 
@@ -55,27 +62,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     
-    func handleRegionEvent(region: CLRegion!) {
+    func handleRegionEntry(region: CLRegion!) {
         print("enter!")
+        let parameters = [
+            "geofence": [
+                "location" : [
+                    "x" : 50,
+                    "y" : 50
+                ],
+                "radius": 100
+            ],
+            "timespan": [
+                "startTime":"",
+                "endTime":""
+            ]
+        ]
+        Alamofire.request(.POST, "https://f37009fe.ngrok.io/landmarks", parameters: parameters, encoding: .JSON).responseJSON() {
+            (request, response, result) in
+ 
+            // given a successful request, we get the JSON object
+            // and parse it.
+            let json = JSON(result.value!)
+            let origin = json["content"][0]["landmarks"][0].string
+            if let alertBox = self.alert {
+                if !alertBox.isBeingPresented() {
+                self.alert = UIAlertController(title: "You entered a Geofence!", message: origin, preferredStyle: UIAlertControllerStyle.Alert)
+                self.alert!.addAction(UIAlertAction(title: "Exit", style: UIAlertActionStyle.Default, handler: nil))
+                self.masterController.presentViewController(self.alert!, animated: true, completion: nil)
+                }
+            }
+            else {
+                self.alert = UIAlertController(title: "Alert", message: origin, preferredStyle: UIAlertControllerStyle.Alert)
+                self.alert!.addAction(UIAlertAction(title: "Exit", style: UIAlertActionStyle.Default, handler: nil))
+                self.masterController.presentViewController(self.alert!, animated: true, completion: nil)
+            }
+        }
     }
     
-    func handleRegionEvent2(region: CLRegion!) {
+    func handleRegionExit(region: CLRegion!) {
         print("exit!")
     }
 
-    //you fire locationManager(_:didEnterRegion:) when the device enters a CLRegion, while you fire locationManager(_:didExitRegion:) when the device exits a CLRegion
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
-            handleRegionEvent(region)
+        // triggers upon entering a CLRegion
+        handleRegionEntry(region)
     }
     
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
-        if region is CLCircularRegion {
-            handleRegionEvent2(region)
-        }
+        // triggers upon exiting a CLRegion
+        handleRegionExit(region)
     }
-    //retrieves the geotification note from the persistence store, given the geotification identifier.
-
-
-
+    
 }
 
