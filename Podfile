@@ -6,7 +6,8 @@ platform :ios, '9.0'
 use_frameworks!
 
 pod 'GoogleMaps'
-pod 'Alamofire', '~> 3.0'
+pod 'Alamofire', '~> 2.0'
+pod 'SwiftyJSON', '~> 2.3'
 
 target 'Carleton150' do
 
