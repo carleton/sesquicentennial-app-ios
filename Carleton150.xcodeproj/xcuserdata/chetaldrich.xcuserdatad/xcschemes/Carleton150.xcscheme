@@ -26,13 +26,14 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "71294DBD1BC6FC1500B9F81B"
+               BlueprintIdentifier = "71CC5F6D1BE942CF0065AA4C"
                BuildableName = "Carleton150Tests.xctest"
                BlueprintName = "Carleton150Tests"
                ReferencedContainer = "container:Carleton150.xcodeproj">

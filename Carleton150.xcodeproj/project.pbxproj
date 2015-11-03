@@ -7,28 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C7C651B588C8C78CEBC3E38 /* Pods_Carleton150.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39FEB0FEB30D513E7B3C1CDA /* Pods_Carleton150.framework */; };
 		6A3094401BD9CD4600A16342 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A30943F1BD9CD4600A16342 /* Geotification.swift */; };
 		71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */; };
 		71294DB01BC6FC1500B9F81B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAF1BC6FC1500B9F81B /* ViewController.swift */; };
 		71294DB31BC6FC1500B9F81B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71294DB11BC6FC1500B9F81B /* Main.storyboard */; };
 		71294DB51BC6FC1500B9F81B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71294DB41BC6FC1500B9F81B /* Assets.xcassets */; };
 		71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71294DB61BC6FC1500B9F81B /* LaunchScreen.storyboard */; };
-		71294DC31BC6FC1500B9F81B /* Carleton150Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DC21BC6FC1500B9F81B /* Carleton150Tests.swift */; };
 		71294DCE1BC6FC1500B9F81B /* Carleton150UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DCD1BC6FC1500B9F81B /* Carleton150UITests.swift */; };
 		717FE3E61BC7001D009CA507 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 717FE3E51BC7001D009CA507 /* Keys.plist */; };
 		718104121BE90F7900944F8A /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718104111BE90F7900944F8A /* DataService.swift */; };
+		71CC5F791BE944220065AA4C /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CC5F781BE944220065AA4C /* DataServiceTest.swift */; };
 		DE91C2426C63D15AFB832D1D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B806A61E13CBDF524607BD9E /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		71294DBF1BC6FC1500B9F81B /* PBXContainerItemProxy */ = {
+		71294DCA1BC6FC1500B9F81B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 71294DA21BC6FC1500B9F81B /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 71294DA91BC6FC1500B9F81B;
 			remoteInfo = Carleton150;
 		};
-		71294DCA1BC6FC1500B9F81B /* PBXContainerItemProxy */ = {
+		71CC5F731BE942CF0065AA4C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 71294DA21BC6FC1500B9F81B /* Project object */;
 			proxyType = 1;
@@ -38,8 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		39FEB0FEB30D513E7B3C1CDA /* Pods_Carleton150.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carleton150.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FBAB4B9CF8E6ECBB08983E6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		44F4A8948584594D31E6D696 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		4EF7FF35B1F532FC92A7B8A3 /* Pods-Carleton150Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150Tests/Pods-Carleton150Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6A30943F1BD9CD4600A16342 /* Geotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
 		6A3094411BDDDFAC00A16342 /* TestLocation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TestLocation.gpx; sourceTree = "<group>"; };
 		71294DAA1BC6FC1500B9F81B /* Carleton150.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carleton150.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,16 +52,18 @@
 		71294DB41BC6FC1500B9F81B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71294DB71BC6FC1500B9F81B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71294DB91BC6FC1500B9F81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		71294DBE1BC6FC1500B9F81B /* Carleton150Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Carleton150Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		71294DC21BC6FC1500B9F81B /* Carleton150Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carleton150Tests.swift; sourceTree = "<group>"; };
-		71294DC41BC6FC1500B9F81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71294DC91BC6FC1500B9F81B /* Carleton150UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Carleton150UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		71294DCD1BC6FC1500B9F81B /* Carleton150UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carleton150UITests.swift; sourceTree = "<group>"; };
 		71294DCF1BC6FC1500B9F81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71676CC11BDED61700F1183D /* Carleton150-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Carleton150-Bridging-Header.h"; sourceTree = "<group>"; };
 		717FE3E51BC7001D009CA507 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		718104111BE90F7900944F8A /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		71CC5F6E1BE942CF0065AA4C /* Carleton150Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Carleton150Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		71CC5F721BE942CF0065AA4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71CC5F781BE944220065AA4C /* DataServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
+		A13C89B298A898D72EE69AED /* Pods_Carleton150Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carleton150Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B806A61E13CBDF524607BD9E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D510DD6D1D9B3B955D223FB4 /* Pods-Carleton150Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150Tests/Pods-Carleton150Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,17 +72,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE91C2426C63D15AFB832D1D /* Pods.framework in Frameworks */,
+				3C7C651B588C8C78CEBC3E38 /* Pods_Carleton150.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		71294DBB1BC6FC1500B9F81B /* Frameworks */ = {
+		71294DC61BC6FC1500B9F81B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		71294DC61BC6FC1500B9F81B /* Frameworks */ = {
+		71CC5F6B1BE942CF0065AA4C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -91,8 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				71294DAC1BC6FC1500B9F81B /* Carleton150 */,
-				71294DC11BC6FC1500B9F81B /* Carleton150Tests */,
 				71294DCC1BC6FC1500B9F81B /* Carleton150UITests */,
+				71CC5F6F1BE942CF0065AA4C /* Carleton150Tests */,
 				71294DAB1BC6FC1500B9F81B /* Products */,
 				B942DC4C5343322BBFFA7EAC /* Pods */,
 				93AFF1052C40EADBED9AA042 /* Frameworks */,
@@ -103,8 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				71294DAA1BC6FC1500B9F81B /* Carleton150.app */,
-				71294DBE1BC6FC1500B9F81B /* Carleton150Tests.xctest */,
 				71294DC91BC6FC1500B9F81B /* Carleton150UITests.xctest */,
+				71CC5F6E1BE942CF0065AA4C /* Carleton150Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,15 +133,6 @@
 			path = Carleton150;
 			sourceTree = "<group>";
 		};
-		71294DC11BC6FC1500B9F81B /* Carleton150Tests */ = {
-			isa = PBXGroup;
-			children = (
-				71294DC21BC6FC1500B9F81B /* Carleton150Tests.swift */,
-				71294DC41BC6FC1500B9F81B /* Info.plist */,
-			);
-			path = Carleton150Tests;
-			sourceTree = "<group>";
-		};
 		71294DCC1BC6FC1500B9F81B /* Carleton150UITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,10 +142,21 @@
 			path = Carleton150UITests;
 			sourceTree = "<group>";
 		};
+		71CC5F6F1BE942CF0065AA4C /* Carleton150Tests */ = {
+			isa = PBXGroup;
+			children = (
+				71CC5F721BE942CF0065AA4C /* Info.plist */,
+				71CC5F781BE944220065AA4C /* DataServiceTest.swift */,
+			);
+			path = Carleton150Tests;
+			sourceTree = "<group>";
+		};
 		93AFF1052C40EADBED9AA042 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				B806A61E13CBDF524607BD9E /* Pods.framework */,
+				39FEB0FEB30D513E7B3C1CDA /* Pods_Carleton150.framework */,
+				A13C89B298A898D72EE69AED /* Pods_Carleton150Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -158,6 +166,8 @@
 			children = (
 				3FBAB4B9CF8E6ECBB08983E6 /* Pods.debug.xcconfig */,
 				44F4A8948584594D31E6D696 /* Pods.release.xcconfig */,
+				D510DD6D1D9B3B955D223FB4 /* Pods-Carleton150Tests.debug.xcconfig */,
+				4EF7FF35B1F532FC92A7B8A3 /* Pods-Carleton150Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -185,24 +195,6 @@
 			productReference = 71294DAA1BC6FC1500B9F81B /* Carleton150.app */;
 			productType = "com.apple.product-type.application";
 		};
-		71294DBD1BC6FC1500B9F81B /* Carleton150Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 71294DD51BC6FC1500B9F81B /* Build configuration list for PBXNativeTarget "Carleton150Tests" */;
-			buildPhases = (
-				71294DBA1BC6FC1500B9F81B /* Sources */,
-				71294DBB1BC6FC1500B9F81B /* Frameworks */,
-				71294DBC1BC6FC1500B9F81B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				71294DC01BC6FC1500B9F81B /* PBXTargetDependency */,
-			);
-			name = Carleton150Tests;
-			productName = Carleton150Tests;
-			productReference = 71294DBE1BC6FC1500B9F81B /* Carleton150Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		71294DC81BC6FC1500B9F81B /* Carleton150UITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 71294DD81BC6FC1500B9F81B /* Build configuration list for PBXNativeTarget "Carleton150UITests" */;
@@ -221,6 +213,24 @@
 			productReference = 71294DC91BC6FC1500B9F81B /* Carleton150UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		71CC5F6D1BE942CF0065AA4C /* Carleton150Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71CC5F751BE942CF0065AA4C /* Build configuration list for PBXNativeTarget "Carleton150Tests" */;
+			buildPhases = (
+				71CC5F6A1BE942CF0065AA4C /* Sources */,
+				71CC5F6B1BE942CF0065AA4C /* Frameworks */,
+				71CC5F6C1BE942CF0065AA4C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				71CC5F741BE942CF0065AA4C /* PBXTargetDependency */,
+			);
+			name = Carleton150Tests;
+			productName = Carleton150Tests;
+			productReference = 71CC5F6E1BE942CF0065AA4C /* Carleton150Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -234,12 +244,12 @@
 					71294DA91BC6FC1500B9F81B = {
 						CreatedOnToolsVersion = 7.0.1;
 					};
-					71294DBD1BC6FC1500B9F81B = {
+					71294DC81BC6FC1500B9F81B = {
 						CreatedOnToolsVersion = 7.0.1;
 						TestTargetID = 71294DA91BC6FC1500B9F81B;
 					};
-					71294DC81BC6FC1500B9F81B = {
-						CreatedOnToolsVersion = 7.0.1;
+					71CC5F6D1BE942CF0065AA4C = {
+						CreatedOnToolsVersion = 7.1;
 						TestTargetID = 71294DA91BC6FC1500B9F81B;
 					};
 				};
@@ -258,8 +268,8 @@
 			projectRoot = "";
 			targets = (
 				71294DA91BC6FC1500B9F81B /* Carleton150 */,
-				71294DBD1BC6FC1500B9F81B /* Carleton150Tests */,
 				71294DC81BC6FC1500B9F81B /* Carleton150UITests */,
+				71CC5F6D1BE942CF0065AA4C /* Carleton150Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -276,14 +286,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		71294DBC1BC6FC1500B9F81B /* Resources */ = {
+		71294DC71BC6FC1500B9F81B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		71294DC71BC6FC1500B9F81B /* Resources */ = {
+		71CC5F6C1BE942CF0065AA4C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -305,7 +315,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Carleton150/Pods-Carleton150-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AFBD7EF8528EAAC4B5551C14 /* Check Pods Manifest.lock */ = {
@@ -352,14 +362,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		71294DBA1BC6FC1500B9F81B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				71294DC31BC6FC1500B9F81B /* Carleton150Tests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		71294DC51BC6FC1500B9F81B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -368,18 +370,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		71CC5F6A1BE942CF0065AA4C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71CC5F791BE944220065AA4C /* DataServiceTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		71294DC01BC6FC1500B9F81B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 71294DA91BC6FC1500B9F81B /* Carleton150 */;
-			targetProxy = 71294DBF1BC6FC1500B9F81B /* PBXContainerItemProxy */;
-		};
 		71294DCB1BC6FC1500B9F81B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 71294DA91BC6FC1500B9F81B /* Carleton150 */;
 			targetProxy = 71294DCA1BC6FC1500B9F81B /* PBXContainerItemProxy */;
+		};
+		71CC5F741BE942CF0065AA4C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 71294DA91BC6FC1500B9F81B /* Carleton150 */;
+			targetProxy = 71CC5F731BE942CF0065AA4C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -423,6 +433,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -469,6 +480,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -494,6 +506,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = NO;
 				INFOPLIST_FILE = Carleton150/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150.Carleton150;
@@ -509,6 +522,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = NO;
 				INFOPLIST_FILE = Carleton150/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150.Carleton150;
@@ -517,32 +531,9 @@
 			};
 			name = Release;
 		};
-		71294DD61BC6FC1500B9F81B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = Carleton150Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150.Carleton150Tests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Carleton150.app/Carleton150";
-			};
-			name = Debug;
-		};
-		71294DD71BC6FC1500B9F81B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = Carleton150Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150.Carleton150Tests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Carleton150.app/Carleton150";
-			};
-			name = Release;
-		};
 		71294DD91BC6FC1500B9F81B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FBAB4B9CF8E6ECBB08983E6 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = Carleton150UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -555,6 +546,7 @@
 		};
 		71294DDA1BC6FC1500B9F81B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44F4A8948584594D31E6D696 /* Pods.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = Carleton150UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -562,6 +554,32 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = Carleton150;
 				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+		71CC5F761BE942CF0065AA4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FBAB4B9CF8E6ECBB08983E6 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = Carleton150Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150.Carleton150Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Carleton150.app/Carleton150";
+			};
+			name = Debug;
+		};
+		71CC5F771BE942CF0065AA4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44F4A8948584594D31E6D696 /* Pods.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = Carleton150Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150.Carleton150Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Carleton150.app/Carleton150";
 			};
 			name = Release;
 		};
@@ -586,15 +604,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		71294DD51BC6FC1500B9F81B /* Build configuration list for PBXNativeTarget "Carleton150Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				71294DD61BC6FC1500B9F81B /* Debug */,
-				71294DD71BC6FC1500B9F81B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		71294DD81BC6FC1500B9F81B /* Build configuration list for PBXNativeTarget "Carleton150UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -603,6 +612,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		71CC5F751BE942CF0065AA4C /* Build configuration list for PBXNativeTarget "Carleton150Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71CC5F761BE942CF0065AA4C /* Debug */,
+				71CC5F771BE942CF0065AA4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
