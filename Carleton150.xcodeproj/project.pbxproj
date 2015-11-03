@@ -16,6 +16,7 @@
 		71294DC31BC6FC1500B9F81B /* Carleton150Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DC21BC6FC1500B9F81B /* Carleton150Tests.swift */; };
 		71294DCE1BC6FC1500B9F81B /* Carleton150UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DCD1BC6FC1500B9F81B /* Carleton150UITests.swift */; };
 		717FE3E61BC7001D009CA507 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 717FE3E51BC7001D009CA507 /* Keys.plist */; };
+		718104121BE90F7900944F8A /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718104111BE90F7900944F8A /* DataService.swift */; };
 		DE91C2426C63D15AFB832D1D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B806A61E13CBDF524607BD9E /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		71294DCF1BC6FC1500B9F81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71676CC11BDED61700F1183D /* Carleton150-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Carleton150-Bridging-Header.h"; sourceTree = "<group>"; };
 		717FE3E51BC7001D009CA507 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		718104111BE90F7900944F8A /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		B806A61E13CBDF524607BD9E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -112,6 +114,7 @@
 			children = (
 				71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */,
 				6A30943F1BD9CD4600A16342 /* Geotification.swift */,
+				718104111BE90F7900944F8A /* DataService.swift */,
 				71294DAF1BC6FC1500B9F81B /* ViewController.swift */,
 				6A3094411BDDDFAC00A16342 /* TestLocation.gpx */,
 				71294DB11BC6FC1500B9F81B /* Main.storyboard */,
@@ -343,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				71294DB01BC6FC1500B9F81B /* ViewController.swift in Sources */,
+				718104121BE90F7900944F8A /* DataService.swift in Sources */,
 				6A3094401BD9CD4600A16342 /* Geotification.swift in Sources */,
 				71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */,
 			);
