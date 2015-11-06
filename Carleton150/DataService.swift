@@ -17,19 +17,38 @@ final class DataService {
     
     class func requestNearbyGeofences(location: CLLocationCoordinate2D) -> [(name: String, radius: Int, center: CLLocationCoordinate2D)] {
         
-        let _ = [
+        let parameters = [
             "geofence": [
                 "location" : [
-                    "x" : location.latitude,
-                    "y" : location.longitude
+                    "lat" : location.latitude,
+                    "lng" : location.longitude
                 ],
-                "radius": 0.01
+                "radius": 250
             ],
             "timespan": [
                 "startTime":"",
                 "endTime":""
             ]
         ]
+        
+        let postEndpoint: String = "https://carl.localtunnel.me/geofences"
+        Alamofire.request(.POST, postEndpoint, parameters: parameters, encoding: .JSON).responseJSON() {
+            (request, response, result) in
+            
+            let json = JSON(result.value!)
+            let answer = json["content"]
+            var answerArray:[(name: String, radius: Int, CLLcoord: CLLocationCoordinate2D)] = []
+            for i in 0 ..< answer.count {
+                //print(answer[i]["name"])
+                var geofence = answer[i]["geofence"]
+                var location = geofence["location"]
+                var latitude = location["lat"]
+                var longitude = location["lng"]
+                answerArray.append((name: answer[i]["name"].string!, radius: Int(answer[i]["geofence"]["radius"].string!)!, CLLcoord: CLLocationCoordinate2D(latitude: latitude.double!,longitude: longitude.double!)))
+            }
+            print(answerArray)
+        }
+
         
         return [("hello", 1, CLLocationCoordinate2D(latitude: 15.2, longitude: 15.1))]
     }
