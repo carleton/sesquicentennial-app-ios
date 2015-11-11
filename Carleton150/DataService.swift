@@ -19,7 +19,7 @@ final class DataService {
     class func requestContent(geofenceName: String,
                               completion: (success: Bool, result: Dictionary<String, String>?) -> Void) -> Void {
         let parameters = [
-            "geofences": ["Bald Spot"]
+            "geofences": [geofenceName]
         ]
         
         let postEndpoint: String = "https://carl.localtunnel.me/info"
