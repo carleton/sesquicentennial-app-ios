@@ -15,7 +15,40 @@ final class DataService {
     
     init () {}
     
-    class func requestNearbyGeofences(location: CLLocationCoordinate2D) -> [(name: String, radius: Int, center: CLLocationCoordinate2D)] {
+    
+    class func requestContent(geofenceName: String,
+                              completion: (success: Bool, result: Dictionary<String, String>?) -> Void) -> Void {
+        let parameters = [
+            "geofences": ["Bald Spot"]
+        ]
+        
+        let postEndpoint: String = "https://carl.localtunnel.me/info"
+        
+        Alamofire.request(.POST, postEndpoint, parameters: parameters, encoding: .JSON).responseJSON() {
+            (request, response, result) in
+            
+            if let result = result.value {
+                let json = JSON(result)
+                if let answer = json["content"].array {
+                    if answer.count > 0 {
+                        let type = answer[0]["type"].string!
+                        let summary = answer[0]["summary"].string!
+                        let data = answer[0]["data"].string!
+                        let final_result = ["type": type,
+                                            "summary": summary,
+                                            "data": data]
+                        completion(success: true, result: final_result)
+                    }
+                }
+            } else {
+                print("Connection to server failed.")
+                completion(success: false, result: nil)
+            }
+        }
+    }
+    
+    class func requestNearbyGeofences(location: CLLocationCoordinate2D) ->
+               [(name: String, radius: Int, center: CLLocationCoordinate2D)] {
         
         let parameters = [
             "geofence": [
