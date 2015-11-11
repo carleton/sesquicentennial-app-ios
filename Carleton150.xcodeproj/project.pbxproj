@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C7C651B588C8C78CEBC3E38 /* Pods_Carleton150.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39FEB0FEB30D513E7B3C1CDA /* Pods_Carleton150.framework */; };
+		63053A8E1BF2F08700D34246 /* CMC.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 63053A8D1BF2F08700D34246 /* CMC.gpx */; };
 		6A3094401BD9CD4600A16342 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A30943F1BD9CD4600A16342 /* Geotification.swift */; };
 		71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */; };
 		71294DB01BC6FC1500B9F81B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAF1BC6FC1500B9F81B /* ViewController.swift */; };
@@ -43,6 +44,7 @@
 		3FBAB4B9CF8E6ECBB08983E6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		44F4A8948584594D31E6D696 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4EF7FF35B1F532FC92A7B8A3 /* Pods-Carleton150Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150Tests/Pods-Carleton150Tests.release.xcconfig"; sourceTree = "<group>"; };
+		63053A8D1BF2F08700D34246 /* CMC.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CMC.gpx; sourceTree = "<group>"; };
 		6A30943F1BD9CD4600A16342 /* Geotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
 		6A3094411BDDDFAC00A16342 /* TestLocation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TestLocation.gpx; sourceTree = "<group>"; };
 		71294DAA1BC6FC1500B9F81B /* Carleton150.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carleton150.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +120,7 @@
 		71294DAC1BC6FC1500B9F81B /* Carleton150 */ = {
 			isa = PBXGroup;
 			children = (
+				63053A8D1BF2F08700D34246 /* CMC.gpx */,
 				71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */,
 				6A30943F1BD9CD4600A16342 /* Geotification.swift */,
 				718104111BE90F7900944F8A /* DataService.swift */,
@@ -281,6 +284,7 @@
 			files = (
 				717FE3E61BC7001D009CA507 /* Keys.plist in Resources */,
 				71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */,
+				63053A8E1BF2F08700D34246 /* CMC.gpx in Resources */,
 				71294DB51BC6FC1500B9F81B /* Assets.xcassets in Resources */,
 				71294DB31BC6FC1500B9F81B /* Main.storyboard in Resources */,
 			);

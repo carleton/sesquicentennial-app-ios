@@ -21,7 +21,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     let currentLocationMarker = GMSMarker()
     var geotifications = [Geotification]()
 	var infoMarkers = [GMSMarker()]
-    
+	var updateLocation = true
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,8 +37,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         mapView.bringSubviewToFront(longText)
         
         
-        loadAllGeotifications(mapView)
-        
+//        loadAllGeotifications(mapView)
+		
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -51,9 +52,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
 
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedAlways {
-            
             locationManager.startUpdatingLocation()
-            
             mapView.myLocationEnabled = true
             mapView.settings.myLocationButton = true
         }
@@ -62,10 +61,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
-        
         latText.text = String(format:"%f", location.coordinate.latitude)
         longText.text = String(format:"%f", location.coordinate.longitude)
-        
+		
+		// MARK: Make this less HACKYYYYY
+		if (updateLocation) {
+			let position = CLLocationCoordinate2D(latitude: location.coordinate.latitude,longitude: location.coordinate.longitude)
+			DataService.requestNearbyGeofences(position, completion:
+				{ (success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
+					if (success) {
+						// scrap old geofences
+						self.geotifications = []
+						for geofence in result! {
+							let circle: GMSCircle = GMSCircle(position: geofence.center, radius: Double(geofence.radius))
+							circle.fillColor = UIColor.orangeColor().colorWithAlphaComponent(0.1)
+							circle.map = self.mapView
+							let geotification = Geotification(coordinate: geofence.center, radius: Double(geofence.radius/2), identifier: geofence.name)
+							self.geotifications.append(geotification)
+							self.startMonitoringGeotification(geotification)
+						}
+					} else {
+						print("Boohoo")
+					}
+				})
+		}
     }
     
     
@@ -107,27 +126,33 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     }
 
 	func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
+		mapView.selectedMarker = marker
 		print(marker.title)
 		return true
 	}
 
-//	func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) -> Bool {
-//		print(marker.title)
+	func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) -> Void {
+		print(marker.title)
 //		return true
-//	}
+	}
 	
 	func handleRegionEntry(region: CLRegion!) {
 		DataService.requestContent(region.identifier,
 		completion: { (success: Bool, result: Dictionary<String, String>?) -> Void in
 			if (success) {
-				let position = CLLocationCoordinate2DMake(44.46013,-93.15470)
+				var position = CLLocationCoordinate2DMake(44.46013,-93.15470)
+				for (var i = 0; i < self.geotifications.count; i++) {
+					if (self.geotifications[i].identifier == region.identifier) {
+						position = self.geotifications[i].coordinate
+					}
+				}
 				let marker = GMSMarker(position: position)
 				marker.title = region.identifier
-				marker.icon = UIImage(named: "flag_icon")
+//				marker.icon = UIImage(named: "flag_icon")
 				marker.map = self.mapView
 				marker.snippet = result!["data"]
 				marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
-				self.mapView.animateToViewingAngle(45.0)
+//				self.mapView.animateToViewingAngle(45.0)
 				self.mapView.selectedMarker = marker
 				self.infoMarkers.append(marker)
 			} else {
@@ -140,6 +165,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
 		for (var i = 0; i <	infoMarkers.count; i++) {
 			infoMarkers[i].map = nil
 			infoMarkers.removeAtIndex(i)
+		}
+		if (infoMarkers.count > 0) {
+			let marker = GMSMarker(position: (infoMarkers.last?.position)!)
+			marker.title = infoMarkers.last?.title
+			marker.snippet = infoMarkers.last?.snippet
+			marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
+			self.mapView.selectedMarker = marker
+			marker.map = mapView
+			infoMarkers.popLast()
+			infoMarkers.append(marker)
+//			infoMarkers.last.map = mapView
 		}
 		print("exit!")
 	}
