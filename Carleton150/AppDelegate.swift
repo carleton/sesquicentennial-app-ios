@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     
-    func handleRegionEntry(region: CLRegion!) {
+ /**   func handleRegionEntry(region: CLRegion!) {
         let parameters = [
             "geofence": [
                 "location" : [
@@ -76,7 +76,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 "endTime":""
             ]
         ]
-        Alamofire.request(.POST, "https://f37009fe.ngrok.io/landmarks", parameters: parameters, encoding: .JSON).responseJSON() {
+		print("MEOW")
+        /**Alamofire.request(.POST, "https://f37009fe.ngrok.io/landmarks", parameters: parameters, encoding: .JSON).responseJSON() {
             (request, response, result) in
  
             // given a successful request, we get the JSON object
@@ -95,7 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 self.alert!.addAction(UIAlertAction(title: "Exit", style: UIAlertActionStyle.Default, handler: nil))
                 self.masterController.presentViewController(self.alert!, animated: true, completion: nil)
             }
-        }
+        }**/
     }
     
     func handleRegionExit(region: CLRegion!) {
@@ -110,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
         // triggers upon exiting a CLRegion
         handleRegionExit(region)
-    }
+    }**/
     
 }
 

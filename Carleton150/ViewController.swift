@@ -12,7 +12,7 @@ import CoreLocation
 import MapKit
 
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 
     @IBOutlet weak var longText: UILabel!
     @IBOutlet weak var latText: UILabel!
@@ -20,7 +20,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     let currentLocationMarker = GMSMarker()
     var geotifications = [Geotification]()
-   
+	var infoMarkers = [GMSMarker()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.locationManager.requestAlwaysAuthorization()
         
         mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
- 
+		mapView.delegate = self;
         // brings text subviews in front of the map.
         mapView.bringSubviewToFront(latText)
         mapView.bringSubviewToFront(longText)
@@ -98,12 +98,62 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 let circle: GMSCircle = GMSCircle(position: circleCenter, radius: 30)
                 circle.fillColor = UIColor.orangeColor().colorWithAlphaComponent(0.5)
                 circle.map = mapView
-                let geotification = Geotification(coordinate: circleCenter, radius: 30, identifier: "xxx")
+				// IBRAHIM: Region Identifier
+                let geotification = Geotification(coordinate: circleCenter, radius: 30, identifier: "Skinner Memorial Chapel")
                 geotifications.append(geotification)
                 startMonitoringGeotification(geotification)
             
         }
     }
+
+	func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
+		print(marker.title)
+		return true
+	}
+
+//	func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) -> Bool {
+//		print(marker.title)
+//		return true
+//	}
+	
+	func handleRegionEntry(region: CLRegion!) {
+		DataService.requestContent(region.identifier,
+		completion: { (success: Bool, result: Dictionary<String, String>?) -> Void in
+			if (success) {
+				let position = CLLocationCoordinate2DMake(44.46013,-93.15470)
+				let marker = GMSMarker(position: position)
+				marker.title = region.identifier
+				marker.icon = UIImage(named: "flag_icon")
+				marker.map = self.mapView
+				marker.snippet = result!["data"]
+				marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
+				self.mapView.animateToViewingAngle(45.0)
+				self.mapView.selectedMarker = marker
+				self.infoMarkers.append(marker)
+			} else {
+				print("Didn't get data. Oops!")
+			}
+		})
+	}
+	
+	func handleRegionExit(region: CLRegion!) {
+		for (var i = 0; i <	infoMarkers.count; i++) {
+			infoMarkers[i].map = nil
+			infoMarkers.removeAtIndex(i)
+		}
+		print("exit!")
+	}
+	
+	func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+		// triggers upon entering a CLRegion
+		handleRegionEntry(region)
+	}
+	
+	func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+		// triggers upon exiting a CLRegion
+		handleRegionExit(region)
+	}
+
 }
 
 
