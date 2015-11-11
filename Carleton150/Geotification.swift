@@ -28,6 +28,7 @@ class Geotification: NSObject, NSCoding, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var radius: CLLocationDistance
     var identifier: String
+	var active: Bool
     //var note: String
     //var eventType: EventType
     
@@ -43,6 +44,7 @@ class Geotification: NSObject, NSCoding, MKAnnotation {
         self.coordinate = coordinate
         self.radius = radius
         self.identifier = identifier
+		self.active = false
         //self.note = note
         //self.eventType = eventType
     }
@@ -56,6 +58,7 @@ class Geotification: NSObject, NSCoding, MKAnnotation {
         coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         radius = decoder.decodeDoubleForKey(kGeotificationRadiusKey)
         identifier = decoder.decodeObjectForKey(kGeotificationIdentifierKey) as! String
+		self.active = false
         //note = decoder.decodeObjectForKey(kGeotificationNoteKey) as! String
         //eventType = EventType(rawValue: decoder.decodeIntegerForKey(kGeotificationEventTypeKey))!
     }
