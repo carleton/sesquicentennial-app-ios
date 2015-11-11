@@ -15,7 +15,6 @@ final class DataService {
     
     init () {}
     
-    
     class func requestContent(geofenceName: String,
                               completion: (success: Bool, result: Dictionary<String, String>?) -> Void) -> Void {
         let parameters = [
@@ -39,6 +38,9 @@ final class DataService {
                                             "data": data]
                         completion(success: true, result: final_result)
                     }
+                } else {
+                    print("No results were found.")
+                    completion(success: false, result: nil)
                 }
             } else {
                 print("Connection to server failed.")
@@ -47,8 +49,8 @@ final class DataService {
         }
     }
     
-    class func requestNearbyGeofences(location: CLLocationCoordinate2D) ->
-               [(name: String, radius: Int, center: CLLocationCoordinate2D)] {
+    class func requestNearbyGeofences(location: CLLocationCoordinate2D,
+          completion: (success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]?) -> Void) -> Void {
         
         let parameters = [
             "geofence": [
@@ -60,11 +62,11 @@ final class DataService {
             ]
         ]
         
-        let geofences: Geofences = Geofences()
         let postEndpoint: String = "https://carl.localtunnel.me/geofences"
         
         Alamofire.request(.POST, postEndpoint, parameters: parameters, encoding: .JSON).responseJSON() {
             (request, response, result) in
+            var final_result: [(name: String, radius: Int, center: CLLocationCoordinate2D)] = []
             
             if let result = result.value {
                 let json = JSON(result)
@@ -73,30 +75,19 @@ final class DataService {
                         let location = answer[i]["geofence"]["location"]
                         let fenceName = answer[i]["name"].string!
                         let rad = Int(answer[i]["geofence"]["radius"].string!)!
-                        let center = CLLocationCoordinate2D(latitude: location["lat"].double!,longitude: location["long"].double!)
-                        geofences.addNewGeofence((name: fenceName, radius: rad, center: center ))
+                        let center = CLLocationCoordinate2D(latitude: location["lat"].double!,longitude: location["lng"].double!)
+                        final_result.append((name: fenceName, radius: rad, center: center))
                     }
+                    completion(success: true, result: final_result)
+                } else {
+                    print("No results were found.")
+                    completion(success: false, result: nil)
                 }
+            } else {
+                print("Connection to server failed.")
+                completion(success: false, result: nil)
             }
         }
-        return geofences.getGeofences()
-    }
-    
-}
-
-final class Geofences {
-    var geofenceArray: [(name: String, radius: Int, center: CLLocationCoordinate2D)]
-    
-    init () {
-        self.geofenceArray = []
-    }
-    
-    func addNewGeofence(element: (name: String, radius: Int, center: CLLocationCoordinate2D)) {
-       self.geofenceArray.append(element)
-    }
-    
-    func getGeofences() -> [(name: String, radius: Int, center: CLLocationCoordinate2D)] {
-        return self.geofenceArray
     }
     
 }
