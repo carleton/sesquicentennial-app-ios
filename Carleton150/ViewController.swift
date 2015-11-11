@@ -20,7 +20,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     let currentLocationMarker = GMSMarker()
     var geotifications = [Geotification]()
-   
+	var infoMarkers = [GMSMarker()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,12 +98,48 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 let circle: GMSCircle = GMSCircle(position: circleCenter, radius: 30)
                 circle.fillColor = UIColor.orangeColor().colorWithAlphaComponent(0.5)
                 circle.map = mapView
+				// IBRAHIM: Region Identifier
                 let geotification = Geotification(coordinate: circleCenter, radius: 30, identifier: "xxx")
                 geotifications.append(geotification)
                 startMonitoringGeotification(geotification)
             
         }
     }
+	func handleRegionEntry(region: CLRegion!) {
+		// figure out geofence name
+		//dataService.requestContent(identifier, func (status, res) {
+//			if status == yay
+//			yay
+//			else fuck
+		//}
+		let position = CLLocationCoordinate2DMake(44.46013,-93.15470)
+		let marker = GMSMarker(position: position)
+		marker.title = "Skinner Memorial Chapel"
+		marker.icon = UIImage(named: "flag_icon")
+//		marker.appearAnimation = kGMSMarkerAnimationPop
+		marker.map = mapView
+		mapView.animateToViewingAngle(45.0)
+		infoMarkers.append(marker)
+	}
+	
+	func handleRegionExit(region: CLRegion!) {
+		for (var i = 0; i <	infoMarkers.count; i++) {
+			infoMarkers[i].map = nil
+			infoMarkers.removeAtIndex(i)
+		}
+		print("exit!")
+	}
+	
+	func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+		// triggers upon entering a CLRegion
+		handleRegionEntry(region)
+	}
+	
+	func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+		// triggers upon exiting a CLRegion
+		handleRegionExit(region)
+	}
+
 }
 
 
