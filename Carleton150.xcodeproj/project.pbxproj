@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3C7C651B588C8C78CEBC3E38 /* Pods_Carleton150.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39FEB0FEB30D513E7B3C1CDA /* Pods_Carleton150.framework */; };
 		6A3094401BD9CD4600A16342 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A30943F1BD9CD4600A16342 /* Geotification.swift */; };
+		711704131BF3EB9E00566464 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711704121BF3EB9E00566464 /* utils.swift */; };
 		71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */; };
 		71294DB01BC6FC1500B9F81B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAF1BC6FC1500B9F81B /* ViewController.swift */; };
 		71294DB31BC6FC1500B9F81B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71294DB11BC6FC1500B9F81B /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		4EF7FF35B1F532FC92A7B8A3 /* Pods-Carleton150Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150Tests/Pods-Carleton150Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6A30943F1BD9CD4600A16342 /* Geotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
 		6A3094411BDDDFAC00A16342 /* TestLocation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TestLocation.gpx; sourceTree = "<group>"; };
+		711704121BF3EB9E00566464 /* utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		71294DAA1BC6FC1500B9F81B /* Carleton150.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carleton150.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71294DAF1BC6FC1500B9F81B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */,
 				6A30943F1BD9CD4600A16342 /* Geotification.swift */,
 				718104111BE90F7900944F8A /* DataService.swift */,
+				711704121BF3EB9E00566464 /* utils.swift */,
 				71294DAF1BC6FC1500B9F81B /* ViewController.swift */,
 				6A3094411BDDDFAC00A16342 /* TestLocation.gpx */,
 				71294DB11BC6FC1500B9F81B /* Main.storyboard */,
@@ -355,6 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				711704131BF3EB9E00566464 /* utils.swift in Sources */,
 				71294DB01BC6FC1500B9F81B /* ViewController.swift in Sources */,
 				718104121BE90F7900944F8A /* DataService.swift in Sources */,
 				6A3094401BD9CD4600A16342 /* Geotification.swift in Sources */,
@@ -620,6 +624,7 @@
 				71CC5F771BE942CF0065AA4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
