@@ -29,6 +29,7 @@ class Geotification: NSObject, NSCoding, MKAnnotation {
     var radius: CLLocationDistance
     var identifier: String
 	var active: Bool
+	
     //var note: String
     //var eventType: EventType
     
