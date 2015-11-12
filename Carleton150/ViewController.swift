@@ -1,10 +1,6 @@
 //
 //  ViewController.swift
 //  Carleton150
-//
-//  Created by Chet Aldrich on 10/8/15.
-//  Copyright © 2015 edu.carleton.carleton150. All rights reserved.
-//
 
 import UIKit
 import GoogleMaps
@@ -14,10 +10,11 @@ import MapKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 
-    @IBOutlet weak var longText: UILabel!
-    @IBOutlet weak var latText: UILabel!
     @IBOutlet weak var mapView: GMSMapView!
 	@IBOutlet weak var Debug: UIButton!
+    @IBOutlet weak var longText: UILabel!
+    @IBOutlet weak var latText: UILabel!
+    
     let locationManager = CLLocationManager()
     let currentLocationMarker = GMSMarker()
     var geofences = [Geotification]()
@@ -33,12 +30,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         self.locationManager.requestAlwaysAuthorization()
         mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
 		mapView.delegate = self;
-        // brings text subviews in front of the map.
-        mapView.bringSubviewToFront(latText)
-        mapView.bringSubviewToFront(longText)
+        // brings subviews in front of the map.
         mapView.bringSubviewToFront(Debug)
     }
-    
+   
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "landmarkDetail") {
@@ -117,7 +112,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
 			self.updateLocation = false
 		}
 		
-		// Mark: Check to see if geofence tripped
+		// MARK: Check to see if geofence tripped
 		for (var i = 0; i < geofences.count; i++) {
 			let currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude,longitude: location.coordinate.longitude)
 			// If geofence triggered

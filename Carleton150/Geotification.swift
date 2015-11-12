@@ -1,10 +1,6 @@
 //
-//  geoFence.swift
+//  Geotification.swift
 //  Carleton150
-//
-//  Created by Sherry Gu on 10/22/15.
-//  Copyright © 2015 edu.carleton.carleton150. All rights reserved.
-//
 
 import Foundation
 

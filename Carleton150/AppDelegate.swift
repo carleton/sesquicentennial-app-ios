@@ -1,10 +1,6 @@
 //
 //  AppDelegate.swift
 //  Carleton150
-//
-//  Created by Chet Aldrich on 10/8/15.
-//  Copyright © 2015 edu.carleton.carleton150. All rights reserved.
-//
 
 import UIKit
 import GoogleMaps

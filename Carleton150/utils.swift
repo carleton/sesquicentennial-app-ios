@@ -1,10 +1,6 @@
 //
 //  utils.swift
 //  Carleton150
-//
-//  Created by Chet Aldrich on 11/11/15.
-//  Copyright © 2015 edu.carleton.carleton150. All rights reserved.
-//
 
 import Foundation
 import Darwin

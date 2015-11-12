@@ -1,22 +1,25 @@
 //
 //  Requests.swift
 //  Carleton150
-//
-//  Created by Chet Aldrich on 11/3/15.
-//  Copyright © 2015 edu.carleton.carleton150. All rights reserved.
-//
 
 import Foundation
 import SwiftyJSON
 import Alamofire
-import CoreLocation
 
+/// A class for making API calls to the Carleton150 server.
 final class DataService {
     
-    init () {}
-    
+    /**
+        Request content from the server associated with a landmark on campus.
+
+        - Parameters:
+            - geofenceName: Name of the landmark for which to get content.
+            - completion: function that will perform the behavior
+                          that you want given a dictionary with all content
+                          from the server.
+     */
     class func requestContent(geofenceName: String,
-                              completion: (success: Bool, result: Dictionary<String, String>?) -> Void) -> Void {
+                              completion: (success: Bool, result: Dictionary<String, String>?) ->Void) {
         let parameters = [
             "geofences": [geofenceName]
         ]
@@ -49,8 +52,17 @@ final class DataService {
         }
     }
     
+    /**
+        Request nearby geofences based on current location.
+
+        - Parameters:
+            - location: The user's current location.
+            - completion: function that will perform the behavior
+                          that you want given a list with all geofences
+                          from the server.
+     */
     class func requestNearbyGeofences(location: CLLocationCoordinate2D,
-          completion: (success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]?) -> Void) -> Void {
+          completion: (success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]?) -> Void) {
         
         let parameters = [
             "geofence": [
