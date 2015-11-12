@@ -17,11 +17,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     @IBOutlet weak var longText: UILabel!
     @IBOutlet weak var latText: UILabel!
     @IBOutlet weak var mapView: GMSMapView!
+	@IBOutlet weak var Debug: UIButton!
     let locationManager = CLLocationManager()
     let currentLocationMarker = GMSMarker()
     var geofences = [Geotification]()
 	var infoMarkers = [GMSMarker]()
+	var circles = [GMSCircle]()
+	var debugMode = false
 	var updateLocation = true
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         self.locationManager.delegate = self
@@ -29,18 +33,37 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         self.locationManager.requestAlwaysAuthorization()
         mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
 		mapView.delegate = self;
-        // brings text subviews in front of the map.
-        mapView.bringSubviewToFront(latText)
-        mapView.bringSubviewToFront(longText)
-    }
-    
-    override func viewDidAppear(animated: Bool) {}
+
+		mapView.bringSubviewToFront(Debug)
+	}
+	
+	@IBAction func toggleDebug(sender: AnyObject) {
+		if (debugMode) {
+			for (var i = 0; i < circles.count; i++) {
+				circles[i].map = nil
+			}
+			mapView.sendSubviewToBack(latText)
+			mapView.sendSubviewToBack(longText)
+			debugMode = false
+		} else {
+			for (var i = 0; i < circles.count; i++) {
+				circles[i].map = mapView
+			}
+			mapView.bringSubviewToFront(latText)
+			mapView.bringSubviewToFront(longText)
+			debugMode = true
+		}
+	}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+	override func viewDidAppear(animated: Bool) {}
+
+
+	
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedAlways {
             locationManager.startUpdatingLocation()
@@ -71,8 +94,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
 						for geofence in result! {
 							let circle: GMSCircle = GMSCircle(position: geofence.center, radius: Double(geofence.radius))
 							circle.fillColor = UIColor.orangeColor().colorWithAlphaComponent(0.1)
-							circle.map = self.mapView
-							let geotification = Geotification(coordinate: geofence.center, radius: Double(geofence.radius/2), identifier: geofence.name)
+//							circle.map = self.mapView
+							self.circles.append(circle)
+							let geotification = Geotification(coordinate: geofence.center, radius: Double(geofence.radius), identifier: geofence.name)
 							self.geofences.append(geotification)
 //							self.startMonitoringGeotification(geotification)
 						}
@@ -102,10 +126,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
 	
 	func exitedGeofence(geofence: Geotification, var infoMarkers:[GMSMarker] ) -> [GMSMarker] {
 		print("exited: ",geofence.identifier)
-		print(infoMarkers)
-		for (var i = 0; i < infoMarkers.count; i++) {
-			if (infoMarkers[i].title == geofence.identifier) {
-				infoMarkers.removeAtIndex(i)
+		if (infoMarkers.count > 3) {
+			for (var i = 0; i < infoMarkers.count; i++) {
+				if (infoMarkers[i].title == geofence.identifier) {
+					infoMarkers[i].map = nil
+					infoMarkers.removeAtIndex(i)
+				}
 			}
 		}
 		geofence.active = false;
@@ -123,14 +149,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
 						position = self.geofences[i].coordinate
 					}
 				}
-				let marker = GMSMarker(position: position)
-				print("HERE IS",geofence.identifier)
+				var marker = GMSMarker(position: position)
 				marker.title = geofence.identifier
 //				marker.icon = UIImage(named: "flag_icon")
 				marker.map = self.mapView
-				marker.snippet = result!["data"]
+				marker.snippet = ((result!["data"])! as NSString).substringToIndex(120) + "..."
 				marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
-//				self.mapView.animateToViewingAngle(45.0)
 				self.mapView.selectedMarker = marker
 				self.infoMarkers.append(marker)
 				geofence.active = true;

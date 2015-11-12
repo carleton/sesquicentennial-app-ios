@@ -58,7 +58,7 @@ final class DataService {
                     "lat" : location.latitude,
                     "lng" : location.longitude
                 ],
-                "radius": 250
+                "radius": 2000
             ]
         ]
         
