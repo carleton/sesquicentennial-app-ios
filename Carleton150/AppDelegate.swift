@@ -14,8 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     var keys: NSDictionary?
     let locationManager = CLLocationManager()
-    var masterController: UIViewController!
-    var alert: UIAlertController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -28,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             GMSServices.provideAPIKey(googleMapsApiKey)
         }
        
-        masterController = self.window!.rootViewController as? ViewController
         
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
@@ -57,57 +54,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    
- /**   func handleRegionEntry(region: CLRegion!) {
-        let parameters = [
-            "geofence": [
-                "location" : [
-                    "x" : 50,
-                    "y" : 50
-                ],
-                "radius": 100
-            ],
-            "timespan": [
-                "startTime":"",
-                "endTime":""
-            ]
-        ]
-		print("MEOW")
-        /**Alamofire.request(.POST, "https://f37009fe.ngrok.io/landmarks", parameters: parameters, encoding: .JSON).responseJSON() {
-            (request, response, result) in
- 
-            // given a successful request, we get the JSON object
-            // and parse it.
-            let json = JSON(result.value!)
-            let origin = json["content"][0]["landmarks"][0].string
-            if let alertBox = self.alert {
-                if !alertBox.isBeingPresented() {
-                self.alert = UIAlertController(title: "You found a landmark!", message: origin, preferredStyle: UIAlertControllerStyle.Alert)
-                self.alert!.addAction(UIAlertAction(title: "Exit", style: UIAlertActionStyle.Default, handler: nil))
-                self.masterController.presentViewController(self.alert!, animated: true, completion: nil)
-                }
-            }
-            else {
-                self.alert = UIAlertController(title: "You found a landmark!", message: origin, preferredStyle: UIAlertControllerStyle.Alert)
-                self.alert!.addAction(UIAlertAction(title: "Exit", style: UIAlertActionStyle.Default, handler: nil))
-                self.masterController.presentViewController(self.alert!, animated: true, completion: nil)
-            }
-        }**/
-    }
-    
-    func handleRegionExit(region: CLRegion!) {
-        print("exit!")
-    }
-
-    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        // triggers upon entering a CLRegion
-        handleRegionEntry(region)
-    }
-    
-    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
-        // triggers upon exiting a CLRegion
-        handleRegionExit(region)
-    }**/
-    
 }
-

@@ -114,7 +114,7 @@
                                 <rect key="frame" x="52" y="28" width="489" height="69"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="69" id="561-xk-pI3"/>
+                                    <constraint firstAttribute="height" constant="69" id="kuy-kW-Oec"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -131,11 +131,11 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="iUC-Rd-MOs" firstAttribute="top" secondItem="BA3-bg-vmY" secondAttribute="bottom" constant="8" symbolic="YES" id="3Af-pK-YA2"/>
+                            <constraint firstItem="iUC-Rd-MOs" firstAttribute="centerX" secondItem="1yF-9Z-l2R" secondAttribute="centerX" id="43C-se-ZsW"/>
                             <constraint firstItem="1yF-9Z-l2R" firstAttribute="top" secondItem="BA3-bg-vmY" secondAttribute="bottom" constant="71" id="NEX-BB-1y4"/>
-                            <constraint firstItem="1yF-9Z-l2R" firstAttribute="centerX" secondItem="iUC-Rd-MOs" secondAttribute="centerX" id="O3g-0I-BrX"/>
-                            <constraint firstItem="iUC-Rd-MOs" firstAttribute="leading" secondItem="UBa-rw-fxT" secondAttribute="leading" id="OzZ-Io-vRl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1yF-9Z-l2R" secondAttribute="trailing" constant="40" id="WJK-bE-Lbp"/>
+                            <constraint firstItem="iUC-Rd-MOs" firstAttribute="leading" secondItem="1yF-9Z-l2R" secondAttribute="leading" id="Wx3-Db-EiN"/>
+                            <constraint firstItem="iUC-Rd-MOs" firstAttribute="top" secondItem="BA3-bg-vmY" secondAttribute="bottom" constant="8" symbolic="YES" id="gkX-Hp-Sa9"/>
                             <constraint firstItem="1yF-9Z-l2R" firstAttribute="centerY" secondItem="5hF-nN-aMT" secondAttribute="centerY" id="oBI-Z8-Qro"/>
                             <constraint firstItem="1yF-9Z-l2R" firstAttribute="leading" secondItem="UBa-rw-fxT" secondAttribute="leading" id="omi-aF-oEO"/>
                             <constraint firstItem="UBa-rw-fxT" firstAttribute="leading" secondItem="5hF-nN-aMT" secondAttribute="leadingMargin" constant="32" id="s03-4b-ujO"/>
