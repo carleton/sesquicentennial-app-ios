@@ -21,7 +21,7 @@ final class DataService {
             "geofences": [geofenceName]
         ]
         
-        let postEndpoint: String = "https://carleton.localtunnel.me/info"
+        let postEndpoint: String = "https://carl.localtunnel.me/info"
         
         Alamofire.request(.POST, postEndpoint, parameters: parameters, encoding: .JSON).responseJSON() {
             (request, response, result) in
@@ -62,7 +62,7 @@ final class DataService {
             ]
         ]
         
-        let postEndpoint: String = "https://carleton.localtunnel.me/geofences"
+        let postEndpoint: String = "https://carl.localtunnel.me/geofences"
         
         Alamofire.request(.POST, postEndpoint, parameters: parameters, encoding: .JSON).responseJSON() {
             (request, response, result) in
