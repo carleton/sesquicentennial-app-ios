@@ -35,11 +35,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     }
     
     override func viewDidAppear(animated: Bool) {}
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "landmarkDetail") {
+            let yourNextViewController = (segue.destinationViewController as! LandmarkDetailVC)
+            let marker = sender as! GMSMarker
+            yourNextViewController.nameText = marker.title
+            yourNextViewController.descriptionText = marker.snippet
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+   
 
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedAlways {
@@ -147,6 +158,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
 	}
 
 	func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) -> Void {
+        self.performSegueWithIdentifier("landmarkDetail", sender: marker)
 		print(marker.title)
 	}
 	
