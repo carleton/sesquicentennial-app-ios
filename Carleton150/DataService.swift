@@ -24,7 +24,7 @@ final class DataService {
             "geofences": [geofenceName]
         ]
         
-        let postEndpoint: String = "https://carl.localtunnel.me/info"
+        let postEndpoint: String = "https://carl150.carleton.edu/info"
         
         Alamofire.request(.POST, postEndpoint, parameters: parameters, encoding: .JSON).responseJSON() {
             (request, response, result) in
@@ -74,7 +74,7 @@ final class DataService {
             ]
         ]
         
-        let postEndpoint: String = "https://carl.localtunnel.me/geofences"
+        let postEndpoint: String = "https://carl150.carleton.edu/geofences"
         
         Alamofire.request(.POST, postEndpoint, parameters: parameters, encoding: .JSON).responseJSON() {
             (request, response, result) in
@@ -86,7 +86,8 @@ final class DataService {
                     for i in 0 ..< answer.count {
                         let location = answer[i]["geofence"]["location"]
                         let fenceName = answer[i]["name"].string!
-                        let rad = Int(answer[i]["geofence"]["radius"].string!)!
+                        //print(answer[i]["geofence"]["radius"].string!)
+                        let rad = answer[i]["geofence"]["radius"].int!
                         let center = CLLocationCoordinate2D(latitude: location["lat"].double!,longitude: location["lng"].double!)
                         final_result.append((name: fenceName, radius: rad, center: center))
                     }
