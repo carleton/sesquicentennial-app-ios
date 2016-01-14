@@ -8,22 +8,71 @@
 
 import Foundation
 
-class CalenderView: UIViewController, UIScrollViewDelegate{
+class CalenderView: UIViewController, UITableViewDataSource, UITableViewDelegate{
     @IBOutlet weak var events: UILabel!
-    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var tableView: UITableView!
+    let basicCellIdentifier = "BasicCell"
     
-    var schedule=["Jan 13th \r","Jan 14th \r", "Jan 15th \r, Jan 13th \r","Jan 14th \r", "Jan 15th \r,Jan 13th \r","Jan 14th \r", "Jan 15th \r, Jan 13th \r","Jan 14th \r", "Jan 15th \r, Jan 13th \r","Jan 14th \r", "Jan 15th \r, Jan 13th \r","Jan 14th \r", "Jan 15th \r, Jan 13th \r","Jan 14th \r", "Jan 15th \r, Jan 13th \r","Jan 14th \r", "Jan 15th \r, Jan 13th \r","Jan 14th \r", "Jan 15th \r, Jan 13th \r","Jan 14th \r", "Jan 15th \r"]
+    var schedule=[["Jan 13th","name","description"],["Jan 13th","name","description"],["Jan 13th","name","description"],["Jan 13th","name","description"],["Jan 13th","name","description"]]
     override func viewDidLoad() {
-        self.scrollView.addSubview(events)
-        events.text = ""
-        //allow newline 
-        events.numberOfLines = 0;
-        for day in schedule {
-            print(day)
-            events.text = events.text! + day
-            
-        }
-        print(events.text)
+        super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+
         
     }
+    func configureTableView() {
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 400.0
+    }
+   
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        return basicCellAtIndexPath(indexPath)
+    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    func basicCellAtIndexPath(indexPath:NSIndexPath) -> BasicCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(basicCellIdentifier) as! BasicCell
+        settitleLabelForCell(cell, indexPath: indexPath)
+        setDescriptionForCell(cell, indexPath: indexPath)
+        return cell
+    }
+    
+    func settitleLabelForCell(cell:BasicCell, indexPath:NSIndexPath) {
+        let item = schedule[indexPath.row][1]
+        cell.titleLabel.text = item
+    }
+    func setDateForCell(cell:BasicCell, indexPath:NSIndexPath) {
+        let item = schedule[indexPath.row][0]
+        cell.titleLabel.text = item
+    }
+    
+    func setDescriptionForCell(cell:BasicCell, indexPath:NSIndexPath) {
+        let subtitle = schedule[indexPath.row][2]
+        
+        
+        //if subtitle != " " {
+            
+            // Some subtitles are really long, so only display the first 200 characters
+            //if subtitle.characters.count > 200 {
+               // cell.Description.text = "\(subtitle.substringToIndex(200))..."
+                
+            //} else {
+        cell.Description.text = subtitle as String
+            //}
+            
+        //} else {
+            //cell.Description.text = ""
+        //}
+    }
+    
 }

@@ -15,6 +15,7 @@
 		6A6C003B1C4568ED00EF249F /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6C003A1C4568EC00EF249F /* CalenderView.swift */; };
 		6A6C00421C472A4600EF249F /* bank11.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A6C00401C472A4600EF249F /* bank11.png */; };
 		6A6C00431C472A4600EF249F /* calendar53.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A6C00411C472A4600EF249F /* calendar53.png */; };
+		6A6C00451C47367600EF249F /* BasicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6C00441C47367600EF249F /* BasicCell.swift */; };
 		711704131BF3EB9E00566464 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711704121BF3EB9E00566464 /* utils.swift */; };
 		71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */; };
 		71294DB01BC6FC1500B9F81B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAF1BC6FC1500B9F81B /* ViewController.swift */; };
@@ -57,6 +58,7 @@
 		6A6C003A1C4568EC00EF249F /* CalenderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
 		6A6C00401C472A4600EF249F /* bank11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bank11.png; sourceTree = "<group>"; };
 		6A6C00411C472A4600EF249F /* calendar53.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar53.png; sourceTree = "<group>"; };
+		6A6C00441C47367600EF249F /* BasicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCell.swift; sourceTree = "<group>"; };
 		711704121BF3EB9E00566464 /* utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		71294DAA1BC6FC1500B9F81B /* Carleton150.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carleton150.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				6A3094411BDDDFAC00A16342 /* TestLocation.gpx */,
 				71294DB11BC6FC1500B9F81B /* Main.storyboard */,
 				6A6C003A1C4568EC00EF249F /* CalenderView.swift */,
+				6A6C00441C47367600EF249F /* BasicCell.swift */,
 				71294DB61BC6FC1500B9F81B /* LaunchScreen.storyboard */,
 				717FE3E51BC7001D009CA507 /* Keys.plist */,
 				71294DB91BC6FC1500B9F81B /* Info.plist */,
@@ -380,6 +383,7 @@
 				71294DB01BC6FC1500B9F81B /* ViewController.swift in Sources */,
 				718104121BE90F7900944F8A /* DataService.swift in Sources */,
 				6A6C003B1C4568ED00EF249F /* CalenderView.swift in Sources */,
+				6A6C00451C47367600EF249F /* BasicCell.swift in Sources */,
 				4ADC12F41BF421B100A4711C /* LandmarkDetailVC.swift in Sources */,
 				6A3094401BD9CD4600A16342 /* Geotification.swift in Sources */,
 				71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */,
