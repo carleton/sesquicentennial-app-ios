@@ -8,7 +8,7 @@ import CoreLocation
 import MapKit
 
 
-class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+class ViewController: UIViewController,  CLLocationManagerDelegate, GMSMapViewDelegate {
 
     @IBOutlet weak var mapView: GMSMapView!
 
@@ -16,11 +16,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     @IBOutlet weak var longText: UILabel!
     @IBOutlet weak var latText: UILabel!
     @IBAction func backFromModal(segue: UIStoryboardSegue) {
-        
         // Switch to the first tab (tabs are numbered 0, 1, 2)
         self.tabBarController?.selectedIndex = 1
-        
     }
+    
     let locationManager = CLLocationManager()
     let currentLocationMarker = GMSMarker()
     var geofences = [Geotification]()

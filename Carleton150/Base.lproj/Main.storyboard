@@ -37,29 +37,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Events Calender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMz-Br-1ho">
-                                <rect key="frame" x="42" y="28" width="125" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ToC-X5-Gfu">
+                                <rect key="frame" x="0.0" y="28" width="375" height="590"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events Calender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMz-Br-1ho">
+                                        <rect key="frame" x="24" y="16" width="125" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="VMz-Br-1ho" secondAttribute="bottom" constant="553" id="Idz-Lp-Xha"/>
+                                    <constraint firstAttribute="trailing" secondItem="VMz-Br-1ho" secondAttribute="trailing" constant="226" id="P41-KJ-nDr"/>
+                                    <constraint firstItem="VMz-Br-1ho" firstAttribute="leading" secondItem="ToC-X5-Gfu" secondAttribute="leading" constant="24" id="ahw-GH-pU9"/>
+                                    <constraint firstItem="VMz-Br-1ho" firstAttribute="top" secondItem="ToC-X5-Gfu" secondAttribute="top" constant="16" id="gPd-Vg-qHX"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="VMz-Br-1ho" firstAttribute="centerY" secondItem="Noy-Ft-x9O" secondAttribute="centerY" constant="2" id="Bjf-d9-9rJ"/>
-                            <constraint firstItem="VMz-Br-1ho" firstAttribute="centerX" secondItem="Noy-Ft-x9O" secondAttribute="centerX" constant="10" id="gYh-cV-Ybk"/>
-                            <constraint firstItem="VMz-Br-1ho" firstAttribute="leading" secondItem="Noy-Ft-x9O" secondAttribute="leadingMargin" constant="10" id="s2i-dE-tNK"/>
+                            <constraint firstItem="ToC-X5-Gfu" firstAttribute="leading" secondItem="Noy-Ft-x9O" secondAttribute="leadingMargin" id="HLx-JL-5Yy"/>
+                            <constraint firstItem="ToC-X5-Gfu" firstAttribute="bottom" secondItem="ebE-Cq-ybS" secondAttribute="top" id="R3X-ix-tGF"/>
+                            <constraint firstItem="ToC-X5-Gfu" firstAttribute="top" secondItem="9Bw-C4-hMw" secondAttribute="bottom" constant="8" symbolic="YES" id="XL5-s8-ciT"/>
+                            <constraint firstAttribute="trailing" secondItem="ToC-X5-Gfu" secondAttribute="trailing" id="hE9-tS-odh"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Calender" id="F7S-wy-oNt" userLabel="Calender"/>
+                    <tabBarItem key="tabBarItem" title="Calender" image="calendar53.png" id="F7S-wy-oNt" userLabel="Calender"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="events" destination="VMz-Br-1ho" id="pB8-av-w1y"/>
+                        <outlet property="scrollView" destination="ToC-X5-Gfu" id="f0v-ge-8vg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wO8-17-QaE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-58" y="479"/>
+            <point key="canvasLocation" x="-58.5" y="478.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="BpX-pW-hDI">
@@ -92,10 +105,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wzj-au-GJO" customClass="GMSMapView">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wzj-au-GJO" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6Q-fC-NPG">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Latitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6Q-fC-NPG">
                                         <rect key="frame" x="18" y="517" width="118" height="21"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -106,7 +119,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48n-Vv-TH8">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Longitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48n-Vv-TH8">
                                         <rect key="frame" x="18" y="546" width="118" height="21"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -144,7 +157,7 @@
                             <constraint firstItem="Wzj-au-GJO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="g3u-7x-4mu"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Historical" id="T5x-MU-tmN"/>
+                    <tabBarItem key="tabBarItem" title="Historical" image="bank11.png" id="T5x-MU-tmN"/>
                     <connections>
                         <outlet property="Debug" destination="EKD-oY-5Zb" id="EEQ-iH-KfO"/>
                         <outlet property="latText" destination="H6Q-fC-NPG" id="2Or-sG-rhM"/>
@@ -169,7 +182,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBa-rw-fxT">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBa-rw-fxT">
                                 <rect key="frame" x="52" y="533" width="102" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="102" id="9Wd-Oh-p7I"/>
@@ -222,7 +235,11 @@
             <point key="canvasLocation" x="693" y="-234"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bank11.png" width="24" height="24"/>
+        <image name="calendar53.png" width="24" height="24"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bAm-hf-2p6"/>
+        <segue reference="Zt0-4O-qah"/>
     </inferredMetricsTieBreakers>
 </document>

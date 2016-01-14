@@ -8,10 +8,13 @@
 
 import Foundation
 
-class CalenderView: UIViewController{
+class CalenderView: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var events: UILabel!
-    var schedule=["Jan 13th \r","Jan 14th \r", "Jan 15th \r"]
+    @IBOutlet var scrollView: UIScrollView!
+    
+    var schedule=["Jan 13th \r","Jan 14th \r", "Jan 15th \r, Jan 13th \r","Jan 14th \r", "Jan 15th \r,Jan 13th \r","Jan 14th \r", "Jan 15th \r, Jan 13th \r","Jan 14th \r", "Jan 15th \r, Jan 13th \r","Jan 14th \r", "Jan 15th \r, Jan 13th \r","Jan 14th \r", "Jan 15th \r, Jan 13th \r","Jan 14th \r", "Jan 15th \r, Jan 13th \r","Jan 14th \r", "Jan 15th \r, Jan 13th \r","Jan 14th \r", "Jan 15th \r, Jan 13th \r","Jan 14th \r", "Jan 15th \r"]
     override func viewDidLoad() {
+        self.scrollView.addSubview(events)
         events.text = ""
         //allow newline 
         events.numberOfLines = 0;
