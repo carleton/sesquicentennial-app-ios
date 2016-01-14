@@ -13,15 +13,41 @@ class CalenderView: UIViewController, UITableViewDataSource, UITableViewDelegate
     @IBOutlet var tableView: UITableView!
     let basicCellIdentifier = "BasicCell"
     
-    var schedule=[["Jan 13th","name","description"],["Jan 13th","name","description"],["Jan 13th","name","description"],["Jan 13th","name","description"],["Jan 13th","name","description"]]
+    var schedule : [Dictionary<String, String>] = []
+    var eventsGroup = dispatch_group_create()
+    var refreshControl:UIRefreshControl!
     override func viewDidLoad() {
-        super.viewDidLoad()
         
+        super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         
-
+        DataService.requestEvents(NSDate(), limit: 5, completion: {
+            (success: Bool, result: [Dictionary<String, String>]?) in
+            print(result)
+            self.schedule = result!
+            //dispatch_group_leave(self.eventsGroup)
+        });
         
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
+        
+        //dispatch_group_enter(eventsGroup)
+        
+    }
+    func refresh(indexPath:NSIndexPath){
+        DataService.requestEvents(NSDate(), limit: 5, completion: {
+            (success: Bool, result: [Dictionary<String, String>]?) in
+            print(result)
+            self.schedule = result!
+            //dispatch_group_leave(self.eventsGroup)
+        });
+
+        self.tableView.reloadData()
+        self.refreshControl.endRefreshing()
+
     }
     func configureTableView() {
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -31,6 +57,7 @@ class CalenderView: UIViewController, UITableViewDataSource, UITableViewDelegate
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         return basicCellAtIndexPath(indexPath)
     }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
@@ -42,22 +69,37 @@ class CalenderView: UIViewController, UITableViewDataSource, UITableViewDelegate
     
     func basicCellAtIndexPath(indexPath:NSIndexPath) -> BasicCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(basicCellIdentifier) as! BasicCell
+        //dispatch_group_wait(self.eventsGroup, DISPATCH_TIME_FOREVER)
         settitleLabelForCell(cell, indexPath: indexPath)
+        setDateForCell(cell, indexPath: indexPath)
         setDescriptionForCell(cell, indexPath: indexPath)
         return cell
     }
     
-    func settitleLabelForCell(cell:BasicCell, indexPath:NSIndexPath) {
-        let item = schedule[indexPath.row][1]
-        cell.titleLabel.text = item
+    
+        
+    func settitleLabelForCell(cell: BasicCell, indexPath:NSIndexPath) {
+        
+        if self.schedule.isEmpty{
+            cell.titleLabel.text = ""
+        }
+        else{
+            let item = self.schedule[indexPath.row]["title"]
+            cell.titleLabel.text = item as String!
+        }
     }
-    func setDateForCell(cell:BasicCell, indexPath:NSIndexPath) {
-        let item = schedule[indexPath.row][0]
-        cell.titleLabel.text = item
+    func setDateForCell(cell: BasicCell, indexPath:NSIndexPath) {
+        if self.schedule.isEmpty{
+            cell.Date.text = ""
+        }
+        else{
+            let item = self.schedule[indexPath.row]["startTime"]
+            cell.Date.text = item as String!
+        }
     }
     
-    func setDescriptionForCell(cell:BasicCell, indexPath:NSIndexPath) {
-        let subtitle = schedule[indexPath.row][2]
+    func setDescriptionForCell(cell: BasicCell, indexPath:NSIndexPath) {
+        
         
         
         //if subtitle != " " {
@@ -67,7 +109,13 @@ class CalenderView: UIViewController, UITableViewDataSource, UITableViewDelegate
                // cell.Description.text = "\(subtitle.substringToIndex(200))..."
                 
             //} else {
-        cell.Description.text = subtitle as String
+        if self.schedule.isEmpty{
+            cell.Description.text = ""
+        }
+        else{
+            let item = self.schedule[indexPath.row]["description"]
+            cell.Description.text = item as String!
+        }
             //}
             
         //} else {
