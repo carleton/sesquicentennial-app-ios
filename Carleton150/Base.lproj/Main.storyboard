@@ -17,6 +17,7 @@
                     <connections>
                         <segue destination="gnk-LK-qhy" kind="relationship" relationship="viewControllers" id="Zt0-4O-qah"/>
                         <segue destination="KhS-5Q-dzz" kind="relationship" relationship="viewControllers" id="3y7-ll-Wbf"/>
+                        <segue destination="PyG-sf-WDP" kind="relationship" relationship="viewControllers" id="S2I-Is-XLl"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DUP-9L-jFw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -42,6 +43,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w3k-d2-McF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-58.5" y="478.5"/>
+        </scene>
+        <!--Quest-->
+        <scene sceneID="KYi-p8-Pni">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Quest" id="PyG-sf-WDP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="JUS-vn-bzF"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6C1-d8-wlP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-120" y="1205"/>
         </scene>
     </scenes>
 </document>

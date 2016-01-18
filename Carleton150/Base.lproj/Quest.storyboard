@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wkz-Ud-9Rj">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Quest View Controller-->
+        <scene sceneID="ckU-Ht-Ygw">
+            <objects>
+                <viewController id="bVl-db-csv" customClass="QuestViewController" customModule="Carleton150" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FCy-aX-rJQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="TSt-LD-Kbd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9gq-iS-wZ9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quest Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JM9-mf-Bxp">
+                                <rect key="frame" x="253" y="289" width="94" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JM9-mf-Bxp" firstAttribute="centerX" secondItem="9gq-iS-wZ9" secondAttribute="centerX" id="Uoa-KS-cbh"/>
+                            <constraint firstItem="JM9-mf-Bxp" firstAttribute="centerY" secondItem="9gq-iS-wZ9" secondAttribute="centerY" id="ljW-WV-uR1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="eXB-6m-lXJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BCA-qE-cAr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="692" y="1205"/>
+        </scene>
+        <!--Quest-->
+        <scene sceneID="zsv-8Q-Sax">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wkz-Ud-9Rj" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Quest" id="UBe-Fx-RXA"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="J1h-J3-zWa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bVl-db-csv" kind="relationship" relationship="rootViewController" id="1lV-u0-NDk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XTu-q8-Fo6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-120" y="1205"/>
+        </scene>
+    </scenes>
+</document>
