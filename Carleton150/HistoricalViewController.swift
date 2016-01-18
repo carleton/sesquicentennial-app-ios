@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HistoricalViewController.swift
 //  Carleton150
 
 import UIKit
@@ -8,7 +8,7 @@ import CoreLocation
 import MapKit
 
 
-class ViewController: UIViewController,  CLLocationManagerDelegate, GMSMapViewDelegate {
+class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GMSMapViewDelegate {
 
     @IBOutlet weak var mapView: GMSMapView!
 

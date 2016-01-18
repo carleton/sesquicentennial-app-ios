@@ -2,13 +2,11 @@
 //  CalenderView.swift
 //  Carleton150
 //
-//  Created by Sherry Gu on 1/12/16.
-//  Copyright © 2016 edu.carleton.carleton150. All rights reserved.
 //
 
 import Foundation
 
-class CalenderView: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class CalenderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     @IBOutlet weak var events: UILabel!
     @IBOutlet var tableView: UITableView!
     let basicCellIdentifier = "BasicCell"
