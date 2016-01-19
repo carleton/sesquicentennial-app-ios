@@ -25,5 +25,6 @@ class Geotification: NSObject, MKAnnotation {
         self.identifier = identifier
 		self.active = false
     }
+    
 }
 
