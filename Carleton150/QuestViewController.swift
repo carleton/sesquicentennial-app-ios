@@ -10,26 +10,29 @@ import UIKit
 
 class QuestViewController: UIViewController {
 
+	var questIndex: Int = 0
+	var quests: [Quest] = []
+	
+	@IBOutlet weak var questName: UILabel!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+		getQuests()
     }
+	
+	func getQuests() {
+		DataService.requestQuest("", limit: 5, completion: { (success, result) -> Void in
+			if let quests = result {
+				self.quests = quests
+				self.questName.text = quests[self.questIndex].name
+				print(self.questName.text)
+			}
+		});
+	}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
