@@ -14,7 +14,7 @@ class CalenderViewController: UIViewController, UITableViewDataSource, UITableVi
     var schedule : [Dictionary<String, String>] = []
     var tableLimit : Int!
     var refreshControl : UIRefreshControl!
-    
+    let detailSegueIdentifier = "ShowDetail"
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -71,11 +71,31 @@ class CalenderViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    
+    
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == detailSegueIdentifier {
+            if let destination = segue.destinationViewController as? EventDetail {
+                if let indexPath = tableView.indexPathForSelectedRow?.row {
+                    destination.eventName = self.schedule[indexPath]["title"]!
+                    destination.startDate = self.schedule[indexPath]["startTime"]!
+                    destination.info = self.schedule[indexPath]["description"]!
+                }
+            }
+        }
+    }
     func basicCellAtIndexPath(indexPath: NSIndexPath) -> BasicCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(basicCellIdentifier) as! BasicCell
         settitleLabelForCell(cell, indexPath: indexPath)
         setDateForCell(cell, indexPath: indexPath)
-        setDescriptionForCell(cell, indexPath: indexPath)
+        let myBackView=UIView(frame:cell.frame)
+        myBackView.backgroundColor = UIColor.whiteColor();
+        cell.selectedBackgroundView = myBackView;
+        
+
+        
+        //setDescriptionForCell(cell, indexPath: indexPath)
         return cell
     }
     
@@ -99,13 +119,13 @@ class CalenderViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    func setDescriptionForCell(cell: BasicCell, indexPath: NSIndexPath) {
-        if self.schedule.isEmpty {
-            cell.Description.text = ""
-        }
-        else {
-            let item = self.schedule[indexPath.row]["description"]
-            cell.Description.text = item as String!
-        }
-    }
+//    func setDescriptionForCell(cell: BasicCell, indexPath: NSIndexPath) {
+//        if self.schedule.isEmpty {
+//            cell.Description.text = ""
+//        }
+//        else {
+//            let item = self.schedule[indexPath.row]["description"]
+//            cell.Description.text = item as String!
+//        }
+//    }
 }
