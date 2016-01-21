@@ -184,63 +184,63 @@ final class DataService {
                           that you want given a list with all the quests
                           from the server.
      */
-//    class func requestQuest(theme: String = "", limit: Int = 5, completion:
-//        (success: Bool, result: [Quest]?) -> Void) {
-//            
-//           
-//        let parameters = [
-//            "theme": theme,
-//            "limit": limit
-//        ]
-//        
-//        let postEndpoint: String = "https://carl150.carleton.edu/quest"
-//        
-//        Alamofire.request(.POST, postEndpoint, parameters: (parameters as! [String : AnyObject]), encoding: .JSON).responseJSON() {
-//            (request, response, result) in
-//            
-//            var quests: [Quest] = []
-//            
-//            if let result = result.value {
-//                let json = JSON(result)
-//                
-//                if let answer = json["content"].array {
-//                    for i in 0 ..< answer.count {
-//                        var wayPoints: [WayPoint] = []
-//                        let points = answer[i]["waypoints"]
-//                        
-//                        for i in 0 ..< points.count {
-//                            let position: String = String(i)
-//                            let wayPoint = points[position]
-//                            let geofence = points[position]["geofence"]
-//                            let location = CLLocationCoordinate2D(
-//                                    latitude: geofence["lat"].double!,
-//                                    longitude: geofence["lng"].double!
-//                            )
-//                            wayPoints.append(
-//                                WayPoint(location: location,
-//                                         radius: geofence["rad"].double!,
-//                                         clue: wayPoint["clue"].string!,
-//                                         hint: wayPoint["hint"].string!)
-//                            )
-//                        }
-//                        
-//                        quests.append(
-//                            Quest(
-//                                wayPoints: wayPoints,
-//                                name: answer[i]["name"].string!,
-//                                description: answer[i]["desc"].string!,
-//                                completionMessage: answer[i]["compMsg"].string!)
-//                        )
-//                    }
-//                    completion(success: true, result: quests)
-//                } else {
-//                    print("No results were found.")
-//                    completion(success: false, result: nil)
-//                }
-//            } else {
-//                print("Connection to server failed.")
-//                completion(success: false, result: nil)
-//            }
-//        }
-//    }
+    class func requestQuest(theme: String = "", limit: Int = 5, completion:
+        (success: Bool, result: [Quest]?) -> Void) {
+            
+           
+        let parameters = [
+            "theme": theme,
+            "limit": limit
+        ]
+        
+        let postEndpoint: String = "https://carl150.carleton.edu/quest"
+        
+        Alamofire.request(.POST, postEndpoint, parameters: (parameters as! [String : AnyObject]), encoding: .JSON).responseJSON() {
+            (request, response, result) in
+            
+            var quests: [Quest] = []
+            
+            if let result = result.value {
+                let json = JSON(result)
+                
+                if let answer = json["content"].array {
+                    for i in 0 ..< answer.count {
+                        var wayPoints: [WayPoint] = []
+                        let points = answer[i]["waypoints"]
+                        
+                        for i in 0 ..< points.count {
+                            let position: String = String(i)
+                            let wayPoint = points[position]
+                            let geofence = points[position]["geofence"]
+                            let location = CLLocationCoordinate2D(
+                                    latitude: geofence["lat"].double!,
+                                    longitude: geofence["lng"].double!
+                            )
+                            wayPoints.append(
+                                WayPoint(location: location,
+                                         radius: geofence["rad"].double!,
+                                         clue: wayPoint["clue"].string!,
+                                         hint: wayPoint["hint"].string!)
+                            )
+                        }
+                        
+                        quests.append(
+                            Quest(
+                                wayPoints: wayPoints,
+                                name: answer[i]["name"].string!,
+                                description: answer[i]["desc"].string!,
+                                completionMessage: answer[i]["compMsg"].string!)
+                        )
+                    }
+                    completion(success: true, result: quests)
+                } else {
+                    print("No results were found.")
+                    completion(success: false, result: nil)
+                }
+            } else {
+                print("Connection to server failed.")
+                completion(success: false, result: nil)
+            }
+        }
+    }
 }

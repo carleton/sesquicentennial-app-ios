@@ -13,35 +13,22 @@ private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, ri
 
 class QuestCollectionViewController: UICollectionViewController {
 
-	var quests = [Quest]()
+    var quests: [Quest] = []
+    let images: [UIImage] = [UIImage(named: "magical_mystery.jpg")!, UIImage(named: "let_it_be.jpg")!]
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 		getQuests()
-        // Register cell classes
-//        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 	func getQuests() {
+        
 		let waypoint = WayPoint(location: CLLocationCoordinate2D(latitude: 100, longitude: 100), radius: 100.0, clue: "I am the Walrus", hint: "They are the Eggmen!")
-//		let image = UIImage(contentsOfFile: "magical_mystery.jpg")
-		let image = UIImage(named: "magical_mystery.jpg")
-		let quest = Quest(wayPoints: [waypoint], name: "Magical Mystery Tour", description: "The magical mystery tour is coming to take you away! Coming to take you away. Embark on this tittalating and tantalizing journey through the lands of the Walrus!", completionMessage: "You are the eggman", displayImage: image!)
+		let quest = Quest(wayPoints: [waypoint], name: "Magical Mystery Tour", description: "The magical mystery tour is coming to take you away! Coming to take you away. Embark on this tittalating and tantalizing journey through the lands of the Walrus!", completionMessage: "You are the eggman")
 		quests.append(quest)
 		
 		let waypoint2 = WayPoint(location: CLLocationCoordinate2D(latitude: 100, longitude: 100), radius: 100.0, clue: "Mother Mary Comes To Me", hint: "Speaking Words of Wisdom")
-		let image2 = UIImage(named: "let_it_be.jpg")
-		let quest2 = Quest(wayPoints: [waypoint2], name: "Let It Be", description: "A quest for those with chiller inclinations. If you can decipher the words of wisdom, you might just be mother mary. What? You heard me.", completionMessage: "You are the eggman", displayImage: image2!)
+		let quest2 = Quest(wayPoints: [waypoint2], name: "Let It Be", description: "A quest for those with chiller inclinations. If you can decipher the words of wisdom, you might just be mother mary. What? You heard me.", completionMessage: "You are the eggman")
 		quests.append(quest2)
 		
 		self.collectionView!.reloadData()
@@ -58,8 +45,6 @@ class QuestCollectionViewController: UICollectionViewController {
     }
     */
 
-    // MARK: UICollectionViewDataSource
-
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -75,7 +60,7 @@ class QuestCollectionViewController: UICollectionViewController {
 		
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! QuestCollectionViewCell
 		cell.backgroundColor = UIColor.whiteColor()
-		cell.imageView.image = quests[indexPath.row].image
+		cell.imageView.image = images[indexPath.row]
 		cell.name.text = quests[indexPath.row].name
 		cell.text.text = quests[indexPath.row].questDescription
 		
@@ -114,7 +99,6 @@ class QuestCollectionViewController: UICollectionViewController {
     
     }
     */
-
 }
 
 extension QuestCollectionViewController: UICollectionViewDelegateFlowLayout {

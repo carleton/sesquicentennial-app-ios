@@ -10,13 +10,11 @@ class Quest: NSObject {
     var name: String
     var questDescription: String
     var completionMessage: String
-	var image: UIImage
 	
-	init (wayPoints: [WayPoint], name: String, description: String, completionMessage: String, displayImage: UIImage) {
+	init (wayPoints: [WayPoint], name: String, description: String, completionMessage: String) {
         self.wayPoints = wayPoints
         self.name = name
         self.questDescription = description
         self.completionMessage = completionMessage
-		self.image = displayImage
     }
 }
