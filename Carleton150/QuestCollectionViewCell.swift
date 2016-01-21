@@ -13,6 +13,7 @@ class QuestCollectionViewCell: UICollectionViewCell {
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var name: UILabel!
 	@IBOutlet weak var text: UITextView!
+    @IBOutlet weak var information: UILabel!
 	var questIndex = 0
 	
 }

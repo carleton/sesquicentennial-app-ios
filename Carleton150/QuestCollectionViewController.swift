@@ -58,7 +58,8 @@ class QuestCollectionViewController: UICollectionViewController {
 		cell.backgroundColor = UIColor.whiteColor()
 		cell.imageView.image = images[indexPath.row]
 		cell.name.text = quests[indexPath.row].name
-		cell.text.text = quests[indexPath.row].questDescription
+        cell.information.numberOfLines = 10
+		cell.information.text = quests[indexPath.row].questDescription
 		cell.questIndex = indexPath.row
         return cell
     }
