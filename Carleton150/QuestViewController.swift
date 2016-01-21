@@ -2,28 +2,17 @@
 //  QuestViewController.swift
 //  Carleton150
 //
+//  Created by Ibrahim Rabbani on 1/20/16.
+//  Copyright © 2016 edu.carleton.carleton150. All rights reserved.
+//
 
 import UIKit
-import GoogleMaps
-import CoreLocation
-import MapKit
 
-class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
-	
-	//
-	@IBOutlet weak var mapView: GMSMapView!
-	let locationManager = CLLocationManager()
-	let currentLocationMarker = GMSMarker()
-	
+class QuestViewController: UIViewController {
+
     override func viewDidLoad() {
-		super.viewDidLoad()
-		self.locationManager.delegate = self
-		self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-		self.locationManager.requestAlwaysAuthorization()
-		mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
-		mapView.delegate = self;
-		// brings subviews in front of the map.
-//		mapView.bringSubviewToFront(Debug)
+        super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
 
@@ -32,14 +21,6 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         // Dispose of any resources that can be recreated.
     }
     
-	func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-		if status == .AuthorizedAlways {
-			locationManager.startUpdatingLocation()
-			mapView.myLocationEnabled = true
-			mapView.settings.myLocationButton = true
-		}
-	}
-	
 
     /*
     // MARK: - Navigation
