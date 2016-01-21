@@ -74,7 +74,7 @@
                                                 <constraint firstAttribute="height" constant="93" id="xkZ-xX-eJX"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9z-gM-mbe">
@@ -156,7 +156,7 @@
                                     <constraint firstAttribute="width" constant="90" id="Uj0-UH-IeF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7q-Pk-eEQ">
@@ -181,7 +181,7 @@
                                     <constraint firstAttribute="width" constant="77" id="7F7-gn-NO9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clue Text" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQ2-u9-WqF">
@@ -190,16 +190,36 @@
                                     <constraint firstAttribute="height" constant="61" id="oWv-YP-1m9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="gdS-40-7jx">
+                                <rect key="frame" x="20" y="537" width="83" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="83" id="fWg-Je-TYW"/>
+                                </constraints>
+                                <color key="progressTintColor" red="1" green="0.0" blue="0.16443011569999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="trackTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rsc-pj-Vd3">
+                                <rect key="frame" x="8" y="506" width="69" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="69" id="6rZ-yb-PD0"/>
+                                    <constraint firstAttribute="height" constant="22" id="Ke4-is-vtj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="FOq-ie-MzF" firstAttribute="baseline" secondItem="FvP-sa-dS5" secondAttribute="baseline" id="4di-RL-X8Y"/>
+                            <constraint firstItem="gdS-40-7jx" firstAttribute="leading" secondItem="tZs-Yf-Acm" secondAttribute="leading" id="4qv-PY-oID"/>
                             <constraint firstItem="EQ2-u9-WqF" firstAttribute="top" secondItem="FOq-ie-MzF" secondAttribute="bottom" constant="28" id="8Sy-89-Vzt"/>
                             <constraint firstItem="FOq-ie-MzF" firstAttribute="top" secondItem="FvP-sa-dS5" secondAttribute="top" id="A5M-zq-eT1"/>
                             <constraint firstItem="FvP-sa-dS5" firstAttribute="leading" secondItem="Me0-A8-UI9" secondAttribute="leadingMargin" constant="64" id="BUd-EG-zAX"/>
+                            <constraint firstItem="Rsc-pj-Vd3" firstAttribute="top" secondItem="EQ2-u9-WqF" secondAttribute="bottom" constant="37" id="D79-fu-5fp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qxW-2D-4ZM" secondAttribute="trailing" constant="-13" id="Kwv-mx-7Jd"/>
                             <constraint firstItem="fPZ-Zm-AGd" firstAttribute="top" secondItem="J7q-Pk-eEQ" secondAttribute="bottom" constant="14" id="MWk-2W-oOJ"/>
                             <constraint firstItem="qxW-2D-4ZM" firstAttribute="leading" secondItem="Me0-A8-UI9" secondAttribute="leading" id="MtO-Xj-KdF"/>
@@ -211,12 +231,15 @@
                             <constraint firstAttribute="trailing" secondItem="FvP-sa-dS5" secondAttribute="trailing" id="mc2-EW-ZD4"/>
                             <constraint firstItem="J7q-Pk-eEQ" firstAttribute="trailing" secondItem="Me0-A8-UI9" secondAttribute="trailingMargin" id="mir-gl-aew"/>
                             <constraint firstItem="tZs-Yf-Acm" firstAttribute="leading" secondItem="FOq-ie-MzF" secondAttribute="leading" id="nSb-By-hMX"/>
+                            <constraint firstItem="Rsc-pj-Vd3" firstAttribute="leading" secondItem="Me0-A8-UI9" secondAttribute="leadingMargin" constant="-12" id="oz5-dl-bJ3"/>
                             <constraint firstItem="J7q-Pk-eEQ" firstAttribute="top" secondItem="EQ2-u9-WqF" secondAttribute="bottom" constant="73" id="sg8-ft-glx"/>
                             <constraint firstItem="FOq-ie-MzF" firstAttribute="leading" secondItem="Me0-A8-UI9" secondAttribute="leadingMargin" id="t7Q-6w-Ulu"/>
+                            <constraint firstItem="gdS-40-7jx" firstAttribute="top" secondItem="Rsc-pj-Vd3" secondAttribute="bottom" constant="9" id="xPP-a4-ezq"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="clueText" destination="EQ2-u9-WqF" id="4M9-Uu-962"/>
+                        <outlet property="curProgress" destination="gdS-40-7jx" id="YRN-O7-T8f"/>
                         <outlet property="questMapView" destination="qxW-2D-4ZM" id="As1-Mc-hSS"/>
                         <outlet property="questName" destination="FvP-sa-dS5" id="d2e-Qb-bFM"/>
                     </connections>
