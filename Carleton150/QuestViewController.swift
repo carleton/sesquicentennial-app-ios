@@ -20,20 +20,16 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
 	
     @IBAction func amIThere(sender: UIButton) {
         if quest.wayPoints[currentWayPointIndex].checkIfTriggered(locationManager.location!.coordinate) {
-            let alert = UIAlertView(
-                title: "You did it!",
-                message: self.quest.completionMessage,
-                delegate: self,
-                cancelButtonTitle: "OK")
-            alert.show()
+			let alert = UIAlertController(title: "You found it!", message: quest.completionMessage, preferredStyle: UIAlertControllerStyle.Alert)
+			let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
+			alert.addAction(alertAction)
+			presentViewController(alert, animated: true) { () -> Void in }
 		} else {
-			let alert = UIAlertView(
-				title: "Not quite there yet..",
-				message: "Keep Trying!",
-				delegate: self,
-				cancelButtonTitle: "OK")
-			alert.show()
-		}
+			let alert = UIAlertController(title: "Not quite there yet!", message: "Keep trying!", preferredStyle: UIAlertControllerStyle.Alert)
+			let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
+			alert.addAction(alertAction)
+			presentViewController(alert, animated: true) { () -> Void in }
+        }
     }
 	
     override func viewDidLoad() {
@@ -49,7 +45,7 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
 	
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		let location: CLLocationCoordinate2D = (locations.last?.coordinate)!
-		var curDistance = Utils.getDistance(location, point2: self.quest.wayPoints.first!.location)
+		let curDistance = Utils.getDistance(location, point2: self.quest.wayPoints.first!.location)
 		if (curDistance <= 1000) {
 			curProgress.progress = 0.5
 		} else if (curDistance <= 500) {

@@ -155,7 +155,7 @@
         <scene sceneID="dS2-dH-Wvz">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XOf-Hu-MR1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Calender" image="calendar53.png" id="F7S-wy-oNt" userLabel="Calender"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar53.png" id="F7S-wy-oNt" userLabel="Calendar"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Axk-MK-oxU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LFQ-lr-Snr">

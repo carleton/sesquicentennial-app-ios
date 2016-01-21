@@ -34,6 +34,7 @@
 		715AE4801C4EB08D00C8F0C9 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47F1C4EB08D00C8F0C9 /* Quest.swift */; };
 		717FE3E61BC7001D009CA507 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 717FE3E51BC7001D009CA507 /* Keys.plist */; };
 		71CC5F791BE944220065AA4C /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CC5F781BE944220065AA4C /* DataServiceTest.swift */; };
+		71F4B5131C50AECD0059F2A4 /* quest.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F4B5121C50AECD0059F2A4 /* quest.png */; };
 		DE91C2426C63D15AFB832D1D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B806A61E13CBDF524607BD9E /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +94,7 @@
 		71CC5F6E1BE942CF0065AA4C /* Carleton150Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Carleton150Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		71CC5F721BE942CF0065AA4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71CC5F781BE944220065AA4C /* DataServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
+		71F4B5121C50AECD0059F2A4 /* quest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quest.png; sourceTree = "<group>"; };
 		A13C89B298A898D72EE69AED /* Pods_Carleton150Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carleton150Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B806A61E13CBDF524607BD9E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D510DD6D1D9B3B955D223FB4 /* Pods-Carleton150Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150Tests/Pods-Carleton150Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				717FE3E51BC7001D009CA507 /* Keys.plist */,
 				71294DB91BC6FC1500B9F81B /* Info.plist */,
 				6A6C00401C472A4600EF249F /* bank11.png */,
+				71F4B5121C50AECD0059F2A4 /* quest.png */,
 				6A6C00411C472A4600EF249F /* calendar53.png */,
 				71676CC11BDED61700F1183D /* Carleton150-Bridging-Header.h */,
 			);
@@ -363,6 +366,7 @@
 				6A6C00431C472A4600EF249F /* calendar53.png in Resources */,
 				717FE3E61BC7001D009CA507 /* Keys.plist in Resources */,
 				6A6C00421C472A4600EF249F /* bank11.png in Resources */,
+				71F4B5131C50AECD0059F2A4 /* quest.png in Resources */,
 				71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */,
 				63053A8E1BF2F08700D34246 /* CMC.gpx in Resources */,
 				71294DB31BC6FC1500B9F81B /* Main.storyboard in Resources */,

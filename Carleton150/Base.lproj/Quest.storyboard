@@ -16,7 +16,7 @@
         <scene sceneID="TCz-fa-h5Y">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yBP-BT-jzr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Quest" id="hRJ-ZT-rdb"/>
+                    <tabBarItem key="tabBarItem" title="Quest" image="quest.png" id="hRJ-ZT-rdb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0sH-eQ-qqr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
