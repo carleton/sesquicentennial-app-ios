@@ -109,6 +109,12 @@ final class DataService {
             - completion: function that will perform the behavior
                           that you want given a list with all the events
                           from the server.
+     
+            - limit:      A hard limit on the amount of quests returned
+                          by the server.
+     
+            - date:       The earliest date from which to get data.
+     
      */
     class func requestEvents(date: NSDate?, limit: Int, completion:
         (success: Bool, result: [Dictionary<String, String>]?) -> Void) {
