@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             GMSServices.provideAPIKey(googleMapsApiKey)
         }
        
-        
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         return true

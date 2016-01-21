@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yBP-BT-jzr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yBP-BT-jzr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -134,19 +134,57 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvP-sa-dS5">
-                                <rect key="frame" x="279" y="289" width="42" height="21"/>
+                                <rect key="frame" x="41" y="372" width="516" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="aPx-RD-kBh"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qxW-2D-4ZM" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="64" width="593" height="273"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clue Text" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQ2-u9-WqF">
+                                <rect key="frame" x="41" y="430" width="539" height="102"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="102" id="05n-Vm-2oX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your clue: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZs-Yf-Acm">
+                                <rect key="frame" x="41" y="401" width="124" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="124" id="VFz-WI-gRe"/>
+                                    <constraint firstAttribute="height" constant="21" id="YeC-cj-hLW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="FvP-sa-dS5" firstAttribute="centerX" secondItem="Me0-A8-UI9" secondAttribute="centerX" id="GXG-XG-5di"/>
-                            <constraint firstItem="FvP-sa-dS5" firstAttribute="centerY" secondItem="Me0-A8-UI9" secondAttribute="centerY" id="dQW-qn-oiI"/>
+                            <constraint firstItem="FvP-sa-dS5" firstAttribute="top" secondItem="qxW-2D-4ZM" secondAttribute="bottom" constant="35" id="0u5-vh-fYT"/>
+                            <constraint firstItem="FvP-sa-dS5" firstAttribute="leading" secondItem="Me0-A8-UI9" secondAttribute="leadingMargin" constant="21" id="3dE-v6-3ZL"/>
+                            <constraint firstItem="fPZ-Zm-AGd" firstAttribute="top" secondItem="EQ2-u9-WqF" secondAttribute="bottom" constant="68" id="ABD-IS-taG"/>
+                            <constraint firstItem="EQ2-u9-WqF" firstAttribute="top" secondItem="tZs-Yf-Acm" secondAttribute="bottom" constant="8" symbolic="YES" id="DYv-l5-Xy5"/>
+                            <constraint firstItem="tZs-Yf-Acm" firstAttribute="top" secondItem="FvP-sa-dS5" secondAttribute="bottom" constant="8" symbolic="YES" id="Des-v8-b4P"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qxW-2D-4ZM" secondAttribute="trailing" constant="-13" id="Kwv-mx-7Jd"/>
+                            <constraint firstItem="qxW-2D-4ZM" firstAttribute="leading" secondItem="Me0-A8-UI9" secondAttribute="leading" id="MtO-Xj-KdF"/>
+                            <constraint firstItem="EQ2-u9-WqF" firstAttribute="leading" secondItem="tZs-Yf-Acm" secondAttribute="leading" id="YFJ-eN-jTi"/>
+                            <constraint firstItem="qxW-2D-4ZM" firstAttribute="top" secondItem="5S5-Xi-yGN" secondAttribute="bottom" id="ZiL-CT-hxv"/>
+                            <constraint firstItem="FvP-sa-dS5" firstAttribute="leading" secondItem="tZs-Yf-Acm" secondAttribute="leading" id="iRQ-9g-OPJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FvP-sa-dS5" secondAttribute="trailing" constant="23" id="jcQ-LS-nQW"/>
+                            <constraint firstItem="EQ2-u9-WqF" firstAttribute="trailing" secondItem="Me0-A8-UI9" secondAttribute="trailingMargin" id="zOM-Bz-vUP"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="clueText" destination="EQ2-u9-WqF" id="4M9-Uu-962"/>
+                        <outlet property="questMapView" destination="qxW-2D-4ZM" id="As1-Mc-hSS"/>
                         <outlet property="questName" destination="FvP-sa-dS5" id="d2e-Qb-bFM"/>
                     </connections>
                 </viewController>

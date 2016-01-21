@@ -15,6 +15,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 	@IBOutlet weak var Debug: UIButton!
     @IBOutlet weak var longText: UILabel!
     @IBOutlet weak var latText: UILabel!
+    
     @IBAction func backFromModal(segue: UIStoryboardSegue) {
         // Switch to the first tab (tabs are numbered 0, 1, 2)
         self.tabBarController?.selectedIndex = 1

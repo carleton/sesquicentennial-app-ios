@@ -1,10 +1,6 @@
 //
 //  QuestCollectionViewController.swift
 //  Carleton150
-//
-//  Created by Ibrahim Rabbani on 1/20/16.
-//  Copyright © 2016 edu.carleton.carleton150. All rights reserved.
-//
 
 import UIKit
 
@@ -17,15 +13,13 @@ class QuestCollectionViewController: UICollectionViewController {
     let images: [UIImage] = [UIImage(named: "magical_mystery.jpg")!, UIImage(named: "let_it_be.jpg")!]
 	var curCellIndex: Int = 0
 	
-	@IBAction func startQuest(sender: AnyObject) {
-		let curCell = self.collectionView?.visibleCells()[0] as! QuestCollectionViewCell
-		curCellIndex = curCell.questIndex
-	}
+	@IBAction func startQuest(sender: AnyObject) {}
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if(segue.identifier == "questStartSegue") {
+		if segue.identifier == "questStartSegue" {
 			let nextCtrl = (segue.destinationViewController as! QuestViewController)
-			nextCtrl.questIndex = curCellIndex
+            let currentIndex = (self.collectionView?.visibleCells()[0] as! QuestCollectionViewCell).questIndex
+			nextCtrl.quest = self.quests[currentIndex]
 		}
 	}
 	

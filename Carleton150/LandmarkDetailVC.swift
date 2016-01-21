@@ -14,19 +14,17 @@ class LandmarkDetailVC: UIViewController{
     @IBOutlet weak var landmarkName: UILabel!
     @IBOutlet weak var landmarkDescription: UILabel!
     
-
-    
     func setTextFields() {
         self.landmarkDescription.text = nameText
         self.landmarkName.text = descriptionText
-        
     }
     
     @IBAction func triggerMap(sender: AnyObject) {
         self.performSegueWithIdentifier("mapView", sender: nil)
     }
+    
     override func viewDidLoad() {
         self.setTextFields()
     }
     
-    }
+}

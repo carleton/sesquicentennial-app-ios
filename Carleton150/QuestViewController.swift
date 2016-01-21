@@ -1,35 +1,39 @@
 //
 //  QuestViewController.swift
 //  Carleton150
-//
-//  Created by Ibrahim Rabbani on 1/20/16.
-//  Copyright © 2016 edu.carleton.carleton150. All rights reserved.
-//
 
 import UIKit
+import CoreLocation
+import GoogleMaps
 
-class QuestViewController: UIViewController {
+class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 
-	var questIndex: Int = 0
-	var quests: [Quest] = []
+	var quest: Quest!
+    var currentWayPoint: Int = 0
+    let locationManager = CLLocationManager()
 	
 	@IBOutlet weak var questName: UILabel!
-	
+    @IBOutlet weak var clueText: UILabel!
+    @IBOutlet var questMapView: GMSMapView!
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-		getQuests()
+        self.questName.text = quest.name
+        self.clueText.text = quest.wayPoints[currentWayPoint].clue
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestAlwaysAuthorization()
+        questMapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
+		questMapView.delegate = self;
     }
-	
-	func getQuests() {
-		DataService.requestQuest("", limit: 5, completion: { (success, result) -> Void in
-			if let quests = result {
-				self.quests = quests
-				self.questName.text = quests[self.questIndex].name
-				print(self.questName.text)
-			}
-		});
-	}
 
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .AuthorizedAlways {
+            locationManager.startUpdatingLocation()
+            questMapView.myLocationEnabled = true
+            questMapView.settings.myLocationButton = true
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
