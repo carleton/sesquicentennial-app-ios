@@ -22,16 +22,12 @@ class QuestCollectionViewController: UICollectionViewController {
     }
 
 	func getQuests() {
-        
-		let waypoint = WayPoint(location: CLLocationCoordinate2D(latitude: 100, longitude: 100), radius: 100.0, clue: "I am the Walrus", hint: "They are the Eggmen!")
-		let quest = Quest(wayPoints: [waypoint], name: "Magical Mystery Tour", description: "The magical mystery tour is coming to take you away! Coming to take you away. Embark on this tittalating and tantalizing journey through the lands of the Walrus!", completionMessage: "You are the eggman")
-		quests.append(quest)
-		
-		let waypoint2 = WayPoint(location: CLLocationCoordinate2D(latitude: 100, longitude: 100), radius: 100.0, clue: "Mother Mary Comes To Me", hint: "Speaking Words of Wisdom")
-		let quest2 = Quest(wayPoints: [waypoint2], name: "Let It Be", description: "A quest for those with chiller inclinations. If you can decipher the words of wisdom, you might just be mother mary. What? You heard me.", completionMessage: "You are the eggman")
-		quests.append(quest2)
-		
-		self.collectionView!.reloadData()
+        DataService.requestQuest("", limit: 5, completion: { (success, result) -> Void in
+            if let quests = result {
+                self.quests = quests
+                self.collectionView!.reloadData()
+            }
+        });
 	}
 	
 	
