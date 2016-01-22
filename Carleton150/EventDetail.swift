@@ -1,10 +1,6 @@
 //
 //  EventDetail.swift
-//  
-//
-//  Created by Sherry Gu on 1/20/16.
-//
-//
+//  Carleton150
 
 import Foundation
 class EventDetail: UIViewController{
@@ -27,5 +23,12 @@ class EventDetail: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showLogo()
+    }
+    
+    func showLogo() {
+        let logo = UIImage(named: "carleton_logo.png")
+        let imageView = UIImageView(image:logo)
+        self.navigationItem.titleView = imageView
     }
 }

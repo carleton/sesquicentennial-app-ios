@@ -31,6 +31,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+        showLogo()
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestAlwaysAuthorization()
@@ -38,8 +39,12 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 		mapView.delegate = self;
         // brings subviews in front of the map.
         mapView.bringSubviewToFront(Debug)
-        
-        
+    }
+    
+    func showLogo() {
+        let logo = UIImage(named: "carleton_logo.png")
+        let imageView = UIImageView(image:logo)
+        self.navigationItem.titleView = imageView
     }
    
     

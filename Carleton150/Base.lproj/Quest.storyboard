@@ -31,7 +31,7 @@
             </objects>
             <point key="canvasLocation" x="-502" y="1287"/>
         </scene>
-        <!--Quest Mode-->
+        <!--Quest Collection View Controller-->
         <scene sceneID="3rc-Vl-hFI">
             <objects>
                 <collectionViewController id="vwu-TV-Qlc" customClass="QuestCollectionViewController" customModule="Carleton150" customModuleProvider="target" sceneMemberID="viewController">
@@ -118,7 +118,7 @@
                             <outlet property="delegate" destination="vwu-TV-Qlc" id="0ZY-qr-q5z"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Quest Mode" id="YyB-2Q-mno"/>
+                    <navigationItem key="navigationItem" id="YyB-2Q-mno"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GyL-KJ-wTU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
