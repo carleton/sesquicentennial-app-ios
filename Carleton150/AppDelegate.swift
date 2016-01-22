@@ -17,9 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        UINavigationBar.appearance().barTintColor = UIColor(red: 0.0/255.0, green: 39.0/255.0, blue: 118.0/255.0, alpha: 1.0)
+        customizeNavigationBar()
         
- 
         if let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist") {
             keys = NSDictionary(contentsOfFile: path)
         }
@@ -33,6 +32,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.requestAlwaysAuthorization()
         return true
     }
+    
+    func customizeNavigationBar() {
+        UINavigationBar.appearance().barTintColor = UIColor(red: 0.0/255.0,
+            green: 39.0/255.0, blue: 118.0/255.0, alpha: 1.0)
+        UINavigationBar.appearance().tintColor = UIColor(red: 255.0/255.0,
+            green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+    }
+        
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
