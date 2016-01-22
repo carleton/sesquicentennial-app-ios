@@ -226,4 +226,7 @@
             <point key="canvasLocation" x="904" y="1287"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="quest.png" width="24" height="24"/>
+    </resources>
 </document>
