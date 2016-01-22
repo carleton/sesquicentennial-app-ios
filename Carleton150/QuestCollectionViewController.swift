@@ -29,7 +29,7 @@ class QuestCollectionViewController: UICollectionViewController {
     }
 
 	func getQuests() {
-        DataService.requestQuest("", limit: 5, completion: { (success, result) -> Void in
+        QuestDataService.requestQuest("", limit: 5, completion: { (success, result) -> Void in
             if let quests = result {
                 self.quests = quests
                 self.collectionView!.reloadData()

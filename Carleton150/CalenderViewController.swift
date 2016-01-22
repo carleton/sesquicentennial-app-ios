@@ -34,13 +34,13 @@ class CalenderViewController: UIViewController, UITableViewDataSource, UITableVi
         self.tableLimit = limit
         
         if let desiredDate = date {
-            DataService.requestEvents(desiredDate, limit: limit, completion: {
+            CalendarDataService.requestEvents(desiredDate, limit: limit, completion: {
                 (success: Bool, result: [Dictionary<String, String>]?) in
                 self.schedule = result!
                 self.tableView.reloadData()
             });
         } else {
-            DataService.requestEvents(NSDate(), limit: limit, completion: {
+            CalendarDataService.requestEvents(NSDate(), limit: limit, completion: {
                 (success: Bool, result: [Dictionary<String, String>]?) in
                 self.schedule = result!
                 self.tableView.reloadData()
