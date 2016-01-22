@@ -6,6 +6,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+/// Data Service that contains relevant endpoints for the Historical module.
 final class HistoricalDataService {
     
     /**

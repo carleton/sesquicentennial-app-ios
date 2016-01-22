@@ -1,14 +1,13 @@
 //
-//  DataService.swift
+//  CalendarDataService.swift
 //  Carleton150
 
 import Foundation
-import SwiftyJSON
 import Alamofire
+import SwiftyJSON
 
-/// A class for making API calls to the Carleton150 server.
-final class DataService {
-    
+/// Data Service that contains relevant endpoints for the Calendar module.
+final class CalendarDataService {
     
     /**
         Request events for the calendar.
@@ -77,5 +76,4 @@ final class DataService {
             }
         }
     }
-    
 }
