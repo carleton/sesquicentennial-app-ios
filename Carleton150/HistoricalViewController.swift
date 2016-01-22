@@ -98,7 +98,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 				locationManager.stopMonitoringForRegion(place)
 			}
 			let position = CLLocationCoordinate2D(latitude: location.coordinate.latitude,longitude: location.coordinate.longitude)
-			DataService.requestNearbyGeofences(position, completion:
+			HistoricalDataService.requestNearbyGeofences(position, completion:
 				{ (success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
 					if (success) {
 						// scrap old geofences
@@ -152,8 +152,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 	}
 	
 	func enteredGeofence(geofence: Geotification, mapView: GMSMapView) -> Void {
-		print("entered: ",geofence.identifier)
-		DataService.requestContent(geofence.identifier,
+		HistoricalDataService.requestContent(geofence.identifier,
 		completion: { (success: Bool, result: Dictionary<String, String>?) -> Void in
 			if (success) {
 				var position = CLLocationCoordinate2DMake(44.46013,-93.15470)

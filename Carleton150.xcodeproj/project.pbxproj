@@ -31,6 +31,7 @@
 		71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71294DB61BC6FC1500B9F81B /* LaunchScreen.storyboard */; };
 		71294DCE1BC6FC1500B9F81B /* Carleton150UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DCD1BC6FC1500B9F81B /* Carleton150UITests.swift */; };
 		71340E581C5214A2007F9E2F /* QuestDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71340E571C5214A2007F9E2F /* QuestDataService.swift */; };
+		71340E5A1C5216C8007F9E2F /* HistoricalDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71340E591C5216C8007F9E2F /* HistoricalDataService.swift */; };
 		715AE47E1C4EADF200C8F0C9 /* WayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */; };
 		715AE4801C4EB08D00C8F0C9 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47F1C4EB08D00C8F0C9 /* Quest.swift */; };
 		717FE3E61BC7001D009CA507 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 717FE3E51BC7001D009CA507 /* Keys.plist */; };
@@ -89,6 +90,7 @@
 		71294DCD1BC6FC1500B9F81B /* Carleton150UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carleton150UITests.swift; sourceTree = "<group>"; };
 		71294DCF1BC6FC1500B9F81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71340E571C5214A2007F9E2F /* QuestDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestDataService.swift; sourceTree = "<group>"; };
+		71340E591C5216C8007F9E2F /* HistoricalDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoricalDataService.swift; sourceTree = "<group>"; };
 		715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WayPoint.swift; sourceTree = "<group>"; };
 		715AE47F1C4EB08D00C8F0C9 /* Quest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		71676CC11BDED61700F1183D /* Carleton150-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Carleton150-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				6A30943F1BD9CD4600A16342 /* Geotification.swift */,
 				63053A8D1BF2F08700D34246 /* CMC.gpx */,
 				6A3094411BDDDFAC00A16342 /* TestLocation.gpx */,
+				71340E591C5216C8007F9E2F /* HistoricalDataService.swift */,
 			);
 			name = Historical;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				711704131BF3EB9E00566464 /* utils.swift in Sources */,
 				6A6C00451C47367600EF249F /* BasicCell.swift in Sources */,
 				6A71BD361C508AD90094F863 /* EventDetail.swift in Sources */,
+				71340E5A1C5216C8007F9E2F /* HistoricalDataService.swift in Sources */,
 				6357E6F21C4ED3BC00A28D00 /* HistoricalViewController.swift in Sources */,
 				6357E6F01C4ED3BC00A28D00 /* DataService.swift in Sources */,
 				6357E6F41C4ED3BC00A28D00 /* CalenderViewController.swift in Sources */,
