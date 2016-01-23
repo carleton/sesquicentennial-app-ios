@@ -32,6 +32,7 @@
 		71340E581C5214A2007F9E2F /* QuestDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71340E571C5214A2007F9E2F /* QuestDataService.swift */; };
 		71340E5A1C5216C8007F9E2F /* HistoricalDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71340E591C5216C8007F9E2F /* HistoricalDataService.swift */; };
 		71340E5C1C5217C3007F9E2F /* CalendarDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71340E5B1C5217C3007F9E2F /* CalendarDataService.swift */; };
+		71340E601C521EA0007F9E2F /* carleton_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 71340E5F1C521EA0007F9E2F /* carleton_logo.png */; };
 		715AE47E1C4EADF200C8F0C9 /* WayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */; };
 		715AE4801C4EB08D00C8F0C9 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47F1C4EB08D00C8F0C9 /* Quest.swift */; };
 		717FE3E61BC7001D009CA507 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 717FE3E51BC7001D009CA507 /* Keys.plist */; };
@@ -92,6 +93,7 @@
 		71340E571C5214A2007F9E2F /* QuestDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestDataService.swift; sourceTree = "<group>"; };
 		71340E591C5216C8007F9E2F /* HistoricalDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoricalDataService.swift; sourceTree = "<group>"; };
 		71340E5B1C5217C3007F9E2F /* CalendarDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDataService.swift; sourceTree = "<group>"; };
+		71340E5F1C521EA0007F9E2F /* carleton_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carleton_logo.png; sourceTree = "<group>"; };
 		715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WayPoint.swift; sourceTree = "<group>"; };
 		715AE47F1C4EB08D00C8F0C9 /* Quest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		71676CC11BDED61700F1183D /* Carleton150-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Carleton150-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				71294DB91BC6FC1500B9F81B /* Info.plist */,
 				71F4B5141C50B76A0059F2A4 /* sesquicentennial.png */,
 				6A6C00401C472A4600EF249F /* bank11.png */,
+				71340E5F1C521EA0007F9E2F /* carleton_logo.png */,
 				71F4B5121C50AECD0059F2A4 /* quest.png */,
 				6A6C00411C472A4600EF249F /* calendar53.png */,
 				71676CC11BDED61700F1183D /* Carleton150-Bridging-Header.h */,
@@ -372,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63036B381C4CB80000193A78 /* Calendar.storyboard in Resources */,
+				71340E601C521EA0007F9E2F /* carleton_logo.png in Resources */,
 				6A6C00431C472A4600EF249F /* calendar53.png in Resources */,
 				717FE3E61BC7001D009CA507 /* Keys.plist in Resources */,
 				6A6C00421C472A4600EF249F /* bank11.png in Resources */,
