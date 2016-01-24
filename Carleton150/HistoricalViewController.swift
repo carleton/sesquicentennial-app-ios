@@ -35,7 +35,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        showLogo()
+        Utils.showLogo(self)
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestAlwaysAuthorization()
@@ -45,15 +45,6 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
         mapView.bringSubviewToFront(Debug)
     }
     
-    /**
-       Shows the Carleton logo in the top navigation bar in this view.
-     */
-    func showLogo() {
-        let logo = UIImage(named: "carleton_logo.png")
-        let imageView = UIImageView(image:logo)
-        self.navigationItem.titleView = imageView
-    }
-   
     /**
         Prepares for a segue ot the detail view for a particular point of 
         interest on the map.

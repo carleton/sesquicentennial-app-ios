@@ -25,15 +25,10 @@ class QuestCollectionViewController: UICollectionViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        showLogo()
+        Utils.showLogo(self)
 		getQuests()
     }
     
-    func showLogo() {
-        let logo = UIImage(named: "carleton_logo.png")
-        let imageView = UIImageView(image:logo)
-        self.navigationItem.titleView = imageView
-    }
 
 	func getQuests() {
         QuestDataService.requestQuest("", limit: 5, completion: { (success, result) -> Void in

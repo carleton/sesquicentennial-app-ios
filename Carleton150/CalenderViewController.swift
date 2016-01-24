@@ -16,7 +16,7 @@ class CalenderViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showLogo()
+        Utils.showLogo(self)
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -27,12 +27,6 @@ class CalenderViewController: UIViewController, UITableViewDataSource, UITableVi
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
         
-    }
-    
-    func showLogo() {
-        let logo = UIImage(named: "carleton_logo.png")
-        let imageView = UIImageView(image:logo)
-        self.navigationItem.titleView = imageView
     }
     
     func getCalendar(limit: Int, date: NSDate?) {

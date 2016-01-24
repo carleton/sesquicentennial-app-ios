@@ -33,7 +33,7 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     }
 	
     override func viewDidLoad() {
-        showLogo()
+        Utils.showLogo(self)
         self.questName.text = quest.name
         self.clueText.text = quest.wayPoints[currentWayPointIndex].clue
         self.locationManager.delegate = self
@@ -42,12 +42,6 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         questMapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
 		questMapView.delegate = self;
 		initialDist = Utils.getDistance(locationManager.location!.coordinate, point2: self.quest.wayPoints.first!.location)
-    }
-    
-    func showLogo() {
-        let logo = UIImage(named: "carleton_logo.png")
-        let imageView = UIImageView(image:logo)
-        self.navigationItem.titleView = imageView
     }
     
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
