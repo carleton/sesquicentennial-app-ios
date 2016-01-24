@@ -1,8 +1,6 @@
 //
 //  CalenderView.swift
 //  Carleton150
-//
-//
 
 import Foundation
 
@@ -15,6 +13,7 @@ class CalenderViewController: UIViewController, UITableViewDataSource, UITableVi
     var tableLimit : Int!
     var refreshControl : UIRefreshControl!
     let detailSegueIdentifier = "ShowDetail"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         showLogo()
@@ -125,14 +124,4 @@ class CalenderViewController: UIViewController, UITableViewDataSource, UITableVi
             cell.Date.text = item as String!
         }
     }
-    
-//    func setDescriptionForCell(cell: BasicCell, indexPath: NSIndexPath) {
-//        if self.schedule.isEmpty {
-//            cell.Description.text = ""
-//        }
-//        else {
-//            let item = self.schedule[indexPath.row]["description"]
-//            cell.Description.text = item as String!
-//        }
-//    }
 }
