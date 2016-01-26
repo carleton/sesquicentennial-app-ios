@@ -63,7 +63,6 @@ final class HistoricalDataService {
      */
     class func requestNearbyGeofences(location: CLLocationCoordinate2D,
           completion: (success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]?) -> Void) {
-        
         let parameters = [
             "geofence": [
                 "location" : [
