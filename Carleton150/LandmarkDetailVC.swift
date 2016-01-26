@@ -6,7 +6,7 @@ import Foundation
 
 import UIKit
 
-class LandmarkDetailVC: UIViewController{
+class LandmarkDetailVC: UIViewController {
     var nameText: String = "name"
     var descriptionText: String = "description"
     
@@ -24,7 +24,7 @@ class LandmarkDetailVC: UIViewController{
     }
     
     override func viewDidLoad() {
+        Utils.showLogo(self)
         self.setTextFields()
     }
-    
 }
