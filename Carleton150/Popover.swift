@@ -1,29 +1,30 @@
 //
-//  LandmarkDetailVC.swift
+//  Popover.swift
 //  Carleton150
+//
+//  Created by Sherry Gu on 1/26/16.
+//  Copyright © 2016 edu.carleton.carleton150. All rights reserved.
+//
 
 import Foundation
-
 import UIKit
-
-class LandmarkDetailVC: UIViewController, UIPopoverPresentationControllerDelegate{
+class Popover: UIViewController, UIPopoverPresentationControllerDelegate{
     var nameText: String = "name"
     var descriptionText: String = "description"
     
-    @IBOutlet var Button: UIView!
-    @IBOutlet weak var landmarkName: UILabel!
-    @IBOutlet weak var landmarkDescription: UILabel!
+    @IBOutlet weak var Name: UILabel!
+    @IBOutlet weak var Back: UIButton!
     
-    func setTextFields() {
-        self.landmarkDescription.text = nameText
-        self.landmarkName.text = descriptionText
-    }
-    
-    @IBAction func triggerMap(sender: AnyObject) {
+    @IBAction func triggered(sender: AnyObject) {
         self.performSegueWithIdentifier("mapView", sender: nil)
     }
     
-
+    @IBOutlet weak var Content: UILabel!
+    @IBOutlet weak var Timeline: UILabel!
+    func setTextFields() {
+        self.Content.text = nameText
+        self.Timeline.text = descriptionText
+    }
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.FullScreen
     }
@@ -38,9 +39,8 @@ class LandmarkDetailVC: UIViewController, UIPopoverPresentationControllerDelegat
     func dismiss() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
     override func viewDidLoad() {
         self.setTextFields()
     }
-    
+
 }

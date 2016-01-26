@@ -59,8 +59,14 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
                       it that will given to the landmark detail view.
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "landmarkDetail") {
-            let yourNextViewController = (segue.destinationViewController as! LandmarkDetailVC)
+//        if(segue.identifier == "landmarkDetail") {
+//            let yourNextViewController = (segue.destinationViewController as! LandmarkDetailVC)
+//            let marker = sender as! GMSMarker
+//            yourNextViewController.nameText = marker.title
+//            yourNextViewController.descriptionText = marker.snippet
+//        }
+        if(segue.identifier == "popoverBox") {
+            let yourNextViewController = (segue.destinationViewController as! Popover)
             let marker = sender as! GMSMarker
             yourNextViewController.nameText = marker.title
             yourNextViewController.descriptionText = marker.snippet
@@ -265,7 +271,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      
      */
 	func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) -> Void {
-        self.performSegueWithIdentifier("landmarkDetail", sender: marker)
+        self.performSegueWithIdentifier("popoverBox", sender: marker)
 	}
 }
 

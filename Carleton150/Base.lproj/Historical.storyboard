@@ -1,11 +1,65 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vkZ-Zi-z9j">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vkZ-Zi-z9j">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Popover-->
+        <scene sceneID="d0w-DF-54t">
+            <objects>
+                <viewController id="8Bq-O8-gBV" customClass="Popover" customModule="Carleton150" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dWS-bE-OYN"/>
+                        <viewControllerLayoutGuide type="bottom" id="7NO-sU-pz3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="umY-Qg-S54">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTF-4Z-FgV">
+                                <rect key="frame" x="253" y="134" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QG-w2-ahS">
+                                <rect key="frame" x="57" y="134" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeG-lx-K0S">
+                                <rect key="frame" x="273" y="76" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcS-BJ-EzR">
+                                <rect key="frame" x="24" y="28" width="39" height="30"/>
+                                <state key="normal" title="Close"/>
+                                <connections>
+                                    <action selector="triggered:" destination="8Bq-O8-gBV" eventType="touchUpInside" id="O5e-Ea-dpC"/>
+                                    <segue destination="Txi-IT-awX" kind="unwind" identifier="returnFromModel" unwindAction="backFromModal:" id="F5R-HQ-jCr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.27152383209999997" green="0.27152383209999997" blue="0.27152383209999997" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="Back" destination="VcS-BJ-EzR" id="0hz-1L-diO"/>
+                        <outlet property="Content" destination="eTF-4Z-FgV" id="iMp-6g-lKZ"/>
+                        <outlet property="Name" destination="jeG-lx-K0S" id="9vz-eO-ktI"/>
+                        <outlet property="Timeline" destination="0QG-w2-ahS" id="fX4-Bl-kiu"/>
+                        <segue destination="vkZ-Zi-z9j" kind="show" identifier="mapView" id="ZX0-QL-hjy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gii-Ly-mOd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Txi-IT-awX" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="709" y="-443"/>
+        </scene>
         <!--Historical View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -77,11 +131,14 @@
                         <outlet property="longText" destination="48n-Vv-TH8" id="Vor-sb-xVu"/>
                         <outlet property="mapView" destination="Wzj-au-GJO" id="q87-rK-Kei"/>
                         <segue destination="cV4-fg-tzV" kind="show" identifier="landmarkDetail" id="SjS-e1-CVA"/>
+                        <segue destination="8Bq-O8-gBV" kind="popoverPresentation" identifier="popoverBox" popoverAnchorView="Wzj-au-GJO" id="2j9-Y1-Oxq">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="754" y="-234"/>
+            <point key="canvasLocation" x="696" y="212"/>
         </scene>
         <!--Landmark DetailVC-->
         <scene sceneID="blx-LK-OsZ">
@@ -170,4 +227,7 @@
     <resources>
         <image name="bank11.png" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ZX0-QL-hjy"/>
+    </inferredMetricsTieBreakers>
 </document>
