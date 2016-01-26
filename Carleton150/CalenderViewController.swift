@@ -85,6 +85,7 @@ class CalenderViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
     }
+    
     func basicCellAtIndexPath(indexPath: NSIndexPath) -> BasicCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(basicCellIdentifier) as! BasicCell
         settitleLabelForCell(cell, indexPath: indexPath)
@@ -92,8 +93,6 @@ class CalenderViewController: UIViewController, UITableViewDataSource, UITableVi
         let myBackView=UIView(frame:cell.frame)
         myBackView.backgroundColor = UIColor.whiteColor();
         cell.selectedBackgroundView = myBackView;
-        
-
         
         //setDescriptionForCell(cell, indexPath: indexPath)
         return cell

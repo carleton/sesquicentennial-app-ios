@@ -11,16 +11,4 @@ import XCTest
 import CoreLocation
 
 class DataServiceTest: XCTestCase {
-    
-    func testRequestNearbyGeofences() {
-        // TODO: modify this test when correctly using closure for callback
-        let location = CLLocationCoordinate2D(latitude: 44.4545784, longitude: -93.165487)
-        let expected = [("hello", 1, CLLocationCoordinate2D(latitude: 15.2, longitude: 15.1))]
-        let result = DataService.requestNearbyGeofences(location)
-        XCTAssertEqual(expected[0].0, result[0].0)
-        XCTAssertEqual(expected[0].1, result[0].1)
-        XCTAssertEqual(expected[0].2.latitude, result[0].2.latitude)
-        XCTAssertEqual(expected[0].2.longitude, result[0].2.longitude)
-    }
-    
 }
