@@ -13,15 +13,28 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
 	var initialDist: Double!
 	let locationManager = CLLocationManager()
 	
+    @IBOutlet weak var hintText: UILabel!
 	@IBOutlet weak var questName: UILabel!
     @IBOutlet weak var clueText: UILabel!
+    @IBOutlet weak var QuestInfoStack: UIStackView!
     @IBOutlet var questMapView: GMSMapView!
 	@IBOutlet weak var curProgress: UIProgressView!
-    
+    @IBOutlet weak var hintButton: UIButton!
+   
+    /**
+        The button that, when pressed, shows or hides the current hint
+        depending on the current state of the hint text.
+     */
+    @IBAction func getHint(sender: AnyObject) {
+        hintText.hidden = !hintText.hidden
+        hintButton.setTitle(hintText.hidden ? "Show" : "Hide", forState: UIControlState())
+    }
     
     /**
-        The button that, when pressed, checks to see if you're inside the geofence. If so, you get a message
-        and the next location, but otherwise, you get a message stating you haven't quite gotten there yet. 
+        The button that, when pressed, checks to see if you're inside 
+        the geofence. If so, you get a message
+        and the next location. Otherwise, you get
+        a message stating you haven't quite gotten there yet.
      */
     @IBAction func amIThere(sender: UIButton) {
         if quest.wayPoints[currentWayPointIndex].checkIfTriggered(locationManager.location!.coordinate) {
@@ -52,6 +65,10 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         // set the quest text for the current waypoint
         self.questName.text = quest.name
         self.clueText.text = quest.wayPoints[currentWayPointIndex].clue
+        self.hintText.text = quest.wayPoints[currentWayPointIndex].hint
+       
+        // hide the hint
+        self.hintText.hidden = true
         
         // start the location manager
         self.locationManager.delegate = self
