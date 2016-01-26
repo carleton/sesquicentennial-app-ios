@@ -15,6 +15,16 @@ class QuestCollectionViewController: UICollectionViewController {
 	
 	@IBAction func startQuest(sender: AnyObject) {}
 	
+    /**
+        Prepares for a segue to the quest view for a particular quest in the collection.
+     
+        Parameters: 
+            - segue:  The segue that was triggered by the user. If this is not one of 
+                      the quest start buttons, don't switch to anything.
+     
+            - sender: The sender, in our case, will be one of the buttons at the bottom 
+                      of each quest description.
+     */
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "questStartSegue" {
 			let nextCtrl = (segue.destinationViewController as! QuestViewController)
@@ -23,18 +33,20 @@ class QuestCollectionViewController: UICollectionViewController {
 		}
 	}
 	
+    /**
+        Upon load of this view, set logo and 
+        request quests from the server.
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
-        showLogo()
+        Utils.showLogo(self)
 		getQuests()
     }
     
-    func showLogo() {
-        let logo = UIImage(named: "carleton_logo.png")
-        let imageView = UIImageView(image:logo)
-        self.navigationItem.titleView = imageView
-    }
 
+    /**
+        Request quest data from the server.
+     */
 	func getQuests() {
         QuestDataService.requestQuest("", limit: 5, completion: { (success, result) -> Void in
             if let quests = result {
@@ -44,15 +56,24 @@ class QuestCollectionViewController: UICollectionViewController {
         });
 	}
 	
+    /**
+        Determine the number of sections (different than number of items)
+        in the collection view.
+     */
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
-
-
+    
+    /**
+        Determine the amount of items in the collection view.
+     */
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return quests.count
     }
 
+    /**
+        Builds the collection view, populating each cell.
+     */
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 	
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! QuestCollectionViewCell

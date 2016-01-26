@@ -42,4 +42,14 @@ final class Utils {
         return degrees * M_PI / 180
     }
     
+    /**
+        Shows the Carleton logo in the top navigation bar
+        in the designated view.
+     */
+    class func showLogo(currentController: UIViewController) {
+        let logo = UIImage(named: "carleton_logo.png")
+        let imageView = UIImageView(image:logo)
+        currentController.navigationItem.titleView = imageView
+    }
+    
 }

@@ -11,7 +11,6 @@ import MapKit
 class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GMSMapViewDelegate {
 
     @IBOutlet weak var mapView: GMSMapView!
-
 	@IBOutlet weak var Debug: UIButton!
     @IBOutlet weak var longText: UILabel!
     @IBOutlet weak var latText: UILabel!
@@ -28,10 +27,15 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 	var circles = [GMSCircle]()
 	var debugMode = false
 	var updateLocation = true
-	
+    
+    
+    /**
+        Upon load of this view, start the location manager and
+        set the camera on the map view to focus on Carleton.
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
-        showLogo()
+        Utils.showLogo(self)
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestAlwaysAuthorization()
@@ -41,13 +45,19 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
         mapView.bringSubviewToFront(Debug)
     }
     
-    func showLogo() {
-        let logo = UIImage(named: "carleton_logo.png")
-        let imageView = UIImageView(image:logo)
-        self.navigationItem.titleView = imageView
-    }
-   
-    
+    /**
+        Prepares for a segue ot the detail view for a particular point of 
+        interest on the map.
+     
+        Parameters: 
+            - segue:  The segue that was triggered by user. If this is not the
+                      segue to the landmarkDetail view, then don't perform the
+                      segue.
+     
+            - sender: The sender, in our case, will be one of the Google Maps markers
+                      that was pressed, which will in turn have data associated with 
+                      it that will given to the landmark detail view.
+     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "landmarkDetail") {
             let yourNextViewController = (segue.destinationViewController as! LandmarkDetailVC)
@@ -57,17 +67,26 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
         }
     }
 
-	
+
+    /**
+        Temporary function that shows the current available geofences 
+        and the current latitude and longitude coordinates.
+     
+        Parameters: 
+            - sender: the button that was pressed to trigger this 
+                      function, which is currently the button in the 
+                      top right corner of the historical view.
+     */
 	@IBAction func toggleDebug(sender: AnyObject) {
 		if (debugMode) {
-			for (var i = 0; i < circles.count; i++) {
+			for i in 0 ..< circles.count {
 				circles[i].map = nil
 			}
 			mapView.sendSubviewToBack(latText)
 			mapView.sendSubviewToBack(longText)
 			debugMode = false
 		} else {
-			for (var i = 0; i < circles.count; i++) {
+			for i in 0 ..< circles.count {
 				circles[i].map = mapView
 			}
 			mapView.bringSubviewToFront(latText)
@@ -76,12 +95,19 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 		}
 	}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-   
 	
+    /**
+        The function immediately called by the location manager that 
+        begins keeping track of location for the various geofence triggers 
+        that occur while walking around campus.
+     
+        Parameters: 
+            - manager:                      The location manager that was
+                                            started within this view.
+     
+            - didChangeAuthorizationStatus: The current authorization status for the user
+                                            determining whether we can use location.
+     */
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedAlways {
             locationManager.startUpdatingLocation()
@@ -91,13 +117,22 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
         
     }
     
+    /**
+        Performs geofence checking upon an update to the current location.
+        Parameters: 
+            - manager:   The location manager that was started 
+                         within this module.
+     
+            - locations: The past few locations that were detected by 
+                         the location manager.
+     */
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
 		
 		latText.text = String(format:"%f", location.coordinate.latitude)
         longText.text = String(format:"%f", location.coordinate.longitude)
 		
-		// MARK: Get Nearby Geofences
+		// Get any nearby geofences
 		if (updateLocation) {
 			for place in locationManager.monitoredRegions {
 				locationManager.stopMonitoringForRegion(place)
@@ -112,11 +147,9 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 						for geofence in result! {
 							let circle: GMSCircle = GMSCircle(position: geofence.center, radius: Double(geofence.radius))
 							circle.fillColor = UIColor.orangeColor().colorWithAlphaComponent(0.1)
-//							circle.map = self.mapView
 							self.circles.append(circle)
 							let geotification = Geotification(coordinate: geofence.center, radius: Double(geofence.radius), identifier: geofence.name)
 							self.geofences.append(geotification)
-//							self.startMonitoringGeotification(geotification)
 						}
 					} else {
 						print("Could not fetch data from the server.")
@@ -125,10 +158,15 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 			self.updateLocation = false
 		}
 		
-		// MARK: Check to see if geofence tripped
+		// Check to see if geofence tripped
 		for (var i = 0; i < geofences.count; i++) {
-			let currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude,longitude: location.coordinate.longitude)
-			// If geofence triggered
+            
+			let currentLocation = CLLocationCoordinate2D(
+                latitude: location.coordinate.latitude,
+                longitude: location.coordinate.longitude
+            )
+            
+			// If a geofence is triggered...
 			if (Utils.getDistance(currentLocation,point2: geofences[i].coordinate) <= geofences[i].radius) {
 				if !(geofences[i].active) {
 					enteredGeofence(geofences[i], mapView: mapView)
@@ -142,10 +180,24 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 
     }
 	
+    /**
+        Takes a geofence off of the map if the geofence is not currently within 
+        the geofence search radius of the user's location. If there are fewer
+        than 4, however, the points remain so that the user doesn't just lose everything 
+        that they could interact with.
+     
+        Parameters: 
+            - geofence:    The geofence that was exited.
+     
+            - infoMarkers: The set of markers that are still currently in scope.
+     
+        Returns: 
+            - A new list of the current active geofences.
+     
+     */
 	func exitedGeofence(geofence: Geotification, var infoMarkers:[GMSMarker] ) -> [GMSMarker] {
-		print("exited: ",geofence.identifier)
 		if (infoMarkers.count > 3) {
-			for (var i = 0; i < infoMarkers.count; i++) {
+			for i in 0 ..< infoMarkers.count {
 				if (infoMarkers[i].title == geofence.identifier) {
 					infoMarkers[i].map = nil
 					infoMarkers.removeAtIndex(i)
@@ -156,6 +208,14 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 		return infoMarkers
 	}
 	
+    /**
+        Sets up and places a marker upon entering a geofence.
+     
+        Parameters:
+            - geofence: The geofence that was entered.
+     
+            - mapView:  The Google Maps view to attach the marker to.
+     */
 	func enteredGeofence(geofence: Geotification, mapView: GMSMapView) -> Void {
 		HistoricalDataService.requestContent(geofence.identifier,
 		completion: { (success: Bool, result: Dictionary<String, String>?) -> Void in
@@ -168,7 +228,6 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 				}
 				let marker = GMSMarker(position: position)
 				marker.title = geofence.identifier
-//				marker.icon = UIImage(named: "flag_icon")
 				marker.map = self.mapView
 				marker.snippet = (result!["data"])!
 				marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
@@ -181,18 +240,33 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 		})
 	}
 	
+    /**
+        Designates the currently selected marker upon a tap from the user.
+     
+        Parameters:
+            - mapView:  The Google Maps view the marker is attached to.
+     
+            - didTapMarker: The marker that was tapped by the user.
+     
+     */
 	func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
 		mapView.selectedMarker = marker
-		print(marker.title)
 		return true
 	}
 
+    /**
+        Performs the segue to the detail view when the info window on a
+        marker is pressed.
+     
+        Parameters:
+            - mapView:  The Google Maps view the marker is attached to.
+     
+            - didTapMarker: The marker that was tapped by the user.
+     
+     */
 	func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) -> Void {
-        	self.performSegueWithIdentifier("landmarkDetail", sender: marker)
-		print(marker.title)
+        self.performSegueWithIdentifier("landmarkDetail", sender: marker)
 	}
-    
-	
 }
 
 
