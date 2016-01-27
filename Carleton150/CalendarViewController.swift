@@ -7,7 +7,7 @@ import Foundation
 class CalendarViewController: UICollectionViewController {
     
     var schedule : [Dictionary<String, String>] = []
-    var eventImages: [UIImage]!
+    var eventImages: [UIImage] = []
     var tableLimit : Int!
     var colors = [UIColor.yellowColor(), UIColor.blueColor()]
     
@@ -30,18 +30,13 @@ class CalendarViewController: UICollectionViewController {
    
     // TODO: make this method get the images
     func getEventImages() -> [UIImage] {
-      var eventImages = [UIImage]()
-      if let URL = NSBundle.mainBundle().pathForResource("EventImages", ofType: "plist") {
-        if let tutorialsFromPlist = NSArray(contentsOfURL: NSURL(fileURLWithPath: URL)) {
-          for dictionary in tutorialsFromPlist {
-            let eventImage = UIImage(named: dictionary["Background"] as! String)
+        for i in 1 ..< 9 {
+            let eventImage = UIImage(named: "Event-" + String(i))
             if let eventImage = eventImage {
               eventImages.append(eventImage)
             }
-          }
         }
-      }
-      return eventImages
+        return eventImages
     }
     
     func getCalendar(limit: Int, date: NSDate?) {
