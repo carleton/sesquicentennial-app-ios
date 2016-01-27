@@ -9,7 +9,6 @@ class CalendarViewController: UICollectionViewController {
     var schedule : [Dictionary<String, String>] = []
     var eventImages: [UIImage] = []
     var tableLimit : Int!
-    var colors = [UIColor.yellowColor(), UIColor.blueColor()]
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
@@ -19,18 +18,14 @@ class CalendarViewController: UICollectionViewController {
         super.viewDidLoad()
         Utils.showLogo(self)
         getCalendar(20, date: NSDate())
-        
-        for _ in 0 ..< 5 {
-            colors += colors
-        }
 
         view.backgroundColor = UIColor(red: 252, green: 212, blue: 80, alpha: 1.0)
-        collectionView!.backgroundColor = UIColor.greenColor()
+        collectionView!.backgroundColor = UIColor(red: 224, green: 224, blue: 224, alpha: 1.0)
     }
    
     // TODO: make this method get the images
     func getEventImages() -> [UIImage] {
-        for i in 1 ..< 9 {
+        for i in 1 ..< 11 {
             let eventImage = UIImage(named: "Event-" + String(i))
             if let eventImage = eventImage {
               eventImages.append(eventImage)
@@ -47,11 +42,13 @@ class CalendarViewController: UICollectionViewController {
             CalendarDataService.requestEvents(desiredDate, limit: limit, completion: {
                 (success: Bool, result: [Dictionary<String, String>]?) in
                 self.schedule = result!
+                self.collectionView!.reloadData()
             });
         } else {
             CalendarDataService.requestEvents(NSDate(), limit: limit, completion: {
                 (success: Bool, result: [Dictionary<String, String>]?) in
                 self.schedule = result!
+                self.collectionView!.reloadData()
             });
         }
     }
@@ -61,13 +58,13 @@ class CalendarViewController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return schedule.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CalendarCell", forIndexPath: indexPath) as! CalendarCell
         let images = getEventImages()
-        cell.currentImage = images[indexPath.item]
+        cell.currentImage = images[indexPath.item % 10]
         
         return cell
     }

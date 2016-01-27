@@ -74,7 +74,6 @@ class CalendarLayout: UICollectionViewFlowLayout {
         
         var frame = CGRectZero
         var y: CGFloat = 0
-       
         
         for item in 0 ..< numberOfItems {
             let indexPath = NSIndexPath(forItem: item, inSection: 0)
@@ -98,7 +97,6 @@ class CalendarLayout: UICollectionViewFlowLayout {
             cache.append(attributes)
             y = CGRectGetMaxY(frame)
         }
-
     }
     
     /* Return all attributes in the cache whose frame intersects with the rect passed to the method */

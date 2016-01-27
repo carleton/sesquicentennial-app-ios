@@ -24,7 +24,6 @@
 		6A71BD361C508AD90094F863 /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A71BD351C508AD90094F863 /* EventDetail.swift */; };
 		710726FB1C58001F0071FABC /* CalendarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710726FA1C58001F0071FABC /* CalendarLayout.swift */; };
 		710726FD1C5813650071FABC /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710726FC1C5813650071FABC /* CalendarCell.swift */; };
-		710726FF1C5818D70071FABC /* EventImages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 710726FE1C5818D70071FABC /* EventImages.plist */; };
 		711704131BF3EB9E00566464 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711704121BF3EB9E00566464 /* utils.swift */; };
 		71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */; };
 		71294DB31BC6FC1500B9F81B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71294DB11BC6FC1500B9F81B /* Main.storyboard */; };
@@ -79,7 +78,6 @@
 		6A71BD351C508AD90094F863 /* EventDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
 		710726FA1C58001F0071FABC /* CalendarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarLayout.swift; sourceTree = "<group>"; };
 		710726FC1C5813650071FABC /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
-		710726FE1C5818D70071FABC /* EventImages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EventImages.plist; sourceTree = "<group>"; };
 		711704121BF3EB9E00566464 /* utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		71294DAA1BC6FC1500B9F81B /* Carleton150.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carleton150.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -218,7 +216,6 @@
 				63036B361C4CB72800193A78 /* Quest */,
 				635B37441BF4231400F1508B /* Assets.xcassets */,
 				717FE3E51BC7001D009CA507 /* Keys.plist */,
-				710726FE1C5818D70071FABC /* EventImages.plist */,
 				71294DB91BC6FC1500B9F81B /* Info.plist */,
 				71676CC11BDED61700F1183D /* Carleton150-Bridging-Header.h */,
 			);
@@ -375,7 +372,6 @@
 				717FE3E61BC7001D009CA507 /* Keys.plist in Resources */,
 				71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */,
 				63053A8E1BF2F08700D34246 /* CMC.gpx in Resources */,
-				710726FF1C5818D70071FABC /* EventImages.plist in Resources */,
 				71294DB31BC6FC1500B9F81B /* Main.storyboard in Resources */,
 				6368A5961C5050E900D6B5B2 /* Quest.storyboard in Resources */,
 				63036B341C4CB5A200193A78 /* Historical.storyboard in Resources */,
