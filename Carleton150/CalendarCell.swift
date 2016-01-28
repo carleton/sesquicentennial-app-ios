@@ -31,8 +31,13 @@ class CalendarCell: UICollectionViewCell {
         let minAlpha: CGFloat = 0.3
         let maxAlpha: CGFloat = 0.65
         imageCoverView.alpha = maxAlpha - (delta * (maxAlpha - minAlpha))
-        
+       
+        // scale the title as the cell scales
         let scale = max(delta, 0.75)
         eventTitle.transform = CGAffineTransformMakeScale(scale, scale)
+       
+        // set time and location to fade in as the cell scales
+        locationLabel.alpha = delta
+        timeLabel.alpha = delta
     }
 }

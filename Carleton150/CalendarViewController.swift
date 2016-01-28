@@ -24,6 +24,9 @@ class CalendarViewController: UICollectionViewController {
 
         view.backgroundColor = UIColor(red: 252, green: 212, blue: 80, alpha: 1.0)
         collectionView!.backgroundColor = UIColor(red: 224, green: 224, blue: 224, alpha: 1.0)
+        
+        // set the deceleration rate for the event cell snap
+        collectionView!.decelerationRate = UIScrollViewDecelerationRateFast
     }
    
     // TODO: make this method get the images
