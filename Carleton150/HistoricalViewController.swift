@@ -7,6 +7,7 @@ import GoogleMaps
 import CoreLocation
 import MapKit
 
+var selectedGeofence = ""
 
 class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GMSMapViewDelegate {
 
@@ -59,12 +60,12 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
                       it that will given to the landmark detail view.
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "landmarkDetail") {
-            let yourNextViewController = (segue.destinationViewController as! LandmarkDetailVC)
-            let marker = sender as! GMSMarker
-            yourNextViewController.nameText = marker.title
-            yourNextViewController.descriptionText = marker.snippet
-        }
+		
+		if (segue.identifier == "showTimeline") {
+			selectedGeofence = (sender?.title)!
+			let yourNextViewController = (segue.destinationViewController as! TimelineViewController)
+			yourNextViewController.mapCtrl = self
+		}
     }
 
 
@@ -265,7 +266,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      
      */
 	func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) -> Void {
-        self.performSegueWithIdentifier("landmarkDetail", sender: marker)
+        self.performSegueWithIdentifier("showTimeline", sender: marker)
 	}
 }
 
