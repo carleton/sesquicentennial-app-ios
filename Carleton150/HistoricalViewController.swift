@@ -218,7 +218,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      */
 	func enteredGeofence(geofence: Geotification, mapView: GMSMapView) -> Void {
 		HistoricalDataService.requestContent(geofence.identifier,
-		completion: { (success: Bool, result: Dictionary<String, String>?) -> Void in
+		completion: { (success: Bool, result: [Dictionary<String, String>?]) -> Void in
 			if (success) {
 				var position = CLLocationCoordinate2DMake(44.46013,-93.15470)
 				for (var i = 0; i < self.geofences.count; i++) {
@@ -229,7 +229,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 				let marker = GMSMarker(position: position)
 				marker.title = geofence.identifier
 				marker.map = self.mapView
-				marker.snippet = (result!["data"])!
+				marker.snippet = (result[0]!["data"])!
 				marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
 				self.mapView.selectedMarker = marker
 				self.infoMarkers.append(marker)
