@@ -14,7 +14,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	@IBOutlet weak var geofenceName: UILabel!
 	
 	var mapCtrl:UIViewController!
-	var landmarkData = ["type":"","data":""]
 
     override func viewDidLoad() {
 
@@ -23,11 +22,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 		
 		geofenceName.text = selectedGeofence
 		
-		HistoricalDataService.requestContent(selectedGeofence) { (success, result) -> Void in
-			self.landmarkData = result!
-			self.tableView.reloadData()
-		}
-    }
+	}
 	
 	@IBAction func exitTimeline(sender: AnyObject) {
 		mapCtrl.dismissViewControllerAnimated(true) { () -> Void in
@@ -37,21 +32,20 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		// #warning Incomplete implementation, return the number of sections
-		return 1
+		return landmarksInfo![selectedGeofence]!.count
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		// #warning Incomplete implementation, return the number of rows
-		return 2
+		return 1
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
 		
-		cell.title.text = landmarkData["type"]!
-		cell.desc.text = landmarkData["data"]!
+		cell.title.text = landmarksInfo![selectedGeofence]![indexPath.row]!["type"]!
+		cell.desc.text = landmarksInfo![selectedGeofence]![indexPath.row]!["data"]!
 		cell.timestamp.text = "2015"
-		// Configure the cell...
 		
 		return cell
 	}
