@@ -8,6 +8,7 @@ import CoreLocation
 import MapKit
 
 var selectedGeofence = ""
+var landmarksInfo : Dictionary<String,[Dictionary<String, String>?]>? = Dictionary()
 
 class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GMSMapViewDelegate {
 
@@ -29,7 +30,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 	var debugMode = false
 	var updateLocation = true
     
-    
+	
     /**
         Upon load of this view, start the location manager and
         set the camera on the map view to focus on Carleton.
@@ -221,6 +222,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 		HistoricalDataService.requestContent(geofence.identifier,
 		completion: { (success: Bool, result: [Dictionary<String, String>?]) -> Void in
 			if (success) {
+				landmarksInfo![geofence.identifier] = result
 				var position = CLLocationCoordinate2DMake(44.46013,-93.15470)
 				for (var i = 0; i < self.geofences.count; i++) {
 					if (self.geofences[i].identifier == geofence.identifier) {
