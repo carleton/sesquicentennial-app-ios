@@ -15,4 +15,6 @@ class TimelineTableCellTextOnly: UITableViewCell
 	
 	@IBOutlet weak var desc: UILabel!
 	
+	@IBOutlet weak var timestamp: UILabel!
+
 }

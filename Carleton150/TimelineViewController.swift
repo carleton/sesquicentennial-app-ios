@@ -42,7 +42,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		// #warning Incomplete implementation, return the number of rows
-		return 1
+		return 2
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -50,10 +50,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 		
 		cell.title.text = landmarkData["type"]!
 		cell.desc.text = landmarkData["data"]!
-		cell.backgroundView?.alpha = 0.9
-		cell.alpha = 1.0
-		cell.title.alpha = 1.0
-		cell.desc.alpha = 1.0
+		cell.timestamp.text = "2015"
 		// Configure the cell...
 		
 		return cell
