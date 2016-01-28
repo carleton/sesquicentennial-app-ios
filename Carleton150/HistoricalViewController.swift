@@ -61,14 +61,10 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		
-////        if(segue.identifier == "landmarkDetail") {
-////            let yourNextViewController = (segue.destinationViewController as! LandmarkDetailVC)
-////            let marker = sender as! GMSMarker
-////            yourNextViewController.nameText = marker.title
-////            yourNextViewController.descriptionText = marker.snippet
-////        }
 		if (segue.identifier == "showTimeline") {
 			selectedGeofence = (sender?.title)!
+			let yourNextViewController = (segue.destinationViewController as! TimelineViewController)
+			yourNextViewController.mapCtrl = self
 		}
     }
 

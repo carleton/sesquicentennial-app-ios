@@ -8,9 +8,11 @@
 
 import UIKit
 
-class TimelineTableCellTextOnly: UITableViewCell {
-
+class TimelineTableCellTextOnly: UITableViewCell
+{
+	
 	@IBOutlet weak var title: UILabel!
 	
 	@IBOutlet weak var desc: UILabel!
+	
 }

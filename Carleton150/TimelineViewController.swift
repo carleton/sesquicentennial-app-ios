@@ -8,32 +8,55 @@
 
 import UIKit
 
-class TimelineViewController: UIViewController {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+	
+	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var geofenceName: UILabel!
+	
+	var mapCtrl:UIViewController!
+	var landmarkData = ["type":"","data":""]
 
-	@IBAction func returnToMapView(sender: AnyObject) {
-		self.performSegueWithIdentifier("returnToMapView", sender: sender)
+    override func viewDidLoad() {
+
+		tableView.dataSource = self
+		tableView.delegate = self
+		
+		geofenceName.text = selectedGeofence
+		
+		HistoricalDataService.requestContent(selectedGeofence) { (success, result) -> Void in
+			self.landmarkData = result!
+			self.tableView.reloadData()
+		}
+    }
+	
+	@IBAction func exitTimeline(sender: AnyObject) {
+		mapCtrl.dismissViewControllerAnimated(true) { () -> Void in
+			print("Dismissed")
+		}
+	}
+
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		// #warning Incomplete implementation, return the number of sections
+		return 1
 	}
 	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		// #warning Incomplete implementation, return the number of rows
+		return 1
+	}
+	
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
+		
+		cell.title.text = landmarkData["type"]!
+		cell.desc.text = landmarkData["data"]!
+		cell.backgroundView?.alpha = 0.9
+		cell.alpha = 1.0
+		cell.title.alpha = 1.0
+		cell.desc.alpha = 1.0
+		// Configure the cell...
+		
+		return cell
+	}
 
 }
