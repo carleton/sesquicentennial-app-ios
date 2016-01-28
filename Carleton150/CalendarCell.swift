@@ -8,6 +8,7 @@ class CalendarCell: UICollectionViewCell {
     
     @IBOutlet weak var EventImageView: UIImageView!
     @IBOutlet weak var imageCoverView: UIView!
+    @IBOutlet weak var eventTitle: UILabel!
     
     var currentImage: UIImage? {
         didSet {
@@ -25,7 +26,7 @@ class CalendarCell: UICollectionViewCell {
         
         let delta = 1 - ((featuredHeight - CGRectGetHeight(frame)) / (featuredHeight - standardHeight))
         
-        let minAlpha: CGFloat = 0.35
+        let minAlpha: CGFloat = 0.3
         let maxAlpha: CGFloat = 0.65
         imageCoverView.alpha = maxAlpha - (delta * (maxAlpha - minAlpha))
     }

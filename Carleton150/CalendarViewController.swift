@@ -18,6 +18,9 @@ class CalendarViewController: UICollectionViewController {
         super.viewDidLoad()
         Utils.showLogo(self)
         getCalendar(20, date: NSDate())
+        
+        // stop the navigation bar from covering the calendar content
+        self.navigationController!.navigationBar.translucent = false;
 
         view.backgroundColor = UIColor(red: 252, green: 212, blue: 80, alpha: 1.0)
         collectionView!.backgroundColor = UIColor(red: 224, green: 224, blue: 224, alpha: 1.0)
@@ -64,6 +67,8 @@ class CalendarViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CalendarCell", forIndexPath: indexPath) as! CalendarCell
         let images = getEventImages()
+        let eventText = schedule[indexPath.item]["title"]
+        cell.eventTitle.text = eventText
         cell.currentImage = images[indexPath.item % 10]
         
         return cell

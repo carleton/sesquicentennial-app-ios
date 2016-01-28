@@ -5,6 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Black.ttf">
+            <string>Roboto-Black</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Calender View Controller-->
         <scene sceneID="meN-Yr-GP3">
@@ -98,29 +103,38 @@
                                     <rect key="frame" x="0.0" y="0.0" width="199" height="186"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GHp-bb-oFv">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GHp-bb-oFv">
                                             <rect key="frame" x="0.0" y="0.0" width="199" height="280"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1h0-x3-eaf">
                                             <rect key="frame" x="0.0" y="0.0" width="199" height="186"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Event" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIr-Lz-Avv">
+                                            <rect key="frame" x="28" y="70" width="143" height="46"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="GHp-bb-oFv" firstAttribute="top" secondItem="alX-ZD-1AM" secondAttribute="top" id="1K3-xg-5Mb"/>
-                                    <constraint firstAttribute="bottom" secondItem="1h0-x3-eaf" secondAttribute="bottom" id="AmA-nX-hW3"/>
-                                    <constraint firstItem="1h0-x3-eaf" firstAttribute="leading" secondItem="alX-ZD-1AM" secondAttribute="leading" id="DJY-LR-iDo"/>
-                                    <constraint firstItem="GHp-bb-oFv" firstAttribute="leading" secondItem="alX-ZD-1AM" secondAttribute="leadingMargin" constant="-8" id="HGp-Me-agR"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="GHp-bb-oFv" secondAttribute="trailing" constant="-8" id="RTT-6r-Qlt"/>
-                                    <constraint firstAttribute="trailing" secondItem="1h0-x3-eaf" secondAttribute="trailing" id="fVz-U8-fgR"/>
-                                    <constraint firstItem="1h0-x3-eaf" firstAttribute="top" secondItem="alX-ZD-1AM" secondAttribute="top" id="qF2-Pg-G6C"/>
-                                    <constraint firstItem="GHp-bb-oFv" firstAttribute="centerY" secondItem="alX-ZD-1AM" secondAttribute="centerY" constant="47" id="zhg-Vj-4gG"/>
+                                    <constraint firstItem="1h0-x3-eaf" firstAttribute="centerY" secondItem="zIr-Lz-Avv" secondAttribute="centerY" id="1oe-UV-5vb"/>
+                                    <constraint firstItem="1h0-x3-eaf" firstAttribute="leading" secondItem="GHp-bb-oFv" secondAttribute="leading" id="6bt-gC-cdI"/>
+                                    <constraint firstItem="1h0-x3-eaf" firstAttribute="trailing" secondItem="GHp-bb-oFv" secondAttribute="trailing" id="7tE-Vv-zX1"/>
+                                    <constraint firstItem="1h0-x3-eaf" firstAttribute="top" secondItem="GHp-bb-oFv" secondAttribute="top" id="9mo-YG-9nq"/>
+                                    <constraint firstItem="1h0-x3-eaf" firstAttribute="leading" secondItem="alX-ZD-1AM" secondAttribute="leading" id="Dif-Z4-mGp"/>
+                                    <constraint firstAttribute="trailing" secondItem="zIr-Lz-Avv" secondAttribute="trailing" constant="28" id="ISR-gQ-YQY"/>
+                                    <constraint firstItem="1h0-x3-eaf" firstAttribute="top" secondItem="alX-ZD-1AM" secondAttribute="top" id="Qpk-zv-sAh"/>
+                                    <constraint firstItem="zIr-Lz-Avv" firstAttribute="leading" secondItem="alX-ZD-1AM" secondAttribute="leading" constant="28" id="V8x-wI-QBD"/>
+                                    <constraint firstItem="1h0-x3-eaf" firstAttribute="centerX" secondItem="zIr-Lz-Avv" secondAttribute="centerX" id="htm-6Z-bGq"/>
+                                    <constraint firstItem="zIr-Lz-Avv" firstAttribute="centerY" secondItem="alX-ZD-1AM" secondAttribute="centerY" id="zrB-ix-E1w"/>
                                 </constraints>
                                 <size key="customSize" width="199" height="186"/>
                                 <connections>
                                     <outlet property="EventImageView" destination="GHp-bb-oFv" id="svp-bw-URu"/>
+                                    <outlet property="eventTitle" destination="zIr-Lz-Avv" id="obM-z4-b8N"/>
                                     <outlet property="imageCoverView" destination="1h0-x3-eaf" id="LR4-Lp-W2A"/>
                                 </connections>
                             </collectionViewCell>
