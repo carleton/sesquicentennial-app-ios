@@ -9,6 +9,10 @@
         <mutableArray key="Roboto-Black.ttf">
             <string>Roboto-Black</string>
         </mutableArray>
+        <mutableArray key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
+        </mutableArray>
     </customFonts>
     <scenes>
         <!--Calender View Controller-->
@@ -112,7 +116,19 @@
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Event" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIr-Lz-Avv">
                                             <rect key="frame" x="28" y="70" width="143" height="46"/>
-                                            <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="21"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spg-uT-lZH">
+                                            <rect key="frame" x="0.0" y="111" width="199" height="16.5"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhk-dB-yYD">
+                                            <rect key="frame" x="8" y="127.5" width="183" height="16.5"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -121,14 +137,20 @@
                                 </view>
                                 <constraints>
                                     <constraint firstItem="1h0-x3-eaf" firstAttribute="centerY" secondItem="zIr-Lz-Avv" secondAttribute="centerY" id="1oe-UV-5vb"/>
+                                    <constraint firstItem="spg-uT-lZH" firstAttribute="top" secondItem="zIr-Lz-Avv" secondAttribute="bottom" constant="8" id="2Yf-Vz-cLL"/>
                                     <constraint firstItem="1h0-x3-eaf" firstAttribute="leading" secondItem="GHp-bb-oFv" secondAttribute="leading" id="6bt-gC-cdI"/>
                                     <constraint firstItem="1h0-x3-eaf" firstAttribute="trailing" secondItem="GHp-bb-oFv" secondAttribute="trailing" id="7tE-Vv-zX1"/>
+                                    <constraint firstItem="Vhk-dB-yYD" firstAttribute="leading" secondItem="alX-ZD-1AM" secondAttribute="leadingMargin" id="9eF-Lg-6Eh"/>
                                     <constraint firstItem="1h0-x3-eaf" firstAttribute="top" secondItem="GHp-bb-oFv" secondAttribute="top" id="9mo-YG-9nq"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="Vhk-dB-yYD" secondAttribute="trailing" id="ABa-mH-wBk"/>
                                     <constraint firstItem="1h0-x3-eaf" firstAttribute="leading" secondItem="alX-ZD-1AM" secondAttribute="leading" id="Dif-Z4-mGp"/>
                                     <constraint firstAttribute="trailing" secondItem="zIr-Lz-Avv" secondAttribute="trailing" constant="28" id="ISR-gQ-YQY"/>
+                                    <constraint firstItem="spg-uT-lZH" firstAttribute="leading" secondItem="alX-ZD-1AM" secondAttribute="leading" id="LIf-lx-Kh9"/>
                                     <constraint firstItem="1h0-x3-eaf" firstAttribute="top" secondItem="alX-ZD-1AM" secondAttribute="top" id="Qpk-zv-sAh"/>
                                     <constraint firstItem="zIr-Lz-Avv" firstAttribute="leading" secondItem="alX-ZD-1AM" secondAttribute="leading" constant="28" id="V8x-wI-QBD"/>
                                     <constraint firstItem="1h0-x3-eaf" firstAttribute="centerX" secondItem="zIr-Lz-Avv" secondAttribute="centerX" id="htm-6Z-bGq"/>
+                                    <constraint firstAttribute="trailing" secondItem="spg-uT-lZH" secondAttribute="trailing" id="kkf-dC-l9u"/>
+                                    <constraint firstItem="Vhk-dB-yYD" firstAttribute="top" secondItem="spg-uT-lZH" secondAttribute="bottom" id="nyu-kd-fT8"/>
                                     <constraint firstItem="zIr-Lz-Avv" firstAttribute="centerY" secondItem="alX-ZD-1AM" secondAttribute="centerY" id="zrB-ix-E1w"/>
                                 </constraints>
                                 <size key="customSize" width="199" height="186"/>
@@ -136,6 +158,8 @@
                                     <outlet property="EventImageView" destination="GHp-bb-oFv" id="svp-bw-URu"/>
                                     <outlet property="eventTitle" destination="zIr-Lz-Avv" id="obM-z4-b8N"/>
                                     <outlet property="imageCoverView" destination="1h0-x3-eaf" id="LR4-Lp-W2A"/>
+                                    <outlet property="locationLabel" destination="spg-uT-lZH" id="J3Z-aL-BeV"/>
+                                    <outlet property="timeLabel" destination="Vhk-dB-yYD" id="eUw-Jb-fXL"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

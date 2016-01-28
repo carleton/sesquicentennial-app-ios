@@ -70,7 +70,8 @@ class CalendarViewController: UICollectionViewController {
         let eventText = schedule[indexPath.item]["title"]
         cell.eventTitle.text = eventText
         cell.currentImage = images[indexPath.item % 10]
-        
+        cell.locationLabel.text = schedule[indexPath.item]["location"]!
+        cell.timeLabel.text = schedule[indexPath.item]["startTime"]!
         return cell
     }
 }

@@ -9,6 +9,8 @@ class CalendarCell: UICollectionViewCell {
     @IBOutlet weak var EventImageView: UIImageView!
     @IBOutlet weak var imageCoverView: UIView!
     @IBOutlet weak var eventTitle: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     var currentImage: UIImage? {
         didSet {
@@ -29,5 +31,8 @@ class CalendarCell: UICollectionViewCell {
         let minAlpha: CGFloat = 0.3
         let maxAlpha: CGFloat = 0.65
         imageCoverView.alpha = maxAlpha - (delta * (maxAlpha - minAlpha))
+        
+        let scale = max(delta, 0.75)
+        eventTitle.transform = CGAffineTransformMakeScale(scale, scale)
     }
 }
