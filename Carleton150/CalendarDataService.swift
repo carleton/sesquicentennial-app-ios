@@ -42,9 +42,7 @@ final class CalendarDataService {
             "limit": limit
         ]
         
-        let postEndpoint: String = "https://carl150.carleton.edu/events"
-        
-        Alamofire.request(.POST, postEndpoint, parameters: (parameters as! [String : AnyObject]), encoding: .JSON).responseJSON() {
+        Alamofire.request(.POST, Endpoints.calendar, parameters: (parameters as! [String : AnyObject]), encoding: .JSON).responseJSON() {
             (request, response, result) in
             
             var events : [Dictionary<String, String>] = []

@@ -5,7 +5,7 @@
 import Foundation
 import Darwin
 
-/// A class for miscellaneous utility functions relating to location.
+/// A class for utility functions that are required for multiple views.
 final class Utils {
     
     /**

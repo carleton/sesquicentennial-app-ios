@@ -14,20 +14,16 @@
 		63291F361C5971A30064C296 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63291F351C5971A30064C296 /* TimelineViewController.swift */; };
 		63291F381C5979730064C296 /* TimelineTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63291F371C5979730064C296 /* TimelineTableCells.swift */; };
 		6357E6F21C4ED3BC00A28D00 /* HistoricalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAF1BC6FC1500B9F81B /* HistoricalViewController.swift */; };
-		6357E6F31C4ED3BC00A28D00 /* LandmarkDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC12F31BF421B100A4711C /* LandmarkDetailVC.swift */; };
+		6357E6F31C4ED3BC00A28D00 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		635B37451BF4231400F1508B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 635B37441BF4231400F1508B /* Assets.xcassets */; };
 		6368A5961C5050E900D6B5B2 /* Quest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6368A5941C5050E900D6B5B2 /* Quest.storyboard */; };
 		6368A5981C50511300D6B5B2 /* QuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6368A5971C50511300D6B5B2 /* QuestViewController.swift */; };
 		6368A59A1C50523C00D6B5B2 /* QuestCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6368A5991C50523C00D6B5B2 /* QuestCollectionViewController.swift */; };
 		6368A59E1C505B0600D6B5B2 /* QuestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6368A59D1C505B0600D6B5B2 /* QuestCollectionViewCell.swift */; };
 		6A3094401BD9CD4600A16342 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A30943F1BD9CD4600A16342 /* Geotification.swift */; };
+		6A6033F31C57D5BA008F08F8 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6033F21C57D5BA008F08F8 /* Popover.swift */; };
 		710726FB1C58001F0071FABC /* CalendarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710726FA1C58001F0071FABC /* CalendarLayout.swift */; };
 		710726FD1C5813650071FABC /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710726FC1C5813650071FABC /* CalendarCell.swift */; };
-		6A6033F31C57D5BA008F08F8 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6033F21C57D5BA008F08F8 /* Popover.swift */; };
-		6A6C00421C472A4600EF249F /* bank11.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A6C00401C472A4600EF249F /* bank11.png */; };
-		6A6C00431C472A4600EF249F /* calendar53.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A6C00411C472A4600EF249F /* calendar53.png */; };
-		6A6C00451C47367600EF249F /* BasicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6C00441C47367600EF249F /* BasicCell.swift */; };
-		6A71BD361C508AD90094F863 /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A71BD351C508AD90094F863 /* EventDetail.swift */; };
 		711704131BF3EB9E00566464 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711704121BF3EB9E00566464 /* utils.swift */; };
 		71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */; };
 		71294DB31BC6FC1500B9F81B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71294DB11BC6FC1500B9F81B /* Main.storyboard */; };
@@ -36,6 +32,7 @@
 		71340E581C5214A2007F9E2F /* QuestDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71340E571C5214A2007F9E2F /* QuestDataService.swift */; };
 		71340E5A1C5216C8007F9E2F /* HistoricalDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71340E591C5216C8007F9E2F /* HistoricalDataService.swift */; };
 		71340E5C1C5217C3007F9E2F /* CalendarDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71340E5B1C5217C3007F9E2F /* CalendarDataService.swift */; };
+		714C58B01C5ABF1600D6C33E /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C58AF1C5ABF1600D6C33E /* Endpoints.swift */; };
 		714DB8731C57DC6300770A44 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714DB8721C57DC6300770A44 /* CalendarViewController.swift */; };
 		715AE47E1C4EADF200C8F0C9 /* WayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */; };
 		715AE4801C4EB08D00C8F0C9 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47F1C4EB08D00C8F0C9 /* Quest.swift */; };
@@ -78,13 +75,9 @@
 		6368A59D1C505B0600D6B5B2 /* QuestCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestCollectionViewCell.swift; sourceTree = "<group>"; };
 		6A30943F1BD9CD4600A16342 /* Geotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
 		6A3094411BDDDFAC00A16342 /* TestLocation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TestLocation.gpx; sourceTree = "<group>"; };
+		6A6033F21C57D5BA008F08F8 /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		710726FA1C58001F0071FABC /* CalendarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarLayout.swift; sourceTree = "<group>"; };
 		710726FC1C5813650071FABC /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
-		6A6033F21C57D5BA008F08F8 /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
-		6A6C00401C472A4600EF249F /* bank11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bank11.png; sourceTree = "<group>"; };
-		6A6C00411C472A4600EF249F /* calendar53.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar53.png; sourceTree = "<group>"; };
-		6A6C00441C47367600EF249F /* BasicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCell.swift; sourceTree = "<group>"; };
-		6A71BD351C508AD90094F863 /* EventDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
 		711704121BF3EB9E00566464 /* utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		71294DAA1BC6FC1500B9F81B /* Carleton150.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carleton150.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +91,7 @@
 		71340E571C5214A2007F9E2F /* QuestDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestDataService.swift; sourceTree = "<group>"; };
 		71340E591C5216C8007F9E2F /* HistoricalDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoricalDataService.swift; sourceTree = "<group>"; };
 		71340E5B1C5217C3007F9E2F /* CalendarDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDataService.swift; sourceTree = "<group>"; };
+		714C58AF1C5ABF1600D6C33E /* Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		714DB8721C57DC6300770A44 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WayPoint.swift; sourceTree = "<group>"; };
 		715AE47F1C4EB08D00C8F0C9 /* Quest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
@@ -187,6 +181,7 @@
 				71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */,
 				71294DB61BC6FC1500B9F81B /* LaunchScreen.storyboard */,
 				71294DB11BC6FC1500B9F81B /* Main.storyboard */,
+				714C58AF1C5ABF1600D6C33E /* Endpoints.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -459,7 +454,7 @@
 				71340E5A1C5216C8007F9E2F /* HistoricalDataService.swift in Sources */,
 				63291F361C5971A30064C296 /* TimelineViewController.swift in Sources */,
 				6357E6F21C4ED3BC00A28D00 /* HistoricalViewController.swift in Sources */,
-				6357E6F31C4ED3BC00A28D00 /* LandmarkDetailVC.swift in Sources */,
+				6357E6F31C4ED3BC00A28D00 /* (null) in Sources */,
 				710726FD1C5813650071FABC /* CalendarCell.swift in Sources */,
 				6A6033F31C57D5BA008F08F8 /* Popover.swift in Sources */,
 				63291F381C5979730064C296 /* TimelineTableCells.swift in Sources */,
@@ -468,6 +463,7 @@
 				715AE4801C4EB08D00C8F0C9 /* Quest.swift in Sources */,
 				715AE47E1C4EADF200C8F0C9 /* WayPoint.swift in Sources */,
 				71340E581C5214A2007F9E2F /* QuestDataService.swift in Sources */,
+				714C58B01C5ABF1600D6C33E /* Endpoints.swift in Sources */,
 				710726FB1C58001F0071FABC /* CalendarLayout.swift in Sources */,
 				6A3094401BD9CD4600A16342 /* Geotification.swift in Sources */,
 				6368A5981C50511300D6B5B2 /* QuestViewController.swift in Sources */,

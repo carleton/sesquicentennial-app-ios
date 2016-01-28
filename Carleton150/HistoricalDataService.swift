@@ -24,9 +24,7 @@ final class HistoricalDataService {
             "geofences": [geofenceName]
         ]
         
-        let postEndpoint: String = "https://carl150.carleton.edu/info"
-        
-        Alamofire.request(.POST, postEndpoint, parameters: parameters, encoding: .JSON).responseJSON() {
+        Alamofire.request(.POST, Endpoints.historicalInfo, parameters: parameters, encoding: .JSON).responseJSON() {
             (request, response, result) in
             
             if let result = result.value {
@@ -77,9 +75,7 @@ final class HistoricalDataService {
             ]
         ]
         
-        let postEndpoint: String = "https://carl150.carleton.edu/geofences"
-        
-        Alamofire.request(.POST, postEndpoint, parameters: parameters, encoding: .JSON).responseJSON() {
+        Alamofire.request(.POST, Endpoints.geofences, parameters: parameters, encoding: .JSON).responseJSON() {
             (request, response, result) in
             var final_result: [(name: String, radius: Int, center: CLLocationCoordinate2D)] = []
             

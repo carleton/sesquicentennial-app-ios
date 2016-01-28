@@ -31,9 +31,7 @@ final class QuestDataService {
             "limit": limit
         ]
         
-        let postEndpoint: String = "https://carl150.carleton.edu/quest"
-        
-        Alamofire.request(.POST, postEndpoint, parameters: (parameters as! [String : AnyObject]), encoding: .JSON).responseJSON() {
+        Alamofire.request(.POST, Endpoints.quests, parameters: (parameters as! [String : AnyObject]), encoding: .JSON).responseJSON() {
             (request, response, result) in
             
             var quests: [Quest] = []
