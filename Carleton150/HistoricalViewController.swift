@@ -7,6 +7,7 @@ import GoogleMaps
 import CoreLocation
 import MapKit
 
+var selectedGeofence = ""
 
 class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GMSMapViewDelegate {
 
@@ -59,12 +60,12 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
                       it that will given to the landmark detail view.
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "landmarkDetail") {
-            let yourNextViewController = (segue.destinationViewController as! LandmarkDetailVC)
-            let marker = sender as! GMSMarker
-            yourNextViewController.nameText = marker.title
-            yourNextViewController.descriptionText = marker.snippet
-        }
+		
+		if (segue.identifier == "showTimeline") {
+			selectedGeofence = (sender?.title)!
+			let yourNextViewController = (segue.destinationViewController as! TimelineViewController)
+			yourNextViewController.mapCtrl = self
+		}
     }
 
 
@@ -218,7 +219,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      */
 	func enteredGeofence(geofence: Geotification, mapView: GMSMapView) -> Void {
 		HistoricalDataService.requestContent(geofence.identifier,
-		completion: { (success: Bool, result: Dictionary<String, String>?) -> Void in
+		completion: { (success: Bool, result: [Dictionary<String, String>?]) -> Void in
 			if (success) {
 				var position = CLLocationCoordinate2DMake(44.46013,-93.15470)
 				for (var i = 0; i < self.geofences.count; i++) {
@@ -229,7 +230,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 				let marker = GMSMarker(position: position)
 				marker.title = geofence.identifier
 				marker.map = self.mapView
-				marker.snippet = (result!["data"])!
+				marker.snippet = (result[0]!["data"])!
 				marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
 				self.mapView.selectedMarker = marker
 				self.infoMarkers.append(marker)
@@ -265,7 +266,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      
      */
 	func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) -> Void {
-        self.performSegueWithIdentifier("landmarkDetail", sender: marker)
+        self.performSegueWithIdentifier("showTimeline", sender: marker)
 	}
 }
 

@@ -19,7 +19,7 @@ final class HistoricalDataService {
                           from the server.
      */
     class func requestContent(geofenceName: String,
-                              completion: (success: Bool, result: Dictionary<String, String>?) ->Void) {
+                              completion: (success: Bool, result: [Dictionary<String, String>?]) ->Void) {
         let parameters = [
             "geofences": [geofenceName]
         ]
@@ -33,21 +33,25 @@ final class HistoricalDataService {
                 let json = JSON(result)
                 if let answer = json["content"].array {
                     if answer.count > 0 {
-                        let type = answer[0]["type"].string!
-                        let summary = answer[0]["summary"].string!
-                        let data = answer[0]["data"].string!
-                        let final_result = ["type": type,
-                                            "summary": summary,
-                                            "data": data]
-                        completion(success: true, result: final_result)
+                        var historicalEntries : [Dictionary<String, String>?] = []
+                        for i in 0 ..< answer.count {
+                            let type = answer[i]["type"].string!
+                            let summary = answer[i]["summary"].string!
+                            let data = answer[i]["data"].string!
+                            let result = ["type": type,
+                                          "summary": summary,
+                                          "data": data]
+                            historicalEntries.append(result)
+                        }
+                        completion(success: true, result: historicalEntries)
                     }
                 } else {
                     print("No results were found.")
-                    completion(success: false, result: nil)
+                    completion(success: false, result: [])
                 }
             } else {
                 print("Connection to server failed.")
-                completion(success: false, result: nil)
+                completion(success: false, result: [])
             }
         }
     }
