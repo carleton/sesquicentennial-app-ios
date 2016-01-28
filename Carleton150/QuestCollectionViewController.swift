@@ -10,7 +10,8 @@ private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, ri
 class QuestCollectionViewController: UICollectionViewController {
 
     var quests: [Quest] = []
-    let images: [UIImage] = [UIImage(named: "magical_mystery.jpg")!, UIImage(named: "let_it_be.jpg")!]
+    let images: [UIImage] = [UIImage(named: "magical_mystery.jpg")!, UIImage(named: "let_it_be.jpg")!
+        , UIImage(named: "Schiller.jpg")!]
 	var curCellIndex: Int = 0
 	
 	@IBAction func startQuest(sender: AnyObject) {}
