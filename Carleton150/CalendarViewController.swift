@@ -66,7 +66,15 @@ class CalendarViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return schedule.count
     }
-
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let layout = collectionViewLayout as! CalendarLayout
+        let offset = layout.dragOffset * CGFloat(indexPath.item)
+        if collectionView.contentOffset.y != offset {
+            collectionView.setContentOffset(CGPoint(x: 0, y: offset), animated: true)
+        }
+    }
+    
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CalendarCell", forIndexPath: indexPath) as! CalendarCell
         let images = getEventImages()
