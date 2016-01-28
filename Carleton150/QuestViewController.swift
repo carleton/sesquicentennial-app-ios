@@ -12,6 +12,7 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     var currentWayPointIndex: Int = 0
 	var initialDist: Double!
 	let locationManager = CLLocationManager()
+    var hintCurrentlyHidden : Bool = true
 	
     @IBOutlet weak var hintText: UILabel!
 	@IBOutlet weak var questName: UILabel!
@@ -26,8 +27,12 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         depending on the current state of the hint text.
      */
     @IBAction func getHint(sender: AnyObject) {
-        hintText.hidden = !hintText.hidden
-        hintButton.setTitle(hintText.hidden ? "Show" : "Hide", forState: UIControlState())
+        let alphaValue = hintCurrentlyHidden ? 1.0 : 0.0
+        UIView.animateWithDuration(0.75, animations: {
+            self.hintText.alpha = CGFloat(alphaValue)
+        })
+        hintCurrentlyHidden = !hintCurrentlyHidden
+        hintButton.setTitle(hintCurrentlyHidden ? "Show" : "Hide", forState: UIControlState())
     }
     
     /**
@@ -68,7 +73,7 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         self.hintText.text = quest.wayPoints[currentWayPointIndex].hint
        
         // hide the hint
-        self.hintText.hidden = true
+        self.hintText.alpha = 0.0
         
         // start the location manager
         self.locationManager.delegate = self
