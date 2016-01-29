@@ -7,10 +7,10 @@ import UIKit
 struct CalendarLayoutConstants {
     struct Cell {
         
-        // The height of the non-featured cell
+        // The height of the non-featured cell.
         static let standardHeight: CGFloat = 100
         
-        // The height of the first visible cell
+        // The height of the first visible cell.
         static let featuredHeight: CGFloat = 280
     }
 }
@@ -18,25 +18,25 @@ struct CalendarLayoutConstants {
 class CalendarLayout: UICollectionViewFlowLayout {
     
     /** 
-        The amount the user needs to scroll before the featured cell changes 
+        The amount the user needs to scroll before the featured cell changes.
      */
     let dragOffset: CGFloat = 180.0
     
     var cache = [UICollectionViewLayoutAttributes]()
     
     /** 
-        Returns the item index of the currently featured cell 
+        Returns the item index of the currently featured cell.
      */
     var featuredItemIndex: Int {
         get {
-            // Ensures the featureItemIndex is never less than 0 
+            // Ensures the featureItemIndex is never less than 0.
             return max(0, Int(collectionView!.contentOffset.y / dragOffset))
         }
     }
     
     /**
         Returns a value between 0 and 1 that represents 
-        how close the next cell is to becoming the featured cell
+        how close the next cell is to becoming the featured cell.
      */
     var nextItemPercentageOffset: CGFloat {
         get {
@@ -45,7 +45,7 @@ class CalendarLayout: UICollectionViewFlowLayout {
     }
     
     /**
-        Returns the width of the collection view
+        Returns the width of the collection view.
      */
     var width: CGFloat {
         get {
@@ -54,7 +54,7 @@ class CalendarLayout: UICollectionViewFlowLayout {
     }
     
     /** 
-        Returns the height of the collection view
+        Returns the height of the collection view.
      */
     var height: CGFloat {
         get {
@@ -62,21 +62,25 @@ class CalendarLayout: UICollectionViewFlowLayout {
         }
     }
     
-    /* Returns the number of items in the collection view */
+    /** 
+        Returns the number of items in the collection view.
+     */
     var numberOfItems: Int {
         get {
             return collectionView!.numberOfItemsInSection(0)
         }
     }
     
-    /* Return the size of all the content in the collection view */
+    /**
+        Return the size of all the content in the collection view.
+     */
     override func collectionViewContentSize() -> CGSize {
         let contentHeight = (CGFloat(numberOfItems) * dragOffset) + (height - dragOffset)
         return CGSize(width: width, height: contentHeight)
     }
    
     /**
-        Snaps the cells to navigation bar on the completion of a scroll
+        Snaps the cells to navigation bar on the completion of a scroll.
      */
     override func targetContentOffsetForProposedContentOffset(proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         let itemIndex = round(proposedContentOffset.y / dragOffset)
@@ -84,6 +88,10 @@ class CalendarLayout: UICollectionViewFlowLayout {
         return CGPoint(x: 0, y: yOffset)
     }
     
+    /**
+        Sets the cell sizes for each cell as the collection of cells is moved, 
+        adjusting the height of each cell as necessary.
+     */
     override func prepareLayout() {
         cache.removeAll(keepCapacity: false)
         let standardHeight = CalendarLayoutConstants.Cell.standardHeight
@@ -116,7 +124,9 @@ class CalendarLayout: UICollectionViewFlowLayout {
         }
     }
     
-    /* Return all attributes in the cache whose frame intersects with the rect passed to the method */
+    /** 
+        Return all attributes in the cache whose frame intersects with the rectangle passed to the method.
+     */
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var layoutAttributes = [UICollectionViewLayoutAttributes]()
         for attributes in cache {
@@ -127,7 +137,10 @@ class CalendarLayout: UICollectionViewFlowLayout {
         return layoutAttributes
     }
     
-    /* Return true so that the layout is continuously invalidated as the user scrolls */
+    /** 
+        Return true so that the layout is continuously invalidated (and thus updated)
+        as the user scrolls.
+     */
     override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
         return true
     }
