@@ -66,4 +66,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    
+}
+
+extension String {
+    
+    /**
+        Determines if a string contains a certain substring. 
+        
+        - Parameters:
+            - find: The substring to find.
+     
+        - Returns: True if found inside the string, False otherwise.
+     */
+    func contains(find: String) -> Bool{
+        return self.rangeOfString(find) != nil
+    }
 }

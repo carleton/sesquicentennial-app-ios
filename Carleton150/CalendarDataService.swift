@@ -54,7 +54,7 @@ final class CalendarDataService {
                         let title = answer[i]["title"].string!
                         let description = answer[i]["description"].string!
                         let location = answer[i]["location"].string!
-                        let startTime = answer[i]["startTime"].string!
+                        let startTime = CalendarDataService.parseDate(answer[i]["startTime"].string!)
                         let duration = answer[i]["duration"].string!
                         let event = ["title": title,
                                      "description": description,
@@ -72,6 +72,35 @@ final class CalendarDataService {
                 print("Connection to server failed.")
                 completion(success: false, result: nil)
             }
+        }
+    }
+    
+    /**
+        Parses datestrings from iCal objects.
+     
+        - Parameters:
+            - date: The datestring from the server.
+     
+        - Returns: A more easily readable start time and date.
+     
+     */
+    private class func parseDate(dateString: String) -> String {
+        
+        let inFormatter = NSDateFormatter()
+        let outFormatter = NSDateFormatter()
+        outFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        outFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        
+        if dateString == "No Time Available" {
+            return ""
+        } else if dateString.contains("T") {
+            inFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss"
+            let calendarDate: NSDate = inFormatter.dateFromString(dateString)!
+            return outFormatter.stringFromDate(calendarDate)
+        } else {
+            inFormatter.dateFormat = "yyyy'-'MM'-'dd"
+            let calendarDate: NSDate = inFormatter.dateFromString(dateString)!
+            return outFormatter.stringFromDate(calendarDate)
         }
     }
 }
