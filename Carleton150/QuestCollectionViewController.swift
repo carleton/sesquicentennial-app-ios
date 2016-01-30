@@ -40,7 +40,11 @@ class QuestCollectionViewController: UICollectionViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        Utils.showLogo(self)
+        
+        // set up properties for the navigation bar
+        Utils.setUpNavigationBar(self)
+        
+        // get and store quests for presentation
 		getQuests()
     }
     

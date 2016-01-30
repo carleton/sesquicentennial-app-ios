@@ -64,8 +64,8 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         clue.
      */
     override func viewDidLoad() {
-        // show the logo on the top view
-        Utils.showLogo(self)
+        // set properties for the navigation bar 
+        Utils.setUpNavigationBar(self)
         
         // set the quest text for the current waypoint
         self.questName.text = quest.name

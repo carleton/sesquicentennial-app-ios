@@ -43,13 +43,18 @@ final class Utils {
     }
     
     /**
-        Shows the Carleton logo in the top navigation bar
-        in the designated view.
+        Shows the Carleton logo and sets the translucency of 
+        the top navigation bar in the designated view.
      */
-    class func showLogo(currentController: UIViewController) {
+    class func setUpNavigationBar(currentController: UIViewController) {
+        
+        // shows the Carleton logo on the navigation bar
         let logo = UIImage(named: "carleton_logo.png")
         let imageView = UIImageView(image:logo)
         currentController.navigationItem.titleView = imageView
+        
+        // stop the navigation bar from covering the calendar content
+        currentController.navigationController!.navigationBar.translucent = false;
     }
     
 }

@@ -17,8 +17,8 @@ class CalendarViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // display the Carleton logo on the view
-        Utils.showLogo(self)
+        // set properties on the navigation bar 
+        Utils.setUpNavigationBar(self)
        
         // gets the calendar data
         getCalendar(20, date: NSDate())

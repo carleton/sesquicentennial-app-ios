@@ -37,12 +37,19 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        Utils.showLogo(self)
+        
+        // set properties for the navigation bar
+        Utils.setUpNavigationBar(self)
+        
+        // set up the location manager
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestAlwaysAuthorization()
+       
+        // set up the map view
         mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
 		mapView.delegate = self;
+        
         // brings subviews in front of the map.
         mapView.bringSubviewToFront(Debug)
     }
