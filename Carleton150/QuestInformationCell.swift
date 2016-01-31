@@ -9,6 +9,5 @@
 import Foundation
 
 class QuestInformationCell: UITableViewCell {
-   
-    
+    @IBOutlet weak var ClueText: UILabel!
 }

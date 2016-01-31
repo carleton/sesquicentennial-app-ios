@@ -137,6 +137,8 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("QuestInformationCell", forIndexPath: indexPath) as! QuestInformationCell
         
+        cell.ClueText.text = "ajfkdlajfkld;ajsfkldjafjdsakfjdsa;kfjds;lajfkdsl;ajfkldajskdjas;fjkdsal;fjkdsl;afjklds;ajfklds;ajfl;dskjafl;dsakjfl;dsakjfl;dsakjfl;dsajkfl;djsaklf;jdsakl;fjdsakl;fjdkls;ajfdkl;sajfkl;dsajfl;dajskfadls;kfjdls;kajfl;dskjafl;dkjsal;fjdksla;fjkdls;ajfklds;ajfkl;dsajfl;kfjkds"
+        
 		return cell
 	}
     
