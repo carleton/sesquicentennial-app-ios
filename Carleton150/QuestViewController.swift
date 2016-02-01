@@ -84,6 +84,9 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         questMapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
 		questMapView.delegate = self;
         
+        // set up tiling
+        Utils.setUpTiling(questMapView)
+        
         // set an initial distance
 		initialDist = Utils.getDistance(locationManager.location!.coordinate, point2: self.quest.wayPoints.first!.location)
     }

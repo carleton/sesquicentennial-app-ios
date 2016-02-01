@@ -50,34 +50,8 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
         mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
 		mapView.delegate = self;
         
-        //Here, we set up the tiling for the map
-        
-        // Implement GMSTileURLConstructor
-        // Returns a Tile based on the x,y,zoom coordinates
-        let urlsBase = { (x: UInt, y: UInt, zoom: UInt) -> NSURL in
-            let url = "https://www.carleton.edu/global_stock/images/campus_map/tiles/base/\(zoom)_\(x)_\(y).png"
-            
-            return NSURL(string: url)!
-        }
-        let urlsLabel = { (x: UInt, y: UInt, zoom: UInt) -> NSURL in
-            let url = "https://www.carleton.edu/global_stock/images/campus_map/tiles/labels/\(zoom)_\(x)_\(y).png"
-            
-            return NSURL(string: url)!
-        }
-
-        
-        // Create the GMSTileLayer
-        let layerBase = GMSURLTileLayer(URLConstructor: urlsBase)
-        let layerLabel = GMSURLTileLayer(URLConstructor: urlsLabel)
-        
-        // Display on the map at a specific zIndex
-        //Labels should go on top
-        layerBase.zIndex = 0
-        layerBase.tileSize = 256
-        layerBase.map = mapView
-        layerLabel.zIndex = 1
-        layerLabel.tileSize = 256
-        layerLabel.map = mapView
+        // set up the tiling for the map
+        Utils.setUpTiling(mapView)
         
         // brings subviews in front of the map.
         mapView.bringSubviewToFront(Debug)
