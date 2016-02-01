@@ -34,6 +34,17 @@ class CalendarViewController: UICollectionViewController {
         collectionView!.decelerationRate = UIScrollViewDecelerationRateFast
     }
     
+   
+    /**
+        Upon view appearance, checks to see if there's currently data. If not, attempts
+        to load data.
+     */
+    override func viewWillAppear(animated: Bool) {
+        if self.schedule.count == 0 {
+            getCalendar(20, date: NSDate())
+        }
+    }
+    
     /**
         Gets the image backgrounds for the calendar.
      
@@ -66,14 +77,22 @@ class CalendarViewController: UICollectionViewController {
         if let desiredDate = date {
             CalendarDataService.requestEvents(desiredDate, limit: limit, completion: {
                 (success: Bool, result: [Dictionary<String, String>]?) in
-                self.schedule = result!
-                self.collectionView!.reloadData()
+                if success {
+                    self.schedule = result!
+                    self.collectionView!.reloadData()
+                } else {
+                    self.badConnection(limit, date: desiredDate)
+                }
             });
         } else {
             CalendarDataService.requestEvents(NSDate(), limit: limit, completion: {
                 (success: Bool, result: [Dictionary<String, String>]?) in
-                self.schedule = result!
-                self.collectionView!.reloadData()
+                if success {
+                    self.schedule = result!
+                    self.collectionView!.reloadData()
+                } else {
+                    self.badConnection(limit, date: NSDate())
+                }
             });
         }
     }
@@ -135,5 +154,30 @@ class CalendarViewController: UICollectionViewController {
         cell.locationLabel.text = schedule[indexPath.item]["location"]!
         cell.timeLabel.text = schedule[indexPath.item]["startTime"]!
         return cell
+    }
+   
+    /**
+        In case of a bad connection, handles it and informs the user.
+    
+        - Parameters: 
+            - limit: The limit on the number of events in case the
+                     user wants to try requesting for information again. 
+     
+            - date:  The earliest date from which to get data in case the 
+                     user wants to try again.
+     */
+    func badConnection(limit: Int, date: NSDate) {
+        let alert = UIAlertController(title: "Bad Connection", message: "You seemed to have trouble connecting to our server. Try again?", preferredStyle: UIAlertControllerStyle.Alert)
+        let alertAction1 = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) {
+            (UIAlertAction) -> Void in
+            // do nothing for now.
+        }
+        let alertAction2 = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) {
+            (UIAlertAction) -> Void in
+            self.getCalendar(limit, date: date)
+        }
+        alert.addAction(alertAction1)
+        alert.addAction(alertAction2)
+        self.presentViewController(alert, animated: true) { () -> Void in }
     }
 }
