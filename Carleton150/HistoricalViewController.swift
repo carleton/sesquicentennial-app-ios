@@ -30,6 +30,11 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 	var debugMode = false
 	var updateLocation = true
     
+    /**
+        Set to true to show the debug button for testing, set to false to hide
+     */
+    let showDebugButton = false
+    
 	
     /**
         Upon load of this view, start the location manager and
@@ -54,7 +59,9 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
         Utils.setUpTiling(mapView)
         
         // brings subviews in front of the map.
-        mapView.bringSubviewToFront(Debug)
+        if showDebugButton {
+            mapView.bringSubviewToFront(Debug)
+        }
     }
     
     /**
