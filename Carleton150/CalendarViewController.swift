@@ -74,26 +74,30 @@ class CalendarViewController: UICollectionViewController {
         
         self.tableLimit = limit
         
-        if let desiredDate = date {
-            CalendarDataService.requestEvents(desiredDate, limit: limit, completion: {
-                (success: Bool, result: [Dictionary<String, String>]?) in
-                if success {
-                    self.schedule = result!
-                    self.collectionView!.reloadData()
-                } else {
-                    self.badConnection(limit, date: desiredDate)
-                }
-            });
-        } else {
-            CalendarDataService.requestEvents(NSDate(), limit: limit, completion: {
-                (success: Bool, result: [Dictionary<String, String>]?) in
-                if success {
-                    self.schedule = result!
-                    self.collectionView!.reloadData()
-                } else {
-                    self.badConnection(limit, date: NSDate())
-                }
-            });
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        if !appDelegate.getCachedCalendarData(limit, currentController: self) {
+            if let desiredDate = date {
+                CalendarDataService.requestEvents(desiredDate, limit: limit, completion: {
+                    (success: Bool, result: [Dictionary<String, String>]?) in
+                    if success {
+                        self.schedule = result!
+                        self.collectionView!.reloadData()
+                    } else {
+                        self.badConnection(limit, date: desiredDate)
+                    }
+                });
+            } else {
+                CalendarDataService.requestEvents(NSDate(), limit: limit, completion: {
+                    (success: Bool, result: [Dictionary<String, String>]?) in
+                    if success {
+                        self.schedule = result!
+                        self.collectionView!.reloadData()
+                    } else {
+                        self.badConnection(limit, date: NSDate())
+                    }
+                });
+            }
         }
     }
     

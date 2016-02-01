@@ -14,10 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     var keys: NSDictionary?
     let locationManager = CLLocationManager()
+    
+    var schedule: [Dictionary<String, String>] = []
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         customizeNavigationBar()
+        
+        // cache data for the calendar
+        fetchCalendarData()
         
         if let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist") {
             keys = NSDictionary(contentsOfFile: path)
@@ -41,6 +46,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             green: 39.0/255.0, blue: 118.0/255.0, alpha: 1.0)
         UINavigationBar.appearance().tintColor = UIColor(red: 255.0/255.0,
             green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+    }
+    
+    
+    func fetchCalendarData() {
+        let date: NSDate = NSDate()
+        let limit: Int = 20
+        CalendarDataService.requestEvents(date, limit: limit, completion: {
+            (success: Bool, result: [Dictionary<String, String>]?) in
+            if success {
+                self.schedule = result!
+            }
+        });
+    }
+    
+    func getCachedCalendarData(limit: Int, currentController: CalendarViewController) -> Bool {
+        if self.schedule.count != 0 {
+            currentController.schedule = self.schedule
+            return true
+        } else {
+            return false
+        }
     }
         
 
