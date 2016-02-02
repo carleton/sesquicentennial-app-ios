@@ -173,13 +173,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="88.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ClueHintText" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UhV-hI-5DK">
-                                                    <rect key="frame" x="23" y="8" width="510" height="72.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ClueHintText" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UhV-hI-5DK">
+                                                    <rect key="frame" x="23" y="8" width="549" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="UhV-hI-5DK" secondAttribute="trailing" constant="20" id="6Xb-2a-677"/>
+                                                <constraint firstItem="UhV-hI-5DK" firstAttribute="top" secondItem="Pza-77-A5G" secondAttribute="topMargin" id="gOT-dX-NsT"/>
+                                                <constraint firstItem="UhV-hI-5DK" firstAttribute="leading" secondItem="Pza-77-A5G" secondAttribute="leadingMargin" constant="15" id="tuI-GH-LBY"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="ClueText" destination="UhV-hI-5DK" id="8eu-zs-fax"/>
@@ -188,7 +193,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.7843137255" green="0.7843137255" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.92299561652564099" green="0.92299561652564099" blue="0.92299561652564099" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="zOs-GB-mta" secondAttribute="trailing" constant="-20" id="5Kp-rg-2bf"/>
                             <constraint firstItem="qxW-2D-4ZM" firstAttribute="trailing" secondItem="zOs-GB-mta" secondAttribute="trailing" id="MW2-TP-mRv"/>

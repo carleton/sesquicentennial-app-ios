@@ -23,14 +23,14 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         The button that, when pressed, shows or hides the current hint
         depending on the current state of the hint text.
      */
-//    @IBAction func getHint(sender: AnyObject) {
+    @IBAction func getHint(sender: AnyObject) {
 //        let alphaValue = hintCurrentlyHidden ? 1.0 : 0.0
 //        UIView.animateWithDuration(0.75, animations: {
 //            self.hintText.alpha = CGFloat(alphaValue)
 //        })
 //        hintCurrentlyHidden = !hintCurrentlyHidden
 //        hintButton.setTitle(hintCurrentlyHidden ? "Show" : "Hide", forState: UIControlState())
-//    }
+    }
     
     /**
         The button that, when pressed, checks to see if you're inside 
@@ -137,12 +137,17 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("QuestInformationCell", forIndexPath: indexPath) as! QuestInformationCell
         
-        cell.ClueText.text = "ajfkdlajfkld;ajsfkldjafjdsakfjdsa;kfjds;lajfkdsl;ajfkldajskdjas;fjkdsal;fjkdsl;afjklds;ajfklds;ajfl;dskjafl;dsakjfl;dsakjfl;dsakjfl;dsajkfl;djsaklf;jdsakl;fjdsakl;fjdkls;ajfdkl;sajfkl;dsajfl;dajskfadls;kfjdls;kajfl;dskjafl;dkjsal;fjdksla;fjkdls;ajfklds;ajfkl;dsajfl;kfjkds"
+        // stops cells from being selectable
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        
+        cell.ClueText.text = indexPath.section == 0
+                             ? quest.wayPoints[currentWayPointIndex].clue
+                             : quest.wayPoints[currentWayPointIndex].hint
         
 		return cell
 	}
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 1 ? "Clue" : "Hint"
+        return section == 0 ? "Clue" : "Hint"
     }
 }
