@@ -4,6 +4,7 @@
 
 import Foundation
 import Darwin
+import GoogleMaps
 
 /// A class for utility functions that are required for multiple views.
 final class Utils {
@@ -40,6 +41,35 @@ final class Utils {
      */
     private class func degreesToRadians(degrees: Double) -> Double {
         return degrees * M_PI / 180
+    }
+    
+    
+    class func setUpTiling(currentMap: GMSMapView) {
+        // Implement GMSTileURLConstructor
+        // Returns a Tile based on the x, y, zoom coordinates
+        let urlsBase = { (x: UInt, y: UInt, zoom: UInt) -> NSURL in
+            let url = "https://www.carleton.edu/global_stock/images/campus_map/tiles/base/\(zoom)_\(x)_\(y).png"
+            
+            return NSURL(string: url)!
+        }
+        let urlsLabel = { (x: UInt, y: UInt, zoom: UInt) -> NSURL in
+            let url = "https://www.carleton.edu/global_stock/images/campus_map/tiles/labels/\(zoom)_\(x)_\(y).png"
+            
+            return NSURL(string: url)!
+        }
+        
+        // Create the GMSTileLayer
+        let layerBase = GMSURLTileLayer(URLConstructor: urlsBase)
+        let layerLabel = GMSURLTileLayer(URLConstructor: urlsLabel)
+        
+        // Display on the map at a specific zIndex
+        //Labels should go on top
+        layerBase.zIndex = 0
+        layerBase.tileSize = 256
+        layerBase.map = currentMap
+        layerLabel.zIndex = 1
+        layerLabel.tileSize = 256
+        layerLabel.map = currentMap
     }
     
     /**

@@ -33,13 +33,18 @@ final class HistoricalDataService {
                     if answer.count > 0 {
                         var historicalEntries : [Dictionary<String, String>?] = []
                         for i in 0 ..< answer.count {
-                            let type = answer[i]["type"].string!
-                            let summary = answer[i]["summary"].string!
-                            let data = answer[i]["data"].string!
-                            let result = ["type": type,
-                                          "summary": summary,
-                                          "data": data]
-                            historicalEntries.append(result)
+                            if let type = answer[i]["type"].string,
+                                   summary = answer[i]["summary"].string,
+                                   data = answer[i]["data"].string {
+                                let result = ["type": type,
+                                              "summary": summary,
+                                              "data": data]
+                                historicalEntries.append(result)
+                            } else {
+                                print("Data returned at endpoint: \(Endpoints.historicalInfo) is malformed.")
+                                completion(success: false, result: [])
+                                return
+                            }
                         }
                         completion(success: true, result: historicalEntries)
                     }
@@ -84,10 +89,22 @@ final class HistoricalDataService {
                 if let answer = json["content"].array {
                     for i in 0 ..< answer.count {
                         let location = answer[i]["geofence"]["location"]
-                        let fenceName = answer[i]["name"].string!
-                        let rad = answer[i]["geofence"]["radius"].int!
-                        let center = CLLocationCoordinate2D(latitude: location["lat"].double!,longitude: location["lng"].double!)
-                        final_result.append((name: fenceName, radius: rad, center: center))
+                        if let fenceName = answer[i]["name"].string,
+                               rad = answer[i]["geofence"]["radius"].int,
+                               latitude = location["lat"].double,
+                               longitude = location["lng"].double {
+                                
+                                let center = CLLocationCoordinate2D(
+                                    latitude: latitude,
+                                    longitude: longitude
+                                )
+                                final_result.append((name: fenceName, radius: rad, center: center))
+                                
+                        } else {
+                            print("Data returned at endpoint: \(Endpoints.geofences) is malformed.")
+                            completion(success: false, result: nil)
+                            return
+                        }
                     }
                     completion(success: true, result: final_result)
                 } else {
