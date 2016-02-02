@@ -89,10 +89,22 @@ final class HistoricalDataService {
                 if let answer = json["content"].array {
                     for i in 0 ..< answer.count {
                         let location = answer[i]["geofence"]["location"]
-                        let fenceName = answer[i]["name"].string!
-                        let rad = answer[i]["geofence"]["radius"].int!
-                        let center = CLLocationCoordinate2D(latitude: location["lat"].double!,longitude: location["lng"].double!)
-                        final_result.append((name: fenceName, radius: rad, center: center))
+                        if let fenceName = answer[i]["name"].string,
+                               rad = answer[i]["geofence"]["radius"].int,
+                               latitude = location["lat"].double,
+                               longitude = location["lng"].double {
+                                
+                                let center = CLLocationCoordinate2D(
+                                    latitude: latitude,
+                                    longitude: longitude
+                                )
+                                final_result.append((name: fenceName, radius: rad, center: center))
+                                
+                        } else {
+                            print("Data returned at endpoint: \(Endpoints.geofences) is malformed.")
+                            completion(success: false, result: nil)
+                            return
+                        }
                     }
                     completion(success: true, result: final_result)
                 } else {
