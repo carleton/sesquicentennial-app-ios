@@ -29,25 +29,24 @@ final class HistoricalDataService {
             
             if let result = result.value {
                 let json = JSON(result)
-                if let answer = json["content"].array {
-                    if answer.count > 0 {
-                        var historicalEntries : [Dictionary<String, String>?] = []
-                        for i in 0 ..< answer.count {
-                            if let type = answer[i]["type"].string,
-                                   summary = answer[i]["summary"].string,
-                                   data = answer[i]["data"].string {
-                                let result = ["type": type,
-                                              "summary": summary,
-                                              "data": data]
-                                historicalEntries.append(result)
-                            } else {
-                                print("Data returned at endpoint: \(Endpoints.historicalInfo) is malformed.")
-                                completion(success: false, result: [])
-                                return
-                            }
-                        }
-                        completion(success: true, result: historicalEntries)
-                    }
+				let answer = json["content"][geofenceName]
+				if answer.count > 0 {
+					var historicalEntries : [Dictionary<String, String>?] = []
+					for i in 0 ..< answer.count {
+						if let type = answer[i]["type"].string,
+							   summary = answer[i]["summary"].string,
+							   data = answer[i]["data"].string {
+							let result = ["type": type,
+										  "summary": summary,
+										  "data": data]
+							historicalEntries.append(result)
+						} else {
+							print("Data returned at endpoint: \(Endpoints.historicalInfo) is malformed. Geofence name: \(geofenceName)")
+							completion(success: false, result: [])
+							return
+						}
+					}
+					completion(success: true, result: historicalEntries)
                 } else {
                     print("No results were found.")
                     completion(success: false, result: [])
