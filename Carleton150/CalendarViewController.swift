@@ -3,6 +3,7 @@
 //  Carleton150
 
 import Foundation
+import SwiftOverlays
 
 class CalendarViewController: UICollectionViewController {
     
@@ -16,6 +17,9 @@ class CalendarViewController: UICollectionViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        // shows a wait overlay while setting up the calendar
+        self.showWaitOverlay()
         
         // set properties on the navigation bar 
         Utils.setUpNavigationBar(self)
@@ -74,30 +78,26 @@ class CalendarViewController: UICollectionViewController {
         
         self.tableLimit = limit
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        if !appDelegate.getCachedCalendarData(limit, currentController: self) {
-            if let desiredDate = date {
-                CalendarDataService.requestEvents(desiredDate, limit: limit, completion: {
-                    (success: Bool, result: [Dictionary<String, String>]?) in
-                    if success {
-                        self.schedule = result!
-                        self.collectionView!.reloadData()
-                    } else {
-                        self.badConnection(limit, date: desiredDate)
-                    }
-                });
-            } else {
-                CalendarDataService.requestEvents(NSDate(), limit: limit, completion: {
-                    (success: Bool, result: [Dictionary<String, String>]?) in
-                    if success {
-                        self.schedule = result!
-                        self.collectionView!.reloadData()
-                    } else {
-                        self.badConnection(limit, date: NSDate())
-                    }
-                });
-            }
+        if let desiredDate = date {
+            CalendarDataService.requestEvents(desiredDate, limit: limit, completion: {
+                (success: Bool, result: [Dictionary<String, String>]?) in
+                if success {
+                    self.schedule = result!
+                    self.collectionView!.reloadData()
+                } else {
+                    self.badConnection(limit, date: desiredDate)
+                }
+            });
+        } else {
+            CalendarDataService.requestEvents(NSDate(), limit: limit, completion: {
+                (success: Bool, result: [Dictionary<String, String>]?) in
+                if success {
+                    self.schedule = result!
+                    self.collectionView!.reloadData()
+                } else {
+                    self.badConnection(limit, date: NSDate())
+                }
+            });
         }
     }
     
@@ -151,6 +151,7 @@ class CalendarViewController: UICollectionViewController {
      */
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CalendarCell", forIndexPath: indexPath) as! CalendarCell
+        self.removeAllOverlays()
         let images = getEventImages()
         let eventText = schedule[indexPath.item]["title"]
         cell.eventTitle.text = eventText
