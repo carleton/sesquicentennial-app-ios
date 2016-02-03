@@ -21,9 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         customizeNavigationBar()
         
-        // cache data for the calendar
-        fetchCalendarData()
-        
         if let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist") {
             keys = NSDictionary(contentsOfFile: path)
         }
@@ -48,28 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
     }
     
-    
-    func fetchCalendarData() {
-        let date: NSDate = NSDate()
-        let limit: Int = 20
-        CalendarDataService.requestEvents(date, limit: limit, completion: {
-            (success: Bool, result: [Dictionary<String, String>]?) in
-            if success {
-                self.schedule = result!
-            }
-        });
-    }
-    
-    func getCachedCalendarData(limit: Int, currentController: CalendarViewController) -> Bool {
-        if self.schedule.count != 0 {
-            currentController.schedule = self.schedule
-            return true
-        } else {
-            return false
-        }
-    }
-        
-
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
