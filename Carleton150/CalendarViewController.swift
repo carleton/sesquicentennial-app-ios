@@ -3,6 +3,7 @@
 //  Carleton150
 
 import Foundation
+import SwiftOverlays
 
 class CalendarViewController: UICollectionViewController {
     
@@ -16,6 +17,9 @@ class CalendarViewController: UICollectionViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        // shows a wait overlay while setting up the calendar
+        self.showWaitOverlay()
         
         // set properties on the navigation bar 
         Utils.setUpNavigationBar(self)
@@ -32,6 +36,17 @@ class CalendarViewController: UICollectionViewController {
         
         // set the deceleration rate for the event cell snap
         collectionView!.decelerationRate = UIScrollViewDecelerationRateFast
+    }
+    
+   
+    /**
+        Upon view appearance, checks to see if there's currently data. If not, attempts
+        to load data.
+     */
+    override func viewWillAppear(animated: Bool) {
+        if self.schedule.count == 0 {
+            getCalendar(20, date: NSDate())
+        }
     }
     
     /**
@@ -66,14 +81,22 @@ class CalendarViewController: UICollectionViewController {
         if let desiredDate = date {
             CalendarDataService.requestEvents(desiredDate, limit: limit, completion: {
                 (success: Bool, result: [Dictionary<String, String>]?) in
-                self.schedule = result!
-                self.collectionView!.reloadData()
+                if success {
+                    self.schedule = result!
+                    self.collectionView!.reloadData()
+                } else {
+                    self.badConnection(limit, date: desiredDate)
+                }
             });
         } else {
             CalendarDataService.requestEvents(NSDate(), limit: limit, completion: {
                 (success: Bool, result: [Dictionary<String, String>]?) in
-                self.schedule = result!
-                self.collectionView!.reloadData()
+                if success {
+                    self.schedule = result!
+                    self.collectionView!.reloadData()
+                } else {
+                    self.badConnection(limit, date: NSDate())
+                }
             });
         }
     }
@@ -128,6 +151,7 @@ class CalendarViewController: UICollectionViewController {
      */
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CalendarCell", forIndexPath: indexPath) as! CalendarCell
+        self.removeAllOverlays()
         let images = getEventImages()
         let eventText = schedule[indexPath.item]["title"]
         cell.eventTitle.text = eventText
@@ -135,5 +159,30 @@ class CalendarViewController: UICollectionViewController {
         cell.locationLabel.text = schedule[indexPath.item]["location"]!
         cell.timeLabel.text = schedule[indexPath.item]["startTime"]!
         return cell
+    }
+   
+    /**
+        In case of a bad connection, handles it and informs the user.
+    
+        - Parameters: 
+            - limit: The limit on the number of events in case the
+                     user wants to try requesting for information again. 
+     
+            - date:  The earliest date from which to get data in case the 
+                     user wants to try again.
+     */
+    func badConnection(limit: Int, date: NSDate) {
+        let alert = UIAlertController(title: "Bad Connection", message: "You seemed to have trouble connecting to our server. Try again?", preferredStyle: UIAlertControllerStyle.Alert)
+        let alertAction1 = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) {
+            (UIAlertAction) -> Void in
+            // do nothing for now.
+        }
+        let alertAction2 = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) {
+            (UIAlertAction) -> Void in
+            self.getCalendar(limit, date: date)
+        }
+        alert.addAction(alertAction1)
+        alert.addAction(alertAction2)
+        self.presentViewController(alert, animated: true) { () -> Void in }
     }
 }
