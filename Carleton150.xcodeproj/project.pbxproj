@@ -10,7 +10,6 @@
 		3C7C651B588C8C78CEBC3E38 /* Pods_Carleton150.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39FEB0FEB30D513E7B3C1CDA /* Pods_Carleton150.framework */; };
 		63036B341C4CB5A200193A78 /* Historical.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63036B321C4CB5A200193A78 /* Historical.storyboard */; };
 		63036B381C4CB80000193A78 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63036B371C4CB80000193A78 /* Calendar.storyboard */; };
-		63053A8E1BF2F08700D34246 /* CMC.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 63053A8D1BF2F08700D34246 /* CMC.gpx */; };
 		63291F361C5971A30064C296 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63291F351C5971A30064C296 /* TimelineViewController.swift */; };
 		63291F381C5979730064C296 /* TimelineTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63291F371C5979730064C296 /* TimelineTableCells.swift */; };
 		6357E6F21C4ED3BC00A28D00 /* HistoricalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAF1BC6FC1500B9F81B /* HistoricalViewController.swift */; };
@@ -65,7 +64,6 @@
 		4EF7FF35B1F532FC92A7B8A3 /* Pods-Carleton150Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150Tests/Pods-Carleton150Tests.release.xcconfig"; sourceTree = "<group>"; };
 		63036B331C4CB5A200193A78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Historical.storyboard; sourceTree = "<group>"; };
 		63036B371C4CB80000193A78 /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
-		63053A8D1BF2F08700D34246 /* CMC.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CMC.gpx; sourceTree = "<group>"; };
 		63291F351C5971A30064C296 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		63291F371C5979730064C296 /* TimelineTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableCells.swift; sourceTree = "<group>"; };
 		635B37441BF4231400F1508B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,7 +72,6 @@
 		6368A5991C50523C00D6B5B2 /* QuestCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestCollectionViewController.swift; sourceTree = "<group>"; };
 		6368A59D1C505B0600D6B5B2 /* QuestCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestCollectionViewCell.swift; sourceTree = "<group>"; };
 		6A30943F1BD9CD4600A16342 /* Geotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
-		6A3094411BDDDFAC00A16342 /* TestLocation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TestLocation.gpx; sourceTree = "<group>"; };
 		6A6033F21C57D5BA008F08F8 /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		710726FA1C58001F0071FABC /* CalendarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarLayout.swift; sourceTree = "<group>"; };
 		710726FC1C5813650071FABC /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
@@ -141,8 +138,6 @@
 				71340E591C5216C8007F9E2F /* HistoricalDataService.swift */,
 				6A30943F1BD9CD4600A16342 /* Geotification.swift */,
 				63036B321C4CB5A200193A78 /* Historical.storyboard */,
-				63053A8D1BF2F08700D34246 /* CMC.gpx */,
-				6A3094411BDDDFAC00A16342 /* TestLocation.gpx */,
 				6A6033F21C57D5BA008F08F8 /* Popover.swift */,
 			);
 			name = Historical;
@@ -372,7 +367,6 @@
 				63036B381C4CB80000193A78 /* Calendar.storyboard in Resources */,
 				717FE3E61BC7001D009CA507 /* Keys.plist in Resources */,
 				71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */,
-				63053A8E1BF2F08700D34246 /* CMC.gpx in Resources */,
 				71294DB31BC6FC1500B9F81B /* Main.storyboard in Resources */,
 				6368A5961C5050E900D6B5B2 /* Quest.storyboard in Resources */,
 				63036B341C4CB5A200193A78 /* Historical.storyboard in Resources */,
