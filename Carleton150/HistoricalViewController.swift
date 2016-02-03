@@ -41,7 +41,6 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
         set the camera on the map view to focus on Carleton.
      */
     override func viewDidLoad() {
-        super.viewDidLoad()
         
         // set properties for the navigation bar
         Utils.setUpNavigationBar(self)
@@ -215,7 +214,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      
      */
 	func exitedGeofence(geofence: Geotification, var infoMarkers:[GMSMarker] ) -> [GMSMarker] {
-		if (infoMarkers.count > 3) {
+		if (infoMarkers.count > 10) {
 			for i in 0 ..< infoMarkers.count {
 				if (infoMarkers[i].title == geofence.identifier) {
 					infoMarkers[i].map = nil

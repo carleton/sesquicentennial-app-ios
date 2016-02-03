@@ -17,3 +17,13 @@ class TimelineTableCellTextOnly: UITableViewCell {
 	@IBOutlet weak var timestamp: UILabel!
 
 }
+
+class TimelineTableCellImageOnly: UITableViewCell {
+	@IBOutlet weak var title: UILabel!
+	
+	@IBOutlet weak var imgView: UIImageView!
+	
+	@IBOutlet weak var caption: UILabel!
+	
+	@IBOutlet weak var timestamp: UILabel!
+}
