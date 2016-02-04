@@ -14,6 +14,7 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
 	var initialDist: Double!
 	let locationManager = CLLocationManager()
     var hintCurrentlyHidden : Bool = true
+    var cellHeight : CGFloat = 100
 	
     @IBOutlet weak var questInfoView: UITableView!
     @IBOutlet var questMapView: GMSMapView!
@@ -28,7 +29,8 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
 //        UIView.animateWithDuration(0.75, animations: {
 //            self.hintText.alpha = CGFloat(alphaValue)
 //        })
-//        hintCurrentlyHidden = !hintCurrentlyHidden
+        hintCurrentlyHidden = !hintCurrentlyHidden
+        questInfoView.reloadData()
 //        hintButton.setTitle(hintCurrentlyHidden ? "Show" : "Hide", forState: UIControlState())
     }
     
@@ -134,8 +136,24 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
 	}
     
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (section==1 && hintCurrentlyHidden){
+            return 0
+        }
         return 1
 	}
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if(section == 1 && hintCurrentlyHidden){
+            return 0
+        }
+        return 30
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return cellHeight
+    }
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return cellHeight
+    }
     
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("QuestInformationCell", forIndexPath: indexPath) as! QuestInformationCell
@@ -146,6 +164,14 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         cell.ClueText.text = indexPath.section == 0
                              ? quest.wayPoints[currentWayPointIndex].clue
                              : quest.wayPoints[currentWayPointIndex].hint
+        cell.ClueText.sizeToFit()
+        
+        cellHeight = cell.ClueText.frame.height + 40
+        if (indexPath.section == 1){
+            cell.showHint.hidden = true
+        }
+        cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Hide Hint", forState: UIControlState())
+
         
 		return cell
 	}
