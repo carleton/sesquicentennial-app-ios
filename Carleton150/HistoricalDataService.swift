@@ -52,14 +52,14 @@ final class HistoricalDataService {
 								}
 							}
 							// checking for optional data
-							if let year = answer[i]["year"].string {
-								result["year"] = year
+							if let year = answer[i]["year"].int {
+								result["year"] = String(year)
 							}
-							if let month = answer[i]["month"].string {
-								result["month"] = month
+							if let month = answer[i]["month"].int {
+								result["month"] = String(month)
 							}
-							if let day = answer[i]["day"].string {
-								result["day"] = day
+							if let day = answer[i]["day"].int {
+								result["day"] = String(day)
 							}
 							historicalEntries.append(result as? Dictionary<String, String>)
 							completion(success: true, result: historicalEntries)
