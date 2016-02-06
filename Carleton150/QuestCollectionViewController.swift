@@ -6,8 +6,9 @@ import UIKit
 
 private let reuseIdentifier = "QuestCell"
 private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+let screenSize: CGRect = UIScreen.mainScreen().bounds
 
-class QuestCollectionViewController: UICollectionViewController {
+class QuestCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var quests: [Quest] = []
     let images: [UIImage] = [UIImage(named: "magical_mystery.jpg")!, UIImage(named: "let_it_be.jpg")!
@@ -82,12 +83,22 @@ class QuestCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 	
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! QuestCollectionViewCell
+        cell.sizeToFit()
+    
 		cell.backgroundColor = UIColor.whiteColor()
 		cell.imageView.image = images[indexPath.row]
 		cell.name.text = quests[indexPath.row].name
         cell.information.numberOfLines = 10
 		cell.information.text = quests[indexPath.row].questDescription
 		cell.questIndex = indexPath.row
+        
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+            //collectionView.bounds.size.width
+            return CGSizeMake(screenSize.width*0.98, screenSize.height*0.7)
     }
 }
