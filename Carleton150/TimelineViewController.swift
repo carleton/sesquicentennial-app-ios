@@ -10,7 +10,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	@IBOutlet weak var geofenceName: UILabel!
     @IBOutlet weak var titleView: UIView!
     
-	var mapCtrl:UIViewController!
+	var mapCtrl: UIViewController!
 
     override func viewDidLoad() {
         // add bottom border to the timeline title
@@ -22,22 +22,72 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	
         // set the title
 		geofenceName.text = selectedGeofence
+        
+        tableView.estimatedRowHeight = 160.0
 	}
 	
+    /**
+        Upon clicking outside the timeline view or on the X button, 
+        dismiss the view.
+     
+        - Parameters: 
+            - sender: The UI element that triggered the action.
+     */
 	@IBAction func exitTimeline(sender: AnyObject) {
 		mapCtrl.dismissViewControllerAnimated(true) { () -> Void in }
 	}
 
+    /**
+        Determines the number of sections in the table view.
+     
+        - Parameters:
+            - tableView: The table view being used for the timeline.
+     
+        - Returns: 1. Nothing exciting here.
+     */
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		// #warning Incomplete implementation, return the number of sections
 		return 1
 	}
 	
+    /**
+        Determines the number of cells in the table view.
+     
+        - Parameters:
+            - tableView: The table view being used for the timeline.
+     
+            - section: The current section of the table view.
+     
+        - Returns: The number of historical events for the triggered geofence.
+     */
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		// #warning Incomplete implementation, return the number of rows
 		return landmarksInfo![selectedGeofence]!.count
 	}
+    
+    /**
+        Determines the of each of the cells in the table view by 
+        using autolayout to determine the cell height.
+     
+        - Parameters:
+            - tableView: The table view being used for the timeline.
+     
+            - indexPath: The current cell index of the table view.
+    
+        - Returns: The calculated height of the table view cell.
+     */
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
 	
+    /**
+        Adds data to each of the cells in the timeline view.
+     
+        - Parameters:
+            - tableView: The table view being used for the timeline.
+     
+            - indexPath: The current cell index of the table view.
+     
+        - Returns: The modified table view cell.
+     */
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell: TimelineTableCell!
@@ -57,9 +107,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             } else {
                 cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
             }
-           
+        
             cell.cellTitle = landmarksInfo?[selectedGeofence]?[indexPath.row]?["summary"]
-            cell.cellDescription = landmarksInfo?[selectedGeofence]?[indexPath.row]?["data"]
+            cell.cellDescription = landmarksInfo?[selectedGeofence]?[indexPath.row]?["desc"]
             cell.cellTimestamp = landmarksInfo?[selectedGeofence]?[indexPath.row]?["year"]
             cell.selectionStyle = UITableViewCellSelectionStyle.None
         }
@@ -68,6 +118,15 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 }
 
 extension UIView {
+    
+    /**
+        Adds a bottom border to a UIView of the specified color and stroke width. 
+        
+        - Parameters: 
+            - color: The color you want for the border. 
+            
+            - width: The stroke width of the bottom border.
+     */
     func addBottomBorderWithColor(color: UIColor, width: CGFloat) {
         let border = CALayer()
         border.backgroundColor = color.CGColor

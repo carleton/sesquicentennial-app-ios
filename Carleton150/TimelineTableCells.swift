@@ -1,14 +1,12 @@
 //
 //  TimelineTableCell.swift
 //  Carleton150
-//
-//  Created by Ibrahim Rabbani on 1/27/16.
-//  Copyright © 2016 edu.carleton.carleton150. All rights reserved.
-//
 
 import UIKit
 
 class TimelineTableCell: UITableViewCell {
+    
+    
     var cellTitle: String!
     var cellDescription: String!
     var cellCaption: String!
@@ -38,6 +36,7 @@ class TimelineTableCellTextOnly: TimelineTableCell {
         didSet {
             if let cellDescription = cellDescription {
                 self.desc.text = cellDescription
+                self.desc.sizeToFit()
             } else {
                 self.desc.text = ""
             }
