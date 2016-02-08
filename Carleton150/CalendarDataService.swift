@@ -9,6 +9,29 @@ import SwiftyJSON
 /// Data Service that contains relevant endpoints for the Calendar module.
 final class CalendarDataService {
     
+    private(set) static var schedule: [Dictionary<String, String>]? {
+        didSet {
+            print("sending notification")
+            NSNotificationCenter
+                .defaultCenter()
+                .postNotificationName("carleton150.calendarUpdate", object: self)
+        }
+    }
+    
+    /**
+        Update events in the calendar.
+     */
+    class func updateEvents() {
+        CalendarDataService.requestEvents(NSDate(), limit: 20) {
+            (success: Bool, result: [Dictionary<String, String>]?) in
+            if success {
+                self.schedule = result!
+            } else {
+                print("Not getting calendar data.")
+            }
+        }
+    }
+    
     /**
         Request events for the calendar.
      
