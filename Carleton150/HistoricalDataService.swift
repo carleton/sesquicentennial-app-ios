@@ -40,9 +40,10 @@ final class HistoricalDataService {
 							result["type"] = type
 							// if just text returned
 							if type == "text" {
-								if let summary = answer[i]["summary"].string, data = answer[i]["data"].string {
+								if let summary = answer[i]["summary"].string,
+                                       data = answer[i]["data"].string {
 									result["summary"] = summary
-									result["data"] = data
+									result["desc"] = data
                                 }
 							} else if type == "image" {
 								if let desc = answer[i]["desc"].string, data = answer[i]["data"].string, caption = answer[i]["caption"].string {
@@ -62,14 +63,13 @@ final class HistoricalDataService {
 								result["day"] = day
 							}
 							historicalEntries.append(result as? Dictionary<String, String>)
-							completion(success: true, result: historicalEntries)
 						} else {
 							print("Data returned at endpoint: \(Endpoints.historicalInfo) is malformed. Geofence name: \(geofenceName)")
 							completion(success: false, result: [])
 							return
 						}
-
 					}
+                    completion(success: true, result: historicalEntries)
                 } else {
                     print("No results were found.")
                     completion(success: false, result: [])

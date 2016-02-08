@@ -248,7 +248,6 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 				let marker = GMSMarker(position: position)
 				marker.title = geofence.identifier
 				marker.map = self.mapView
-				marker.snippet = (result[0]!["data"])!
 				marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
 				self.mapView.selectedMarker = marker
 				self.infoMarkers.append(marker)
