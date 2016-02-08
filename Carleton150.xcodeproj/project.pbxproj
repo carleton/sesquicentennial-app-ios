@@ -20,7 +20,6 @@
 		6368A59A1C50523C00D6B5B2 /* QuestCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6368A5991C50523C00D6B5B2 /* QuestCollectionViewController.swift */; };
 		6368A59E1C505B0600D6B5B2 /* QuestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6368A59D1C505B0600D6B5B2 /* QuestCollectionViewCell.swift */; };
 		6A3094401BD9CD4600A16342 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A30943F1BD9CD4600A16342 /* Geotification.swift */; };
-		6A6033F31C57D5BA008F08F8 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6033F21C57D5BA008F08F8 /* Popover.swift */; };
 		710726FB1C58001F0071FABC /* CalendarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710726FA1C58001F0071FABC /* CalendarLayout.swift */; };
 		710726FD1C5813650071FABC /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710726FC1C5813650071FABC /* CalendarCell.swift */; };
 		711704131BF3EB9E00566464 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711704121BF3EB9E00566464 /* utils.swift */; };
@@ -73,7 +72,6 @@
 		6368A5991C50523C00D6B5B2 /* QuestCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestCollectionViewController.swift; sourceTree = "<group>"; };
 		6368A59D1C505B0600D6B5B2 /* QuestCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestCollectionViewCell.swift; sourceTree = "<group>"; };
 		6A30943F1BD9CD4600A16342 /* Geotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
-		6A6033F21C57D5BA008F08F8 /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		710726FA1C58001F0071FABC /* CalendarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarLayout.swift; sourceTree = "<group>"; };
 		710726FC1C5813650071FABC /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		711704121BF3EB9E00566464 /* utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 				71340E591C5216C8007F9E2F /* HistoricalDataService.swift */,
 				6A30943F1BD9CD4600A16342 /* Geotification.swift */,
 				63036B321C4CB5A200193A78 /* Historical.storyboard */,
-				6A6033F21C57D5BA008F08F8 /* Popover.swift */,
 				7180A72D1C685DAA0080F121 /* TimelineTitleView.swift */,
 			);
 			name = Historical;
@@ -453,7 +450,6 @@
 				6357E6F21C4ED3BC00A28D00 /* HistoricalViewController.swift in Sources */,
 				6357E6F31C4ED3BC00A28D00 /* (null) in Sources */,
 				710726FD1C5813650071FABC /* CalendarCell.swift in Sources */,
-				6A6033F31C57D5BA008F08F8 /* Popover.swift in Sources */,
 				63291F381C5979730064C296 /* TimelineTableCells.swift in Sources */,
 				6368A59E1C505B0600D6B5B2 /* QuestCollectionViewCell.swift in Sources */,
 				71340E5C1C5217C3007F9E2F /* CalendarDataService.swift in Sources */,
