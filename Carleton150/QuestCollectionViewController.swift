@@ -87,6 +87,8 @@ class QuestCollectionViewController: UICollectionViewController, UICollectionVie
     
 		cell.backgroundColor = UIColor.whiteColor()
 		cell.imageView.image = images[indexPath.row]
+       // cell.imageView.frame = CGRect(x:, y:, width: screenSize.width*0.7, height: screenSize.height*0.35)
+        cell.imageView.sizeThatFits(CGSize(width: screenSize.width*0.8, height: screenSize.height*0.35))
 		cell.name.text = quests[indexPath.row].name
         cell.information.numberOfLines = 10
 		cell.information.text = quests[indexPath.row].questDescription
@@ -98,7 +100,7 @@ class QuestCollectionViewController: UICollectionViewController, UICollectionVie
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            //collectionView.bounds.size.width
-            return CGSizeMake(screenSize.width*0.98, screenSize.height*0.7)
+            return CGSizeMake(screenSize.width * 0.98, self.view.frame.size.height - (44+49))
+//            return CGSizeMake(screenSize.width*0.98, screenSize.height*0.8)
     }
 }
