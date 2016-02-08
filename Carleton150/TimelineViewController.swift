@@ -1,10 +1,6 @@
 //
 //  TimelineViewController.swift
 //  Carleton150
-//
-//  Created by Ibrahim Rabbani on 1/27/16.
-//  Copyright © 2016 edu.carleton.carleton150. All rights reserved.
-//
 
 import UIKit
 
@@ -12,16 +8,20 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var geofenceName: UILabel!
-	
+    @IBOutlet weak var titleView: UIView!
+    
 	var mapCtrl:UIViewController!
 
     override func viewDidLoad() {
-
+        // add bottom border to the timeline title
+        titleView.addBottomBorderWithColor(UIColor(white: 0.9, alpha: 1.0), width: 1.5)
+       
+        // set the dataSource and delegate for the timeline table
 		tableView.dataSource = self
 		tableView.delegate = self
-		
+	
+        // set the title
 		geofenceName.text = selectedGeofence
-		
 	}
 	
 	@IBAction func exitTimeline(sender: AnyObject) {
@@ -65,4 +65,13 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         }
         return cell
 	}
+}
+
+extension UIView {
+    func addBottomBorderWithColor(color: UIColor, width: CGFloat) {
+        let border = CALayer()
+        border.backgroundColor = color.CGColor
+        border.frame = CGRectMake(0, self.frame.size.height - width, self.frame.size.width, width)
+        self.layer.addSublayer(border)
+    }
 }
