@@ -13,3 +13,10 @@ class QuestInformationCell: UITableViewCell {
     @IBOutlet weak var ClueText: UILabel!
     @IBOutlet weak var showHint: UIButton!
 }
+
+class QuestInfoPicCell: UITableViewCell {
+    @IBOutlet weak var ClueText: UILabel!
+    @IBOutlet weak var showHint: UIButton!
+    @IBOutlet weak var img: UIImageView!
+
+}
