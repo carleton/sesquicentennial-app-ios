@@ -25,9 +25,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	}
 	
 	@IBAction func exitTimeline(sender: AnyObject) {
-		mapCtrl.dismissViewControllerAnimated(true) { () -> Void in
-			print("Dismissed")
-		}
+		mapCtrl.dismissViewControllerAnimated(true) { () -> Void in }
 	}
 
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -41,30 +39,30 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//		print(landmarksInfo![selectedGeofence]!.count)
-		print(indexPath.row)
-		let dataType = landmarksInfo![selectedGeofence]![indexPath.row]!["type"]!
-		
-		if dataType == "text" {
-			let cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
-			cell.title.text = landmarksInfo![selectedGeofence]![indexPath.row]!["type"]!
-			cell.desc.text = landmarksInfo![selectedGeofence]![indexPath.row]!["data"]!
-//			cell.timestamp.text = landmarksInfo![selectedGeofence]![indexPath.row]!["year"]!
-			return cell
-		} else if dataType == "image" {
-			let cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellImageOnly", forIndexPath: indexPath) as! TimelineTableCellImageOnly
-			cell.title.text = landmarksInfo![selectedGeofence]![indexPath.row]!["caption"]!
-			cell.imgView?.image = UIImage(data: NSData(base64EncodedString: landmarksInfo![selectedGeofence]![indexPath.row]!["data"]!, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
-			cell.caption.text = landmarksInfo![selectedGeofence]![indexPath.row]!["desc"]!
-//			cell.timestamp.text = landmarksInfo![selectedGeofence]![indexPath.row]!["year"]!
-			return cell
-		} else {
-			let cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
-			cell.title.text = landmarksInfo![selectedGeofence]![indexPath.row]!["type"]!
-			cell.desc.text = landmarksInfo![selectedGeofence]![indexPath.row]!["data"]!
-			cell.timestamp.text = landmarksInfo![selectedGeofence]![indexPath.row]!["year"]!
-			return cell
-		}
+        
+        var cell: TimelineTableCell!
+        
+        if let selectedEntry = landmarksInfo?[selectedGeofence]?[indexPath.row],
+               dataType = selectedEntry["type"] {
+        
+            if dataType == "text" {
+                cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
+            } else if dataType == "image" {
+                cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellImageOnly", forIndexPath: indexPath) as! TimelineTableCellImageOnly
+                if let image = landmarksInfo?[selectedGeofence]?[indexPath.row]?["data"],
+                       data = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters) {
+                    cell.cellImage = UIImage(data: data)
+                }
+                cell.cellCaption = landmarksInfo?[selectedGeofence]?[indexPath.row]?["caption"]
+            } else {
+                cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
+            }
+           
+            cell.cellTitle = landmarksInfo?[selectedGeofence]?[indexPath.row]?["summary"]
+            cell.cellDescription = landmarksInfo?[selectedGeofence]?[indexPath.row]?["data"]
+            cell.cellTimestamp = landmarksInfo?[selectedGeofence]?[indexPath.row]?["year"]
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+        }
+        return cell
 	}
-
 }

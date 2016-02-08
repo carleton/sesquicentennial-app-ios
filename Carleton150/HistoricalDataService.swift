@@ -43,7 +43,7 @@ final class HistoricalDataService {
 								if let summary = answer[i]["summary"].string, data = answer[i]["data"].string {
 									result["summary"] = summary
 									result["data"] = data
-									}
+                                }
 							} else if type == "image" {
 								if let desc = answer[i]["desc"].string, data = answer[i]["data"].string, caption = answer[i]["caption"].string {
 									result["desc"] = desc
@@ -52,8 +52,8 @@ final class HistoricalDataService {
 								}
 							}
 							// checking for optional data
-							if let year = answer[i]["year"].string {
-								result["year"] = year
+							if let year = answer[i]["year"].number {
+								result["year"] = year.stringValue
 							}
 							if let month = answer[i]["month"].string {
 								result["month"] = month
