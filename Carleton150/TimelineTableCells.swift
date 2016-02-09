@@ -5,9 +5,7 @@
 import UIKit
 
 class TimelineTableCell: UITableViewCell {
-    
-    
-    var cellTitle: String!
+    var cellSummary: String!
     var cellDescription: String!
     var cellCaption: String!
     var cellTimestamp: String!
@@ -16,29 +14,17 @@ class TimelineTableCell: UITableViewCell {
 
 class TimelineTableCellTextOnly: TimelineTableCell {
 	
-	@IBOutlet weak var title: UILabel!
-	
-	@IBOutlet weak var desc: UILabel!
-	
+    @IBOutlet weak var summary: UILabel!
+    
 	@IBOutlet weak var timestamp: UILabel!
     
-    override var cellTitle: String? {
+    override var cellSummary: String? {
         didSet {
-            if let cellTitle = cellTitle {
-                self.title.text = cellTitle
+            if let cellSummary = cellSummary {
+                self.summary.text = cellSummary
+                self.summary.sizeToFit()
             } else {
-                self.title.text = ""
-            }
-        }
-    }
-
-    override var cellDescription: String? {
-        didSet {
-            if let cellDescription = cellDescription {
-                self.desc.text = cellDescription
-                self.desc.sizeToFit()
-            } else {
-                self.desc.text = ""
+                self.summary.text = ""
             }
         }
     }
@@ -56,28 +42,16 @@ class TimelineTableCellTextOnly: TimelineTableCell {
 
 class TimelineTableCellImageOnly: TimelineTableCell {
     
-	@IBOutlet weak var title: UILabel!
-	
 	@IBOutlet weak var imgView: UIImageView!
 	
 	@IBOutlet weak var caption: UILabel!
 	
 	@IBOutlet weak var timestamp: UILabel!
     
-    override var cellTitle: String? {
+    override var cellCaption: String? {
         didSet {
-            if let cellTitle = cellTitle {
-                self.title.text = cellTitle
-            } else {
-                self.title.text = ""
-            }
-        }
-    }
-
-    override var cellDescription: String? {
-        didSet {
-            if let cellDescription = cellDescription {
-                self.caption.text = cellDescription
+            if let cellCaption = cellCaption {
+                self.caption.text = cellCaption
             } else {
                 self.caption.text = ""
             }

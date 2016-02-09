@@ -108,8 +108,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
             }
         
-            cell.cellTitle = landmarksInfo?[selectedGeofence]?[indexPath.row]?["summary"]
-            cell.cellDescription = landmarksInfo?[selectedGeofence]?[indexPath.row]?["desc"]
+            cell.cellSummary = landmarksInfo?[selectedGeofence]?[indexPath.row]?["summary"]
             cell.cellTimestamp = landmarksInfo?[selectedGeofence]?[indexPath.row]?["year"]
             cell.selectionStyle = UITableViewCellSelectionStyle.None
         }
