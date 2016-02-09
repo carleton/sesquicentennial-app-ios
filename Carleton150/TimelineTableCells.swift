@@ -46,7 +46,7 @@ class TimelineTableCellImageOnly: TimelineTableCell {
 	
 	@IBOutlet weak var caption: UILabel!
 	
-	@IBOutlet weak var timestamp: UILabel!
+    @IBOutlet weak var timestamp: UILabel!
     
     override var cellCaption: String? {
         didSet {
