@@ -7,9 +7,12 @@ import Foundation
 class WayPoint: NSObject {
     var location: CLLocationCoordinate2D
     var radius: Double
-    var clue: String
-    var hint: String
-   
+	// updated clues, hints and completion messages to handle images and text
+	var clue: Dictionary<String,AnyObject>
+	var hint: Dictionary<String,AnyObject>
+	var completion: Dictionary<String,AnyObject>
+
+
     /**
         Constructor for a WayPoint object in a Quest. 
         
@@ -19,11 +22,12 @@ class WayPoint: NSObject {
             - clue: The associated clue to find this waypoint.
             - hint: The associated hint to find this waypoint.
      */
-    init (location: CLLocationCoordinate2D, radius: Double, clue: String, hint: String) {
+	init (location: CLLocationCoordinate2D, radius: Double, clue: Dictionary<String,AnyObject>, hint: Dictionary<String,AnyObject>, completion: Dictionary<String,AnyObject>) {
         self.location = location
         self.radius = radius
         self.clue = clue
         self.hint = hint
+		self.completion = completion
     }
     
     /**

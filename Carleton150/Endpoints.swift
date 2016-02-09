@@ -44,7 +44,8 @@ final class Endpoints {
      */
     static var quests: String {
         get {
-            return self.hostServerURL + "/quest"
+//            return self.hostServerURL + "/quest"
+			return self.hostServerURL + "/quest_re"
         }
     }
 }
