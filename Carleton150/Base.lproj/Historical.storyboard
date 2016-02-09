@@ -167,6 +167,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="96"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlg-ZY-TY1" userLabel="timeline_extension">
+                                                    <rect key="frame" x="21" y="25" width="120" height="3"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="3" id="I5z-Df-50w"/>
+                                                        <constraint firstAttribute="width" constant="120" id="rD7-uL-yV7"/>
+                                                    </constraints>
+                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bvj-d3-U7D">
                                                     <rect key="frame" x="50" y="8" width="527" height="87"/>
                                                     <subviews>
@@ -208,10 +216,12 @@
                                             <constraints>
                                                 <constraint firstItem="FrE-M6-knQ" firstAttribute="top" secondItem="nwa-7w-w1s" secondAttribute="top" constant="19" id="2A7-zY-HCS"/>
                                                 <constraint firstItem="FrE-M6-knQ" firstAttribute="leading" secondItem="nwa-7w-w1s" secondAttribute="leading" constant="15" id="4JD-Co-nez"/>
+                                                <constraint firstItem="qlg-ZY-TY1" firstAttribute="leading" secondItem="nwa-7w-w1s" secondAttribute="leading" constant="21" id="4mx-ZS-0Pa"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Bvj-d3-U7D" secondAttribute="bottom" constant="-7" id="C9k-J5-oGf"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Bvj-d3-U7D" secondAttribute="trailing" constant="15" id="EXN-Z5-4Rw"/>
                                                 <constraint firstItem="Bvj-d3-U7D" firstAttribute="top" secondItem="nwa-7w-w1s" secondAttribute="topMargin" id="EbV-Br-FrO"/>
                                                 <constraint firstItem="Bvj-d3-U7D" firstAttribute="leading" secondItem="nwa-7w-w1s" secondAttribute="leadingMargin" constant="42" id="O5z-pB-4kC"/>
+                                                <constraint firstItem="qlg-ZY-TY1" firstAttribute="top" secondItem="nwa-7w-w1s" secondAttribute="top" constant="25" id="Sbg-qp-9i5"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -227,6 +237,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="96"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crw-be-u8w" userLabel="timeline_extension">
+                                                    <rect key="frame" x="25" y="23" width="120" height="3"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="120" id="8Q0-8C-joW"/>
+                                                        <constraint firstAttribute="height" constant="3" id="hXu-4T-tTV"/>
+                                                    </constraints>
+                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HYc-gb-tct">
                                                     <rect key="frame" x="50" y="8" width="527" height="87"/>
                                                     <subviews>
@@ -286,10 +304,12 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="crw-be-u8w" firstAttribute="leading" secondItem="3Fg-Ai-ahJ" secondAttribute="leading" constant="25" id="1Mf-bc-r2Z"/>
                                                 <constraint firstItem="aTy-Nr-QU8" firstAttribute="leading" secondItem="3Fg-Ai-ahJ" secondAttribute="leading" constant="15" id="31W-G4-niw"/>
                                                 <constraint firstItem="HYc-gb-tct" firstAttribute="top" secondItem="3Fg-Ai-ahJ" secondAttribute="topMargin" id="4Ni-5K-QBe"/>
                                                 <constraint firstItem="HYc-gb-tct" firstAttribute="leading" secondItem="3Fg-Ai-ahJ" secondAttribute="leadingMargin" constant="42" id="FZo-kf-cGQ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="HYc-gb-tct" secondAttribute="trailing" constant="15" id="H0k-lO-f4V"/>
+                                                <constraint firstItem="crw-be-u8w" firstAttribute="top" secondItem="3Fg-Ai-ahJ" secondAttribute="top" constant="23" id="hf2-Tr-dLH"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="HYc-gb-tct" secondAttribute="bottom" constant="-7" id="l5f-U1-5Lp"/>
                                                 <constraint firstItem="aTy-Nr-QU8" firstAttribute="top" secondItem="3Fg-Ai-ahJ" secondAttribute="top" constant="17" id="wXu-T0-U7R"/>
                                             </constraints>
