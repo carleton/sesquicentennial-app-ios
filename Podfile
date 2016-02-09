@@ -8,6 +8,7 @@ use_frameworks!
 pod 'GoogleMaps'
 pod 'Alamofire', '~> 2.0'
 pod 'SwiftyJSON', '~> 2.3'
+pod 'SwiftOverlays', '~> 1.0'
 
 target 'Carleton150' do
 
