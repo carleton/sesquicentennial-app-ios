@@ -285,10 +285,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4E-Sh-P41">
+                                <rect key="frame" x="20" y="200" width="3" height="400"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="3" id="Q3D-kG-fGQ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zs1-f1-1pz" firstAttribute="leading" secondItem="jHR-Iw-Rgu" secondAttribute="leading" id="2Pi-fI-ztw"/>
+                            <constraint firstItem="q4E-Sh-P41" firstAttribute="leading" secondItem="jTQ-o3-iFW" secondAttribute="leading" constant="20" id="2ab-Fp-Xxz"/>
+                            <constraint firstItem="q4E-Sh-P41" firstAttribute="top" secondItem="zs1-f1-1pz" secondAttribute="bottom" constant="1" id="3Qd-g5-fUK"/>
+                            <constraint firstItem="ZEV-wX-3tA" firstAttribute="top" secondItem="q4E-Sh-P41" secondAttribute="bottom" id="6GI-Wh-pxK"/>
                             <constraint firstAttribute="trailing" secondItem="jHR-Iw-Rgu" secondAttribute="trailing" id="J8y-ZZ-GGg"/>
                             <constraint firstItem="kRO-67-JPx" firstAttribute="leading" secondItem="zs1-f1-1pz" secondAttribute="leading" id="JRC-Fa-H5n"/>
                             <constraint firstItem="kRO-67-JPx" firstAttribute="bottom" secondItem="ZEV-wX-3tA" secondAttribute="top" constant="27" id="JbA-vw-XNx"/>
