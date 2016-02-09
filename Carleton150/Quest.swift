@@ -31,6 +31,7 @@ class Quest: NSObject {
         self.name = name
         self.questDescription = description
         self.completionMessage = completionMessage
+		self.creator = creator
 		self.image = image
     }
 }

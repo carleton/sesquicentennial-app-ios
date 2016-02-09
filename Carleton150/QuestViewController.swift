@@ -69,8 +69,8 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         
         // set the quest text for the current waypoint
         self.questName.text = quest.name
-        self.clueText.text = quest.wayPoints[currentWayPointIndex].clue
-        self.hintText.text = quest.wayPoints[currentWayPointIndex].hint
+        self.clueText.text = quest.wayPoints[currentWayPointIndex].clue["text"]! as? String
+        self.hintText.text = quest.wayPoints[currentWayPointIndex].hint["text"]! as? String
        
         // hide the hint
         self.hintText.alpha = 0.0
