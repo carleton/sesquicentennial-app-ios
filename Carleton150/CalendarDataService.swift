@@ -8,7 +8,12 @@ import SwiftyJSON
 
 /// Data Service that contains relevant endpoints for the Calendar module.
 final class CalendarDataService {
-    
+   
+    /**
+        The stored schedule, which upon being updated, alerts the observers
+        (in this case, just the calendar view). Currently this is not updated
+        periodically, but on app launch.
+     */
     private(set) static var schedule: [Dictionary<String, String>]? {
         didSet {
             print("sending notification")

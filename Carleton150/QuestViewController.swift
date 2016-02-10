@@ -6,33 +6,33 @@ import UIKit
 import CoreLocation
 import GoogleMaps
 
-class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate,
+                           UITableViewDelegate, UITableViewDataSource {
 
 	var quest: Quest!
     var currentWayPointIndex: Int = 0
 	var initialDist: Double!
 	let locationManager = CLLocationManager()
     var hintCurrentlyHidden : Bool = true
-	
-    @IBOutlet weak var hintText: UILabel!
-	@IBOutlet weak var questName: UILabel!
-    @IBOutlet weak var clueText: UILabel!
-    @IBOutlet weak var QuestInfoStack: UIStackView!
+    var cellHeight : CGFloat = 100
+    var hintImage: Bool = true
+    var clueImage: Bool = false
+    @IBOutlet weak var questInfoView: UITableView!
     @IBOutlet var questMapView: GMSMapView!
 	@IBOutlet weak var curProgress: UIProgressView!
-    @IBOutlet weak var hintButton: UIButton!
-   
+  
     /**
         The button that, when pressed, shows or hides the current hint
         depending on the current state of the hint text.
      */
     @IBAction func getHint(sender: AnyObject) {
-        let alphaValue = hintCurrentlyHidden ? 1.0 : 0.0
-        UIView.animateWithDuration(0.75, animations: {
-            self.hintText.alpha = CGFloat(alphaValue)
-        })
+//        let alphaValue = hintCurrentlyHidden ? 1.0 : 0.0
+//        UIView.animateWithDuration(0.75, animations: {
+//            self.hintText.alpha = CGFloat(alphaValue)
+//        })
         hintCurrentlyHidden = !hintCurrentlyHidden
-        hintButton.setTitle(hintCurrentlyHidden ? "Show" : "Hide", forState: UIControlState())
+        questInfoView.reloadData()
+//        hintButton.setTitle(hintCurrentlyHidden ? "Show" : "Hide", forState: UIControlState())
     }
     
     /**
@@ -64,16 +64,13 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         clue.
      */
     override func viewDidLoad() {
+        
+        // set the information view's data source
+		questInfoView.dataSource = self
+		questInfoView.delegate = self
+        
         // set properties for the navigation bar 
         Utils.setUpNavigationBar(self)
-        
-        // set the quest text for the current waypoint
-        self.questName.text = quest.name
-        self.clueText.text = quest.wayPoints[currentWayPointIndex].clue
-        self.hintText.text = quest.wayPoints[currentWayPointIndex].hint
-       
-        // hide the hint
-        self.hintText.alpha = 0.0
         
         // start the location manager
         self.locationManager.delegate = self
@@ -135,9 +132,69 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		return 1
+	}
+    
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+	}
 
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return cellHeight
+    }
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return cellHeight
+    }
+    
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    
+        if hintCurrentlyHidden{
+            if hintImage{
+                let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoPicCell", forIndexPath: indexPath) as! QuestInfoPicCell
+                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].hint
+                cell.selectionStyle = UITableViewCellSelectionStyle.None
+                cell.ClueText.sizeToFit()
+                cellHeight = tableView.frame.height
+                cell.Header.text = "  Clue"
+                cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
+                return cell
+            }
+            else{
+                let cell = tableView.dequeueReusableCellWithIdentifier("QuestInformationCell", forIndexPath: indexPath) as! QuestInformationCell
+                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].hint
+                cell.selectionStyle = UITableViewCellSelectionStyle.None
+                cell.ClueText.sizeToFit()
+                cellHeight = tableView.frame.height
+                cell.Header.text = "  Clue"
+                cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
+                return cell
+            }
+            
+        }
+        else{
+            if clueImage{
+                let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoPicCell", forIndexPath: indexPath) as! QuestInfoPicCell
+                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].clue
+                cell.selectionStyle = UITableViewCellSelectionStyle.None
+                cell.ClueText.sizeToFit()
+                cellHeight = tableView.frame.height
+                cell.Header.text = "  Hint"
+                cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
+                return cell
+            }
+            else{
+                let cell = tableView.dequeueReusableCellWithIdentifier("QuestInformationCell", forIndexPath: indexPath) as! QuestInformationCell
+                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].clue
+                cell.selectionStyle = UITableViewCellSelectionStyle.None
+                cell.ClueText.sizeToFit()
+                cellHeight = tableView.frame.height
+                cell.Header.text = "  Hint"
+                cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
+                return cell
+            }
+        }
+
+}
 }
