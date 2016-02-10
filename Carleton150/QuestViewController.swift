@@ -154,10 +154,16 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
             if hintImage{
                 let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoPicCell", forIndexPath: indexPath) as! QuestInfoPicCell
                 cell.ClueText.text = quest.wayPoints[currentWayPointIndex].hint
+                
+                
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 cell.ClueText.sizeToFit()
-                cellHeight = tableView.frame.height
+                cellHeight = cell.ClueText.frame.height + cell.Header.frame.height + cell.img.frame.height + 50
+                //cellHeight = tableView.frame.height
                 cell.Header.text = "  Clue"
+                cell.ClueText.textContainer.exclusionPaths = [UIBezierPath(rect: cell.img.frame)]
+                cell.ClueText.selectable = false
+                cell.ClueText.editable = false
                 cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
                 return cell
             }
@@ -181,6 +187,9 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
                 cell.ClueText.sizeToFit()
                 cellHeight = tableView.frame.height
                 cell.Header.text = "  Hint"
+                cell.ClueText.textContainer.exclusionPaths = [UIBezierPath(rect: cell.img.bounds)]
+                cell.ClueText.selectable = false
+                cell.ClueText.editable = false
                 cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
                 return cell
             }
