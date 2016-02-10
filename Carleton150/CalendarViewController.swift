@@ -6,10 +6,21 @@ import Foundation
 import SwiftOverlays
 
 class CalendarViewController: UICollectionViewController {
-    
-    var schedule : [Dictionary<String, String>] = []
+   
+    var calendar: [Dictionary<String, String>] = []
+    var cells: [CalendarCell] = []
     var eventImages: [UIImage] = []
     var tableLimit : Int!
+    
+    required init?(coder decoder : NSCoder) {
+        super.init(coder: decoder)
+        print("now CalendarViewController is initializing")
+
+        NSNotificationCenter
+            .defaultCenter()
+            .addObserver(self, selector: "actOnCalendarUpdate:", name: "carleton150.calendarUpdate", object: nil)
+        
+    }
     
     /**
         Upon load of this view, load the calendar and adjust the 
@@ -17,16 +28,13 @@ class CalendarViewController: UICollectionViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        // shows a wait overlay while setting up the calendar
-        self.showWaitOverlay()
+        
+        // set the current table limit
+        self.tableLimit = calendar.count
         
         // set properties on the navigation bar 
         Utils.setUpNavigationBar(self)
        
-        // gets the calendar data
-        getCalendar(20, date: NSDate())
-        
         // stop the navigation bar from covering the calendar content
         self.navigationController!.navigationBar.translucent = false;
 
@@ -36,17 +44,6 @@ class CalendarViewController: UICollectionViewController {
         
         // set the deceleration rate for the event cell snap
         collectionView!.decelerationRate = UIScrollViewDecelerationRateFast
-    }
-    
-   
-    /**
-        Upon view appearance, checks to see if there's currently data. If not, attempts
-        to load data.
-     */
-    override func viewWillAppear(animated: Bool) {
-        if self.schedule.count == 0 {
-            getCalendar(20, date: NSDate())
-        }
     }
     
     /**
@@ -65,39 +62,20 @@ class CalendarViewController: UICollectionViewController {
     }
     
     /**
-        Pulls the calendar data from the server, and loads the collection to
-        place the data into the views.
+        Upon noticing that the calendar has been updated,
+        update the UI accordingly.
      
         - Parameters:
-            - limit:      A hard limit on the amount of quests returned
-                          by the server.
-     
-            - date:       The earliest date from which to get data.
+            - notification: The notification triggered from the CalendarDataService.
      */
-    func getCalendar(limit: Int, date: NSDate?) {
-        
-        self.tableLimit = limit
-        
-        if let desiredDate = date {
-            CalendarDataService.requestEvents(desiredDate, limit: limit, completion: {
-                (success: Bool, result: [Dictionary<String, String>]?) in
-                if success {
-                    self.schedule = result!
-                    self.collectionView!.reloadData()
-                } else {
-                    self.badConnection(limit, date: desiredDate)
-                }
-            });
-        } else {
-            CalendarDataService.requestEvents(NSDate(), limit: limit, completion: {
-                (success: Bool, result: [Dictionary<String, String>]?) in
-                if success {
-                    self.schedule = result!
-                    self.collectionView!.reloadData()
-                } else {
-                    self.badConnection(limit, date: NSDate())
-                }
-            });
+    func actOnCalendarUpdate(notification: NSNotification) {
+        if let calendar = CalendarDataService.schedule {
+            print("received notification")
+            
+            self.calendar = calendar
+            let indexPath = NSIndexPath(forItem: 0, inSection: 0)
+            let _ = self.collectionView!
+                .dequeueReusableCellWithReuseIdentifier("CalendarCell", forIndexPath: indexPath) as! CalendarCell
         }
     }
     
@@ -120,7 +98,7 @@ class CalendarViewController: UICollectionViewController {
             - numberOfItemsInSection: The number of items in the calendar.
      */
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return schedule.count
+        return calendar.count
     }
     
     /**
@@ -151,13 +129,12 @@ class CalendarViewController: UICollectionViewController {
      */
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CalendarCell", forIndexPath: indexPath) as! CalendarCell
-        self.removeAllOverlays()
         let images = getEventImages()
-        let eventText = schedule[indexPath.item]["title"]
+        let eventText = calendar[indexPath.item]["title"]
         cell.eventTitle.text = eventText
         cell.currentImage = images[indexPath.item % 10]
-        cell.locationLabel.text = schedule[indexPath.item]["location"]!
-        cell.timeLabel.text = schedule[indexPath.item]["startTime"]!
+        cell.locationLabel.text = calendar[indexPath.item]["location"]!
+        cell.timeLabel.text = calendar[indexPath.item]["startTime"]!
         return cell
     }
    
@@ -179,7 +156,8 @@ class CalendarViewController: UICollectionViewController {
         }
         let alertAction2 = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) {
             (UIAlertAction) -> Void in
-            self.getCalendar(limit, date: date)
+            // TODO: Fix how this works.
+//            self.getCalendar(limit, date: date)
         }
         alert.addAction(alertAction1)
         alert.addAction(alertAction2)

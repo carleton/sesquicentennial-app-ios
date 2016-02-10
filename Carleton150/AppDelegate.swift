@@ -32,6 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
        
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
+       
+        // gets the calendar for the first time
+        CalendarDataService.updateEvents()
+        
         return true
     }
     

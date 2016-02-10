@@ -215,8 +215,9 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      */
 	func exitedGeofence(geofence: Geotification, var infoMarkers:[GMSMarker] ) -> [GMSMarker] {
 		if (infoMarkers.count > 10) {
-			for i in 0 ..< infoMarkers.count {
-				if (infoMarkers[i].title == geofence.identifier) {
+            let markers = infoMarkers
+			for i in 0 ..< markers.count {
+				if (markers[i].title == geofence.identifier) {
 					infoMarkers[i].map = nil
 					infoMarkers.removeAtIndex(i)
 				}
@@ -235,8 +236,9 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
             - mapView:  The Google Maps view to attach the marker to.
      */
 	func enteredGeofence(geofence: Geotification, mapView: GMSMapView) -> Void {
-		HistoricalDataService.requestContent(geofence.identifier,
-		completion: { (success: Bool, result: [Dictionary<String, String>?]) -> Void in
+		HistoricalDataService.requestContent(geofence.identifier) {
+            (success: Bool, result: [Dictionary<String, String>?]) -> Void in
+            
 			if (success) {
 				landmarksInfo![geofence.identifier] = result
 				var position = CLLocationCoordinate2DMake(44.46013,-93.15470)
@@ -255,7 +257,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 			} else {
 				print("Didn't get data. Oops!")
 			}
-		})
+		}
 	}
 	
     /**
