@@ -215,8 +215,9 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      */
 	func exitedGeofence(geofence: Geotification, var infoMarkers:[GMSMarker] ) -> [GMSMarker] {
 		if (infoMarkers.count > 10) {
-			for i in 0 ..< infoMarkers.count {
-				if (infoMarkers[i].title == geofence.identifier) {
+            let markers = infoMarkers
+			for i in 0 ..< markers.count {
+				if (markers[i].title == geofence.identifier) {
 					infoMarkers[i].map = nil
 					infoMarkers.removeAtIndex(i)
 				}
