@@ -12,6 +12,11 @@ class TimelineTableCell: UITableViewCell {
     var cellImage: UIImage!
 }
 
+/**
+    The timeline cell prototype if the event
+    only has text. Will expand to accommodate the
+    text as necessary.
+ */
 class TimelineTableCellTextOnly: TimelineTableCell {
 	
     @IBOutlet weak var summary: UILabel!
@@ -31,15 +36,14 @@ class TimelineTableCellTextOnly: TimelineTableCell {
     
     override var cellTimestamp: String? {
         didSet {
-            if let cellTimestamp = cellTimestamp {
-                self.timestamp.text = cellTimestamp
-            } else {
-                self.timestamp.text = ""
-            }
+            self.timestamp.text = cellTimestamp ?? ""
         }
     }
 }
 
+/**
+    The timeline cell prototype if the event has an image.
+ */
 class TimelineTableCellImageOnly: TimelineTableCell {
     
 	@IBOutlet weak var imgView: UIImageView!
@@ -50,21 +54,13 @@ class TimelineTableCellImageOnly: TimelineTableCell {
     
     override var cellCaption: String? {
         didSet {
-            if let cellCaption = cellCaption {
-                self.caption.text = cellCaption
-            } else {
-                self.caption.text = ""
-            }
+           self.caption.text = cellCaption ?? ""
         }
     }
     
     override var cellTimestamp: String? {
         didSet {
-            if let cellTimestamp = cellTimestamp {
-                self.timestamp.text = cellTimestamp
-            } else {
-                self.timestamp.text = ""
-            }
+            self.timestamp.text = cellTimestamp ?? ""
         }
     }
     
@@ -72,8 +68,6 @@ class TimelineTableCellImageOnly: TimelineTableCell {
         didSet {
             if let cellImage = cellImage {
                 self.imgView.image = cellImage
-            } else {
-                self.imgView.image = nil
             }
         }
     }

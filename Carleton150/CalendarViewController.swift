@@ -11,15 +11,17 @@ class CalendarViewController: UICollectionViewController {
     var cells: [CalendarCell] = []
     var eventImages: [UIImage] = []
     var tableLimit : Int!
-    
+   
+    /**
+        Initializes this view and sets up the 
+        observer for the calendar data.
+     */
     required init?(coder decoder : NSCoder) {
         super.init(coder: decoder)
-        print("now CalendarViewController is initializing")
 
         NSNotificationCenter
             .defaultCenter()
             .addObserver(self, selector: "actOnCalendarUpdate:", name: "carleton150.calendarUpdate", object: nil)
-        
     }
     
     /**
@@ -157,7 +159,6 @@ class CalendarViewController: UICollectionViewController {
         let alertAction2 = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) {
             (UIAlertAction) -> Void in
             // TODO: Fix how this works.
-//            self.getCalendar(limit, date: date)
         }
         alert.addAction(alertAction1)
         alert.addAction(alertAction2)

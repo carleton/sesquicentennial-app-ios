@@ -16,7 +16,6 @@ final class CalendarDataService {
      */
     private(set) static var schedule: [Dictionary<String, String>]? {
         didSet {
-            print("sending notification")
             NSNotificationCenter
                 .defaultCenter()
                 .postNotificationName("carleton150.calendarUpdate", object: self)
