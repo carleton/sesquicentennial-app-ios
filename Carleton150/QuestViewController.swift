@@ -161,7 +161,7 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
                 cellHeight = cell.ClueText.frame.height + cell.Header.frame.height + cell.img.frame.height + 50
                 //cellHeight = tableView.frame.height
                 cell.Header.text = "  Clue"
-                cell.ClueText.textContainer.exclusionPaths = [UIBezierPath(rect: cell.img.frame)]
+                cell.ClueText.textContainer.exclusionPaths = [UIBezierPath(rect: cell.img.bounds)]
                 cell.ClueText.selectable = false
                 cell.ClueText.editable = false
                 cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
