@@ -23,6 +23,14 @@ class TimelineTableCellTextOnly: TimelineTableCell {
     
 	@IBOutlet weak var timestamp: UILabel!
     
+    @IBOutlet weak var cellView: UIView!
+    
+    func setCellViewTraits() {
+        self.cellView.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
+        self.cellView.layer.borderWidth = 0.5
+        self.cellView.layer.cornerRadius = 10;
+    }
+    
     override var cellSummary: String? {
         didSet {
             if let cellSummary = cellSummary {
@@ -51,6 +59,14 @@ class TimelineTableCellImageOnly: TimelineTableCell {
 	@IBOutlet weak var caption: UILabel!
 	
     @IBOutlet weak var timestamp: UILabel!
+    
+    @IBOutlet weak var cellView: UIView!
+    
+    func setCellViewTraits() {
+        self.cellView.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
+        self.cellView.layer.borderWidth = 0.5
+        self.cellView.layer.cornerRadius = 10;
+    }
     
     override var cellCaption: String? {
         didSet {

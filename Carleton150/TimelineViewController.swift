@@ -89,29 +89,36 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         - Returns: The modified table view cell.
      */
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        var cell: TimelineTableCell!
-        
         if let selectedEntry = landmarksInfo?[selectedGeofence]?[indexPath.row],
                dataType = selectedEntry["type"] {
-        
             if dataType == "text" {
-                cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
+                let cell: TimelineTableCellTextOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
+                cell.setCellViewTraits()
+                cell.cellSummary = landmarksInfo?[selectedGeofence]?[indexPath.row]?["summary"]
+                cell.cellTimestamp = landmarksInfo?[selectedGeofence]?[indexPath.row]?["year"]
+                cell.selectionStyle = UITableViewCellSelectionStyle.None
+                return cell
             } else if dataType == "image" {
-                cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellImageOnly", forIndexPath: indexPath) as! TimelineTableCellImageOnly
+                let cell: TimelineTableCellImageOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellImageOnly", forIndexPath: indexPath) as! TimelineTableCellImageOnly
                 if let image = landmarksInfo?[selectedGeofence]?[indexPath.row]?["data"],
                        data = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters) {
                     cell.cellImage = UIImage(data: data)
                 }
+                cell.setCellViewTraits()
                 cell.cellCaption = landmarksInfo?[selectedGeofence]?[indexPath.row]?["caption"]
+                cell.cellSummary = landmarksInfo?[selectedGeofence]?[indexPath.row]?["summary"]
+                cell.cellTimestamp = landmarksInfo?[selectedGeofence]?[indexPath.row]?["year"]
+                cell.selectionStyle = UITableViewCellSelectionStyle.None
+                return cell
             } else {
-                cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
+                let cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
+                cell.setCellViewTraits()
+                cell.cellSummary = landmarksInfo?[selectedGeofence]?[indexPath.row]?["summary"]
+                cell.cellTimestamp = landmarksInfo?[selectedGeofence]?[indexPath.row]?["year"]
+                cell.selectionStyle = UITableViewCellSelectionStyle.None
+                return cell
             }
-        
-            cell.cellSummary = landmarksInfo?[selectedGeofence]?[indexPath.row]?["summary"]
-            cell.cellTimestamp = landmarksInfo?[selectedGeofence]?[indexPath.row]?["year"]
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
         }
-        return cell
+        return tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
 	}
 }

@@ -226,6 +226,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="cellView" destination="Bvj-d3-U7D" id="ZYc-HF-vJg"/>
                                             <outlet property="summary" destination="Qyt-N4-0U6" id="qAb-Sv-Eew"/>
                                             <outlet property="timestamp" destination="6G1-Ec-x4x" id="kMz-Ih-TjS"/>
                                         </connections>
@@ -308,6 +309,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="caption" destination="JbC-8J-oMc" id="JPM-dN-t5x"/>
+                                            <outlet property="cellView" destination="HYc-gb-tct" id="pi0-Pq-nfj"/>
                                             <outlet property="imgView" destination="mPL-H4-idt" id="O9c-Xd-GDx"/>
                                             <outlet property="timestamp" destination="Thq-8m-Vmw" id="8tn-As-1Hx"/>
                                         </connections>
