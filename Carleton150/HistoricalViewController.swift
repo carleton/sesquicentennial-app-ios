@@ -213,18 +213,21 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
             - A new list of the current active geofences.
      
      */
-	func exitedGeofence(geofence: Geotification, var infoMarkers:[GMSMarker] ) -> [GMSMarker] {
+	func exitedGeofence(geofence: Geotification, infoMarkers:[GMSMarker] ) -> [GMSMarker] {
+        var markers = infoMarkers
 		if (infoMarkers.count > 10) {
-            let markers = infoMarkers
-			for i in 0 ..< markers.count {
-				if (markers[i].title == geofence.identifier) {
-					infoMarkers[i].map = nil
-					infoMarkers.removeAtIndex(i)
-				}
-			}
+            markers = infoMarkers.filter() {
+                (marker: GMSMarker) in
+                if marker.title == geofence.identifier {
+                    marker.map = nil
+                    return true
+                } else {
+                    return false
+                }
+            }
 		}
-		geofence.active = false;
-		return infoMarkers
+		geofence.active = false
+		return markers
 	}
 	
     /**
