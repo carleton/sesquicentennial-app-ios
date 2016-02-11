@@ -11,6 +11,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var titleView: UIView!
     
 	var mapCtrl: UIViewController!
+    var timeline: [Dictionary<String, String>?] = []
 
     override func viewDidLoad() {
         // add bottom border to the timeline title
@@ -24,6 +25,11 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 		geofenceName.text = selectedGeofence
         
         tableView.estimatedRowHeight = 160.0
+        
+        timeline = landmarksInfo![selectedGeofence]!.sort() {
+            event1, event2 in
+            return event1!["year"] > event2!["year"]
+        }
 	}
 	
     /**
@@ -60,7 +66,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         - Returns: The number of historical events for the triggered geofence.
      */
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return landmarksInfo![selectedGeofence]!.count
+		return timeline.count
 	}
     
     /**
@@ -89,32 +95,32 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         - Returns: The modified table view cell.
      */
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let selectedEntry = landmarksInfo?[selectedGeofence]?[indexPath.row],
+        if let selectedEntry = timeline[indexPath.row],
                dataType = selectedEntry["type"] {
             if dataType == "text" {
                 let cell: TimelineTableCellTextOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
                 cell.setCellViewTraits()
-                cell.cellSummary = landmarksInfo?[selectedGeofence]?[indexPath.row]?["summary"]
-                cell.cellTimestamp = landmarksInfo?[selectedGeofence]?[indexPath.row]?["year"]
+                cell.cellSummary = timeline[indexPath.row]?["summary"]
+                cell.cellTimestamp = timeline[indexPath.row]?["year"]
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 return cell
             } else if dataType == "image" {
                 let cell: TimelineTableCellImageOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellImageOnly", forIndexPath: indexPath) as! TimelineTableCellImageOnly
-                if let image = landmarksInfo?[selectedGeofence]?[indexPath.row]?["data"],
+                if let image = timeline[indexPath.row]?["data"],
                        data = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters) {
                     cell.cellImage = UIImage(data: data)
                 }
                 cell.setCellViewTraits()
-                cell.cellCaption = landmarksInfo?[selectedGeofence]?[indexPath.row]?["caption"]
-                cell.cellSummary = landmarksInfo?[selectedGeofence]?[indexPath.row]?["summary"]
-                cell.cellTimestamp = landmarksInfo?[selectedGeofence]?[indexPath.row]?["year"]
+                cell.cellCaption = timeline[indexPath.row]?["caption"]
+                cell.cellSummary = timeline[indexPath.row]?["summary"]
+                cell.cellTimestamp = timeline[indexPath.row]?["year"]
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
                 cell.setCellViewTraits()
-                cell.cellSummary = landmarksInfo?[selectedGeofence]?[indexPath.row]?["summary"]
-                cell.cellTimestamp = landmarksInfo?[selectedGeofence]?[indexPath.row]?["year"]
+                cell.cellSummary = timeline[indexPath.row]?["summary"]
+                cell.cellTimestamp = timeline[indexPath.row]?["year"]
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 return cell
             }
