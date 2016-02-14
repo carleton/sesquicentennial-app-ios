@@ -87,8 +87,8 @@ class QuestCollectionViewController: UICollectionViewController, UICollectionVie
         cell.sizeToFit()
     
 		cell.backgroundColor = UIColor.whiteColor()
-		cell.imageView.image = images[indexPath.row]
-       // cell.imageView.frame = CGRect(x:, y:, width: screenSize.width*0.7, height: screenSize.height*0.35)
+		let image = NSData(base64EncodedString: quests[indexPath.row].image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+		cell.imageView.image = UIImage(data: image!)
         cell.imageView.sizeThatFits(CGSize(width: screenSize.width*0.8, height: screenSize.height*0.35))
 		cell.name.text = quests[indexPath.row].name
         cell.information.numberOfLines = 10

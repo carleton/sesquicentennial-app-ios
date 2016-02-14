@@ -153,7 +153,7 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         if hintCurrentlyHidden{
             if hintImage{
                 let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoPicCell", forIndexPath: indexPath) as! QuestInfoPicCell
-                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].hint
+                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].hint["text"] as? String
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 cell.ClueText.sizeToFit()
                 cellHeight = tableView.frame.height
@@ -163,7 +163,7 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
             }
             else{
                 let cell = tableView.dequeueReusableCellWithIdentifier("QuestInformationCell", forIndexPath: indexPath) as! QuestInformationCell
-                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].hint
+                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].hint["text"] as? String
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 cell.ClueText.sizeToFit()
                 cellHeight = tableView.frame.height
@@ -176,7 +176,7 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         else{
             if clueImage{
                 let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoPicCell", forIndexPath: indexPath) as! QuestInfoPicCell
-                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].clue
+                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].clue["text"] as? String
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 cell.ClueText.sizeToFit()
                 cellHeight = tableView.frame.height
@@ -186,7 +186,7 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
             }
             else{
                 let cell = tableView.dequeueReusableCellWithIdentifier("QuestInformationCell", forIndexPath: indexPath) as! QuestInformationCell
-                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].clue
+                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].clue["text"] as? String
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 cell.ClueText.sizeToFit()
                 cellHeight = tableView.frame.height

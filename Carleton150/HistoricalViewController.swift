@@ -65,7 +65,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
     
     /**
         Prepares for a segue ot the detail view for a particular point of 
-        interest on the map.
+        interest on the map.       
      
         Parameters: 
             - segue:  The segue that was triggered by user. If this is not the
