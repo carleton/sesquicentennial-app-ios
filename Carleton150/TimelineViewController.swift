@@ -31,6 +31,13 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             return event1!["year"] > event2!["year"]
         }
 	}
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if (segue.identifier == "showTimelineDetail") {
+			let detailViewController = (segue.destinationViewController as! TimelineDetailView)
+			detailViewController.parentView = self
+		}
+    }
 	
     /**
         Upon clicking outside the timeline view or on the X button, 

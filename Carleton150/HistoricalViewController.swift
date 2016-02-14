@@ -64,7 +64,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
     }
     
     /**
-        Prepares for a segue ot the detail view for a particular point of 
+        Prepares for a segue to the detail view for a particular point of
         interest on the map.
      
         Parameters: 
@@ -77,7 +77,6 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
                       it that will given to the landmark detail view.
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		
 		if (segue.identifier == "showTimeline") {
 			selectedGeofence = (sender?.title)!
 			let yourNextViewController = (segue.destinationViewController as! TimelineViewController)
