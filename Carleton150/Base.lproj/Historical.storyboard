@@ -352,10 +352,10 @@
             </objects>
             <point key="canvasLocation" x="1447" y="-234"/>
         </scene>
-        <!--Timeline Detail View-->
+        <!--Timeline Text Detail View-->
         <scene sceneID="Zwe-Ly-MhC">
             <objects>
-                <viewController modalPresentationStyle="currentContext" id="njp-yh-IEy" customClass="TimelineDetailView" customModule="Carleton150" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="currentContext" id="njp-yh-IEy" customClass="TimelineTextDetailView" customModule="Carleton150" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FTf-cH-6Vg"/>
                         <viewControllerLayoutGuide type="bottom" id="nQw-BP-ecc"/>
@@ -422,7 +422,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PRa-mG-aNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2151" y="-234"/>
+            <point key="canvasLocation" x="2182" y="-596"/>
         </scene>
     </scenes>
     <resources>
