@@ -64,8 +64,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="584" height="498"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7zh-6e-oOP">
-                                            <rect key="frame" x="23" y="31" width="539" height="396"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7zh-6e-oOP">
+                                            <rect key="frame" x="23" y="31" width="539" height="394"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="269" id="2RU-2c-XqY"/>
                                             </constraints>
@@ -75,8 +75,8 @@
                                                 </mask>
                                             </variation>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfW-tH-kcZ">
-                                            <rect key="frame" x="22" y="437" width="540" height="15"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfW-tH-kcZ">
+                                            <rect key="frame" x="22" y="435" width="540" height="17"/>
                                             <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -92,8 +92,8 @@
                                                 <segue destination="3ev-Mg-3x0" kind="show" identifier="questStartSegue" id="nLd-J9-8f7"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wI-hF-QtX">
-                                            <rect key="frame" x="272" y="0.0" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wI-hF-QtX">
+                                            <rect key="frame" x="271" y="0.0" width="44" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="hfE-O1-QK0"/>
                                             </constraints>
@@ -257,8 +257,8 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yqc-h9-v5S">
-                                                    <rect key="frame" x="526" y="0.0" width="46" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yqc-h9-v5S">
+                                                    <rect key="frame" x="533" y="0.0" width="39" height="30"/>
                                                     <fontDescription key="fontDescription" name="RobotoCondensed-Italic" family="Roboto Condensed" pointSize="15"/>
                                                     <state key="normal" title="Button"/>
                                                     <connections>
