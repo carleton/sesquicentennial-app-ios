@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vkZ-Zi-z9j">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vkZ-Zi-z9j">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Italic.ttf">
+            <string>Roboto-Italic</string>
+            <string>Roboto-Italic</string>
+        </mutableArray>
+        <mutableArray key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+            <string>Roboto-Light</string>
+        </mutableArray>
+        <mutableArray key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Historical View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -138,12 +151,12 @@
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geofence" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egf-Dy-hZb">
                                         <rect key="frame" x="253" y="15" width="95" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="22"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.15294117647058825" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.039215686274509803" green="0.16078431372549018" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="egf-Dy-hZb" firstAttribute="centerY" secondItem="zs1-f1-1pz" secondAttribute="centerY" id="1GH-uh-1o1"/>
                                     <constraint firstItem="0SB-d4-B7M" firstAttribute="top" secondItem="zs1-f1-1pz" secondAttribute="top" constant="11" id="Rqv-7u-OYd"/>
@@ -159,6 +172,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="400" id="hd1-eQ-34K"/>
                                 </constraints>
+                                <color key="sectionIndexBackgroundColor" red="0.95275015780000005" green="0.95275015780000005" blue="0.95275015780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="timelineTableCellTextOnly" rowHeight="96" id="8cC-f6-oIr" customClass="TimelineTableCellTextOnly" customModule="Carleton150" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="96"/>
@@ -168,11 +182,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlg-ZY-TY1" userLabel="timeline_extension">
-                                                    <rect key="frame" x="21" y="25" width="120" height="3"/>
+                                                    <rect key="frame" x="21" y="25" width="30" height="3"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="3" id="I5z-Df-50w"/>
-                                                        <constraint firstAttribute="width" constant="120" id="rD7-uL-yV7"/>
+                                                        <constraint firstAttribute="width" constant="30" id="rD7-uL-yV7"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bvj-d3-U7D">
@@ -180,8 +194,8 @@
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Summary" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qyt-N4-0U6">
                                                             <rect key="frame" x="8" y="29" width="511" height="51"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="14"/>
+                                                            <color key="textColor" red="0.85882352941176465" green="0.88627450980392153" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6G1-Ec-x4x">
@@ -190,12 +204,12 @@
                                                                 <constraint firstAttribute="height" constant="21" id="GaT-3l-yFl"/>
                                                                 <constraint firstAttribute="width" constant="200" id="Sfm-Vq-Clo"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
-                                                            <color key="textColor" red="1" green="0.63845692103295681" blue="0.28363264721682435" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="16"/>
+                                                            <color key="textColor" red="0.90216385690789469" green="0.62171052631578949" blue="0.073054933401034874" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.0" green="0.1529411765" blue="0.40504270710000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.039215686274509803" green="0.16078431372549018" blue="0.29019607843137252" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="6G1-Ec-x4x" firstAttribute="leading" secondItem="Bvj-d3-U7D" secondAttribute="leading" constant="8" id="8lP-Av-zuZ"/>
                                                         <constraint firstItem="6G1-Ec-x4x" firstAttribute="top" secondItem="Bvj-d3-U7D" secondAttribute="top" constant="8" id="OlI-cm-qHb"/>
@@ -213,6 +227,7 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.51372549019607838" green="0.58039215686274503" blue="0.65098039215686276" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="FrE-M6-knQ" firstAttribute="top" secondItem="nwa-7w-w1s" secondAttribute="top" constant="19" id="2A7-zY-HCS"/>
                                                 <constraint firstItem="FrE-M6-knQ" firstAttribute="leading" secondItem="nwa-7w-w1s" secondAttribute="leading" constant="15" id="4JD-Co-nez"/>
@@ -239,10 +254,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crw-be-u8w" userLabel="timeline_extension">
-                                                    <rect key="frame" x="25" y="23" width="120" height="3"/>
+                                                    <rect key="frame" x="25" y="23" width="30" height="3"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="120" id="8Q0-8C-joW"/>
+                                                        <constraint firstAttribute="width" constant="30" id="8Q0-8C-joW"/>
                                                         <constraint firstAttribute="height" constant="3" id="hXu-4T-tTV"/>
                                                     </constraints>
                                                 </view>
@@ -255,14 +270,14 @@
                                                                 <constraint firstAttribute="height" constant="21" id="iG8-Fr-Nk4"/>
                                                                 <constraint firstAttribute="width" constant="200" id="nKd-eW-adW"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
-                                                            <color key="textColor" red="1" green="0.63845692099999996" blue="0.28363264719999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="16"/>
+                                                            <color key="textColor" red="0.90196078431372551" green="0.62352941176470589" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbC-8J-oMc">
-                                                            <rect key="frame" x="8" y="189" width="499" height="14.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <color key="textColor" red="0.89803921568627454" green="0.90196078431372551" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <rect key="frame" x="8" y="189" width="499" height="15"/>
+                                                            <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="13"/>
+                                                            <color key="textColor" red="0.85882352941176465" green="0.88627450980392153" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mPL-H4-idt">
@@ -273,7 +288,7 @@
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.0" green="0.1529411765" blue="0.40504270710000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.039215686274509803" green="0.16078431372549018" blue="0.29019607843137252" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="mPL-H4-idt" firstAttribute="centerX" secondItem="HYc-gb-tct" secondAttribute="centerX" id="0BT-Ep-8cd"/>
                                                         <constraint firstItem="mPL-H4-idt" firstAttribute="top" secondItem="Thq-8m-Vmw" secondAttribute="bottom" constant="2" id="4sm-T3-5RI"/>
@@ -295,6 +310,7 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.51372549019607838" green="0.58039215686274503" blue="0.65098039215686276" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="crw-be-u8w" firstAttribute="leading" secondItem="3Fg-Ai-ahJ" secondAttribute="leading" constant="25" id="1Mf-bc-r2Z"/>
                                                 <constraint firstItem="aTy-Nr-QU8" firstAttribute="leading" secondItem="3Fg-Ai-ahJ" secondAttribute="leading" constant="15" id="31W-G4-niw"/>
