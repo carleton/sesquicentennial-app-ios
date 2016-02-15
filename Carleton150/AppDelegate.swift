@@ -43,8 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         Performs UI changes to the primary top navigation bar in the app.
      */
     func customizeNavigationBar() {
-        UINavigationBar.appearance().barTintColor = UIColor(red: 0.0/255.0,
-            green: 39.0/255.0, blue: 118.0/255.0, alpha: 1.0)
+        UINavigationBar.appearance().barTintColor = UIColor(red: 30.0/255.0,
+            green: 69.0/255.0, blue: 119.0/255.0, alpha: 1.0)
         UINavigationBar.appearance().tintColor = UIColor(red: 255.0/255.0,
             green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
     }
