@@ -13,6 +13,7 @@ enum EventType: Int {
     case OnExit
 }
 
+/// A geofence object with an activation.
 class Geotification: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var radius: CLLocationDistance
