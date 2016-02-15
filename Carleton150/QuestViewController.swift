@@ -26,13 +26,8 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         depending on the current state of the hint text.
      */
     @IBAction func getHint(sender: AnyObject) {
-//        let alphaValue = hintCurrentlyHidden ? 1.0 : 0.0
-//        UIView.animateWithDuration(0.75, animations: {
-//            self.hintText.alpha = CGFloat(alphaValue)
-//        })
         hintCurrentlyHidden = !hintCurrentlyHidden
         questInfoView.reloadData()
-//        hintButton.setTitle(hintCurrentlyHidden ? "Show" : "Hide", forState: UIControlState())
     }
     
     /**
@@ -150,8 +145,28 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
-        if hintCurrentlyHidden{
-            if hintImage{
+        if hintCurrentlyHidden {
+			
+			let clueText = quest.wayPoints[currentWayPointIndex].clue["text"] as? String
+			
+			if let clueImage = quest.wayPoints[currentWayPointIndex].clue["image"] as? String {
+				
+				let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoPicCell", forIndexPath: indexPath) as! QuestInfoPicCell
+				let image = NSData(base64EncodedString: clueImage, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+				cell.ClueText.text = clueText
+				cell.ClueText.sizeToFit()
+				cellHeight = cell.ClueText.frame.height + cell.Header.frame.height + cell.img.frame.height + 50
+				cell.Header.text = "  Clue"
+				cell.ClueText.textContainer.exclusionPaths = [UIBezierPath(rect: cell.img.bounds)]
+				cell.ClueText.selectable = false
+				cell.ClueText.editable = false
+				cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
+				cell.imageView!.image = UIImage(data: image!)
+				return cell
+				
+			}
+			
+            if hintImage {
                 let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoPicCell", forIndexPath: indexPath) as! QuestInfoPicCell
 
                 cell.ClueText.text = quest.wayPoints[currentWayPointIndex].hint["text"] as? String

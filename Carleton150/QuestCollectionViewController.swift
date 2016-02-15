@@ -11,8 +11,6 @@ let screenSize: CGRect = UIScreen.mainScreen().bounds
 class QuestCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var quests: [Quest] = []
-    let images: [UIImage] = [UIImage(named: "magical_mystery.jpg")!, UIImage(named: "let_it_be.jpg")!
-        , UIImage(named: "Schiller.jpg")!]
 	var curCellIndex: Int = 0
 	
 	@IBAction func startQuest(sender: AnyObject) {}
