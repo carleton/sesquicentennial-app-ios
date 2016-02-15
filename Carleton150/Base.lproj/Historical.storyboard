@@ -368,20 +368,31 @@
                                 <rect key="frame" x="20" y="28" width="560" height="552"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u2f-nz-lYd">
-                                        <rect key="frame" x="498" y="29" width="30" height="52"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                        <rect key="frame" x="510" y="15" width="30" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="X">
-                                            <color key="titleColor" red="0.96230723200000001" green="0.81039939459999999" blue="0.28604092640000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="dismissDetailView:" destination="njp-yh-IEy" eventType="touchUpInside" id="LXe-iq-GS2"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XY1-Tn-Xxn">
+                                        <rect key="frame" x="24" y="23.5" width="100" height="25.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="v0M-rV-eat"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <color key="textColor" red="1" green="0.63845692099999996" blue="0.28363264719999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.1529411765" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="u2f-nz-lYd" secondAttribute="trailing" constant="32" id="Zd2-Df-LK2"/>
-                                    <constraint firstItem="u2f-nz-lYd" firstAttribute="top" secondItem="Z6h-jP-Qnp" secondAttribute="top" constant="29" id="g58-b8-cob"/>
+                                    <constraint firstItem="XY1-Tn-Xxn" firstAttribute="leading" secondItem="Z6h-jP-Qnp" secondAttribute="leading" constant="24" id="3cF-nb-zQt"/>
+                                    <constraint firstItem="u2f-nz-lYd" firstAttribute="centerY" secondItem="XY1-Tn-Xxn" secondAttribute="centerY" id="8Ko-Qb-enx"/>
+                                    <constraint firstItem="u2f-nz-lYd" firstAttribute="top" secondItem="Z6h-jP-Qnp" secondAttribute="top" constant="15" id="lhl-fM-UUa"/>
+                                    <constraint firstAttribute="trailing" secondItem="u2f-nz-lYd" secondAttribute="trailing" constant="20" id="ur2-6p-NlV"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -393,6 +404,9 @@
                             <constraint firstItem="Z6h-jP-Qnp" firstAttribute="leading" secondItem="8rz-gv-1ds" secondAttribute="leadingMargin" id="UsV-ie-Lqa"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="XY1-Tn-Xxn" id="1Fj-JS-yR6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PRa-mG-aNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

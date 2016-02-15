@@ -23,9 +23,11 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	
         // set the title
 		geofenceName.text = selectedGeofence
-        
+      
+        // set a default row height
         tableView.estimatedRowHeight = 160.0
-        
+       
+        // sort the event timeline by date
         timeline = landmarksInfo![selectedGeofence]!.sort() {
             event1, event2 in
             return event1!["year"] > event2!["year"]
@@ -36,6 +38,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 		if (segue.identifier == "showTimelineDetail") {
 			let detailViewController = (segue.destinationViewController as! TimelineDetailView)
 			detailViewController.parentView = self
+            detailViewController.setData(sender as! TimelineTableCell)
 		}
     }
 	
