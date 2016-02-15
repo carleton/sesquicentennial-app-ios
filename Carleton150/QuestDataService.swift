@@ -67,15 +67,15 @@ final class QuestDataService {
 							
 //							completion["text"] = points[i]["completion"]["text"].string!
 							
-							if let clueImage = points[i]["clue"]["image"].string {
+							if let clueImage = points[i]["clue"]["image"]["image"].string {
 								clue["image"] = clueImage
 							}
-							if let hintImage = points[i]["hint"]["image"].string {
+							if let hintImage = points[i]["hint"]["image"]["image"].string {
 								hint["image"] = hintImage
 							}
-							if let compImage = points[i]["completion"]["image"].string {
-								completion["image"] = compImage
-							}
+//							if let compImage = points[i]["completion"]["image"].string {
+//								completion["image"] = compImage
+//							}
 							
 							wayPoints.append(
 								WayPoint(location: location,

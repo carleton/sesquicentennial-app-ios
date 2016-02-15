@@ -9,17 +9,16 @@ import GoogleMaps
 class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate,
                            UITableViewDelegate, UITableViewDataSource {
 
-	
-	@IBOutlet weak var questInfoView: UITableView!
-	@IBOutlet var questMapView: GMSMapView!
-	@IBOutlet weak var curProgress: UIProgressView!
-	
 	var quest: Quest!
     var currentWayPointIndex: Int = 0
 	var initialDist: Double!
 	let locationManager = CLLocationManager()
     var hintCurrentlyHidden : Bool = true
     var cellHeight : CGFloat = 100
+
+    @IBOutlet weak var questInfoView: UITableView!
+    @IBOutlet var questMapView: GMSMapView!
+	@IBOutlet weak var curProgress: UIProgressView!
   
     /**
         The button that, when pressed, shows or hides the current hint
@@ -164,19 +163,15 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
 			}
 		
 		} else {
-			
-			print("Hint Shown")
-			
 			if let hintImage = quest.wayPoints[currentWayPointIndex].hint["image"] as? String {
-				print("Image Exists")
 				let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoCellImage", forIndexPath: indexPath) as! QuestInfoCellImage
 				cell.cellImage = hintImage
 				cell.cellHeader =   " Hint" // CONSTRAINTS NEEDED
 				cell.cellText = quest.wayPoints[currentWayPointIndex].hint["text"] as? String
 				cell.show.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
 				return cell
-				
 			} else {
+				print("No Hint Image")
 				let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoCellText", forIndexPath: indexPath) as! QuestInfoCellText
 				cell.cellHeader =   " Hint" // CONSTRAINTS NEEDED
 				cell.cellText = quest.wayPoints[currentWayPointIndex].hint["text"] as? String
