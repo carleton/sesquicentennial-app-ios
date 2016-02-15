@@ -383,25 +383,27 @@
                                             <constraint firstAttribute="width" constant="100" id="v0M-rV-eat"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                        <color key="textColor" red="1" green="0.63845692099999996" blue="0.28363264719999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.98823529409999999" green="0.83137254900000002" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9w-TW-emh">
-                                        <rect key="frame" x="24" y="74" width="516" height="19.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="f8E-2u-fyv">
+                                        <rect key="frame" x="24" y="65" width="516" height="479"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.1529411765" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="XY1-Tn-Xxn" firstAttribute="leading" secondItem="Z6h-jP-Qnp" secondAttribute="leading" constant="24" id="3cF-nb-zQt"/>
-                                    <constraint firstItem="S9w-TW-emh" firstAttribute="leading" secondItem="XY1-Tn-Xxn" secondAttribute="leading" id="6MO-7h-5Z1"/>
                                     <constraint firstItem="u2f-nz-lYd" firstAttribute="centerY" secondItem="XY1-Tn-Xxn" secondAttribute="centerY" id="8Ko-Qb-enx"/>
-                                    <constraint firstItem="S9w-TW-emh" firstAttribute="top" secondItem="u2f-nz-lYd" secondAttribute="bottom" constant="17" id="US8-Z0-Ixb"/>
+                                    <constraint firstItem="f8E-2u-fyv" firstAttribute="top" secondItem="u2f-nz-lYd" secondAttribute="bottom" constant="8" id="9Hf-hN-xxM"/>
+                                    <constraint firstItem="f8E-2u-fyv" firstAttribute="leading" secondItem="XY1-Tn-Xxn" secondAttribute="leading" id="QtM-Ey-qFb"/>
+                                    <constraint firstItem="u2f-nz-lYd" firstAttribute="trailing" secondItem="f8E-2u-fyv" secondAttribute="trailing" id="Ugl-Wx-0ue"/>
+                                    <constraint firstAttribute="bottom" secondItem="f8E-2u-fyv" secondAttribute="bottom" constant="8" id="WD7-DY-RlN"/>
                                     <constraint firstItem="u2f-nz-lYd" firstAttribute="top" secondItem="Z6h-jP-Qnp" secondAttribute="top" constant="15" id="lhl-fM-UUa"/>
                                     <constraint firstAttribute="trailing" secondItem="u2f-nz-lYd" secondAttribute="trailing" constant="20" id="ur2-6p-NlV"/>
-                                    <constraint firstItem="u2f-nz-lYd" firstAttribute="trailing" secondItem="S9w-TW-emh" secondAttribute="trailing" id="yFd-Lv-EdD"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -415,7 +417,7 @@
                     </view>
                     <connections>
                         <outlet property="dateLabel" destination="XY1-Tn-Xxn" id="1Fj-JS-yR6"/>
-                        <outlet property="descriptionLabel" destination="S9w-TW-emh" id="8bd-4h-1kb"/>
+                        <outlet property="descriptionText" destination="f8E-2u-fyv" id="1fa-nq-lXw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PRa-mG-aNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
