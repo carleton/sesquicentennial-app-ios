@@ -65,7 +65,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7zh-6e-oOP">
-                                            <rect key="frame" x="23" y="31" width="539" height="389.5"/>
+                                            <rect key="frame" x="23" y="31" width="539" height="390"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="269" id="2RU-2c-XqY"/>
                                             </constraints>
@@ -76,7 +76,7 @@
                                             </variation>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfW-tH-kcZ">
-                                            <rect key="frame" x="22" y="430.5" width="540" height="18.5"/>
+                                            <rect key="frame" x="22" y="431" width="540" height="18"/>
                                             <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -180,19 +180,13 @@
                                 <rect key="frame" x="0.0" y="297" width="600" height="234"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuestInformationCell" rowHeight="0.0" id="3gD-Dl-ovT" customClass="QuestInformationCell" customModule="Carleton150" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="QuestInfoCellText" rowHeight="0.0" id="3gD-Dl-ovT" userLabel="QuestInfoCellText" customClass="QuestInfoCellText" customModule="Carleton150" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="0.0"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3gD-Dl-ovT" id="Pza-77-A5G">
                                             <rect key="frame" x="0.0" y="-0.5" width="600" height="0.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ClueHintText" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UhV-hI-5DK">
-                                                    <rect key="frame" x="23" y="30" width="549" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eep-Ri-9U1">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="25"/>
                                                     <color key="backgroundColor" red="0.95253314393939392" green="0.95253314393939392" blue="0.95253314393939392" alpha="1" colorSpace="calibratedRGB"/>
@@ -203,8 +197,14 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Krt-Jp-yhb">
-                                                    <rect key="frame" x="534" y="0.0" width="38" height="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ClueHintText" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UhV-hI-5DK">
+                                                    <rect key="frame" x="23" y="30" width="549" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Krt-Jp-yhb">
+                                                    <rect key="frame" x="534" y="-1" width="38" height="31"/>
                                                     <state key="normal" title="Show"/>
                                                     <connections>
                                                         <action selector="getHint:" destination="3ev-Mg-3x0" eventType="touchUpInside" id="wdi-H3-HMa"/>
@@ -229,12 +229,12 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="ClueText" destination="UhV-hI-5DK" id="8eu-zs-fax"/>
-                                            <outlet property="Header" destination="Eep-Ri-9U1" id="S2t-Mf-zYw"/>
-                                            <outlet property="showHint" destination="Krt-Jp-yhb" id="poT-Me-oer"/>
+                                            <outlet property="clueHint" destination="UhV-hI-5DK" id="x5l-5l-xhs"/>
+                                            <outlet property="header" destination="Eep-Ri-9U1" id="fAZ-br-r6U"/>
+                                            <outlet property="show" destination="Krt-Jp-yhb" id="kbD-gL-6zn"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuestInfoPicCell" rowHeight="222" id="apR-l0-UBa" customClass="QuestInfoPicCell" customModule="Carleton150" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="QuestInfoCellImage" rowHeight="222" id="apR-l0-UBa" userLabel="QuestInfoCellImage" customClass="QuestInfoCellImage" customModule="Carleton150" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="222"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="apR-l0-UBa" id="E2w-va-UTi">
@@ -302,10 +302,10 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="ClueText" destination="uND-1a-U3F" id="N3S-Yk-5rm"/>
-                                            <outlet property="Header" destination="2ox-pE-DE4" id="FRa-kD-vRj"/>
-                                            <outlet property="img" destination="BQN-48-1Vt" id="mcb-3e-qEn"/>
-                                            <outlet property="showHint" destination="Yqc-h9-v5S" id="nW7-tM-WVn"/>
+                                            <outlet property="clueHint" destination="uND-1a-U3F" id="sRd-g8-tJt"/>
+                                            <outlet property="header" destination="2ox-pE-DE4" id="PWR-aK-Qnd"/>
+                                            <outlet property="imgView" destination="BQN-48-1Vt" id="Kdy-1U-ia6"/>
+                                            <outlet property="show" destination="Yqc-h9-v5S" id="c1r-vI-ZT7"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
