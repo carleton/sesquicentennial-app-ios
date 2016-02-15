@@ -111,6 +111,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 let cell: TimelineTableCellTextOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
                 cell.setCellViewTraits()
                 cell.cellSummary = timeline[indexPath.row]?["summary"]
+                cell.cellDescription = timeline[indexPath.row]?["desc"]
                 cell.cellTimestamp = timeline[indexPath.row]?["year"]
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 return cell
@@ -123,6 +124,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.setCellViewTraits()
                 cell.cellCaption = timeline[indexPath.row]?["caption"]
                 cell.cellSummary = timeline[indexPath.row]?["summary"]
+                cell.cellDescription = timeline[indexPath.row]?["desc"]
                 cell.cellTimestamp = timeline[indexPath.row]?["year"]
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 return cell
@@ -130,6 +132,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 let cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
                 cell.setCellViewTraits()
                 cell.cellSummary = timeline[indexPath.row]?["summary"]
+                cell.cellDescription = timeline[indexPath.row]?["desc"]
                 cell.cellTimestamp = timeline[indexPath.row]?["year"]
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 return cell
