@@ -36,7 +36,7 @@
 		715AE4801C4EB08D00C8F0C9 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47F1C4EB08D00C8F0C9 /* Quest.swift */; };
 		717FE3E61BC7001D009CA507 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 717FE3E51BC7001D009CA507 /* Keys.plist */; };
 		7180A72E1C685DAA0080F121 /* TimelineTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7180A72D1C685DAA0080F121 /* TimelineTitleView.swift */; };
-		71C27A6C1C5E9312003126D7 /* QuestInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C27A6B1C5E9312003126D7 /* QuestInformationCell.swift */; };
+		71C27A6C1C5E9312003126D7 /* QuestInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C27A6B1C5E9312003126D7 /* QuestInfoCell.swift */; };
 		71CC5F791BE944220065AA4C /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CC5F781BE944220065AA4C /* DataServiceTest.swift */; };
 		DE91C2426C63D15AFB832D1D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B806A61E13CBDF524607BD9E /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -105,7 +105,7 @@
 		7194ED5E1C715066007F55D4 /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
 		7194ED5F1C715066007F55D4 /* RobotoCondensed-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Light.ttf"; sourceTree = "<group>"; };
 		7194ED601C715066007F55D4 /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
-		71C27A6B1C5E9312003126D7 /* QuestInformationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestInformationCell.swift; sourceTree = "<group>"; };
+		71C27A6B1C5E9312003126D7 /* QuestInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestInfoCell.swift; sourceTree = "<group>"; };
 		71CC5F6E1BE942CF0065AA4C /* Carleton150Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Carleton150Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		71CC5F721BE942CF0065AA4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71CC5F781BE944220065AA4C /* DataServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
@@ -171,7 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				6368A5941C5050E900D6B5B2 /* Quest.storyboard */,
-				71C27A6B1C5E9312003126D7 /* QuestInformationCell.swift */,
+				71C27A6B1C5E9312003126D7 /* QuestInfoCell.swift */,
 				715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */,
 				715AE47F1C4EB08D00C8F0C9 /* Quest.swift */,
 				6368A5971C50511300D6B5B2 /* QuestViewController.swift */,
@@ -494,7 +494,7 @@
 				6368A5981C50511300D6B5B2 /* QuestViewController.swift in Sources */,
 				71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */,
 				6368A59A1C50523C00D6B5B2 /* QuestCollectionViewController.swift in Sources */,
-				71C27A6C1C5E9312003126D7 /* QuestInformationCell.swift in Sources */,
+				71C27A6C1C5E9312003126D7 /* QuestInfoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

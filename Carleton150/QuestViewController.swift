@@ -9,17 +9,17 @@ import GoogleMaps
 class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate,
                            UITableViewDelegate, UITableViewDataSource {
 
+	
+	@IBOutlet weak var questInfoView: UITableView!
+	@IBOutlet var questMapView: GMSMapView!
+	@IBOutlet weak var curProgress: UIProgressView!
+	
 	var quest: Quest!
     var currentWayPointIndex: Int = 0
 	var initialDist: Double!
 	let locationManager = CLLocationManager()
     var hintCurrentlyHidden : Bool = true
     var cellHeight : CGFloat = 100
-    var hintImage: Bool = true
-    var clueImage: Bool = false
-    @IBOutlet weak var questInfoView: UITableView!
-    @IBOutlet var questMapView: GMSMapView!
-	@IBOutlet weak var curProgress: UIProgressView!
   
     /**
         The button that, when pressed, shows or hides the current hint
@@ -147,78 +147,43 @@ class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     
         if hintCurrentlyHidden {
 			
-			let clueText = quest.wayPoints[currentWayPointIndex].clue["text"] as? String
-			
 			if let clueImage = quest.wayPoints[currentWayPointIndex].clue["image"] as? String {
-				
-				let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoPicCell", forIndexPath: indexPath) as! QuestInfoPicCell
-				let image = NSData(base64EncodedString: clueImage, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-				cell.ClueText.text = clueText
-				cell.ClueText.sizeToFit()
-				cellHeight = cell.ClueText.frame.height + cell.Header.frame.height + cell.img.frame.height + 50
-				cell.Header.text = "  Clue"
-				cell.ClueText.textContainer.exclusionPaths = [UIBezierPath(rect: cell.img.bounds)]
-				cell.ClueText.selectable = false
-				cell.ClueText.editable = false
-				cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
-				cell.imageView!.image = UIImage(data: image!)
+				let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoCellImage", forIndexPath: indexPath) as! QuestInfoCellImage
+				cell.cellImage = clueImage
+				cell.cellHeader =   " Clue" // CONSTRAINTS NEEDED
+				cell.cellText = quest.wayPoints[currentWayPointIndex].clue["text"] as? String
+				cell.show.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
+				return cell
+
+			} else {
+				let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoCellText", forIndexPath: indexPath) as! QuestInfoCellText
+				cell.cellHeader =   " Clue" // CONSTRAINTS NEEDED
+				cell.cellText = quest.wayPoints[currentWayPointIndex].clue["text"] as? String
+				cell.show.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
+				return cell
+			}
+		
+		} else {
+			
+			print("Hint Shown")
+			
+			if let hintImage = quest.wayPoints[currentWayPointIndex].hint["image"] as? String {
+				print("Image Exists")
+				let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoCellImage", forIndexPath: indexPath) as! QuestInfoCellImage
+				cell.cellImage = hintImage
+				cell.cellHeader =   " Hint" // CONSTRAINTS NEEDED
+				cell.cellText = quest.wayPoints[currentWayPointIndex].hint["text"] as? String
+				cell.show.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
 				return cell
 				
+			} else {
+				let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoCellText", forIndexPath: indexPath) as! QuestInfoCellText
+				cell.cellHeader =   " Hint" // CONSTRAINTS NEEDED
+				cell.cellText = quest.wayPoints[currentWayPointIndex].hint["text"] as? String
+				cell.show.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
+				return cell
 			}
 			
-            if hintImage {
-                let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoPicCell", forIndexPath: indexPath) as! QuestInfoPicCell
-
-                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].hint["text"] as? String
-                
-                cell.selectionStyle = UITableViewCellSelectionStyle.None
-                cell.ClueText.sizeToFit()
-                cellHeight = cell.ClueText.frame.height + cell.Header.frame.height + cell.img.frame.height + 50
-                //cellHeight = tableView.frame.height
-                cell.Header.text = "  Clue"
-                cell.ClueText.textContainer.exclusionPaths = [UIBezierPath(rect: cell.img.bounds)]
-                cell.ClueText.selectable = false
-                cell.ClueText.editable = false
-                cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
-                return cell
-            }
-            else{
-                let cell = tableView.dequeueReusableCellWithIdentifier("QuestInformationCell", forIndexPath: indexPath) as! QuestInformationCell
-                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].hint["text"] as? String
-                cell.selectionStyle = UITableViewCellSelectionStyle.None
-                cell.ClueText.sizeToFit()
-                cellHeight = tableView.frame.height
-                cell.Header.text = "  Clue"
-                cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
-                return cell
-            }
-            
-        }
-        else{
-            if clueImage{
-                let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoPicCell", forIndexPath: indexPath) as! QuestInfoPicCell
-                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].clue["text"] as? String
-                cell.selectionStyle = UITableViewCellSelectionStyle.None
-                cell.ClueText.sizeToFit()
-                cellHeight = tableView.frame.height
-                cell.Header.text = "  Hint"
-                cell.ClueText.textContainer.exclusionPaths = [UIBezierPath(rect: cell.img.bounds)]
-                cell.ClueText.selectable = false
-                cell.ClueText.editable = false
-                cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
-                return cell
-            }
-            else{
-                let cell = tableView.dequeueReusableCellWithIdentifier("QuestInformationCell", forIndexPath: indexPath) as! QuestInformationCell
-                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].clue["text"] as? String
-                cell.selectionStyle = UITableViewCellSelectionStyle.None
-                cell.ClueText.sizeToFit()
-                cellHeight = tableView.frame.height
-                cell.Header.text = "  Hint"
-                cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
-                return cell
-            }
-        }
-
-}
+		}
+	}
 }
