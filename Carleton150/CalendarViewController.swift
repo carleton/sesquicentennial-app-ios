@@ -22,6 +22,7 @@ class CalendarViewController: UICollectionViewController {
         NSNotificationCenter
             .defaultCenter()
             .addObserver(self, selector: "actOnCalendarUpdate:", name: "carleton150.calendarUpdate", object: nil)
+        
     }
     
     /**
@@ -84,6 +85,7 @@ class CalendarViewController: UICollectionViewController {
             
             self.calendar = calendar
             let indexPath = NSIndexPath(forItem: 0, inSection: 0)
+            let _ = CalendarDetailView()
             let _ = self.collectionView!
                 .dequeueReusableCellWithReuseIdentifier("CalendarCell", forIndexPath: indexPath) as! CalendarCell
         }
