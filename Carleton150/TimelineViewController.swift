@@ -23,14 +23,24 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	
         // set the title
 		geofenceName.text = selectedGeofence
-        
+      
+        // set a default row height
         tableView.estimatedRowHeight = 160.0
-        
+       
+        // sort the event timeline by date
         timeline = landmarksInfo![selectedGeofence]!.sort() {
             event1, event2 in
             return event1!["year"] > event2!["year"]
         }
 	}
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if (segue.identifier == "showTimelineDetail") {
+			let detailViewController = (segue.destinationViewController as! TimelineDetailView)
+			detailViewController.parentView = self
+            detailViewController.setData(sender as! TimelineTableCell)
+		}
+    }
 	
     /**
         Upon clicking outside the timeline view or on the X button, 
@@ -101,6 +111,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 let cell: TimelineTableCellTextOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
                 cell.setCellViewTraits()
                 cell.cellSummary = timeline[indexPath.row]?["summary"]
+                cell.cellDescription = timeline[indexPath.row]?["desc"]
                 cell.cellTimestamp = timeline[indexPath.row]?["year"]
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 return cell
@@ -113,6 +124,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.setCellViewTraits()
                 cell.cellCaption = timeline[indexPath.row]?["caption"]
                 cell.cellSummary = timeline[indexPath.row]?["summary"]
+                cell.cellDescription = timeline[indexPath.row]?["desc"]
                 cell.cellTimestamp = timeline[indexPath.row]?["year"]
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 return cell
@@ -120,6 +132,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 let cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
                 cell.setCellViewTraits()
                 cell.cellSummary = timeline[indexPath.row]?["summary"]
+                cell.cellDescription = timeline[indexPath.row]?["desc"]
                 cell.cellTimestamp = timeline[indexPath.row]?["year"]
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 return cell
