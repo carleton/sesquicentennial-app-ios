@@ -156,9 +156,6 @@
                                             <constraint firstAttribute="height" constant="30" id="CF3-K2-0Di"/>
                                         </constraints>
                                         <state key="normal" title="Am I There?"/>
-                                        <connections>
-                                            <action selector="CompButton:" destination="3ev-Mg-3x0" eventType="touchUpInside" id="2U9-xQ-L7J"/>
-                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="nKc-yv-Du2">
                                         <rect key="frame" x="8" y="8" width="533" height="21"/>
@@ -176,10 +173,10 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <connections>
-                                            <action selector="switchHintClue:" destination="3ev-Mg-3x0" eventType="touchUpInside" id="aYM-wo-dAt"/>
+                                            <action selector="toggleClueHint:" destination="3ev-Mg-3x0" eventType="touchUpInside" id="Pcs-c8-xs6"/>
                                         </connections>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZNa-f4-uKO" userLabel="Clue Hint Text">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNa-f4-uKO" userLabel="Clue Hint Text">
                                         <rect key="frame" x="304" y="36" width="288" height="222"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -260,14 +257,11 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="clueHintImageLeadConst" destination="l67-Hk-OTK" id="SY6-fk-tFc"/>
-                        <outlet property="clueHintImageTextConst" destination="gIM-Sh-3gW" id="iGw-r6-de3"/>
-                        <outlet property="clueHintImg" destination="hIk-Pr-Dfj" id="07c-iJ-YZr"/>
-                        <outlet property="clueHintTxt" destination="ZNa-f4-uKO" id="jGL-bj-IYC"/>
-                        <outlet property="clueHintView" destination="pcH-6g-MWp" id="m3V-cx-LtJ"/>
-                        <outlet property="questMapView" destination="peo-gm-Jws" id="drz-It-85P"/>
-                        <outlet property="questName" destination="nKc-yv-Du2" id="1Mc-Oo-LOI"/>
-                        <outlet property="toggleHintClue" destination="gco-FA-lEZ" id="UO9-Sf-qdo"/>
+                        <outlet property="clueHintImage" destination="hIk-Pr-Dfj" id="oAP-hY-bwZ"/>
+                        <outlet property="clueHintText" destination="ZNa-f4-uKO" id="UrA-w8-c1m"/>
+                        <outlet property="clueHintToggle" destination="gco-FA-lEZ" id="mDE-8c-vV7"/>
+                        <outlet property="clueHintView" destination="pcH-6g-MWp" id="Tdm-gt-fT1"/>
+                        <outlet property="questName" destination="nKc-yv-Du2" id="SaG-rF-4uJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KF4-Hy-bBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
