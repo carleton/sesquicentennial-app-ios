@@ -15,7 +15,7 @@ class QuestPlayingViewController: UIViewController {
 
 	
 	var quest: Quest!
-	var currentWayPointIndex: Int = 0 // @todo: Load this up from Core Data 
+	var currentWayPointIndex: Int = 0 // @todo: Load this up from Core Data
 	var clueShown: Bool = true
 	
 	@IBOutlet weak var clueHintView: UIView!
@@ -23,7 +23,7 @@ class QuestPlayingViewController: UIViewController {
 	@IBOutlet weak var clueHintImage: UIImageView!
 	@IBOutlet weak var clueHintText: UITextView!
 	@IBOutlet weak var clueHintToggle: UIButton!
-	
+	@IBOutlet weak var clueHintImgWidthConst: NSLayoutConstraint!
 	
 	@IBAction func toggleClueHint(sender: AnyObject) {
 		clueShown = !clueShown
@@ -42,7 +42,9 @@ class QuestPlayingViewController: UIViewController {
 			if let imageData = quest.wayPoints[currentWayPointIndex].clue["image"] as? String {
 				clueHintImage.image = UIImage(data: NSData(base64EncodedString: imageData, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
 				clueHintImage.hidden = false
+				clueHintImgWidthConst.constant = 0
 			} else {
+				clueHintImgWidthConst.constant = -clueHintView.frame.width * clueHintImgWidthConst.multiplier
 				clueHintImage.hidden = true
 			}
 		} else {
@@ -50,7 +52,9 @@ class QuestPlayingViewController: UIViewController {
 			if let imageData = quest.wayPoints[currentWayPointIndex].hint["image"] as? String {
 				clueHintImage.image = UIImage(data: NSData(base64EncodedString: imageData, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
 				clueHintImage.hidden = false
+				clueHintImgWidthConst.constant = 0
 			} else {
+				clueHintImgWidthConst.constant = -clueHintView.frame.width * clueHintImgWidthConst.multiplier
 				clueHintImage.hidden = true
 			}
 		}
