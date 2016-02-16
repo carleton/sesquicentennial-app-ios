@@ -39,6 +39,7 @@ class QuestPlayingViewController: UIViewController {
 		
 		if (clueShown) {
 			clueHintText.text = quest.wayPoints[currentWayPointIndex].clue["text"] as? String
+			clueHintToggle.setTitle("Show Hint", forState: UIControlState.Normal)
 			if let imageData = quest.wayPoints[currentWayPointIndex].clue["image"] as? String {
 				clueHintImage.image = UIImage(data: NSData(base64EncodedString: imageData, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
 				clueHintImage.hidden = false
@@ -49,6 +50,7 @@ class QuestPlayingViewController: UIViewController {
 			}
 		} else {
 			clueHintText.text = quest.wayPoints[currentWayPointIndex].hint["text"] as? String
+			clueHintToggle.setTitle("Show Clue", forState: UIControlState.Normal)
 			if let imageData = quest.wayPoints[currentWayPointIndex].hint["image"] as? String {
 				clueHintImage.image = UIImage(data: NSData(base64EncodedString: imageData, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
 				clueHintImage.hidden = false
