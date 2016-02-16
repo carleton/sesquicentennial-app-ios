@@ -146,6 +146,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0SB-d4-B7M">
                                         <rect key="frame" x="554" y="11" width="30" height="30"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="1jX-V6-LGS"/>
                                             <constraint firstAttribute="height" constant="30" id="lNz-Qw-Hg1"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -156,8 +157,8 @@
                                             <action selector="exitTimeline:" destination="2Ed-yO-PXD" eventType="touchUpInside" id="gg6-5b-CtP"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geofence" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egf-Dy-hZb">
-                                        <rect key="frame" x="253" y="15" width="95" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geofence" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="egf-Dy-hZb">
+                                        <rect key="frame" x="56.5" y="15" width="487.5" height="21"/>
                                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="22"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -166,10 +167,12 @@
                                 <color key="backgroundColor" red="0.039215686274509803" green="0.16078431372549018" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="egf-Dy-hZb" firstAttribute="centerY" secondItem="zs1-f1-1pz" secondAttribute="centerY" id="1GH-uh-1o1"/>
+                                    <constraint firstItem="egf-Dy-hZb" firstAttribute="width" relation="lessThanOrEqual" secondItem="zs1-f1-1pz" secondAttribute="width" priority="999" id="5I8-BQ-CoR"/>
                                     <constraint firstItem="0SB-d4-B7M" firstAttribute="top" secondItem="zs1-f1-1pz" secondAttribute="top" constant="11" id="Rqv-7u-OYd"/>
                                     <constraint firstItem="egf-Dy-hZb" firstAttribute="centerY" secondItem="0SB-d4-B7M" secondAttribute="centerY" id="SXV-xu-qdY"/>
                                     <constraint firstItem="egf-Dy-hZb" firstAttribute="centerX" secondItem="zs1-f1-1pz" secondAttribute="centerX" id="UTP-Eu-kcW"/>
                                     <constraint firstItem="egf-Dy-hZb" firstAttribute="top" secondItem="zs1-f1-1pz" secondAttribute="top" constant="15" id="fkI-mF-zfz"/>
+                                    <constraint firstItem="0SB-d4-B7M" firstAttribute="leading" secondItem="egf-Dy-hZb" secondAttribute="trailing" constant="10" id="lDz-i7-dtJ"/>
                                     <constraint firstAttribute="trailing" secondItem="0SB-d4-B7M" secondAttribute="trailing" constant="16" id="wtA-Ol-sMb"/>
                                 </constraints>
                             </view>
