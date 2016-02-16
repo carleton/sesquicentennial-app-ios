@@ -135,13 +135,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHR-Iw-Rgu">
-                                <rect key="frame" x="0.0" y="25" width="600" height="102"/>
+                                <rect key="frame" x="0.0" y="25" width="600" height="82"/>
                                 <connections>
                                     <action selector="exitTimeline:" destination="2Ed-yO-PXD" eventType="touchUpInside" id="Z2d-9B-13K"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zs1-f1-1pz">
-                                <rect key="frame" x="0.0" y="147" width="600" height="52"/>
+                                <rect key="frame" x="0.0" y="127" width="600" height="52"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0SB-d4-B7M">
                                         <rect key="frame" x="554" y="11" width="30" height="30"/>
@@ -158,7 +158,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geofence" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="egf-Dy-hZb">
-                                        <rect key="frame" x="56.5" y="15" width="487.5" height="21"/>
+                                        <rect key="frame" x="56" y="15" width="487.5" height="21"/>
                                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="22"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -177,11 +177,8 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="96" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kRO-67-JPx">
-                                <rect key="frame" x="0.0" y="200" width="600" height="400"/>
+                                <rect key="frame" x="0.0" y="180" width="600" height="420"/>
                                 <color key="backgroundColor" red="0.0" green="0.13201820900017203" blue="0.36035379623701413" alpha="0.69612642154137938" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="hd1-eQ-34K"/>
-                                </constraints>
                                 <color key="sectionIndexBackgroundColor" red="0.95275015780000005" green="0.95275015780000005" blue="0.95275015780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="timelineTableCellTextOnly" rowHeight="96" id="8cC-f6-oIr" customClass="TimelineTableCellTextOnly" customModule="Carleton150" customModuleProvider="target">
@@ -345,7 +342,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4E-Sh-P41" userLabel="timeline">
-                                <rect key="frame" x="20" y="199" width="3" height="401"/>
+                                <rect key="frame" x="20" y="179" width="3" height="421"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="3" id="Q3D-kG-fGQ"/>
@@ -367,6 +364,7 @@
                             <constraint firstItem="jHR-Iw-Rgu" firstAttribute="leading" secondItem="jTQ-o3-iFW" secondAttribute="leading" id="mYD-oq-QP6"/>
                             <constraint firstItem="kRO-67-JPx" firstAttribute="trailing" secondItem="zs1-f1-1pz" secondAttribute="trailing" id="ov4-HP-df2"/>
                             <constraint firstItem="kRO-67-JPx" firstAttribute="bottom" secondItem="ZEV-wX-3tA" secondAttribute="top" id="pZC-4H-pTZ"/>
+                            <constraint firstItem="kRO-67-JPx" firstAttribute="height" secondItem="jTQ-o3-iFW" secondAttribute="height" multiplier="0.7" id="wYh-bX-f0e"/>
                         </constraints>
                     </view>
                     <connections>
@@ -405,7 +403,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XY1-Tn-Xxn">
-                                        <rect key="frame" x="24" y="22" width="100" height="28"/>
+                                        <rect key="frame" x="24" y="23.5" width="100" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="v0M-rV-eat"/>
                                         </constraints>
@@ -477,7 +475,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mai-gl-4TJ">
-                                        <rect key="frame" x="24" y="22" width="100" height="28"/>
+                                        <rect key="frame" x="24" y="23.5" width="100" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="NXx-I0-m9T"/>
                                         </constraints>
