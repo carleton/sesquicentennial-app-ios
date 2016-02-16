@@ -148,9 +148,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peo-gm-Jws" userLabel="Quest Map View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peo-gm-Jws" userLabel="Quest Map View" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="64" width="600" height="240"/>
-                                <color key="backgroundColor" red="0.0" green="0.51764705879999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcH-6g-MWp" userLabel="Clue and Hint View">
                                 <rect key="frame" x="0.0" y="304" width="600" height="296"/>
@@ -165,6 +164,9 @@
                                         <state key="normal" title="Are We There Yet?">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="attemptCompletion:" destination="3ev-Mg-3x0" eventType="touchUpInside" id="pOz-R5-afc"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="nKc-yv-Du2">
                                         <rect key="frame" x="8" y="8" width="502" height="22.5"/>
@@ -208,7 +210,6 @@
                                     <constraint firstAttribute="bottom" secondItem="MUZ-57-f7f" secondAttribute="bottom" id="5we-O8-qm6"/>
                                     <constraint firstItem="nKc-yv-Du2" firstAttribute="leading" secondItem="pcH-6g-MWp" secondAttribute="leading" constant="8" id="9vM-dF-yyP"/>
                                     <constraint firstItem="MUZ-57-f7f" firstAttribute="leading" secondItem="pcH-6g-MWp" secondAttribute="leading" id="AGI-Bh-WMf"/>
-                                    <constraint firstItem="ZNa-f4-uKO" firstAttribute="width" secondItem="pcH-6g-MWp" secondAttribute="width" priority="999" constant="-414" id="J40-ow-m6G"/>
                                     <constraint firstItem="hIk-Pr-Dfj" firstAttribute="leading" secondItem="pcH-6g-MWp" secondAttribute="leading" constant="8" id="JnT-xQ-KNB"/>
                                     <constraint firstItem="nKc-yv-Du2" firstAttribute="top" secondItem="pcH-6g-MWp" secondAttribute="top" constant="8" id="OaD-qa-9n0"/>
                                     <constraint firstItem="MUZ-57-f7f" firstAttribute="top" secondItem="hIk-Pr-Dfj" secondAttribute="bottom" constant="8" id="cRD-qR-Ai1"/>
@@ -227,14 +228,17 @@
                             <constraint firstItem="peo-gm-Jws" firstAttribute="width" secondItem="Me0-A8-UI9" secondAttribute="width" id="3hj-bq-6wg"/>
                             <constraint firstItem="pcH-6g-MWp" firstAttribute="top" secondItem="peo-gm-Jws" secondAttribute="bottom" id="4aW-5Z-qCA"/>
                             <constraint firstItem="peo-gm-Jws" firstAttribute="top" secondItem="5S5-Xi-yGN" secondAttribute="bottom" id="4ek-U5-7FJ"/>
+                            <constraint firstItem="pcH-6g-MWp" firstAttribute="leading" secondItem="Me0-A8-UI9" secondAttribute="leading" id="7OQ-dt-lPw"/>
                             <constraint firstItem="fPZ-Zm-AGd" firstAttribute="top" secondItem="pcH-6g-MWp" secondAttribute="bottom" id="Clr-sj-2ip"/>
                             <constraint firstItem="pcH-6g-MWp" firstAttribute="height" secondItem="peo-gm-Jws" secondAttribute="height" id="EW1-l0-VsE"/>
-                            <constraint firstItem="pcH-6g-MWp" firstAttribute="width" secondItem="peo-gm-Jws" secondAttribute="width" id="Gt6-aR-ZZ1"/>
                             <constraint firstItem="pcH-6g-MWp" firstAttribute="top" secondItem="5S5-Xi-yGN" secondAttribute="bottom" id="Lig-aI-Tj1"/>
+                            <constraint firstAttribute="trailing" secondItem="pcH-6g-MWp" secondAttribute="trailing" id="Oqq-s7-dLr"/>
                             <constraint firstItem="peo-gm-Jws" firstAttribute="leading" secondItem="Me0-A8-UI9" secondAttribute="leading" id="WYz-dT-gGK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pcH-6g-MWp" secondAttribute="trailing" constant="20" id="WzD-hK-pYr"/>
                             <constraint firstItem="fPZ-Zm-AGd" firstAttribute="top" secondItem="peo-gm-Jws" secondAttribute="bottom" id="Xfz-sq-ORw"/>
                             <constraint firstItem="pcH-6g-MWp" firstAttribute="width" secondItem="Me0-A8-UI9" secondAttribute="width" id="dmm-b1-t1J"/>
                             <constraint firstItem="peo-gm-Jws" firstAttribute="top" secondItem="5S5-Xi-yGN" secondAttribute="bottom" id="dnp-0t-aWS"/>
+                            <constraint firstAttribute="trailing" secondItem="pcH-6g-MWp" secondAttribute="trailing" id="hpl-1Y-Fia"/>
                             <constraint firstItem="peo-gm-Jws" firstAttribute="width" secondItem="Me0-A8-UI9" secondAttribute="width" multiplier="0.5" id="jQu-AX-7zT"/>
                             <constraint firstItem="pcH-6g-MWp" firstAttribute="centerX" secondItem="Me0-A8-UI9" secondAttribute="centerX" id="qnw-MB-E1Z"/>
                             <constraint firstItem="peo-gm-Jws" firstAttribute="height" secondItem="Me0-A8-UI9" secondAttribute="height" multiplier="0.4" id="rCk-2a-hyL"/>
@@ -246,9 +250,12 @@
                                 <exclude reference="dnp-0t-aWS"/>
                                 <exclude reference="jQu-AX-7zT"/>
                                 <exclude reference="1IK-q3-1bW"/>
+                                <exclude reference="7OQ-dt-lPw"/>
                                 <exclude reference="EW1-l0-VsE"/>
-                                <exclude reference="Gt6-aR-ZZ1"/>
                                 <exclude reference="Lig-aI-Tj1"/>
+                                <exclude reference="Oqq-s7-dLr"/>
+                                <exclude reference="WzD-hK-pYr"/>
+                                <exclude reference="dmm-b1-t1J"/>
                                 <exclude reference="Xfz-sq-ORw"/>
                             </mask>
                         </variation>
@@ -264,10 +271,11 @@
                                 <include reference="1IK-q3-1bW"/>
                                 <exclude reference="4aW-5Z-qCA"/>
                                 <include reference="EW1-l0-VsE"/>
-                                <include reference="Gt6-aR-ZZ1"/>
                                 <include reference="Lig-aI-Tj1"/>
+                                <include reference="Oqq-s7-dLr"/>
                                 <exclude reference="dmm-b1-t1J"/>
                                 <exclude reference="qnw-MB-E1Z"/>
+                                <exclude reference="Clr-sj-2ip"/>
                                 <include reference="Xfz-sq-ORw"/>
                             </mask>
                         </variation>
@@ -278,6 +286,7 @@
                         <outlet property="clueHintText" destination="ZNa-f4-uKO" id="UrA-w8-c1m"/>
                         <outlet property="clueHintToggle" destination="gco-FA-lEZ" id="mDE-8c-vV7"/>
                         <outlet property="clueHintView" destination="pcH-6g-MWp" id="Tdm-gt-fT1"/>
+                        <outlet property="questMapView" destination="peo-gm-Jws" id="iFs-Rx-vMJ"/>
                         <outlet property="questName" destination="nKc-yv-Du2" id="SaG-rF-4uJ"/>
                     </connections>
                 </viewController>
