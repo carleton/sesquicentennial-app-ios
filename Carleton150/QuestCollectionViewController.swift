@@ -11,8 +11,6 @@ let screenSize: CGRect = UIScreen.mainScreen().bounds
 class QuestCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var quests: [Quest] = []
-    let images: [UIImage] = [UIImage(named: "magical_mystery.jpg")!, UIImage(named: "let_it_be.jpg")!
-        , UIImage(named: "Schiller.jpg")!]
 	var curCellIndex: Int = 0
 	
 	@IBAction func startQuest(sender: AnyObject) {}
@@ -29,9 +27,10 @@ class QuestCollectionViewController: UICollectionViewController, UICollectionVie
      */
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "questStartSegue" {
-			let nextCtrl = (segue.destinationViewController as! QuestViewController)
+			let nextCtrl = (segue.destinationViewController as! QuestPlayingViewController)
             let currentIndex = (self.collectionView?.visibleCells()[0] as! QuestCollectionViewCell).questIndex
 			nextCtrl.quest = self.quests[currentIndex]
+//			nextCtrl.setHintClueUI()
 		}
 	}
 	
@@ -56,7 +55,8 @@ class QuestCollectionViewController: UICollectionViewController, UICollectionVie
 	func getQuests() {
         QuestDataService.requestQuest("", limit: 5, completion: { (success, result) -> Void in
             if let quests = result {
-                self.quests = quests
+				print(quests)
+				self.quests = quests
                 self.collectionView!.reloadData()
             }
         });
@@ -86,8 +86,8 @@ class QuestCollectionViewController: UICollectionViewController, UICollectionVie
         cell.sizeToFit()
     
 		cell.backgroundColor = UIColor.whiteColor()
-		cell.imageView.image = images[indexPath.row]
-       // cell.imageView.frame = CGRect(x:, y:, width: screenSize.width*0.7, height: screenSize.height*0.35)
+		let image = NSData(base64EncodedString: quests[indexPath.row].image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+		cell.imageView.image = UIImage(data: image!)
         cell.imageView.sizeThatFits(CGSize(width: screenSize.width*0.8, height: screenSize.height*0.35))
 		cell.name.text = quests[indexPath.row].name
         cell.information.numberOfLines = 10

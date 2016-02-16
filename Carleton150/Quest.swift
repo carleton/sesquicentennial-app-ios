@@ -10,7 +10,9 @@ class Quest: NSObject {
     var name: String
     var questDescription: String
     var completionMessage: String
-
+	var creator: String
+	var image: String
+	
     /**
         Constructor for a Quest object. 
     
@@ -24,10 +26,12 @@ class Quest: NSObject {
             
             - completionMessage: The message that shows upon completion of the quest.
      */
-	init (wayPoints: [WayPoint], name: String, description: String, completionMessage: String) {
+	init (wayPoints: [WayPoint], name: String, description: String, completionMessage: String, creator: String, image: String) {
         self.wayPoints = wayPoints
         self.name = name
         self.questDescription = description
         self.completionMessage = completionMessage
+		self.creator = creator
+		self.image = image
     }
 }
