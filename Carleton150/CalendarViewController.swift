@@ -81,8 +81,6 @@ class CalendarViewController: UICollectionViewController {
      */
     func actOnCalendarUpdate(notification: NSNotification) {
         if let calendar = CalendarDataService.schedule {
-            print("received notification")
-            
             self.calendar = calendar
             let indexPath = NSIndexPath(forItem: 0, inSection: 0)
             let _ = CalendarDetailView()

@@ -17,11 +17,6 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
     @IBOutlet weak var longText: UILabel!
     @IBOutlet weak var latText: UILabel!
     
-    @IBAction func backFromModal(segue: UIStoryboardSegue) {
-        // Switch to the first tab (tabs are numbered 0, 1, 2)
-        self.tabBarController?.selectedIndex = 1
-    }
-    
     let locationManager = CLLocationManager()
     let currentLocationMarker = GMSMarker()
     var geofences = [Geotification]()
@@ -42,6 +37,14 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      */
     override func viewDidLoad() {
         
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if !defaults.boolForKey("hasSeenTutorial") {
+            self.displayTutorial()
+            defaults.setBool(true, forKey: "hasSeenTutorial")
+        }
+        defaults.synchronize()
+        
+        
         // set properties for the navigation bar
         Utils.setUpNavigationBar(self)
         
@@ -61,6 +64,10 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
         if showDebugButton {
             mapView.bringSubviewToFront(Debug)
         }
+    }
+    
+    func displayTutorial() {
+        // do nothing for now.
     }
     
     /**
