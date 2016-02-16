@@ -15,7 +15,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 
     override func viewDidLoad() {
         // add bottom border to the timeline title
-        titleView.addBottomBorderWithColor(UIColor(white: 0.9, alpha: 1.0), width: 1.5)
+        titleView.addBottomBorderWithColor(UIColor(white: 0.9, alpha: 0.95), width: 1.5)
        
         // set the dataSource and delegate for the timeline table
 		tableView.dataSource = self
