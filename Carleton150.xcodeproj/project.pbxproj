@@ -32,12 +32,15 @@
 		71340E5C1C5217C3007F9E2F /* CalendarDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71340E5B1C5217C3007F9E2F /* CalendarDataService.swift */; };
 		714C58B01C5ABF1600D6C33E /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C58AF1C5ABF1600D6C33E /* Endpoints.swift */; };
 		714DB8731C57DC6300770A44 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714DB8721C57DC6300770A44 /* CalendarViewController.swift */; };
+		71573EB41C707E5400B3E265 /* TimelineTextDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71573EB31C707E5400B3E265 /* TimelineTextDetailView.swift */; };
 		715AE47E1C4EADF200C8F0C9 /* WayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */; };
 		715AE4801C4EB08D00C8F0C9 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47F1C4EB08D00C8F0C9 /* Quest.swift */; };
 		717FE3E61BC7001D009CA507 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 717FE3E51BC7001D009CA507 /* Keys.plist */; };
 		7180A72E1C685DAA0080F121 /* TimelineTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7180A72D1C685DAA0080F121 /* TimelineTitleView.swift */; };
 		71C27A6C1C5E9312003126D7 /* QuestInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C27A6B1C5E9312003126D7 /* QuestInformationCell.swift */; };
 		71CC5F791BE944220065AA4C /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CC5F781BE944220065AA4C /* DataServiceTest.swift */; };
+		71F0C7C01C7273920063EDB1 /* TimelineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F0C7BF1C7273920063EDB1 /* TimelineDetailView.swift */; };
+		71FF6D371C72B2CD004A2B3D /* TimelineImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF6D361C72B2CD004A2B3D /* TimelineImageDetailView.swift */; };
 		DE91C2426C63D15AFB832D1D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B806A61E13CBDF524607BD9E /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +93,7 @@
 		71340E5B1C5217C3007F9E2F /* CalendarDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDataService.swift; sourceTree = "<group>"; };
 		714C58AF1C5ABF1600D6C33E /* Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		714DB8721C57DC6300770A44 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		71573EB31C707E5400B3E265 /* TimelineTextDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTextDetailView.swift; sourceTree = "<group>"; };
 		715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WayPoint.swift; sourceTree = "<group>"; };
 		715AE47F1C4EB08D00C8F0C9 /* Quest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		71676CC11BDED61700F1183D /* Carleton150-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Carleton150-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 		71CC5F6E1BE942CF0065AA4C /* Carleton150Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Carleton150Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		71CC5F721BE942CF0065AA4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71CC5F781BE944220065AA4C /* DataServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
+		71F0C7BF1C7273920063EDB1 /* TimelineDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineDetailView.swift; sourceTree = "<group>"; };
+		71FF6D361C72B2CD004A2B3D /* TimelineImageDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineImageDetailView.swift; sourceTree = "<group>"; };
 		A13C89B298A898D72EE69AED /* Pods_Carleton150Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carleton150Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B806A61E13CBDF524607BD9E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D510DD6D1D9B3B955D223FB4 /* Pods-Carleton150Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150Tests/Pods-Carleton150Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +156,9 @@
 				71340E591C5216C8007F9E2F /* HistoricalDataService.swift */,
 				6A30943F1BD9CD4600A16342 /* Geotification.swift */,
 				63036B321C4CB5A200193A78 /* Historical.storyboard */,
+				71FF6D361C72B2CD004A2B3D /* TimelineImageDetailView.swift */,
+				71573EB31C707E5400B3E265 /* TimelineTextDetailView.swift */,
+				71F0C7BF1C7273920063EDB1 /* TimelineDetailView.swift */,
 				7180A72D1C685DAA0080F121 /* TimelineTitleView.swift */,
 			);
 			name = Historical;
@@ -482,6 +491,7 @@
 				6357E6F31C4ED3BC00A28D00 /* (null) in Sources */,
 				710726FD1C5813650071FABC /* CalendarCell.swift in Sources */,
 				63291F381C5979730064C296 /* TimelineTableCells.swift in Sources */,
+				71FF6D371C72B2CD004A2B3D /* TimelineImageDetailView.swift in Sources */,
 				6368A59E1C505B0600D6B5B2 /* QuestCollectionViewCell.swift in Sources */,
 				71340E5C1C5217C3007F9E2F /* CalendarDataService.swift in Sources */,
 				715AE4801C4EB08D00C8F0C9 /* Quest.swift in Sources */,
@@ -494,6 +504,8 @@
 				6368A5981C50511300D6B5B2 /* QuestViewController.swift in Sources */,
 				71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */,
 				6368A59A1C50523C00D6B5B2 /* QuestCollectionViewController.swift in Sources */,
+				71573EB41C707E5400B3E265 /* TimelineTextDetailView.swift in Sources */,
+				71F0C7C01C7273920063EDB1 /* TimelineDetailView.swift in Sources */,
 				71C27A6C1C5E9312003126D7 /* QuestInformationCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
