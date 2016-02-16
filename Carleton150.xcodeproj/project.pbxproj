@@ -19,6 +19,7 @@
 		6368A5981C50511300D6B5B2 /* QuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6368A5971C50511300D6B5B2 /* QuestViewController.swift */; };
 		6368A59A1C50523C00D6B5B2 /* QuestCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6368A5991C50523C00D6B5B2 /* QuestCollectionViewController.swift */; };
 		6368A59E1C505B0600D6B5B2 /* QuestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6368A59D1C505B0600D6B5B2 /* QuestCollectionViewCell.swift */; };
+		63F5E9A01C72B60D00CFCB38 /* QuestPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F5E99F1C72B60D00CFCB38 /* QuestPlayingViewController.swift */; };
 		6A3094401BD9CD4600A16342 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A30943F1BD9CD4600A16342 /* Geotification.swift */; };
 		710726FB1C58001F0071FABC /* CalendarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710726FA1C58001F0071FABC /* CalendarLayout.swift */; };
 		710726FD1C5813650071FABC /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710726FC1C5813650071FABC /* CalendarCell.swift */; };
@@ -72,6 +73,7 @@
 		6368A5971C50511300D6B5B2 /* QuestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestViewController.swift; sourceTree = "<group>"; };
 		6368A5991C50523C00D6B5B2 /* QuestCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestCollectionViewController.swift; sourceTree = "<group>"; };
 		6368A59D1C505B0600D6B5B2 /* QuestCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestCollectionViewCell.swift; sourceTree = "<group>"; };
+		63F5E99F1C72B60D00CFCB38 /* QuestPlayingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestPlayingViewController.swift; sourceTree = "<group>"; };
 		6A30943F1BD9CD4600A16342 /* Geotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
 		710726FA1C58001F0071FABC /* CalendarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarLayout.swift; sourceTree = "<group>"; };
 		710726FC1C5813650071FABC /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */,
 				715AE47F1C4EB08D00C8F0C9 /* Quest.swift */,
 				6368A5971C50511300D6B5B2 /* QuestViewController.swift */,
+				63F5E99F1C72B60D00CFCB38 /* QuestPlayingViewController.swift */,
 				6368A5991C50523C00D6B5B2 /* QuestCollectionViewController.swift */,
 				6368A59D1C505B0600D6B5B2 /* QuestCollectionViewCell.swift */,
 				71340E571C5214A2007F9E2F /* QuestDataService.swift */,
@@ -474,6 +477,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63F5E9A01C72B60D00CFCB38 /* QuestPlayingViewController.swift in Sources */,
 				711704131BF3EB9E00566464 /* utils.swift in Sources */,
 				714DB8731C57DC6300770A44 /* CalendarViewController.swift in Sources */,
 				71340E5A1C5216C8007F9E2F /* HistoricalDataService.swift in Sources */,

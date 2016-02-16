@@ -27,9 +27,10 @@ class QuestCollectionViewController: UICollectionViewController, UICollectionVie
      */
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "questStartSegue" {
-			let nextCtrl = (segue.destinationViewController as! QuestViewController)
+			let nextCtrl = (segue.destinationViewController as! QuestPlayingViewController)
             let currentIndex = (self.collectionView?.visibleCells()[0] as! QuestCollectionViewCell).questIndex
 			nextCtrl.quest = self.quests[currentIndex]
+//			nextCtrl.setHintClueUI()
 		}
 	}
 	
