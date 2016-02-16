@@ -7,6 +7,7 @@ class TimelineTextDetailView: TimelineDetailView {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionText: UITextView!
    
+    
     /**
         Loads the view, darkens the background, and then sets the 
         data inside the view.

@@ -22,6 +22,7 @@ class CalendarViewController: UICollectionViewController {
         NSNotificationCenter
             .defaultCenter()
             .addObserver(self, selector: "actOnCalendarUpdate:", name: "carleton150.calendarUpdate", object: nil)
+        
     }
     
     /**
@@ -46,6 +47,14 @@ class CalendarViewController: UICollectionViewController {
         
         // set the deceleration rate for the event cell snap
         collectionView!.decelerationRate = UIScrollViewDecelerationRateFast
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if (segue.identifier == "showCalendarDetail") {
+			let detailViewController = (segue.destinationViewController as! CalendarDetailView)
+			detailViewController.parentView = self
+            detailViewController.setData(sender as! CalendarCell)
+		}
     }
     
     /**
@@ -76,6 +85,7 @@ class CalendarViewController: UICollectionViewController {
             
             self.calendar = calendar
             let indexPath = NSIndexPath(forItem: 0, inSection: 0)
+            let _ = CalendarDetailView()
             let _ = self.collectionView!
                 .dequeueReusableCellWithReuseIdentifier("CalendarCell", forIndexPath: indexPath) as! CalendarCell
         }
@@ -137,6 +147,7 @@ class CalendarViewController: UICollectionViewController {
         cell.currentImage = images[indexPath.item % 10]
         cell.locationLabel.text = calendar[indexPath.item]["location"]!
         cell.timeLabel.text = calendar[indexPath.item]["startTime"]!
+        cell.eventDescription = calendar[indexPath.item]["description"]!
         return cell
     }
    
