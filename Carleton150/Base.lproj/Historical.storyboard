@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Historical View Controller-->
@@ -425,10 +426,10 @@
             </objects>
             <point key="canvasLocation" x="2174" y="-555"/>
         </scene>
-        <!--Timeline Text Detail View-->
+        <!--Timeline Image Detail View-->
         <scene sceneID="KhV-GK-xer">
             <objects>
-                <viewController modalPresentationStyle="currentContext" id="y4n-Eb-NgZ" customClass="TimelineTextDetailView" customModule="Carleton150" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="currentContext" id="y4n-Eb-NgZ" customClass="TimelineImageDetailView" customModule="Carleton150" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QvN-d8-mcJ"/>
                         <viewControllerLayoutGuide type="bottom" id="xu0-CB-cZv"/>
@@ -459,8 +460,14 @@
                                         <color key="textColor" red="0.98823529409999999" green="0.83137254900000002" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mzy-6o-zrI">
+                                        <rect key="frame" x="24" y="64" width="516" height="221"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" priority="999" constant="516" id="Q79-0i-sVs"/>
+                                        </constraints>
+                                    </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="muT-DZ-StT">
-                                        <rect key="frame" x="24" y="65" width="516" height="479"/>
+                                        <rect key="frame" x="19" y="298" width="521" height="220.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -469,14 +476,18 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.1529411765" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="muT-DZ-StT" secondAttribute="trailing" constant="20" id="9HV-e3-sbd"/>
+                                    <constraint firstAttribute="trailing" secondItem="mzy-6o-zrI" secondAttribute="trailing" constant="20" id="9r9-vq-Xtb"/>
                                     <constraint firstItem="Mai-gl-4TJ" firstAttribute="leading" secondItem="9y2-Uv-euK" secondAttribute="leading" constant="24" id="At8-ZE-fQl"/>
-                                    <constraint firstItem="muT-DZ-StT" firstAttribute="top" secondItem="82l-4o-Jww" secondAttribute="bottom" constant="8" id="CmX-NG-I0L"/>
                                     <constraint firstItem="82l-4o-Jww" firstAttribute="top" secondItem="9y2-Uv-euK" secondAttribute="top" constant="15" id="Eef-Rv-fOM"/>
-                                    <constraint firstAttribute="bottom" secondItem="muT-DZ-StT" secondAttribute="bottom" constant="8" id="Ivk-UU-Rd6"/>
-                                    <constraint firstItem="muT-DZ-StT" firstAttribute="leading" secondItem="Mai-gl-4TJ" secondAttribute="leading" id="Lyy-fu-k0G"/>
+                                    <constraint firstItem="mzy-6o-zrI" firstAttribute="leading" secondItem="9y2-Uv-euK" secondAttribute="leading" constant="24" id="Hz3-gD-Q2f"/>
+                                    <constraint firstAttribute="bottom" secondItem="muT-DZ-StT" secondAttribute="bottom" constant="33" id="JO5-fx-vdB"/>
+                                    <constraint firstItem="mzy-6o-zrI" firstAttribute="height" secondItem="9y2-Uv-euK" secondAttribute="height" multiplier="0.4" id="QE1-sE-xkZ"/>
                                     <constraint firstAttribute="trailing" secondItem="82l-4o-Jww" secondAttribute="trailing" constant="20" id="TvC-rN-Q8R"/>
                                     <constraint firstItem="82l-4o-Jww" firstAttribute="centerY" secondItem="Mai-gl-4TJ" secondAttribute="centerY" id="c1k-Tb-NSq"/>
-                                    <constraint firstItem="82l-4o-Jww" firstAttribute="trailing" secondItem="muT-DZ-StT" secondAttribute="trailing" id="fEU-a3-QAN"/>
+                                    <constraint firstItem="muT-DZ-StT" firstAttribute="leading" secondItem="9y2-Uv-euK" secondAttribute="leading" constant="19" id="hXe-AN-jt3"/>
+                                    <constraint firstItem="mzy-6o-zrI" firstAttribute="top" secondItem="82l-4o-Jww" secondAttribute="bottom" constant="7" id="oAL-4E-ugJ"/>
+                                    <constraint firstItem="muT-DZ-StT" firstAttribute="top" secondItem="mzy-6o-zrI" secondAttribute="bottom" constant="13.5" id="oXu-gV-Sfa"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -489,8 +500,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dateLabel" destination="Mai-gl-4TJ" id="WWk-lo-VeF"/>
-                        <outlet property="descriptionText" destination="muT-DZ-StT" id="JWe-ZC-IIL"/>
+                        <outlet property="dateLabel" destination="Mai-gl-4TJ" id="aj4-kc-GZp"/>
+                        <outlet property="descriptionText" destination="muT-DZ-StT" id="Seg-XD-vUl"/>
+                        <outlet property="detailImage" destination="mzy-6o-zrI" id="MAy-fi-8ez"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T8c-by-wf0" userLabel="First Responder" sceneMemberID="firstResponder"/>

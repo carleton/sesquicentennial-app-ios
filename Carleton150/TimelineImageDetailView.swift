@@ -1,12 +1,13 @@
 //
-//  TimelineDetailView.swift
+//  TimelineImageDetailView.swift
 //  Carleton150
 
-class TimelineTextDetailView: TimelineDetailView {
-    
+class TimelineImageDetailView: TimelineDetailView {
+  
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var detailImage: UIImageView!
     @IBOutlet weak var descriptionText: UITextView!
-   
+    
     /**
         Loads the view, darkens the background, and then sets the 
         data inside the view.
@@ -18,6 +19,7 @@ class TimelineTextDetailView: TimelineDetailView {
         // sets the current date and description
         self.dateLabel.text = self.timestamp ?? ""
         self.descriptionText.text = self.eventDescription
+        self.detailImage.image = self.image
         
         // stops the text view from being edited
         self.descriptionText.editable = false
@@ -31,6 +33,7 @@ class TimelineTextDetailView: TimelineDetailView {
         super.viewDidLayoutSubviews()
         self.descriptionText.setContentOffset(CGPointZero, animated: false)
     }
+    
     
     /**
         When the X is pressed on the detail view, the 
