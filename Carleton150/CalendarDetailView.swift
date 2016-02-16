@@ -13,7 +13,11 @@ class CalendarDetailView: UIViewController {
     var parentView: UIViewController!
     var date: String!
     var eventDescription: String!
+    var eventLocation: String!
+    var eventTitle: String!
     
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var eventTitleLabel: UILabel!
     @IBOutlet weak var eventDescriptionText: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
    
@@ -32,6 +36,8 @@ class CalendarDetailView: UIViewController {
         // sets the current date and description
         self.dateLabel.text = self.date
         self.eventDescriptionText.text = self.eventDescription
+        self.eventTitleLabel.text = self.eventTitle
+        self.locationLabel.text = self.eventLocation
         
         // stops the text view from being edited
         self.eventDescriptionText.editable = false
@@ -45,6 +51,8 @@ class CalendarDetailView: UIViewController {
     func setData(calendarCell: CalendarCell) {
         self.date = calendarCell.timeLabel.text
         self.eventDescription = calendarCell.eventDescription
+        self.eventTitle = calendarCell.eventTitle.text
+        self.eventLocation = calendarCell.locationLabel.text
     }
     
 }
