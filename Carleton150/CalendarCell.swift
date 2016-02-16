@@ -43,6 +43,8 @@ class CalendarCell: UICollectionViewCell {
             }
         }
     }
+    
+    var eventDescription: String!
    
     /**
         Whenever the layout gets updated (which occurs as the user scrolls and invalidates

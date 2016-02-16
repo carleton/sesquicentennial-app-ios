@@ -48,6 +48,14 @@ class CalendarViewController: UICollectionViewController {
         collectionView!.decelerationRate = UIScrollViewDecelerationRateFast
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if (segue.identifier == "showCalendarDetail") {
+			let detailViewController = (segue.destinationViewController as! CalendarDetailView)
+			detailViewController.parentView = self
+            detailViewController.setData(sender as! CalendarCell)
+		}
+    }
+    
     /**
         Gets the image backgrounds for the calendar.
      
@@ -137,6 +145,7 @@ class CalendarViewController: UICollectionViewController {
         cell.currentImage = images[indexPath.item % 10]
         cell.locationLabel.text = calendar[indexPath.item]["location"]!
         cell.timeLabel.text = calendar[indexPath.item]["startTime"]!
+        cell.eventDescription = calendar[indexPath.item]["description"]!
         return cell
     }
    
