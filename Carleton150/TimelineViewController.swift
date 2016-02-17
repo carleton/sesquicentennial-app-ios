@@ -28,11 +28,17 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.estimatedRowHeight = 160.0
        
         // sort the event timeline by date
-        if landmarksInfo![selectedGeofence] == nil {
-            
+        if let unsortedTimeline = landmarksInfo?[selectedGeofence],
+               _ = unsortedTimeline[0]?["year"] {
+            timeline = unsortedTimeline.sort() {
+                event1, event2 in
+                return event1!["year"] > event2!["year"]
+            }
+        } else {
+            if let memories = landmarksInfo?[selectedGeofence] {
+                timeline = memories
+            }
         }
-        
-        timeline = landmarksInfo![selectedGeofence]!
 	}
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -107,8 +113,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
      */
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let selectedEntry = timeline[indexPath.row],
-            dataType = selectedEntry["type"] {
-                if dataType == "text" || dataType == "memories_text"{
+               dataType = selectedEntry["type"] {
+                if dataType == "text" {
                     let cell: TimelineTableCellTextOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
                     cell.setCellViewTraits()
                     cell.cellSummary = timeline[indexPath.row]?["summary"]
@@ -116,9 +122,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                     cell.cellTimestamp = timeline[indexPath.row]?["year"]
                     cell.selectionStyle = UITableViewCellSelectionStyle.None
                     return cell
-                }
-                //cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
-                else if dataType == "image" || dataType == "memories_image" {
+                    
+                } else if dataType == "image" {
                     let cell: TimelineTableCellImageOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellImageOnly", forIndexPath: indexPath) as! TimelineTableCellImageOnly
                     if let image = timeline[indexPath.row]?["data"],
                            data = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters) {
@@ -126,27 +131,26 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                     }
                     cell.setCellViewTraits()
                     cell.cellCaption = timeline[indexPath.row]?["caption"]
-                    
-                    // if we don't have summary, use uploader
-                    let summary = timeline[indexPath.row]?["summary"]
-                    if (summary != nil && summary != "")  {
-                        cell.cellSummary = summary
-                    } else {
-                        cell.cellSummary = timeline[indexPath.row]?["uploader"]
-                    }
-                    
-                    //if we dont have year, use the taken date
-                    let year = timeline[indexPath.row]?["year"]
-                    if (year != nil && year != "")  {
-                        cell.cellTimestamp = year
-                    } else {
-                        cell.cellTimestamp = timeline[indexPath.row]?["taken"]
-                    }
-                    
+                    cell.cellSummary = timeline[indexPath.row]?["summary"]
+                    cell.cellTimestamp = timeline[indexPath.row]?["year"]
                     cell.cellDescription = timeline[indexPath.row]?["desc"]
-                    //cell.cellTimestamp = timeline[indexPath.row]?["year"]
                     cell.selectionStyle = UITableViewCellSelectionStyle.None
                     return cell
+                    
+                } else if dataType == "memory" {
+                    let cell: TimelineTableCellImageOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellImageOnly", forIndexPath: indexPath) as! TimelineTableCellImageOnly
+                    if let image = timeline[indexPath.row]?["data"],
+                           data = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters) {
+                        cell.cellImage = UIImage(data: data)
+                    }
+                    cell.setCellViewTraits()
+                    cell.cellCaption = timeline[indexPath.row]?["caption"]
+                    cell.cellSummary = timeline[indexPath.row]?["uploader"]
+                    cell.cellTimestamp = timeline[indexPath.row]?["taken"]
+                    cell.cellDescription = timeline[indexPath.row]?["desc"]
+                    cell.selectionStyle = UITableViewCellSelectionStyle.None
+                    return cell
+                    
                 } else {
                     let cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
                     cell.setCellViewTraits()
@@ -158,6 +162,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 }
         }
         
-    return tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
+        return tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
     }
 }

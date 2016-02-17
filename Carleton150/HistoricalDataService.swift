@@ -79,30 +79,15 @@ final class HistoricalDataService {
         }
     }
     
-    //Dummy data class to make sure the rest of the path is working correctly
-    class func requestMemoriesContent_old(location: CLLocationCoordinate2D,
-        completion: (success: Bool, result: [Dictionary<String, String>?]) -> Void){
-            print("Gonna get moments!")
-            var testDictionary : Dictionary<String, String> = Dictionary()
-            var testDictionary2 : Dictionary<String, String> = Dictionary()
-            testDictionary["type"] = "moment_text"
-            testDictionary["summary"] = "Summary Text"
-            testDictionary["data"] = "Data Text"
-            testDictionary["desc"] = "Desc Text"
-            testDictionary["year"] = "2016"
-            testDictionary2["type"] = "moment_text"
-            testDictionary2["summary"] = "Summary Text"
-            testDictionary2["data"] = "Data Text"
-            testDictionary2["desc"] = "Desc Text"
-            testDictionary2["year"] = "2015"
-            print([testDictionary])
-            var arrayOfDicts = [Dictionary<String, String>?]()
-            arrayOfDicts = [testDictionary, testDictionary2]
-            completion(success: true , result: arrayOfDicts)
-            
-    }
-    
-    //this gets the moments data near us
+    /**
+        Request memories content on the server.
+
+        - Parameters:
+            - location: The current location of the user.
+            - completion: function that will perform the behavior
+                          that you want given a dictionary with all content
+                          from the server.
+     */
     class func requestMemoriesContent(location: CLLocationCoordinate2D,
         completion: (success: Bool, result: [Dictionary<String, String>?]) ->Void) {
             let parameters = [
@@ -110,13 +95,11 @@ final class HistoricalDataService {
                 "lng" : location.longitude,
                 "rad" : 1.0
             ]
-            //Nothing seems to execute after this point
-            //no print statements run, on succuess or fail? Idk how that's possible without throwing an error here
+            
             Alamofire.request(.POST, Endpoints.memoriesInfo, parameters: parameters, encoding: .JSON).responseJSON() {
                 (request, response, result) in
                 if let result = result.value {
                     let json = JSON(result)
-                    //array of memories
                     let answer = json["content"].arrayValue
                     if answer.count > 0 {
                         var memoriesEntries : [Dictionary<String, String>?] = []
@@ -124,19 +107,11 @@ final class HistoricalDataService {
                             // if the result has a defined type
                             if let image = answer[i]["image"].string {
                                 var result = Dictionary<String,AnyObject>()
-                                // add the type variable
                                 result["data"] = image
-                                // if just text returned
-                                if image == "" {
-                                    result["type"] = "memories_text"
-                                    //may need more code in the future to handle text
-                                } else if image != "" {
-                                    result["type"] = "memories_image"
-                                }
+                                result["type"] = "memory"
                                 let timestamp = answer[i]["timestamp"]
                                 if let desc = answer[i]["desc"].string, caption = answer[i]["caption"].string{
                                     result["desc"] = desc
-                                    
                                     result["caption"] = caption
                                     if let takenDate = timestamp["taken"].string {
                                         result["taken"] = takenDate
