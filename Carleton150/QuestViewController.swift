@@ -12,7 +12,7 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 
     override func viewDidLoad() {
 		
-//		Utils.setUpNavigationBar(self)
+		Utils.setUpNavigationBar(self)
 
 		// Load Quests Data From the Server
 		QuestDataService.requestQuest("", limit: 5, completion: { (success, result) -> Void in
@@ -27,7 +27,7 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 				let viewControllers = NSArray(object: startVC)
 				
 				self.pageViewController.setViewControllers(viewControllers as? [UIViewController], direction: .Forward, animated: true, completion: nil)
-//				self.pageViewController.view.frame = CGRectMake(0,30,self.view.frame.width, self.view.frame.size.height - 60)
+//				self.pageViewController.view.frame = CGRectMake(0,30,self.view.frame.width, self.view.frame.size.height * 0.90)
 				
 				self.addChildViewController(self.pageViewController)
 				self.view.addSubview(self.pageViewController.view)

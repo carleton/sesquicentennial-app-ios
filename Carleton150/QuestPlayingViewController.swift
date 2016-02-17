@@ -108,7 +108,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	the location manager.
 	*/
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-		let location: CLLocationCoordinate2D = (locations.last?.coordinate)!
+//		let location: CLLocationCoordinate2D = (locations.last?.coordinate)!
 	}
 	
 	/**
