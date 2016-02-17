@@ -10,16 +10,25 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 	var pageViewController: UIPageViewController!
 	var quests = [Quest]()
 
+	
+	/**
+	 Upon load of this view, start the location manager and
+	 set the camera on the map view to focus on Carleton.
+	*/
     override func viewDidLoad() {
 		
+		// setting up data persistence 
+		if NSUserDefaults.standardUserDefaults().arrayForKey("startedQuests") == nil {
+			NSUserDefaults.standardUserDefaults().setObject([String](), forKey: "startedQuests")
+		}
+		
 		Utils.setUpNavigationBar(self)
-
+		
 		// Load Quests Data From the Server
 		QuestDataService.requestQuest("", limit: 5, completion: { (success, result) -> Void in
 			if let quests = result {
-				
+		
 				self.quests = quests
-
 				self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
 				self.pageViewController.dataSource = self
 				
@@ -41,14 +50,19 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 	}
 	
 	/**
-	 * This Function Gets You The Appropriate View Controller
-	 *	
-	 *	Params:
-	 *		- index
-	 *
-	 *	Return:
-	 *		-
-	 **/
+		Prepares for a segue to the detail view for a particular point of
+		interest on the map.
+	
+		Parameters:
+			- segue:  The segue that was triggered by user. If this is not the
+			segue to the landmarkDetail view, then don't perform the
+			segue.
+	
+			- sender: The sender, in our case, will be one of the Google Maps markers
+			that was pressed, which will in turn have data associated with
+			it that will given to the landmark detail view.
+	
+	*/
 	func getViewControllerAtIndex(index: Int) -> QuestContentViewController {
 		// if we're at the edges of the page view
 		if ((self.quests.count == 0 ) || (index >= self.quests.count)) {
@@ -70,6 +84,20 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 	 * UIPageViewControllerDataSource Methods
 	**/
 	
+	/**
+	Prepares for a segue to the detail view for a particular point of
+	interest on the map.
+	
+	Parameters:
+	- segue:  The segue that was triggered by user. If this is not the
+	segue to the landmarkDetail view, then don't perform the
+	segue.
+	
+	- sender: The sender, in our case, will be one of the Google Maps markers
+	that was pressed, which will in turn have data associated with
+	it that will given to the landmark detail view.
+	
+	*/
 	func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
 		let vc = viewController as! QuestContentViewController
 		var index  = vc.pageIndex as Int
@@ -80,6 +108,20 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 		return self.getViewControllerAtIndex(index)
 	}
 	
+	/**
+	Prepares for a segue to the detail view for a particular point of
+	interest on the map.
+	
+	Parameters:
+	- segue:  The segue that was triggered by user. If this is not the
+	segue to the landmarkDetail view, then don't perform the
+	segue.
+	
+	- sender: The sender, in our case, will be one of the Google Maps markers
+	that was pressed, which will in turn have data associated with
+	it that will given to the landmark detail view.
+	
+	*/
 	func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
 		let vc = viewController as! QuestContentViewController
 		var index = vc.pageIndex as Int
@@ -92,11 +134,40 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 		}
 		return self.getViewControllerAtIndex(index)
 	}
+	
 
+	/**
+	Prepares for a segue to the detail view for a particular point of
+	interest on the map.
+	
+	Parameters:
+	- segue:  The segue that was triggered by user. If this is not the
+	segue to the landmarkDetail view, then don't perform the
+	segue.
+	
+	- sender: The sender, in our case, will be one of the Google Maps markers
+	that was pressed, which will in turn have data associated with
+	it that will given to the landmark detail view.
+	
+	*/
 	func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
 		return self.quests.count
 	}
 	
+	/**
+	Prepares for a segue to the detail view for a particular point of
+	interest on the map.
+	
+	Parameters:
+	- segue:  The segue that was triggered by user. If this is not the
+	segue to the landmarkDetail view, then don't perform the
+	segue.
+	
+	- sender: The sender, in our case, will be one of the Google Maps markers
+	that was pressed, which will in turn have data associated with
+	it that will given to the landmark detail view.
+	
+	*/
 	func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
 		return 0
 	}

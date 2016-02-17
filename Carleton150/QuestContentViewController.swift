@@ -22,7 +22,21 @@ class QuestContentViewController: UIViewController {
 	@IBOutlet weak var descTextView: UITextView!
 	@IBOutlet weak var startButton: UIButton!
 	@IBOutlet weak var imageView: UIImageView!
-
+	
+	/**
+	Prepares for a segue to the detail view for a particular point of
+	interest on the map.
+	
+	Parameters:
+	- segue:  The segue that was triggered by user. If this is not the
+	segue to the landmarkDetail view, then don't perform the
+	segue.
+	
+	- sender: The sender, in our case, will be one of the Google Maps markers
+	that was pressed, which will in turn have data associated with
+	it that will given to the landmark detail view.
+	
+	*/
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "questStartSegue" {
 			let nextCtrl = (segue.destinationViewController as! QuestPlayingViewController)
@@ -30,9 +44,28 @@ class QuestContentViewController: UIViewController {
 		}
 	}
 	
+	/**
+	Prepares for a segue to the detail view for a particular point of
+	interest on the map.
+	
+	Parameters:
+	- segue:  The segue that was triggered by user. If this is not the
+	segue to the landmarkDetail view, then don't perform the
+	segue.
+	
+	- sender: The sender, in our case, will be one of the Google Maps markers
+	that was pressed, which will in turn have data associated with
+	it that will given to the landmark detail view.
+	
+	*/
     override func viewDidLoad() {
-		
-//		Utils.setUpNavigationBar(self)
+		// Data Persistance
+		if let startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! NSArray! {
+			if (startedQuests.containsObject(titleText)) {
+				self.startButton.setTitle("Continue", forState: .Normal)
+				self.startButton.backgroundColor = UIColor.greenColor()
+			}
+		}
 		
 		// Quest Name
 		if let titleText = titleText {
@@ -56,7 +89,27 @@ class QuestContentViewController: UIViewController {
 		
     }
 
+	/**
+	Prepares for a segue to the detail view for a particular point of
+	interest on the map.
+	
+	Parameters:
+	- segue:  The segue that was triggered by user. If this is not the
+	segue to the landmarkDetail view, then don't perform the
+	segue.
+	
+	- sender: The sender, in our case, will be one of the Google Maps markers
+	that was pressed, which will in turn have data associated with
+	it that will given to the landmark detail view.
+	
+	*/
 	@IBAction func startAction(sender: AnyObject) {
+		if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! [String]! {
+			if (!startedQuests.contains(titleText)) {
+				startedQuests.append(titleText)
+				NSUserDefaults.standardUserDefaults().setObject(startedQuests,forKey: "startedQuests")
+			}
+		}
 	}
 	
 }
