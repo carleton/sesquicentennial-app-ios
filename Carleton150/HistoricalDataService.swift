@@ -112,6 +112,7 @@ final class HistoricalDataService {
             ]
             print(parameters)
             //Nothing seems to execute after this point
+            //no print statements run, on succuess or fail? Idk how that's possible without throwing an error here
             Alamofire.request(.POST, Endpoints.memoriesInfo, parameters: parameters, encoding: .JSON).responseJSON() {
                 (request, response, result) in
                 print("made the request")
