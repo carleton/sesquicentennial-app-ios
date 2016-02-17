@@ -70,8 +70,8 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hp0-PX-kfR">
-                                        <rect key="frame" x="18" y="79" width="93" height="30"/>
-                                        <state key="normal" title="Get Moments"/>
+                                        <rect key="frame" x="16" y="79" width="97" height="30"/>
+                                        <state key="normal" title="Get Memories"/>
                                         <connections>
                                             <action selector="getMoments:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oy2-LF-Ek5"/>
                                         </connections>

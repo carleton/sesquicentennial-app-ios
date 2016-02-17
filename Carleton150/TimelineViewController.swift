@@ -28,7 +28,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.estimatedRowHeight = 160.0
        
         // sort the event timeline by date
-        print(selectedGeofence)
+        if landmarksInfo![selectedGeofence] == nil {
+            
+        }
+        
         timeline = landmarksInfo![selectedGeofence]!
 	}
     
@@ -123,9 +126,25 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                     }
                     cell.setCellViewTraits()
                     cell.cellCaption = timeline[indexPath.row]?["caption"]
-                    cell.cellSummary = timeline[indexPath.row]?["summary"]
+                    
+                    // if we don't have summary, use uploader
+                    let summary = timeline[indexPath.row]?["summary"]
+                    if (summary != nil && summary != "")  {
+                        cell.cellSummary = summary
+                    } else {
+                        cell.cellSummary = timeline[indexPath.row]?["uploader"]
+                    }
+                    
+                    //if we dont have year, use the taken date
+                    let year = timeline[indexPath.row]?["year"]
+                    if (year != nil && year != "")  {
+                        cell.cellTimestamp = year
+                    } else {
+                        cell.cellTimestamp = timeline[indexPath.row]?["taken"]
+                    }
+                    
                     cell.cellDescription = timeline[indexPath.row]?["desc"]
-                    cell.cellTimestamp = timeline[indexPath.row]?["year"]
+                    //cell.cellTimestamp = timeline[indexPath.row]?["year"]
                     cell.selectionStyle = UITableViewCellSelectionStyle.None
                     return cell
                 } else {

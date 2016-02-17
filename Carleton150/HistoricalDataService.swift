@@ -108,14 +108,12 @@ final class HistoricalDataService {
             let parameters = [
                 "lat" : location.latitude,
                 "lng" : location.longitude,
-                "rad" : 0.1
+                "rad" : 1.0
             ]
-            print(parameters)
             //Nothing seems to execute after this point
             //no print statements run, on succuess or fail? Idk how that's possible without throwing an error here
             Alamofire.request(.POST, Endpoints.memoriesInfo, parameters: parameters, encoding: .JSON).responseJSON() {
                 (request, response, result) in
-                print("made the request")
                 if let result = result.value {
                     let json = JSON(result)
                     //array of memories
@@ -123,12 +121,11 @@ final class HistoricalDataService {
                     if answer.count > 0 {
                         var memoriesEntries : [Dictionary<String, String>?] = []
                         for i in 0 ..< answer.count {
-                            print("Parsing a memory")
                             // if the result has a defined type
                             if let image = answer[i]["image"].string {
                                 var result = Dictionary<String,AnyObject>()
                                 // add the type variable
-                                result["image"] = image
+                                result["data"] = image
                                 // if just text returned
                                 if image == "" {
                                     result["type"] = "memories_text"
@@ -137,12 +134,15 @@ final class HistoricalDataService {
                                     result["type"] = "memories_image"
                                 }
                                 let timestamp = answer[i]["timestamp"]
-                                if let desc = answer[i]["desc"].string, data = answer[i]["data"].string, caption = answer[i]["caption"].string{
+                                if let desc = answer[i]["desc"].string, caption = answer[i]["caption"].string{
                                     result["desc"] = desc
+                                    
                                     result["caption"] = caption
-                                    result["data"] = data
                                     if let takenDate = timestamp["taken"].string {
                                         result["taken"] = takenDate
+                                        let dateString = takenDate.characters.split{$0 == " "}.map(String.init)
+                                        result["year"] = dateString[0]
+                                        print(result["year"])
                                     }
                                     if let postedDate = timestamp["posted"].string {
                                         result["posted"] = postedDate
@@ -174,7 +174,6 @@ final class HistoricalDataService {
                             }
                         }
                         print("think I've got the answer!")
-                        print(memoriesEntries)
                         completion(success: true, result: memoriesEntries)
                     } else {
                         print("No results were found.")
