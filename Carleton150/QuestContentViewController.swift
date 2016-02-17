@@ -11,10 +11,11 @@ import UIKit
 class QuestContentViewController: UIViewController {
 
 	var pageIndex: Int!
-	var titleText: String!
-	var image: String!
-	var descText: String!
-	var buttonText: String!
+	
+//	var titleText: String!
+//	var image: String!
+//	var descText: String!
+//	var buttonText: String!
 	
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var descTextView: UITextView!
@@ -25,6 +26,38 @@ class QuestContentViewController: UIViewController {
     }
 
 	@IBAction func startAction(sender: AnyObject) {
+	}
+	
+	var titleText: String? {
+		didSet {
+			if let titleText = titleText {
+				self.nameLabel.text = titleText
+			} else {
+				self.nameLabel.text = ""
+			}
+		}
+	}
+	
+	var descText: String? {
+		didSet {
+			if let descText = descText {
+				self.descTextView.text = descText
+			} else {
+				self.descTextView.text = ""
+			}
+			self.descTextView.editable = false
+		}
+	}
+	
+	var image: String? {
+		didSet {
+			if let image = self.image {
+				self.imageView.image = UIImage(data: NSData(base64EncodedString: image, options: .IgnoreUnknownCharacters)!)
+			} else {
+				// this will do something
+			}
+		}
+
 	}
 	
 }
