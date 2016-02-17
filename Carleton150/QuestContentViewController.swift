@@ -16,11 +16,19 @@ class QuestContentViewController: UIViewController {
 	var image: String!
 	var descText: String!
 	var buttonText: String!
+	var quest: Quest!
 	
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var descTextView: UITextView!
 	@IBOutlet weak var startButton: UIButton!
 	@IBOutlet weak var imageView: UIImageView!
+
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if segue.identifier == "questStartSegue" {
+			let nextCtrl = (segue.destinationViewController as! QuestPlayingViewController)
+			nextCtrl.quest = self.quest
+		}
+	}
 	
     override func viewDidLoad() {
 		

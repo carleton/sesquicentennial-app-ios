@@ -8,9 +8,7 @@ import UIKit
 class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 	
 	var pageViewController: UIPageViewController!
-	
 	var quests = [Quest]()
-	var curCellIndex: Int = 0
 
     override func viewDidLoad() {
 		
@@ -29,7 +27,7 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 				let viewControllers = NSArray(object: startVC)
 				
 				self.pageViewController.setViewControllers(viewControllers as? [UIViewController], direction: .Forward, animated: true, completion: nil)
-				self.pageViewController.view.frame = CGRectMake(0,30,self.view.frame.width, self.view.frame.size.height - 60)
+//				self.pageViewController.view.frame = CGRectMake(0,30,self.view.frame.width, self.view.frame.size.height - 60)
 				
 				self.addChildViewController(self.pageViewController)
 				self.view.addSubview(self.pageViewController.view)
@@ -41,7 +39,6 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 		});
 		
 	}
-	
 	
 	/**
 	 * This Function Gets You The Appropriate View Controller
@@ -64,6 +61,7 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 		vc.titleText = quests[index].name
 		vc.descText = quests[index].questDescription
 		vc.image = quests[index].image
+		vc.quest = quests[index]
 		return vc
 	}
 	
