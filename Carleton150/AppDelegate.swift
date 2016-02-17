@@ -35,10 +35,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
        
         // gets the calendar for the first time
         CalendarDataService.updateEvents()
-        
+		
+		customizePageViews()
+		
         return true
     }
-    
+	
+	/**
+	 * Performs Ui changes to page views
+	 */
+	func customizePageViews() {
+		let pageController = UIPageControl.appearance()
+		pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
+		pageController.currentPageIndicatorTintColor = UIColor.blackColor()
+		pageController.backgroundColor = UIColor.whiteColor()
+	}
+	
     /**
         Performs UI changes to the primary top navigation bar in the app.
      */

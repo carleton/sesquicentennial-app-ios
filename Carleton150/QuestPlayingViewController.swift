@@ -32,7 +32,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	}
 	
     override func viewDidLoad() {
-		
+		print(quest)
 		// set properties for the navigation bar
 		Utils.setUpNavigationBar(self)
 		
