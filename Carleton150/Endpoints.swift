@@ -48,4 +48,10 @@ final class Endpoints {
 			return self.hostServerURL + "/quest_re"
         }
     }
+    
+    static var memoriesInfo: String {
+        get {
+           return self.hostServerURL + "/memories_fetch"
+        }
+    }
 }

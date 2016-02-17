@@ -9,8 +9,11 @@ import MapKit
 
 var selectedGeofence = ""
 var landmarksInfo : Dictionary<String,[Dictionary<String, String>?]>? = Dictionary()
+var memoriesData: [Dictionary<String, String>?] = [Dictionary<String, String>()]
 
 class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GMSMapViewDelegate {
+    
+    @IBOutlet weak var momentButton: UIButton!
 
     @IBOutlet weak var mapView: GMSMapView!
 	@IBOutlet weak var Debug: UIButton!
@@ -30,10 +33,11 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 	var debugMode = false
 	var updateLocation = true
     
+    
     /**
         Set to true to show the debug button for testing, set to false to hide
      */
-    let showDebugButton = false
+    let showDebugButton = true
     
 	
     /**
@@ -60,9 +64,71 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
         // brings subviews in front of the map.
         if showDebugButton {
             mapView.bringSubviewToFront(Debug)
+            mapView.bringSubviewToFront(momentButton)
         }
     }
     
+    @IBAction func getMoments(sender: AnyObject) {
+        requestMomentData()
+        print("Run the segue")
+        self.performSegueWithIdentifier("showTimeline", sender: sender)
+        //run segue to however we want to display moments
+    }
+    
+    func requestMomentData(){
+        //print(locationManager.location?.coordinate)
+        if let location : CLLocation = locationManager.location {
+            let location2d : CLLocationCoordinate2D = location.coordinate
+            print(location2d)
+        //CLLocationCoordinate2D(latitude : (latText.text as? CLLocationDegrees)!, longitude: (longText.text as? CLLocationDegrees)!)
+            
+            HistoricalDataService.requestMemoriesContent(location2d,
+                completion: { (success: Bool, result: [Dictionary<String, String>?]) -> Void in
+                    print("Returned from data service")
+                    if (success) {
+                        print("Got the info!")
+                        memoriesData = (result)
+                        print(memoriesData)
+                        landmarksInfo!["Memories"] = memoriesData
+                        /**
+                        landmarksInfo![geofence.identifier] = result
+                        var position = CLLocationCoordinate2DMake(44.46013,-93.15470)
+                        for (var i = 0; i < self.geofences.count; i++) {
+                            if (self.geofences[i].identifier == geofence.identifier) {
+                                position = self.geofences[i].coordinate
+                            }
+                        }
+                        let marker = GMSMarker(position: position)
+                        marker.title = geofence.identifier
+                        marker.map = self.mapView
+                        marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
+                        self.mapView.selectedMarker = marker
+                        self.infoMarkers.append(marker)
+                        geofence.active = true;
+                    } else {
+                        print("Didn't get data. Oops!")
+                        **/
+                    } else {
+                        print("Failed to get info")
+                    }
+            })
+        }
+
+    }
+    /**
+    func requestMomentData(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+        let location: CLLocation = locations.last!
+        
+        let position = CLLocationCoordinate2D(latitude: location.coordinate.latitude,longitude: location.coordinate.longitude)
+        HistoricalDataService.requestNearbyMoments(position, completion:
+            { (success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
+                if (success) {
+                    
+                } else {
+                    
+                }
+        })
+    } **/
     /**
         Prepares for a segue to the detail view for a particular point of
         interest on the map.
@@ -78,7 +144,13 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if (segue.identifier == "showTimeline") {
-			selectedGeofence = (sender?.title)!
+            if (sender?.title)! != nil {
+                selectedGeofence = (sender?.title)!
+            } else {
+                selectedGeofence = "Memories"
+            }
+            
+                //(sender?.title)!
 			let yourNextViewController = (segue.destinationViewController as! TimelineViewController)
 			yourNextViewController.mapCtrl = self
 		}
@@ -111,7 +183,6 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 			debugMode = true
 		}
 	}
-
 	
     /**
         The function immediately called by the location manager that 

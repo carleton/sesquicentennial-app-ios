@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vkZ-Zi-z9j">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vkZ-Zi-z9j">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -69,6 +69,13 @@
                                             <action selector="toggleDebug:" destination="BYZ-38-t0r" eventType="touchDown" id="vLK-zj-Rco"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hp0-PX-kfR">
+                                        <rect key="frame" x="18" y="79" width="93" height="30"/>
+                                        <state key="normal" title="Get Moments"/>
+                                        <connections>
+                                            <action selector="getMoments:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oy2-LF-Ek5"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -96,6 +103,7 @@
                         <outlet property="latText" destination="H6Q-fC-NPG" id="2Or-sG-rhM"/>
                         <outlet property="longText" destination="48n-Vv-TH8" id="Vor-sb-xVu"/>
                         <outlet property="mapView" destination="Wzj-au-GJO" id="q87-rK-Kei"/>
+                        <outlet property="momentButton" destination="hp0-PX-kfR" id="8uw-4T-2OV"/>
                         <segue destination="2Ed-yO-PXD" kind="presentation" identifier="showTimeline" modalPresentationStyle="overFullScreen" id="s5d-X5-My7"/>
                     </connections>
                 </viewController>
@@ -158,7 +166,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geofence" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="egf-Dy-hZb">
-                                        <rect key="frame" x="56" y="15" width="487.5" height="21"/>
+                                        <rect key="frame" x="56" y="15" width="488" height="21"/>
                                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="22"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -403,7 +411,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XY1-Tn-Xxn">
-                                        <rect key="frame" x="24" y="23.5" width="100" height="25"/>
+                                        <rect key="frame" x="24" y="24" width="100" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="v0M-rV-eat"/>
                                         </constraints>
@@ -475,7 +483,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mai-gl-4TJ">
-                                        <rect key="frame" x="24" y="23.5" width="100" height="25"/>
+                                        <rect key="frame" x="24" y="24" width="100" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="NXx-I0-m9T"/>
                                         </constraints>
@@ -490,7 +498,7 @@
                                         </constraints>
                                     </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="muT-DZ-StT">
-                                        <rect key="frame" x="19" y="298" width="521" height="220.5"/>
+                                        <rect key="frame" x="19" y="298" width="521" height="221"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
