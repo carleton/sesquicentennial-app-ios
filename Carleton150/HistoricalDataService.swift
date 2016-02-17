@@ -90,131 +90,57 @@ final class HistoricalDataService {
      */
     class func requestMemoriesContent(location: CLLocationCoordinate2D,
         completion: (success: Bool, result: [Dictionary<String, String>?]) ->Void) {
-            let parameters = [
-                "lat" : location.latitude,
-                "lng" : location.longitude,
-                "rad" : 1.0
-            ]
             
-            Alamofire.request(.POST, Endpoints.memoriesInfo, parameters: parameters, encoding: .JSON).responseJSON() {
-                (request, response, result) in
-                if let result = result.value {
-                    let json = JSON(result)
-                    let answer = json["content"].arrayValue
-                    if answer.count > 0 {
-                        var memoriesEntries : [Dictionary<String, String>?] = []
-                        for i in 0 ..< answer.count {
-                            // if the result has a defined type
-                            if let image = answer[i]["image"].string {
-                                var result = Dictionary<String,AnyObject>()
-                                result["data"] = image
-                                result["type"] = "memory"
-                                let timestamp = answer[i]["timestamp"]
-                                if let desc = answer[i]["desc"].string, caption = answer[i]["caption"].string{
-                                    result["desc"] = desc
-                                    result["caption"] = caption
-                                    if let takenDate = timestamp["taken"].string {
-                                        result["taken"] = takenDate
-                                        let dateString = takenDate.characters.split{$0 == " "}.map(String.init)
-                                        result["year"] = dateString[0]
-                                        print(result["year"])
-                                    }
-                                    if let postedDate = timestamp["posted"].string {
-                                        result["posted"] = postedDate
-                                    }
-                                }
-                                if let id = answer[i]["id"].string {
-                                    result["id"] = id
-                                }
-                                if let uploader = answer[i]["uploader"].string {
-                                    result["uploader"] = uploader
-                                }
-
-                                // checking for optional data
-                                // do we have more than year?
-                                if let year = answer[i]["year"].number {
-                                    result["year"] = year.stringValue
-                                }
-                                if let month = answer[i]["month"].string {
-                                    result["month"] = month
-                                }
-                                if let day = answer[i]["day"].string {
-                                    result["day"] = day
-                                }
-                                memoriesEntries.append(result as? Dictionary<String, String>)
-                            } else {
-                                print("Data returned at endpoint: \(Endpoints.memoriesInfo) is malformed. Geofence name: moments")
-                                completion(success: false, result: [])
-                                return
-                            }
+        let parameters = [
+            "lat" : location.latitude,
+            "lng" : location.longitude,
+            "rad" : 1.0
+        ]
+        
+        Alamofire.request(.POST, Endpoints.memoriesInfo, parameters: parameters, encoding: .JSON).responseJSON() {
+            (request, response, result) in
+            if let result = result.value {
+                let json = JSON(result)
+                let answer = json["content"].arrayValue
+                if answer.count > 0 {
+                    var memoriesEntries : [Dictionary<String, String>?] = []
+                    for i in 0 ..< answer.count {
+                        if let image = answer[i]["image"].string,
+                               caption = answer[i]["caption"].string,
+                               desc = answer[i]["desc"].string,
+                               uploader = answer[i]["uploader"].string,
+                               takenTimestamp = answer[i]["timestamps"]["taken"].string,
+                               postedTimestamp = answer[i]["timestamps"]["posted"].string {
+                                
+                            var result: Dictionary<String, String> = Dictionary()
+                            result["data"] = image
+                            result["type"] = "memory"
+                            result["desc"] = desc
+                            result["caption"] = caption
+                            result["uploader"] = uploader
+                            result["taken"] = takenTimestamp
+                            let dateString = takenTimestamp
+                                                .characters.split{$0 == " "}.map(String.init)
+                            result["year"] = dateString[0]
+                            result["posted"] = postedTimestamp
+                            memoriesEntries.append(result)
+                        } else {
+                            print("Data returned at endpoint: \(Endpoints.memoriesInfo) is malformed.")
+                            completion(success: false, result: [])
+                            return
                         }
-                        print("think I've got the answer!")
-                        completion(success: true, result: memoriesEntries)
-                    } else {
-                        print("No results were found.")
-                        completion(success: false, result: [])
                     }
+                    completion(success: true, result: memoriesEntries)
                 } else {
-                    print("Connection to server failed.")
+                    print("No results were found.")
                     completion(success: false, result: [])
                 }
+            } else {
+                print("Connection to server failed.")
+                completion(success: false, result: [])
             }
+        }
     }
-
-        
-        /**(location: CLLocationCoordinate2D,
-        completion: (success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]?) -> Void) {
-            let parameters = [
-                "moments": [
-                    "location" : [
-                        "lat" : location.latitude,
-                        "lng" : location.longitude
-                    ],
-                    //"was there supposed to be a " ' " here or was it a typo?
-                    "radius": 2000
-                ]
-            ]
-            
-            
-            
-            Alamofire.request(.POST, Endpoints.moments, parameters: parameters, encoding: .JSON).responseJSON() {
-                (request, response, result) in
-                var final_result: [(name: String, radius: Int, center: CLLocationCoordinate2D)] = []
-                
-                if let result = result.value {
-                    let json = JSON(result)
-                    if let answer = json["content"].array {
-                        for i in 0 ..< answer.count {
-                            let location = answer[i]["moment"]["location"]
-                            if let momentName = answer[i]["name"].string,
-                                rad = answer[i]["moment"]["radius"].int,
-                                latitude = location["lat"].double,
-                                longitude = location["lng"].double {
-                                    
-                                    let center = CLLocationCoordinate2D(
-                                        latitude: latitude,
-                                        longitude: longitude
-                                    )
-                                    final_result.append((name: momentName, radius: rad, center: center))
-                                    
-                            } else {
-                                print("Data returned at endpoint: \(Endpoints.geofences) is malformed.")
-                                completion(success: false, result: nil)
-                                return
-                            }
-                        }
-                        completion(success: true, result: final_result)
-                    } else {
-                        print("No results were found.")
-                        completion(success: false, result: nil)
-                    }
-                } else {
-                    print("Connection to server failed.")
-                    completion(success: false, result: nil)
-                }
-            }
-    }**/
-
     
     /**
         Request nearby geofences based on current location.
@@ -238,8 +164,6 @@ final class HistoricalDataService {
             ]
         ]
             
-        
-        
         Alamofire.request(.POST, Endpoints.geofences, parameters: parameters, encoding: .JSON).responseJSON() {
             (request, response, result) in
             var final_result: [(name: String, radius: Int, center: CLLocationCoordinate2D)] = []

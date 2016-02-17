@@ -28,15 +28,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.estimatedRowHeight = 160.0
        
         // sort the event timeline by date
-        if let unsortedTimeline = landmarksInfo?[selectedGeofence],
-               _ = unsortedTimeline[0]?["year"] {
+        if let unsortedTimeline = landmarksInfo?[selectedGeofence] {
             timeline = unsortedTimeline.sort() {
                 event1, event2 in
                 return event1!["year"] > event2!["year"]
-            }
-        } else {
-            if let memories = landmarksInfo?[selectedGeofence] {
-                timeline = memories
             }
         }
 	}
@@ -146,7 +141,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                     cell.setCellViewTraits()
                     cell.cellCaption = timeline[indexPath.row]?["caption"]
                     cell.cellSummary = timeline[indexPath.row]?["uploader"]
-                    cell.cellTimestamp = timeline[indexPath.row]?["taken"]
+                    cell.cellTimestamp = timeline[indexPath.row]?["year"]
                     cell.cellDescription = timeline[indexPath.row]?["desc"]
                     cell.selectionStyle = UITableViewCellSelectionStyle.None
                     return cell

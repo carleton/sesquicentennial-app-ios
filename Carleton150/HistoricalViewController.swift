@@ -78,15 +78,13 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
     }
     
     func requestMomentData(){
-        //print(locationManager.location?.coordinate)
-        if let location : CLLocation = locationManager.location {
-            let location2d : CLLocationCoordinate2D = location.coordinate
-        //CLLocationCoordinate2D(latitude : (latText.text as? CLLocationDegrees)!, longitude: (longText.text as? CLLocationDegrees)!)
-            HistoricalDataService.requestMemoriesContent(location2d,
+        if let location: CLLocation = locationManager.location {
+            let currentLocation: CLLocationCoordinate2D = location.coordinate
+            HistoricalDataService.requestMemoriesContent(currentLocation,
                 completion: { (success: Bool, result: [Dictionary<String, String>?]) -> Void in
                     if (success) {
                         memoriesData = (result)
-                        landmarksInfo!["Memories"] = memoriesData
+                        landmarksInfo!["Memories Near You"] = memoriesData
                         self.momentButton.enabled = true
                     } else {
                         print("Failed to get info")
@@ -114,15 +112,13 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if (segue.identifier == "showTimeline") {
-            if (sender?.title)! != nil {
-                selectedGeofence = (sender?.title)!
+            if let geofenceTitle = (sender?.title)! {
+                selectedGeofence = geofenceTitle
             } else {
-                selectedGeofence = "Memories"
+                selectedGeofence = "Memories Near You"
             }
-            
-                //(sender?.title)!
-			let yourNextViewController = (segue.destinationViewController as! TimelineViewController)
-			yourNextViewController.mapCtrl = self
+			let destinationController = (segue.destinationViewController as! TimelineViewController)
+			destinationController.mapCtrl = self
 		}
     }
 
