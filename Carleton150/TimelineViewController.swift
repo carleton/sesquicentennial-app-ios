@@ -10,6 +10,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	@IBOutlet weak var geofenceName: UILabel!
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
+    @IBOutlet weak var uploadButton: UIButton!
     
 	var mapCtrl: HistoricalViewController!
     var timeline: [Dictionary<String, String>?] = []
@@ -38,7 +39,11 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                     return event1!["year"] > event2!["year"]
                 }
             }
+            // hide the upload button if in timeline
+            self.uploadButton.hidden = true
+            
         } else {
+            // start loading animation while getting memories
             loadingView.startAnimating()
         }
 	}
@@ -51,7 +56,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 		}
     }
     
-    func requestMomentData() {
+    func requestMemories() {
         if let location: CLLocation = self.mapCtrl.locationManager.location {
             let currentLocation: CLLocationCoordinate2D = location.coordinate
             HistoricalDataService.requestMemoriesContent(currentLocation) { success, result in

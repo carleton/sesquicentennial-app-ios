@@ -100,7 +100,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 			let destinationController = (segue.destinationViewController as! TimelineViewController)
 			destinationController.mapCtrl = self
             destinationController.showMemories = true
-            destinationController.requestMomentData()
+            destinationController.requestMemories()
         }
     }
 
