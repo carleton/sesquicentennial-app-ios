@@ -12,6 +12,12 @@ class MemoryUploadView: UIViewController,
     let imagePicker = UIImagePickerController()
     var image: UIImage?
     
+    @IBAction func dismissKeyboard(sender: AnyObject) {
+        nameField.resignFirstResponder()
+        titleField.resignFirstResponder()
+        descriptionTextView.resignFirstResponder()
+    }
+    
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var titleField: UITextField!

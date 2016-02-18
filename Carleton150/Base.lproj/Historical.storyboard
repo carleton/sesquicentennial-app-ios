@@ -593,7 +593,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sXg-8e-mNG">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sXg-8e-mNG" customClass="UIControl">
                                 <rect key="frame" x="20" y="28" width="560" height="552"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBb-Ac-w2W">
@@ -707,6 +707,9 @@
                                     <constraint firstItem="6xn-gR-3AG" firstAttribute="top" secondItem="iL7-de-XDi" secondAttribute="bottom" constant="5" id="vOg-iq-zJ2"/>
                                     <constraint firstAttribute="bottom" secondItem="0ED-BL-F0I" secondAttribute="bottom" constant="40" id="wLf-dQ-jrE"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="dismissKeyboard:" destination="2cR-s8-uad" eventType="touchUpInside" id="zAV-0j-PUO"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
