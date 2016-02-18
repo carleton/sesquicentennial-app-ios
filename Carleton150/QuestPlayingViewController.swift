@@ -15,7 +15,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	let locationManager = CLLocationManager()
 	
 	var quest: Quest!
-	var currentWayPointIndex: Int = 0 // @todo: Load this up from Core Data
+	var currentWayPointIndex: Int! // @todo: Load this up from Core Data
 	var clueShown: Bool = true
 	
 	@IBOutlet weak var questMapView: GMSMapView!
@@ -32,7 +32,15 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	}
 	
     override func viewDidLoad() {
-		print(quest)
+		
+		if let startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
+			if let curSavedIndex = startedQuests[self.quest.name] as Int! {
+				self.currentWayPointIndex = curSavedIndex
+			} else {
+				self.currentWayPointIndex = 0
+			}
+		}
+
 		// set properties for the navigation bar
 		Utils.setUpNavigationBar(self)
 		
@@ -67,8 +75,8 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 			presentViewController(alert, animated: true) { () -> Void in }
 		}
 	}
+	
 	func showClueHint() {
-		
 		if (clueShown) {
 			clueHintText.text = quest.wayPoints[currentWayPointIndex].clue["text"] as? String
 			clueHintToggle.setTitle("Show Hint", forState: UIControlState.Normal)
@@ -95,22 +103,6 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		
 	}
 
-	/**
-	Performs a distance check from the waypoint
-	to show the amount of progress to the goal
-	location.
-	
-	Parameters:
-	- manager:   The location manager that was started
-	within this module.
-	
-	- locations: The past few locations that were detected by
-	the location manager.
-	*/
-	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//		let location: CLLocationCoordinate2D = (locations.last?.coordinate)!
-	}
-	
 	/**
 	The function immediately called by the location manager that
 	begins keeping track of location to determine if the user is

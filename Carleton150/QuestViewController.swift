@@ -12,19 +12,21 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 
 	
 	/**
-	 Upon load of this view, start the location manager and
-	 set the camera on the map view to focus on Carleton.
+	 Upon load setup the persistent storage if it has not been setup already, request data for
+	 quests. Once the data has been loaded, create the first page of the paged layout
 	*/
     override func viewDidLoad() {
 		
 		// setting up data persistence 
 		if NSUserDefaults.standardUserDefaults().arrayForKey("startedQuests") == nil {
-			NSUserDefaults.standardUserDefaults().setObject([String](), forKey: "startedQuests")
+			NSUserDefaults.standardUserDefaults().setObject(Dictionary<String,Int>(), forKey: "startedQuests")
 		}
 		
 		Utils.setUpNavigationBar(self)
 		
-		// Load Quests Data From the Server
+		/**
+		 * Request data from the server
+		 */
 		QuestDataService.requestQuest("", limit: 5, completion: { (success, result) -> Void in
 			if let quests = result {
 		
@@ -36,31 +38,24 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 				let viewControllers = NSArray(object: startVC)
 				
 				self.pageViewController.setViewControllers(viewControllers as? [UIViewController], direction: .Forward, animated: true, completion: nil)
-//				self.pageViewController.view.frame = CGRectMake(0,30,self.view.frame.width, self.view.frame.size.height * 0.90)
-				
 				self.addChildViewController(self.pageViewController)
 				self.view.addSubview(self.pageViewController.view)
 				self.pageViewController.didMoveToParentViewController(self)
 				
 			} else {
-				// handle error gracefully here
+				// handle error gracefully here i.e. create a button that allows you to make the request again
 			}
 		});
 		
 	}
 	
 	/**
-		Prepares for a segue to the detail view for a particular point of
-		interest on the map.
+		Fetches the appropriate UIViewController when swiping between pages. It creates a new
+		instance of QuestContentViewController and sets the quest name, description, image and
+		passes the quest to the QuestContentViewController
 	
 		Parameters:
-			- segue:  The segue that was triggered by user. If this is not the
-			segue to the landmarkDetail view, then don't perform the
-			segue.
-	
-			- sender: The sender, in our case, will be one of the Google Maps markers
-			that was pressed, which will in turn have data associated with
-			it that will given to the landmark detail view.
+			- index: integer used to fetch data from the quests array
 	
 	*/
 	func getViewControllerAtIndex(index: Int) -> QuestContentViewController {
@@ -85,18 +80,17 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 	**/
 	
 	/**
-	Prepares for a segue to the detail view for a particular point of
-	interest on the map.
-	
-	Parameters:
-	- segue:  The segue that was triggered by user. If this is not the
-	segue to the landmarkDetail view, then don't perform the
-	segue.
-	
-	- sender: The sender, in our case, will be one of the Google Maps markers
-	that was pressed, which will in turn have data associated with
-	it that will given to the landmark detail view.
-	
+		Prepares for a segue to the detail view for a particular point of
+		interest on the map.
+		
+		Parameters:
+		- segue:  The segue that was triggered by user. If this is not the
+		segue to the landmarkDetail view, then don't perform the
+		segue.
+		
+		- sender: The sender, in our case, will be one of the Google Maps markers
+		that was pressed, which will in turn have data associated with
+		it that will given to the landmark detail view.
 	*/
 	func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
 		let vc = viewController as! QuestContentViewController

@@ -59,14 +59,6 @@ class QuestContentViewController: UIViewController {
 	
 	*/
     override func viewDidLoad() {
-		// Data Persistance
-		if let startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! NSArray! {
-			if (startedQuests.containsObject(titleText)) {
-				self.startButton.setTitle("Continue", forState: .Normal)
-				self.startButton.backgroundColor = UIColor.greenColor()
-			}
-		}
-		
 		// Quest Name
 		if let titleText = titleText {
 			self.nameLabel.text = titleText
@@ -89,6 +81,17 @@ class QuestContentViewController: UIViewController {
 		
     }
 
+	override func viewWillAppear(animated: Bool) {
+		// Data Persistance
+		if let startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! NSDictionary! {
+			if let curQuestWaypoint = startedQuests[titleText] as! Int! {
+				let percentageCompleted = Int((Float(curQuestWaypoint + 1) / Float(quest.wayPoints.count))*100)
+				self.startButton.setTitle("Continue: \(percentageCompleted)% Completed", forState: .Normal)
+				self.startButton.backgroundColor = UIColor(red: 230/255, green: 159/255, blue: 19/255, alpha: 1)
+			}
+		}
+	}
+	
 	/**
 	Prepares for a segue to the detail view for a particular point of
 	interest on the map.
@@ -104,9 +107,9 @@ class QuestContentViewController: UIViewController {
 	
 	*/
 	@IBAction func startAction(sender: AnyObject) {
-		if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! [String]! {
-			if (!startedQuests.contains(titleText)) {
-				startedQuests.append(titleText)
+		if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
+			if (startedQuests[quest.name] == nil) {
+				startedQuests[quest.name] = 0
 				NSUserDefaults.standardUserDefaults().setObject(startedQuests,forKey: "startedQuests")
 			}
 		}

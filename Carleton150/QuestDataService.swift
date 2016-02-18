@@ -8,6 +8,7 @@ import Alamofire
 
 /// Data Service that contains relevant endpoints for the Quest module.
 final class QuestDataService {
+	
     /**
         Request quests for the game mode.
      
