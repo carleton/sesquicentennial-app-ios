@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yBP-BT-jzr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yBP-BT-jzr">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -210,6 +210,9 @@
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                         <color key="textColor" red="0.90196078431372551" green="0.62352941176470589" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=compact" misplaced="YES">
+                                            <rect key="frame" x="8" y="8" width="202" height="20"/>
+                                        </variation>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNa-f4-uKO" userLabel="Clue Hint Text">
                                         <rect key="frame" x="406" y="36" width="186" height="260"/>
@@ -219,9 +222,15 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <variation key="heightClass=compact" misplaced="YES">
+                                            <rect key="frame" x="211" y="35.5" width="81" height="256"/>
+                                        </variation>
                                     </textView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="hIk-Pr-Dfj">
-                                        <rect key="frame" x="8" y="36" width="390" height="260"/>
+                                        <rect key="frame" x="8" y="38" width="390" height="213.5"/>
+                                        <variation key="heightClass=compact" misplaced="YES">
+                                            <rect key="frame" x="8" y="35.5" width="195" height="256"/>
+                                        </variation>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gco-FA-lEZ" userLabel="Toggle">
                                         <rect key="frame" x="518" y="3" width="73" height="30"/>
@@ -232,6 +241,9 @@
                                         <state key="normal" title="Show Clue">
                                             <color key="titleColor" red="0.90196078430000004" green="0.71706968025637585" blue="0.074509803919999826" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <variation key="heightClass=compact" misplaced="YES">
+                                            <rect key="frame" x="218" y="3" width="73" height="30"/>
+                                        </variation>
                                         <connections>
                                             <action selector="toggleClueHint:" destination="3ev-Mg-3x0" eventType="touchUpInside" id="Pcs-c8-xs6"/>
                                         </connections>

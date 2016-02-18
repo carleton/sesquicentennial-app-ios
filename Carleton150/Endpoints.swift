@@ -44,8 +44,25 @@ final class Endpoints {
      */
     static var quests: String {
         get {
-//            return self.hostServerURL + "/quest"
 			return self.hostServerURL + "/quest_re"
+        }
+    }
+    
+    /**
+        The current memory fetching endpoint in the API.
+     */
+    static var memoriesInfo: String {
+        get {
+           return self.hostServerURL + "/memories_fetch"
+        }
+    }
+    
+    /**
+        The current memory uploading endpoint in the API.
+     */
+    static var addMemory: String {
+        get {
+           return self.hostServerURL + "/memories_add"
         }
     }
 }
