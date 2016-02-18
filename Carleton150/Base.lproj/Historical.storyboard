@@ -452,7 +452,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XY1-Tn-Xxn">
-                                        <rect key="frame" x="24" y="24" width="100" height="25"/>
+                                        <rect key="frame" x="24" y="22.5" width="100" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="v0M-rV-eat"/>
                                         </constraints>
@@ -524,7 +524,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mai-gl-4TJ">
-                                        <rect key="frame" x="24" y="24" width="100" height="25"/>
+                                        <rect key="frame" x="24" y="22.5" width="100" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="NXx-I0-m9T"/>
                                         </constraints>
@@ -654,7 +654,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xn-gR-3AG">
-                                        <rect key="frame" x="113" y="374" width="116" height="30"/>
+                                        <rect key="frame" x="87.5" y="374" width="116" height="30"/>
                                         <state key="normal" title="Upload an Image">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -683,7 +683,7 @@
                                     <constraint firstItem="KIZ-37-7H9" firstAttribute="leading" secondItem="ft7-ed-aSb" secondAttribute="leading" id="1cQ-dS-NI2"/>
                                     <constraint firstItem="vel-4p-mZH" firstAttribute="top" secondItem="sXg-8e-mNG" secondAttribute="top" constant="23" id="2Xx-Qz-97E"/>
                                     <constraint firstItem="BTw-WA-871" firstAttribute="leading" secondItem="ft7-ed-aSb" secondAttribute="leading" id="2Yd-7L-Ecg"/>
-                                    <constraint firstItem="6xn-gR-3AG" firstAttribute="leading" secondItem="3Gl-tg-QAJ" secondAttribute="trailing" constant="45.5" id="5VD-vR-Ci1"/>
+                                    <constraint firstItem="6xn-gR-3AG" firstAttribute="leading" secondItem="3Gl-tg-QAJ" secondAttribute="trailing" constant="20" id="5VD-vR-Ci1"/>
                                     <constraint firstItem="iL7-de-XDi" firstAttribute="trailing" secondItem="T0J-vD-s5I" secondAttribute="trailing" id="7Mw-tI-aet"/>
                                     <constraint firstItem="zNd-t7-XUg" firstAttribute="top" secondItem="BTw-WA-871" secondAttribute="bottom" constant="10" id="8TM-vf-pCx"/>
                                     <constraint firstItem="3Gl-tg-QAJ" firstAttribute="top" secondItem="iL7-de-XDi" secondAttribute="bottom" constant="10" id="AKF-rf-kKI"/>
