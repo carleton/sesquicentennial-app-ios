@@ -37,7 +37,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
     /**
         Set to true to show the debug button for testing, set to false to hide
      */
-    let showDebugButton = true
+    let showDebugButton = false
     
 	
     /**
@@ -46,8 +46,13 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      */
     override func viewDidLoad() {
         
-        
+        // don't enable the moments until the first one is ready
         self.momentButton.enabled = false
+        self.momentButton.layer.cornerRadius = 5
+        self.momentButton.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
+        self.momentButton.layer.borderWidth = 1
+        mapView.bringSubviewToFront(self.momentButton)
+        
         // set properties for the navigation bar
         Utils.setUpNavigationBar(self)
         
@@ -80,20 +85,18 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
     func requestMomentData(){
         if let location: CLLocation = locationManager.location {
             let currentLocation: CLLocationCoordinate2D = location.coordinate
-            HistoricalDataService.requestMemoriesContent(currentLocation,
-                completion: { (success: Bool, result: [Dictionary<String, String>?]) -> Void in
-                    if (success) {
-                        memoriesData = (result)
-                        landmarksInfo!["Memories Near You"] = memoriesData
-                        self.momentButton.enabled = true
-                    } else {
-                        print("Failed to get info")
-                    }
-            })
+            HistoricalDataService.requestMemoriesContent(currentLocation) { success, result in
+                if (success) {
+                    memoriesData = (result)
+                    landmarksInfo!["Memories Near You"] = memoriesData
+                    self.momentButton.enabled = true
+                } else {
+                    print("Failed to get info")
+                }
+            }
         } else {
             print("Request failed because we didn't have location")
         }
-
     }
     
     
@@ -232,7 +235,6 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 			}
         }
         requestMomentData()
-
     }
 	
     /**

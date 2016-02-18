@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vkZ-Zi-z9j">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vkZ-Zi-z9j">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -39,10 +39,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wzj-au-GJO" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6Q-fC-NPG">
-                                        <rect key="frame" x="18" y="517" width="118" height="21"/>
+                                        <rect key="frame" x="18" y="453" width="118" height="21"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="118" id="i5y-aY-XyI"/>
@@ -53,7 +53,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48n-Vv-TH8">
-                                        <rect key="frame" x="18" y="546" width="118" height="21"/>
+                                        <rect key="frame" x="18" y="482" width="118" height="21"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="xDn-yM-Iec"/>
@@ -63,15 +63,23 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EKD-oY-5Zb">
-                                        <rect key="frame" x="527" y="79" width="46" height="30"/>
+                                        <rect key="frame" x="546" y="8" width="46" height="30"/>
                                         <state key="normal" title="Debug"/>
                                         <connections>
                                             <action selector="toggleDebug:" destination="BYZ-38-t0r" eventType="touchDown" id="vLK-zj-Rco"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hp0-PX-kfR">
-                                        <rect key="frame" x="16" y="79" width="97" height="30"/>
-                                        <state key="normal" title="Get Memories"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hp0-PX-kfR">
+                                        <rect key="frame" x="8" y="8" width="158" height="47.5"/>
+                                        <color key="backgroundColor" red="0.039215686274509803" green="0.16078431372549018" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="47.5" id="ePH-e2-KKb"/>
+                                            <constraint firstAttribute="width" constant="158" id="sce-6o-0jm"/>
+                                        </constraints>
+                                        <size key="titleShadowOffset" width="6" height="6"/>
+                                        <state key="normal" title="Nearby Memories">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <action selector="getMoments:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oy2-LF-Ek5"/>
                                         </connections>
@@ -79,12 +87,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="hp0-PX-kfR" firstAttribute="top" secondItem="Wzj-au-GJO" secondAttribute="top" constant="8" id="BQo-Kh-fCd"/>
+                                    <constraint firstItem="hp0-PX-kfR" firstAttribute="leading" secondItem="Wzj-au-GJO" secondAttribute="leading" constant="8" id="GYf-cC-fWV"/>
+                                    <constraint firstAttribute="trailing" secondItem="EKD-oY-5Zb" secondAttribute="trailing" constant="8" id="Qwc-QO-G6h"/>
                                     <constraint firstItem="H6Q-fC-NPG" firstAttribute="leading" secondItem="Wzj-au-GJO" secondAttribute="leading" constant="18" id="S6l-df-2Jc"/>
                                     <constraint firstAttribute="bottom" secondItem="48n-Vv-TH8" secondAttribute="bottom" constant="33" id="YEQ-pp-VRx"/>
                                     <constraint firstItem="H6Q-fC-NPG" firstAttribute="leading" secondItem="48n-Vv-TH8" secondAttribute="leading" id="fYl-yq-4Bc"/>
-                                    <constraint firstItem="EKD-oY-5Zb" firstAttribute="top" secondItem="Wzj-au-GJO" secondAttribute="top" constant="79" id="gif-Dr-whL"/>
                                     <constraint firstItem="48n-Vv-TH8" firstAttribute="trailing" secondItem="H6Q-fC-NPG" secondAttribute="trailing" id="s3Z-L1-Ro9"/>
-                                    <constraint firstAttribute="trailing" secondItem="EKD-oY-5Zb" secondAttribute="trailing" constant="27" id="w2n-pi-Bag"/>
+                                    <constraint firstItem="EKD-oY-5Zb" firstAttribute="top" secondItem="Wzj-au-GJO" secondAttribute="top" constant="8" id="tXl-Z3-ezW"/>
                                     <constraint firstItem="48n-Vv-TH8" firstAttribute="top" secondItem="H6Q-fC-NPG" secondAttribute="bottom" constant="8" symbolic="YES" id="xSi-mz-vi3"/>
                                 </constraints>
                             </view>
@@ -92,9 +102,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Wzj-au-GJO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="167-c2-u4f"/>
-                            <constraint firstItem="Wzj-au-GJO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="5Sh-yz-BQA"/>
                             <constraint firstAttribute="trailing" secondItem="Wzj-au-GJO" secondAttribute="trailing" id="6OO-E0-phj"/>
                             <constraint firstItem="Wzj-au-GJO" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="6Oi-R7-ibX"/>
+                            <constraint firstItem="Wzj-au-GJO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="g30-53-Kwj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Wcd-bq-6uy"/>
@@ -411,7 +421,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XY1-Tn-Xxn">
-                                        <rect key="frame" x="24" y="24" width="100" height="25"/>
+                                        <rect key="frame" x="24" y="22.5" width="100" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="v0M-rV-eat"/>
                                         </constraints>
@@ -483,7 +493,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mai-gl-4TJ">
-                                        <rect key="frame" x="24" y="24" width="100" height="25"/>
+                                        <rect key="frame" x="24" y="22.5" width="100" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="NXx-I0-m9T"/>
                                         </constraints>
