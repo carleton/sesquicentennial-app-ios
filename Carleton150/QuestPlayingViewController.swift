@@ -163,7 +163,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 			let nextCtrl = segue.destinationViewController as! WaypointsModalViewController
 			nextCtrl.parentVC = self
 			var waypoints = [WayPoint]()
-			for (var i = 0; i <= currentWayPointIndex; i++) {
+			for (var i = 0; i < currentWayPointIndex; i++) {
 				waypoints.append((self.quest?.wayPoints[i])!)
 			}
 			print(waypoints)

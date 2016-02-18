@@ -12,14 +12,24 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 	
 	@IBOutlet weak var titleView: UIView!
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var titleLabel: UILabel!
 
 	override func viewDidLoad() {
+		
+		// set transparency
+		self.view.backgroundColor = UIColor(white: 0, alpha: 0.6)
+
 		// add bottom border to the timeline title
 		titleView.addBottomBorderWithColor(UIColor(white: 0.9, alpha: 0.95), width: 1.5)
 		
 		// set the dataSource and delegate for the timeline table
 		tableView.dataSource = self
 		tableView.delegate = self
+		
+		// set a default row height
+		tableView.estimatedRowHeight = 160.0
+		
+		titleLabel.text = "Completed Waypoints"
 	}
 	
 	/**
@@ -89,8 +99,7 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 	- Returns: The modified table view cell.
 	*/
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		
-		let waypoint = waypoints[indexPath.section]		
+		let waypoint = waypoints[indexPath.section]
 		// clue
 		if (indexPath.row == 0) {
 			if let clueImg = waypoint.clue["image"] as! String! {
@@ -98,11 +107,12 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 				cell.cellImage = UIImage(data: NSData(base64EncodedString: clueImg, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
 				cell.titleText = "Clue"
 				cell.descText = waypoint.clue["text"] as? String
+				return cell
 			} else {
 				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
 				cell.titleText = "Clue"
 				cell.descText = waypoint.clue["text"] as? String
-
+				return cell
 			}
 		// hint
 		} else if (indexPath.row == 1) {
@@ -111,11 +121,12 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 				cell.cellImage = UIImage(data: NSData(base64EncodedString: hintImg, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
 				cell.titleText = "Hint"
 				cell.descText = waypoint.hint["text"] as? String
-
+				return cell
 			} else {
 				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
 				cell.titleText = "Hint"
 				cell.descText = waypoint.hint["text"] as? String
+				return cell
 			}
 		} else if (indexPath.row == 2) {
 			if let compImg = waypoint.completion["image"] as! String! {
@@ -123,12 +134,12 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 				cell.cellImage = UIImage(data: NSData(base64EncodedString: compImg, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
 				cell.titleText = "Completion"
 				cell.descText = waypoint.completion["text"] as? String
-
+				return cell
 			} else {
 				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
 				cell.titleText = "Completion"
 				cell.descText = waypoint.completion["text"] as? String
-
+				return cell
 			}
 		}
 		

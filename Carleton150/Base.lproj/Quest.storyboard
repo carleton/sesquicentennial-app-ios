@@ -193,7 +193,7 @@
                                         </constraints>
                                         <state key="normal" image="show-waypoints-icon"/>
                                         <connections>
-                                            <segue destination="glK-1x-iov" kind="presentation" identifier="showWaypoints" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="kG5-dz-YJY"/>
+                                            <segue destination="glK-1x-iov" kind="presentation" identifier="showWaypoints" modalPresentationStyle="overFullScreen" id="kG5-dz-YJY"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -473,8 +473,8 @@
                                             <action selector="dismissAction:" destination="glK-1x-iov" eventType="touchUpInside" id="8rw-HU-gZG"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geofence" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="CQ6-4n-DKA">
-                                        <rect key="frame" x="56" y="15" width="488" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed Waypoints" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="CQ6-4n-DKA">
+                                        <rect key="frame" x="56" y="15" width="488" height="22"/>
                                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="22"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -492,16 +492,16 @@
                                     <constraint firstItem="CQ6-4n-DKA" firstAttribute="centerY" secondItem="SoE-F2-S7K" secondAttribute="centerY" id="yyn-xJ-4mV"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="96" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Uxb-CF-CWd">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="96" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Uxb-CF-CWd">
                                 <rect key="frame" x="0.0" y="180" width="600" height="420"/>
                                 <color key="backgroundColor" red="0.0" green="0.132018209" blue="0.36035379620000002" alpha="0.69612642150000004" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.95275015780000005" green="0.95275015780000005" blue="0.95275015780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WaypointTableTextCell" rowHeight="96" id="usb-qW-p8x" userLabel="WaypointTableTextCell" customClass="WaypointTableTextCell" customModule="Carleton150" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="96"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="600" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="usb-qW-p8x" id="7QY-xa-eTM">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="96"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="95.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jga-cC-i5g" userLabel="timeline_extension">
@@ -570,10 +570,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WaypointTableImageCell" rowHeight="228" id="jrA-6P-7tA" userLabel="WaypointTableImageCell" customClass="WaypointTableImageCell" customModule="Carleton150" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="124" width="600" height="228"/>
+                                        <rect key="frame" x="0.0" y="145.5" width="600" height="228"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jrA-6P-7tA" id="frV-pX-Uwg">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="228"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="227.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5R-Ak-dae" userLabel="timeline_extension">
@@ -683,7 +683,8 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="Uxb-CF-CWd" id="yMI-fh-wjq"/>
-                        <outlet property="titleView" destination="SoE-F2-S7K" id="kVo-rZ-J7E"/>
+                        <outlet property="titleLabel" destination="CQ6-4n-DKA" id="7tr-6u-e1K"/>
+                        <outlet property="titleView" destination="SoE-F2-S7K" id="i8S-Vl-ZmI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mWr-Om-YDY" userLabel="First Responder" sceneMemberID="firstResponder"/>
