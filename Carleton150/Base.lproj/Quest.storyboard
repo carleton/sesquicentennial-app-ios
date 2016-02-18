@@ -315,10 +315,10 @@
             </objects>
             <point key="canvasLocation" x="1407" y="2048"/>
         </scene>
-        <!--Timeline Image Detail View-->
+        <!--Quest Modal View Controller-->
         <scene sceneID="BN9-Gj-2SK">
             <objects>
-                <viewController modalPresentationStyle="currentContext" id="F84-gx-Q8r" customClass="TimelineImageDetailView" customModule="Carleton150" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="currentContext" id="F84-gx-Q8r" customClass="QuestModalViewController" customModule="Carleton150" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="K61-hg-f1I"/>
                         <viewControllerLayoutGuide type="bottom" id="hwb-Et-fPB"/>
@@ -337,10 +337,10 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="dismissDetailView:" destination="F84-gx-Q8r" eventType="touchUpInside" id="Zca-zn-jDK"/>
+                                            <action selector="dismissModal:" destination="F84-gx-Q8r" eventType="touchUpInside" id="bD3-Gq-KAJ"/>
                                         </connections>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BmA-Tx-4S7">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BmA-Tx-4S7">
                                         <rect key="frame" x="28" y="350" width="504" height="107"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -354,12 +354,12 @@
                                         <state key="normal" title="Okay">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="dismissModal:" destination="F84-gx-Q8r" eventType="touchUpInside" id="8Jb-5V-OZq"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hgH-qo-vbF">
                                         <rect key="frame" x="28" y="64" width="504" height="276"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" priority="999" constant="516" id="fM1-PT-Gfw"/>
-                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.066666666669999999" green="0.14117647059999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -380,7 +380,6 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="b5T-t5-lP3" firstAttribute="leading" secondItem="eGg-ba-bBo" secondAttribute="leadingMargin" id="7SL-p6-06b"/>
                             <constraint firstItem="b5T-t5-lP3" firstAttribute="trailing" secondItem="eGg-ba-bBo" secondAttribute="trailingMargin" id="7aI-3a-Qxn"/>
@@ -389,8 +388,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="descriptionText" destination="BmA-Tx-4S7" id="SzI-lm-Ql7"/>
-                        <outlet property="detailImage" destination="hgH-qo-vbF" id="MvO-py-ZeE"/>
+                        <outlet property="closeButton" destination="iJK-mR-wV1" id="TOS-gM-ofC"/>
+                        <outlet property="descTextView" destination="BmA-Tx-4S7" id="85f-3W-7FP"/>
+                        <outlet property="imageView" destination="hgH-qo-vbF" id="nhs-Ap-9TT"/>
+                        <outlet property="imageViewHeightConst" destination="40D-Jb-NV9" id="a8j-0m-4Yx"/>
+                        <outlet property="modalView" destination="b5T-t5-lP3" id="3Iu-Xh-y2o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIU-PM-skP" userLabel="First Responder" sceneMemberID="firstResponder"/>

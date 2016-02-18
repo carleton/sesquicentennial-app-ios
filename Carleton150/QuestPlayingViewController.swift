@@ -63,17 +63,17 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	@IBAction func attemptCompletion(sender: AnyObject) {
 		if quest.wayPoints[currentWayPointIndex].checkIfTriggered(locationManager.location!.coordinate) {
 			// found the waypoint
-			let alert = UIAlertController(title: "You found it!", message: quest.completionMessage, preferredStyle: UIAlertControllerStyle.Alert)
-			let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
-			alert.addAction(alertAction)
+//			let alert = UIAlertController(title: "You found it!", message: quest.completionMessage, preferredStyle: UIAlertControllerStyle.Alert)
+//			let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
+//			alert.addAction(alertAction)
 			transitionToNextWayPoint()
-			presentViewController(alert, animated: true) { () -> Void in }
+//			presentViewController(alert, animated: true) { () -> Void in }
 		} else {
 			// did not find the waypoint
-			let alert = UIAlertController(title: "Not quite there yet!", message: "Keep trying!", preferredStyle: UIAlertControllerStyle.Alert)
-			let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
-			alert.addAction(alertAction)
-			presentViewController(alert, animated: true) { () -> Void in }
+//			let alert = UIAlertController(title: "Not quite there yet!", message: "Keep trying!", preferredStyle: UIAlertControllerStyle.Alert)
+//			let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
+//			alert.addAction(alertAction)
+//			presentViewController(alert, animated: true) { () -> Void in }
 		}
 	}
 	
@@ -115,6 +115,35 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 			if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
 				startedQuests[quest.name] = self.currentWayPointIndex
 				NSUserDefaults.standardUserDefaults().setObject(startedQuests,forKey: "startedQuests")
+			}
+		}
+	}
+	
+	/**
+	Prepares for a segue to the detail view for a particular point of
+	interest on the map.
+	
+	Parameters:
+	- segue:  The segue that was triggered by user. If this is not the
+	segue to the landmarkDetail view, then don't perform the
+	segue.
+	
+	- sender: The sender, in our case, will be one of the Google Maps markers
+	that was pressed, which will in turn have data associated with
+	it that will given to the landmark detail view.
+	
+	*/
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if segue.identifier == "questAttemptModal" {
+			let nextCtrl = segue.destinationViewController as! QuestModalViewController
+			// set completion text
+			nextCtrl.parentView = self
+			if let compText = quest.wayPoints[currentWayPointIndex].completion["text"] as? String {
+				nextCtrl.descText = compText
+			}
+			if let imageData = quest.wayPoints[currentWayPointIndex].completion["image"] as? String {
+				nextCtrl.image = UIImage(data: NSData(base64EncodedString: imageData, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
+				nextCtrl.hasImage = true
 			}
 		}
 	}

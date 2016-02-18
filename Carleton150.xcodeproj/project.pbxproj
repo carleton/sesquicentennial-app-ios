@@ -187,8 +187,8 @@
 				715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */,
 				71340E571C5214A2007F9E2F /* QuestDataService.swift */,
 				630B0B4E1C7446D000876031 /* QuestViewController.swift */,
-				63F5E99F1C72B60D00CFCB38 /* QuestPlayingViewController.swift */,
 				630B0B501C744A8700876031 /* QuestContentViewController.swift */,
+				63F5E99F1C72B60D00CFCB38 /* QuestPlayingViewController.swift */,
 				63A99A6A1C75859D007E6F25 /* QuestModalViewController.swift */,
 			);
 			name = Quest;

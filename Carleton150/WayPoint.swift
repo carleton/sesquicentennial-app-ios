@@ -40,10 +40,6 @@ class WayPoint: NSObject {
         Returns: A boolean stating whether the user is within the waypoint.
      */
     func checkIfTriggered(currentLocation: CLLocationCoordinate2D) -> Bool {
-		print(self.radius)
-		print(Utils.getDistance(currentLocation, point2: self.location))
-		print(currentLocation)
-		print(self.location)
         return Utils.getDistance(currentLocation, point2: self.location) <= self.radius
     }
 }
