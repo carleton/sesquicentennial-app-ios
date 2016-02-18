@@ -22,6 +22,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	@IBOutlet weak var clueHintToggle: UIButton!
 	@IBOutlet weak var clueHintImgWidthConst: NSLayoutConstraint!
 	@IBOutlet weak var attemptCompButton: UIButton!
+	@IBOutlet weak var waypointsButton: UIButton!
 	
 	@IBAction func toggleClueHint(sender: AnyObject) {
 		clueShown = !clueShown
@@ -50,6 +51,10 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		questMapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16) // @todo: Make this current location
 		questMapView.delegate = self;
 		
+		// show waypoints button
+		questMapView.bringSubviewToFront(waypointsButton)
+
+		
 		// set up tiling
 		Utils.setUpTiling(questMapView)
 		
@@ -61,7 +66,6 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	}
 	
 	func setupUI () {
-		print("HERE")
 		// setting up UI
 		self.questName.text = quest.name
 		if (self.currentWayPointIndex >= quest.wayPoints.count) {
@@ -154,8 +158,16 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 				nextCtrl.isComplete = false
 				nextCtrl.isCorrect = false
 			}
-			
-			// set completion text
+		} else if (segue.identifier == "showWaypoints") {
+			// get next controller
+			let nextCtrl = segue.destinationViewController as! WaypointsModalViewController
+			nextCtrl.parentVC = self
+			var waypoints = [WayPoint]()
+			for (var i = 0; i <= currentWayPointIndex; i++) {
+				waypoints.append((self.quest?.wayPoints[i])!)
+			}
+			print(waypoints)
+			nextCtrl.waypoints = waypoints
 		}
 	}
 	

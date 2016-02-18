@@ -341,6 +341,7 @@
                         <outlet property="clueHintView" destination="pcH-6g-MWp" id="Tdm-gt-fT1"/>
                         <outlet property="questMapView" destination="peo-gm-Jws" id="iFs-Rx-vMJ"/>
                         <outlet property="questName" destination="nKc-yv-Du2" id="SaG-rF-4uJ"/>
+                        <outlet property="waypointsButton" destination="MGT-8E-Ete" id="Njq-I0-GkN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KF4-Hy-bBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -469,7 +470,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="dismissAction:" destination="glK-1x-iov" eventType="touchUpInside" id="ibx-Pi-kns"/>
+                                            <action selector="dismissAction:" destination="glK-1x-iov" eventType="touchUpInside" id="8rw-HU-gZG"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geofence" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="CQ6-4n-DKA">
@@ -491,7 +492,7 @@
                                     <constraint firstItem="CQ6-4n-DKA" firstAttribute="centerY" secondItem="SoE-F2-S7K" secondAttribute="centerY" id="yyn-xJ-4mV"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="96" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Uxb-CF-CWd">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="96" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Uxb-CF-CWd">
                                 <rect key="frame" x="0.0" y="180" width="600" height="420"/>
                                 <color key="backgroundColor" red="0.0" green="0.132018209" blue="0.36035379620000002" alpha="0.69612642150000004" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.95275015780000005" green="0.95275015780000005" blue="0.95275015780000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -563,6 +564,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="cellView" destination="Ru3-b5-GXT" id="l1v-e2-8oa"/>
                                             <outlet property="descLabel" destination="iKZ-CV-GaW" id="G0a-Gc-4bS"/>
                                             <outlet property="titleLabel" destination="a3u-26-xXV" id="bJK-WG-KGo"/>
                                         </connections>
@@ -645,7 +647,8 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outlet property="cellImageView" destination="k05-3I-4RS" id="h12-uu-gtb"/>
+                                            <outlet property="cellImgView" destination="k05-3I-4RS" id="eSC-8S-PbV"/>
+                                            <outlet property="cellView" destination="p8N-Jo-spv" id="q5f-8S-Xcc"/>
                                             <outlet property="descLabel" destination="YQP-5P-1be" id="G6h-1q-xFD"/>
                                             <outlet property="titleLabel" destination="oH2-vs-R2c" id="saO-Uz-X7B"/>
                                         </connections>
@@ -679,9 +682,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dismissAction" destination="HSV-pX-eRb" id="Jrh-dL-GuR"/>
-                        <outlet property="tableView" destination="Uxb-CF-CWd" id="YCa-Rr-Sjr"/>
-                        <outlet property="titleView" destination="SoE-F2-S7K" id="fmH-7W-GXG"/>
+                        <outlet property="tableView" destination="Uxb-CF-CWd" id="yMI-fh-wjq"/>
+                        <outlet property="titleView" destination="SoE-F2-S7K" id="kVo-rZ-J7E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mWr-Om-YDY" userLabel="First Responder" sceneMemberID="firstResponder"/>

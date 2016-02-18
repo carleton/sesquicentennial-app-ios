@@ -6,7 +6,7 @@ import Foundation
 
 class Quest: NSObject {
 
-	var wayPoints: [WayPoint]
+	var wayPoints: [WayPoint]!
     var name: String
     var questDescription: String
     var completionMessage: String

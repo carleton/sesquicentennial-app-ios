@@ -7,8 +7,9 @@ import UIKit
 
 class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
-	var parentViewControler: QuestPlayingViewController
+	var parentVC: QuestPlayingViewController!
 	var waypoints = [WayPoint]()
+	
 	@IBOutlet weak var titleView: UIView!
 	@IBOutlet weak var tableView: UITableView!
 
@@ -25,7 +26,7 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 		Dismiss modal
 	 */
 	@IBAction func dismissAction(sender: AnyObject) {
-		parentViewControler.dismissViewControllerAnimated(true)  {() -> Void in }
+		parentVC.dismissViewControllerAnimated(true)  {() -> Void in }
 	}
 	
 	/**
@@ -89,19 +90,19 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 	*/
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
-		let waypoint = waypoints[indexPath.section]
-		
+		let waypoint = waypoints[indexPath.section]		
 		// clue
 		if (indexPath.row == 0) {
 			if let clueImg = waypoint.clue["image"] as! String! {
 				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableImageCell", forIndexPath: indexPath) as! WaypointTableImageCell
 				cell.cellImage = UIImage(data: NSData(base64EncodedString: clueImg, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
 				cell.titleText = "Clue"
-				cell.descText = waypoint.clue["text"]
+				cell.descText = waypoint.clue["text"] as? String
 			} else {
-				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableImageCell
+				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
 				cell.titleText = "Clue"
-				cell.descText = waypoint.clue["text"]
+				cell.descText = waypoint.clue["text"] as? String
+
 			}
 		// hint
 		} else if (indexPath.row == 1) {
@@ -109,29 +110,32 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableImageCell", forIndexPath: indexPath) as! WaypointTableImageCell
 				cell.cellImage = UIImage(data: NSData(base64EncodedString: hintImg, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
 				cell.titleText = "Hint"
-				cell.descText = waypoint.hint["text"]
+				cell.descText = waypoint.hint["text"] as? String
+
 			} else {
-				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableImageCell
+				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
 				cell.titleText = "Hint"
-				cell.descText = waypoint.hint["text"]
+				cell.descText = waypoint.hint["text"] as? String
 			}
 		} else if (indexPath.row == 2) {
 			if let compImg = waypoint.completion["image"] as! String! {
 				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableImageCell", forIndexPath: indexPath) as! WaypointTableImageCell
 				cell.cellImage = UIImage(data: NSData(base64EncodedString: compImg, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
 				cell.titleText = "Completion"
-				cell.descText = waypoint.completion["text"]
+				cell.descText = waypoint.completion["text"] as? String
+
 			} else {
-				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableImageCell
+				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
 				cell.titleText = "Completion"
-				cell.descText = waypoint.completion["text"]
+				cell.descText = waypoint.completion["text"] as? String
+
 			}
 		}
 		
-		let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableImageCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
 		cell.titleText = ""
 		cell.descText = "Couldn't find data for waypoint"
-		return tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
+		return cell
 	}
 	
 	
