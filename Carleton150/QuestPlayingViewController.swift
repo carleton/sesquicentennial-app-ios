@@ -17,6 +17,8 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	var quest: Quest!
 	var currentWayPointIndex: Int! // @todo: Load this up from Core Data
 	var clueShown: Bool = true
+	var waypointCompleted: Bool = false
+	var questCompleted: Bool = false
 	
 	@IBOutlet weak var questMapView: GMSMapView!
 	@IBOutlet weak var clueHintView: UIView!
@@ -62,6 +64,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	
 	@IBAction func attemptCompletion(sender: AnyObject) {
 		if quest.wayPoints[currentWayPointIndex].checkIfTriggered(locationManager.location!.coordinate) {
+			self.waypointCompleted = true
 			// found the waypoint
 //			let alert = UIAlertController(title: "You found it!", message: quest.completionMessage, preferredStyle: UIAlertControllerStyle.Alert)
 //			let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
@@ -69,6 +72,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 			transitionToNextWayPoint()
 //			presentViewController(alert, animated: true) { () -> Void in }
 		} else {
+			self.waypointCompleted = false
 			// did not find the waypoint
 //			let alert = UIAlertController(title: "Not quite there yet!", message: "Keep trying!", preferredStyle: UIAlertControllerStyle.Alert)
 //			let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
@@ -135,15 +139,21 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	*/
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "questAttemptModal" {
+			
 			let nextCtrl = segue.destinationViewController as! QuestModalViewController
 			// set completion text
 			nextCtrl.parentView = self
+			nextCtrl.isCorrect = waypointCompleted
 			if let compText = quest.wayPoints[currentWayPointIndex].completion["text"] as? String {
 				nextCtrl.descText = compText
 			}
 			if let imageData = quest.wayPoints[currentWayPointIndex].completion["image"] as? String {
 				nextCtrl.image = UIImage(data: NSData(base64EncodedString: imageData, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
-				nextCtrl.hasImage = true
+			}
+			if (currentWayPointIndex == quest.wayPoints.count) {
+				nextCtrl.isComplete = true
+			} else {
+				nextCtrl.isComplete = false
 			}
 		}
 	}
