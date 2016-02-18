@@ -17,8 +17,6 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	var quest: Quest!
 	var currentWayPointIndex: Int! // @todo: Load this up from Core Data
 	var clueShown: Bool = true
-	var waypointCompleted: Bool = false
-	var questCompleted: Bool = false
 	
 	@IBOutlet weak var questMapView: GMSMapView!
 	@IBOutlet weak var clueHintView: UIView!
@@ -27,6 +25,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	@IBOutlet weak var clueHintText: UITextView!
 	@IBOutlet weak var clueHintToggle: UIButton!
 	@IBOutlet weak var clueHintImgWidthConst: NSLayoutConstraint!
+	@IBOutlet weak var attemptCompButton: UIButton!
 	
 	@IBAction func toggleClueHint(sender: AnyObject) {
 		clueShown = !clueShown
@@ -52,32 +51,33 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		self.locationManager.requestAlwaysAuthorization()
 		
 		// center the camera and set the controller delegate for the map
-		questMapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
+		questMapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16) // @todo: Make this current location
 		questMapView.delegate = self;
 		
 		// set up tiling
 		Utils.setUpTiling(questMapView)
 		
-		showClueHint()
-		questName.text = quest.name
+		setupUI()
     }
+
 	
 	@IBAction func attemptCompletion(sender: AnyObject) {
-		if quest.wayPoints[currentWayPointIndex].checkIfTriggered(locationManager.location!.coordinate) {
-			self.waypointCompleted = true
-			// found the waypoint
-//			let alert = UIAlertController(title: "You found it!", message: quest.completionMessage, preferredStyle: UIAlertControllerStyle.Alert)
-//			let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
-//			alert.addAction(alertAction)
-			transitionToNextWayPoint()
-//			presentViewController(alert, animated: true) { () -> Void in }
-		} else {
-			self.waypointCompleted = false
-			// did not find the waypoint
-//			let alert = UIAlertController(title: "Not quite there yet!", message: "Keep trying!", preferredStyle: UIAlertControllerStyle.Alert)
-//			let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
-//			alert.addAction(alertAction)
-//			presentViewController(alert, animated: true) { () -> Void in }
+	}
+	
+	func setupUI () {
+		print("HERE")
+		// setting up UI
+		self.questName.text = quest.name
+		if (self.currentWayPointIndex >= quest.wayPoints.count) {
+			self.clueHintToggle.enabled = false
+			self.clueHintToggle.setTitleColor(UIColor.grayColor(), forState: .Disabled)
+			self.attemptCompButton.enabled = false
+			self.attemptCompButton.backgroundColor = UIColor(red: 230/255, green: 159/255, blue: 19/255, alpha: 1)
+			self.attemptCompButton.setTitle("Quest Completed", forState: UIControlState.Disabled)
+			self.clueHintImage.image = UIImage(named: "quest_modal_completion_default")
+			self.clueHintText.text = "Quest Has been completed!"
+		} else if (self.currentWayPointIndex < quest.wayPoints.count) {
+			showClueHint()
 		}
 	}
 	
@@ -107,21 +107,6 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		}
 		
 	}
-
-	func transitionToNextWayPoint() {
-		self.currentWayPointIndex!++
-		// quest has been completed
-		if (currentWayPointIndex == quest.wayPoints.count) {
-			print("Quest Completed")
-			// diff stuff happens here
-		} else if (currentWayPointIndex < quest.wayPoints.count) {
-			showClueHint()
-			if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
-				startedQuests[quest.name] = self.currentWayPointIndex
-				NSUserDefaults.standardUserDefaults().setObject(startedQuests,forKey: "startedQuests")
-			}
-		}
-	}
 	
 	/**
 	Prepares for a segue to the detail view for a particular point of
@@ -139,22 +124,42 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	*/
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "questAttemptModal" {
-			
+			// get next controller
 			let nextCtrl = segue.destinationViewController as! QuestModalViewController
-			// set completion text
 			nextCtrl.parentView = self
-			nextCtrl.isCorrect = waypointCompleted
-			if let compText = quest.wayPoints[currentWayPointIndex].completion["text"] as? String {
-				nextCtrl.descText = compText
-			}
-			if let imageData = quest.wayPoints[currentWayPointIndex].completion["image"] as? String {
-				nextCtrl.image = UIImage(data: NSData(base64EncodedString: imageData, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
-			}
-			if (currentWayPointIndex == quest.wayPoints.count) {
-				nextCtrl.isComplete = true
+			// check to see quest status
+			if quest.wayPoints[currentWayPointIndex].checkIfTriggered(locationManager.location!.coordinate) {
+				nextCtrl.isCorrect = true
+				// increment waypointIndex and store it
+				currentWayPointIndex!++
+				if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
+					startedQuests[quest.name] = self.currentWayPointIndex
+					NSUserDefaults.standardUserDefaults().setObject(startedQuests,forKey: "startedQuests")
+				}
+				// quest has been complete
+				if (currentWayPointIndex == quest.wayPoints.count) {
+					nextCtrl.isComplete = true
+					if let compText = quest.completionMessage as String! {
+						nextCtrl.descText = compText
+					}
+				// not completed
+				} else if (currentWayPointIndex - 1 < quest.wayPoints.count) {
+					nextCtrl.isComplete = false
+					if let compText = quest.wayPoints[currentWayPointIndex - 1].completion["text"] as? String {
+						nextCtrl.descText = compText
+					}
+					if let imageData = quest.wayPoints[currentWayPointIndex - 1].completion["image"] as? String {
+						nextCtrl.image = UIImage(data: NSData(base64EncodedString: imageData, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
+					}
+					showClueHint()
+				}
 			} else {
+				// this should be taken care of by the default settings in the QuestModalViewController
 				nextCtrl.isComplete = false
+				nextCtrl.isCorrect = false
 			}
+			
+			// set completion text
 		}
 	}
 	

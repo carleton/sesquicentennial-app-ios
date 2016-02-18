@@ -10,10 +10,10 @@ import UIKit
 
 class QuestModalViewController: UIViewController {
 	
-	var parentView: UIViewController!
+	var parentView: QuestPlayingViewController!
 	var titleText: String!
-	var isCorrect: Bool!
-	var isComplete: Bool!
+	var isCorrect: Bool = false
+	var isComplete: Bool = false
 	var descText: String!
 	var image: UIImage!
 	
@@ -29,8 +29,8 @@ class QuestModalViewController: UIViewController {
 		self.view.backgroundColor = UIColor(white: 0, alpha: 0.6)
 		
 		if (descText == nil) {
-			if (isCorrect!) {
-				if (isComplete!) {
+			if (isCorrect) {
+				if (isComplete) {
 					descText = "Congratulations on finishing the quest!"
 				} else {
 					descText = "You figured it out! Let's see if you can get this next one"
@@ -41,8 +41,8 @@ class QuestModalViewController: UIViewController {
 		}
 		
 		if (titleText == nil) {
-			if (isCorrect!) {
-				if (isComplete!) {
+			if (isCorrect) {
+				if (isComplete) {
 					titleText = "Quest Completed!"
 				} else {
 					titleText = "Correct!"
@@ -53,8 +53,8 @@ class QuestModalViewController: UIViewController {
 		}
 		
 		if (image == nil) {
-			if (isCorrect!) {
-				if (isComplete!) {
+			if (isCorrect) {
+				if (isComplete) {
 					image = UIImage(named: "quest_modal_complete_default")
 				} else {
 					image = UIImage(named: "quest_modal_correct_default")
@@ -74,6 +74,7 @@ class QuestModalViewController: UIViewController {
 	 * Close modal and transition back to the quest playing view
 	 **/
 	@IBAction func dismissModal(sender: AnyObject) {
+		parentView.setupUI()
 		parentView.dismissViewControllerAnimated(true) {}
 	}
 }

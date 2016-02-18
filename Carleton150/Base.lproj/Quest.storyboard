@@ -220,7 +220,7 @@
                                         </state>
                                         <connections>
                                             <action selector="attemptCompletion:" destination="3ev-Mg-3x0" eventType="touchUpInside" id="pOz-R5-afc"/>
-                                            <segue destination="F84-gx-Q8r" kind="presentation" identifier="questAttemptModal" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="VaC-V9-Mpf"/>
+                                            <segue destination="F84-gx-Q8r" kind="presentation" identifier="questAttemptModal" modalPresentationStyle="overFullScreen" modalTransitionStyle="coverVertical" id="VaC-V9-Mpf"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -305,6 +305,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="attemptCompButton" destination="MUZ-57-f7f" id="Pmb-hM-BIh"/>
                         <outlet property="clueHintImage" destination="hIk-Pr-Dfj" id="oAP-hY-bwZ"/>
                         <outlet property="clueHintImgWidthConst" destination="dFY-if-AHJ" id="zTh-69-S1C"/>
                         <outlet property="clueHintText" destination="ZNa-f4-uKO" id="UrA-w8-c1m"/>
@@ -321,7 +322,7 @@
         <!--Quest Modal View Controller-->
         <scene sceneID="BN9-Gj-2SK">
             <objects>
-                <viewController modalPresentationStyle="currentContext" id="F84-gx-Q8r" customClass="QuestModalViewController" customModule="Carleton150" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="F84-gx-Q8r" customClass="QuestModalViewController" customModule="Carleton150" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="K61-hg-f1I"/>
                         <viewControllerLayoutGuide type="bottom" id="hwb-Et-fPB"/>
