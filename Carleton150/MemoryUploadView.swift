@@ -76,6 +76,13 @@ class MemoryUploadView: UIViewController,
     }
     
     @IBAction func uploadMemory(sender: AnyObject) {
-        
+        let memory: Memory = Memory(title: titleField.text!, desc: descriptionTextView.text!, timestamp: NSDate(), uploader: nameField.text!, location: self.parentView.mapCtrl.locationManager.location!.coordinate, image: self.image!)
+        HistoricalDataService.uploadMemory(memory) { success in
+            if success {
+                print("success!")
+            } else {
+                print("failure")
+            }
+        }
     }
 }

@@ -89,7 +89,7 @@ final class HistoricalDataService {
                           from the server.
      */
     class func requestMemoriesContent(location: CLLocationCoordinate2D,
-        completion: (success: Bool, result: [Dictionary<String, String>?]) ->Void) {
+        completion: (success: Bool, result: [Dictionary<String, String>?]) -> Void) {
             
         let parameters = [
             "lat" : location.latitude,
@@ -142,8 +142,45 @@ final class HistoricalDataService {
         }
     }
     
-    class func uploadMemory(memory: Memory) {
+    class func uploadMemory(memory: Memory, completion: (success: Bool) -> Void) {
+        // build the base64 representation of the image
+        let imageData = UIImagePNGRepresentation(memory.image)
+        let base64Image: String = imageData!.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+
+        let parameters = [
+            "title" : memory.title,
+            "desc" : memory.desc,
+            "timestamp" :  memory.timestamp,
+            "uploader" : memory.uploader,
+            "location" : [
+                "lat": memory.location.latitude,
+                "lng": memory.location.longitude
+            ],
+            "image" : base64Image
+        ]
         
+    
+        Alamofire.request(.POST, Endpoints.addMemory, parameters: parameters as? [String : AnyObject], encoding: .JSON).responseJSON() {
+            (request, response, result) in
+            
+            if let result = result.value {
+                let json = JSON(result)
+                if json["status"] != nil {
+                    if json["status"] == "Success!" {
+                        completion(success: true)
+                    } else {
+                        print("Upload failed.")
+                        completion(success: false)
+                    }
+                } else {
+                    print("Upload failed.")
+                    completion(success: false)
+                }
+            } else {
+                print("Upload failed.")
+                completion(success: false)
+            }
+        }
     }
     
     /**
@@ -163,7 +200,6 @@ final class HistoricalDataService {
                     "lat" : location.latitude,
                     "lng" : location.longitude
                 ],
-                //"was there supposed to be a " ' " here or was it a typo?
                 "radius": 2000
             ]
         ]
