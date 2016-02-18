@@ -53,7 +53,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 			let detailViewController = (segue.destinationViewController as! TimelineDetailView)
 			detailViewController.parentView = self
             detailViewController.setData(sender as! TimelineTableCell)
-		}
+        } else if segue.identifier == "showUploadView" {
+			let detailViewController = (segue.destinationViewController as! MemoryUploadView)
+			detailViewController.parentView = self
+        }
     }
     
     func requestMemories() {
