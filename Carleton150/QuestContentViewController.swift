@@ -85,7 +85,7 @@ class QuestContentViewController: UIViewController {
 		// Data Persistance
 		if let startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! NSDictionary! {
 			if let curQuestWaypoint = startedQuests[titleText] as! Int! {
-				let percentageCompleted = Int((Float(curQuestWaypoint + 1) / Float(quest.wayPoints.count))*100)
+				let percentageCompleted = Int((Float(curQuestWaypoint) / Float(quest.wayPoints.count))*100)
 				self.startButton.setTitle("Continue: \(percentageCompleted)% Completed", forState: .Normal)
 				self.startButton.backgroundColor = UIColor(red: 230/255, green: 159/255, blue: 19/255, alpha: 1)
 			}

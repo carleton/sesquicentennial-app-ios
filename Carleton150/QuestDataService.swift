@@ -52,7 +52,7 @@ final class QuestDataService {
 						for i in 0 ..< points.count {
 							let location = CLLocationCoordinate2D(
 								latitude: points[i]["lat"].double!,
-								longitude: points[i]["lat"].double!
+								longitude: points[i]["lng"].double!
 							)
 							
 							var clue = [String: AnyObject]()

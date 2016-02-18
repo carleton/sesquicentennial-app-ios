@@ -66,6 +66,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 			let alert = UIAlertController(title: "You found it!", message: quest.completionMessage, preferredStyle: UIAlertControllerStyle.Alert)
 			let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
 			alert.addAction(alertAction)
+			transitionToNextWayPoint()
 			presentViewController(alert, animated: true) { () -> Void in }
 		} else {
 			// did not find the waypoint
@@ -103,6 +104,21 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		
 	}
 
+	func transitionToNextWayPoint() {
+		self.currentWayPointIndex!++
+		// quest has been completed
+		if (currentWayPointIndex == quest.wayPoints.count) {
+			print("Quest Completed")
+			// diff stuff happens here
+		} else if (currentWayPointIndex < quest.wayPoints.count) {
+			showClueHint()
+			if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
+				startedQuests[quest.name] = self.currentWayPointIndex
+				NSUserDefaults.standardUserDefaults().setObject(startedQuests,forKey: "startedQuests")
+			}
+		}
+	}
+	
 	/**
 	The function immediately called by the location manager that
 	begins keeping track of location to determine if the user is
