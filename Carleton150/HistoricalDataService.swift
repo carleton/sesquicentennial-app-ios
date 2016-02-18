@@ -142,6 +142,10 @@ final class HistoricalDataService {
         }
     }
     
+    class func uploadMemory(memory: Memory) {
+        
+    }
+    
     /**
         Request nearby geofences based on current location.
 

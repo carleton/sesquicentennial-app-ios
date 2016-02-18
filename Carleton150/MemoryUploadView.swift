@@ -2,6 +2,9 @@
 //  MemoryUploadView.swift
 //  Carleton150
 
+import Alamofire
+import SwiftyJSON
+
 class MemoryUploadView: UIViewController,
                         UIImagePickerControllerDelegate,
                         UINavigationControllerDelegate,
@@ -12,15 +15,15 @@ class MemoryUploadView: UIViewController,
     let imagePicker = UIImagePickerController()
     var image: UIImage?
     
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var titleField: UITextField!
+    
     @IBAction func dismissKeyboard(sender: AnyObject) {
         nameField.resignFirstResponder()
         titleField.resignFirstResponder()
         descriptionTextView.resignFirstResponder()
     }
-    
-    @IBOutlet weak var nameField: UITextField!
-    @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var titleField: UITextField!
     
     override func viewDidLoad() {
         // forces background to darken
@@ -38,7 +41,7 @@ class MemoryUploadView: UIViewController,
     }
     
     @IBAction func dismissView(sender: AnyObject) {
-        parentView.dismissViewControllerAnimated(true) {}
+        parentView.dismissViewControllerAnimated(true, completion: nil)
     }
    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -54,7 +57,7 @@ class MemoryUploadView: UIViewController,
  
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        if(text == "\n") {
+        if text == "\n" {
             textView.resignFirstResponder()
             return false
         }
