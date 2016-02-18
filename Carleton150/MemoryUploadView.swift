@@ -4,6 +4,7 @@
 
 import Alamofire
 import SwiftyJSON
+import SwiftOverlays
 
 class MemoryUploadView: UIViewController,
                         UIImagePickerControllerDelegate,
@@ -77,12 +78,43 @@ class MemoryUploadView: UIViewController,
     
     @IBAction func uploadMemory(sender: AnyObject) {
         let memory: Memory = Memory(title: titleField.text!, desc: descriptionTextView.text!, timestamp: NSDate(), uploader: nameField.text!, location: self.parentView.mapCtrl.locationManager.location!.coordinate, image: self.image!)
+        
+        // start wait screen
+        SwiftOverlays.showBlockingWaitOverlayWithText("Uploading your image...")
+        
         HistoricalDataService.uploadMemory(memory) { success in
+            // stop wait screen
+            SwiftOverlays.removeAllBlockingOverlays()
             if success {
-                print("success!")
+                self.alertUserOfUploadAttempt(memory, success: success)
             } else {
-                print("failure")
+                self.alertUserOfUploadAttempt(memory, success: success)
             }
+        }
+    }
+    
+    func alertUserOfUploadAttempt(memory: Memory, success: Bool) {
+        if success {
+            let alert = UIAlertController(title: "Upload Succeeded", message: "Thanks for sharing a memory!", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) {
+                (UIAlertAction) -> Void in
+                self.parentView.dismissViewControllerAnimated(true, completion: nil)
+            }
+            alert.addAction(alertAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Upload Failed", message: "We seemed to have trouble uploading your memory. Try again?", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertAction1 = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) {
+                (UIAlertAction) -> Void in
+                self.parentView.dismissViewControllerAnimated(true, completion: nil)
+            }
+            let alertAction2 = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) {
+                (UIAlertAction) -> Void in
+                self.uploadMemory(memory)
+            }
+            alert.addAction(alertAction1)
+            alert.addAction(alertAction2)
+            self.presentViewController(alert, animated: true, completion: nil)
         }
     }
 }
