@@ -9,9 +9,12 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var geofenceName: UILabel!
     @IBOutlet weak var titleView: UIView!
+    @IBOutlet weak var loadingView: UIActivityIndicatorView!
     
-	var mapCtrl: UIViewController!
+	var mapCtrl: HistoricalViewController!
     var timeline: [Dictionary<String, String>?] = []
+    var memories: [Dictionary<String, String>?] = []
+    var showMemories: Bool = false
 
     override func viewDidLoad() {
         // add bottom border to the timeline title
@@ -27,12 +30,16 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         // set a default row height
         tableView.estimatedRowHeight = 160.0
        
-        // sort the event timeline by date
-        if let unsortedTimeline = landmarksInfo?[selectedGeofence] {
-            timeline = unsortedTimeline.sort() {
-                event1, event2 in
-                return event1!["year"] > event2!["year"]
+        if !showMemories {
+            // sort the event timeline by date
+            if let unsortedTimeline = landmarksInfo?[selectedGeofence] {
+                timeline = unsortedTimeline.sort() {
+                    event1, event2 in
+                    return event1!["year"] > event2!["year"]
+                }
             }
+        } else {
+            loadingView.startAnimating()
         }
 	}
     
@@ -43,6 +50,25 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             detailViewController.setData(sender as! TimelineTableCell)
 		}
     }
+    
+    func requestMomentData() {
+        if let location: CLLocation = self.mapCtrl.locationManager.location {
+            let currentLocation: CLLocationCoordinate2D = location.coordinate
+            HistoricalDataService.requestMemoriesContent(currentLocation) { success, result in
+                if (success) {
+                    self.memories = result.sort() { memory1, memory2 in
+                        return memory1!["year"] > memory2!["year"]
+                    }
+                    self.tableView.reloadData()
+                    self.loadingView.stopAnimating()
+                } else {
+                    print("Failed to get info")
+                }
+            }
+        } else {
+            print("Request failed because we didn't have location")
+        }
+    }
 	
     /**
         Upon clicking outside the timeline view or on the X button, 
@@ -52,6 +78,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             - sender: The UI element that triggered the action.
      */
 	@IBAction func exitTimeline(sender: AnyObject) {
+        mapCtrl.momentButton.hidden = false
 		mapCtrl.dismissViewControllerAnimated(true) { () -> Void in }
 	}
 
@@ -78,7 +105,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         - Returns: The number of historical events for the triggered geofence.
      */
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return timeline.count
+        return showMemories ? self.memories.count : timeline.count
 	}
     
     /**
@@ -107,8 +134,22 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         - Returns: The modified table view cell.
      */
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let selectedEntry = timeline[indexPath.row],
-               dataType = selectedEntry["type"] {
+        if showMemories {
+            let cell: TimelineTableCellImageOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellImageOnly", forIndexPath: indexPath) as! TimelineTableCellImageOnly
+            if let image = memories[indexPath.row]?["data"],
+                   data = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters) {
+                cell.cellImage = UIImage(data: data)
+            }
+            cell.setCellViewTraits()
+            cell.cellCaption = memories[indexPath.row]?["caption"]
+            cell.cellSummary = memories[indexPath.row]?["uploader"]
+            cell.cellTimestamp = memories[indexPath.row]?["year"]
+            cell.cellDescription = memories[indexPath.row]?["desc"]
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell
+        } else {
+            if let selectedEntry = timeline[indexPath.row],
+                   dataType = selectedEntry["type"] {
                 if dataType == "text" {
                     let cell: TimelineTableCellTextOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
                     cell.setCellViewTraits()
@@ -132,20 +173,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                     cell.selectionStyle = UITableViewCellSelectionStyle.None
                     return cell
                     
-                } else if dataType == "memory" {
-                    let cell: TimelineTableCellImageOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellImageOnly", forIndexPath: indexPath) as! TimelineTableCellImageOnly
-                    if let image = timeline[indexPath.row]?["data"],
-                           data = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters) {
-                        cell.cellImage = UIImage(data: data)
-                    }
-                    cell.setCellViewTraits()
-                    cell.cellCaption = timeline[indexPath.row]?["caption"]
-                    cell.cellSummary = timeline[indexPath.row]?["uploader"]
-                    cell.cellTimestamp = timeline[indexPath.row]?["year"]
-                    cell.cellDescription = timeline[indexPath.row]?["desc"]
-                    cell.selectionStyle = UITableViewCellSelectionStyle.None
-                    return cell
-                    
                 } else {
                     let cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
                     cell.setCellViewTraits()
@@ -155,8 +182,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                     cell.selectionStyle = UITableViewCellSelectionStyle.None
                     return cell
                 }
+            }
         }
-        
         return tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
     }
 }

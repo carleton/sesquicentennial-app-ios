@@ -9,7 +9,6 @@ import MapKit
 
 var selectedGeofence = ""
 var landmarksInfo : Dictionary<String,[Dictionary<String, String>?]>? = Dictionary()
-var memoriesData: [Dictionary<String, String>?] = [Dictionary<String, String>()]
 
 class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GMSMapViewDelegate {
     
@@ -20,11 +19,6 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
     @IBOutlet weak var longText: UILabel!
     @IBOutlet weak var latText: UILabel!
     
-    @IBAction func backFromModal(segue: UIStoryboardSegue) {
-        // Switch to the first tab (tabs are numbered 0, 1, 2)
-        self.tabBarController?.selectedIndex = 1
-    }
-    
     let locationManager = CLLocationManager()
     let currentLocationMarker = GMSMarker()
     var geofences = [Geotification]()
@@ -32,7 +26,6 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 	var circles = [GMSCircle]()
 	var debugMode = false
 	var updateLocation = true
-    
     
     /**
         Set to true to show the debug button for testing, set to false to hide
@@ -46,8 +39,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      */
     override func viewDidLoad() {
         
-        // don't enable the moments until the first one is ready
-        self.momentButton.enabled = false
+        // set up the memories button
         self.momentButton.layer.cornerRadius = 5
         self.momentButton.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
         self.momentButton.layer.borderWidth = 1
@@ -76,30 +68,6 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
         
     }
     
-    @IBAction func getMoments(sender: AnyObject) {
-        requestMomentData()
-        self.performSegueWithIdentifier("showTimeline", sender: sender)
-        //run segue to however we want to display moments
-    }
-    
-    func requestMomentData(){
-        if let location: CLLocation = locationManager.location {
-            let currentLocation: CLLocationCoordinate2D = location.coordinate
-            HistoricalDataService.requestMemoriesContent(currentLocation) { success, result in
-                if (success) {
-                    memoriesData = (result)
-                    landmarksInfo!["Memories Near You"] = memoriesData
-                    self.momentButton.enabled = true
-                } else {
-                    print("Failed to get info")
-                }
-            }
-        } else {
-            print("Request failed because we didn't have location")
-        }
-    }
-    
-    
     /**
         Prepares for a segue to the detail view for a particular point of
         interest on the map.
@@ -114,17 +82,27 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
                       it that will given to the landmark detail view.
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if (segue.identifier == "showTimeline") {
+		if segue.identifier == "showTimeline" {
+            
             if let geofenceTitle = (sender?.title)! {
                 selectedGeofence = geofenceTitle
-            } else {
-                selectedGeofence = "Memories Near You"
             }
+            
 			let destinationController = (segue.destinationViewController as! TimelineViewController)
 			destinationController.mapCtrl = self
-		}
+            
+            // hide the memories button so it doesn't make the view busy
+            self.momentButton.hidden = true
+            
+        } else if segue.identifier == "showMemories" {
+            selectedGeofence = "Memories Near You"
+            self.momentButton.hidden = true
+			let destinationController = (segue.destinationViewController as! TimelineViewController)
+			destinationController.mapCtrl = self
+            destinationController.showMemories = true
+            destinationController.requestMomentData()
+        }
     }
-
 
     /**
         Temporary function that shows the current available geofences 
@@ -234,7 +212,6 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 				}
 			}
         }
-        requestMomentData()
     }
 	
     /**

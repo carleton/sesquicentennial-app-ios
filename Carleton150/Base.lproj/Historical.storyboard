@@ -81,7 +81,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="getMoments:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oy2-LF-Ek5"/>
+                                            <segue destination="2Ed-yO-PXD" kind="presentation" identifier="showMemories" modalPresentationStyle="overFullScreen" id="Hmv-V7-pMD"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -366,12 +366,17 @@
                                     <constraint firstAttribute="width" constant="3" id="Q3D-kG-fGQ"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="XRu-NH-LKM">
+                                <rect key="frame" x="282" y="281" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zs1-f1-1pz" firstAttribute="leading" secondItem="jHR-Iw-Rgu" secondAttribute="leading" id="2Pi-fI-ztw"/>
                             <constraint firstItem="q4E-Sh-P41" firstAttribute="leading" secondItem="jTQ-o3-iFW" secondAttribute="leading" constant="20" id="2ab-Fp-Xxz"/>
                             <constraint firstItem="q4E-Sh-P41" firstAttribute="top" secondItem="zs1-f1-1pz" secondAttribute="bottom" id="3Qd-g5-fUK"/>
+                            <constraint firstItem="XRu-NH-LKM" firstAttribute="centerY" secondItem="jTQ-o3-iFW" secondAttribute="centerY" id="DGG-g5-h2l"/>
+                            <constraint firstItem="XRu-NH-LKM" firstAttribute="centerX" secondItem="jTQ-o3-iFW" secondAttribute="centerX" id="Hlt-Au-1KY"/>
                             <constraint firstAttribute="trailing" secondItem="jHR-Iw-Rgu" secondAttribute="trailing" id="J8y-ZZ-GGg"/>
                             <constraint firstItem="kRO-67-JPx" firstAttribute="leading" secondItem="zs1-f1-1pz" secondAttribute="leading" id="JRC-Fa-H5n"/>
                             <constraint firstItem="jHR-Iw-Rgu" firstAttribute="top" secondItem="gUK-wQ-h0i" secondAttribute="bottom" constant="5" id="QfI-ee-mY2"/>
@@ -387,6 +392,7 @@
                     </view>
                     <connections>
                         <outlet property="geofenceName" destination="egf-Dy-hZb" id="KoK-u6-n9h"/>
+                        <outlet property="loadingView" destination="XRu-NH-LKM" id="sKV-Yf-8si"/>
                         <outlet property="tableView" destination="kRO-67-JPx" id="a4h-2b-SPg"/>
                         <outlet property="titleView" destination="zs1-f1-1pz" id="jvf-6l-jJm"/>
                     </connections>
@@ -555,4 +561,7 @@
         <image name="bank11.png" width="24" height="24"/>
         <image name="timeline_point" width="34" height="34"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Hmv-V7-pMD"/>
+    </inferredMetricsTieBreakers>
 </document>
