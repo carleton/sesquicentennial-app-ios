@@ -1,10 +1,6 @@
 //
 //  QuestPlayingViewController.swift
 //  Carleton150
-//
-//  Created by Ibrahim Rabbani on 2/15/16.
-//  Copyright © 2016 edu.carleton.carleton150. All rights reserved.
-//
 
 import UIKit
 import CoreLocation
@@ -168,12 +164,12 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	begins keeping track of location to determine if the user is
 	at a waypoint.
 	
-	Parameters:
-	- manager:                      The location manager that was
-	started within this view.
-	
-	- didChangeAuthorizationStatus: The current authorization status for the user
-	determining whether we can use location.
+        Parameters:
+            - manager: The location manager that was
+                       started within this view.
+        
+            - didChangeAuthorizationStatus: The current authorization status for the user
+                                            determining whether we can use location.
 	*/
 	func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
 		if status == .AuthorizedAlways {
@@ -182,5 +178,4 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 			questMapView.settings.myLocationButton = true
 		}
 	}
-	
 }
