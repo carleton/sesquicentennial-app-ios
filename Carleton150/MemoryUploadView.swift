@@ -82,20 +82,67 @@ class MemoryUploadView: UIViewController,
     }
     
     @IBAction func uploadMemory(sender: AnyObject) {
-        let memory: Memory = Memory(title: titleField.text!, desc: descriptionTextView.text!, timestamp: NSDate(), uploader: nameField.text!, location: self.parentView.mapCtrl.locationManager.location!.coordinate, image: self.image!)
-        
-        // start wait screen
-        SwiftOverlays.showBlockingWaitOverlayWithText("Uploading your image...")
-        
-        HistoricalDataService.uploadMemory(memory) { success in
-            // stop wait screen
-            SwiftOverlays.removeAllBlockingOverlays()
-            if success {
-                self.alertUserOfUploadAttempt(memory, success: success)
-            } else {
-                self.alertUserOfUploadAttempt(memory, success: success)
+        if let title = titleField.text,
+               desc = descriptionTextView.text,
+               uploader = nameField.text,
+               image = self.image {
+                
+            var emptyFields: [String] = []
+            
+            if title == "" {
+                emptyFields.append("Title")
             }
+                
+            if desc == "" {
+                emptyFields.append("Description")
+            }
+                
+            if uploader == "" {
+                emptyFields.append("Name")
+            }
+                
+            if emptyFields.count != 0 {
+                issueValidationAlert(emptyFields)
+                return
+            }
+                
+            let location = self.parentView.mapCtrl.locationManager.location!.coordinate
+            let memory: Memory = Memory(title: title, desc: desc, timestamp: NSDate(), uploader: uploader, location: location, image: image)
+                
+            // start wait screen
+            SwiftOverlays.showBlockingWaitOverlayWithText("Uploading your image...")
+            
+            HistoricalDataService.uploadMemory(memory) { success in
+                // stop wait screen
+                SwiftOverlays.removeAllBlockingOverlays()
+                if success {
+                    self.alertUserOfUploadAttempt(memory, success: success)
+                } else {
+                    self.alertUserOfUploadAttempt(memory, success: success)
+                }
+            }
+        } else {
+            // image is not there
+            let alert = UIAlertController(title: "No image selected", message: "Select an image for your memory!", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) {
+                (UIAlertAction) -> Void in
+                // do nothing
+            }
+            alert.addAction(alertAction)
+            presentViewController(alert, animated: true, completion: nil)
         }
+    }
+    
+    func issueValidationAlert(emptyFields: [String]) {
+        let fields = emptyFields.joinWithSeparator(", ")
+        let message = "The following fields are empty: \n \(fields)"
+        let alert = UIAlertController(title: "Missing Fields", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) {
+            (UIAlertAction) -> Void in
+            // do nothing
+        }
+        alert.addAction(alertAction)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     func alertUserOfUploadAttempt(memory: Memory, success: Bool) {
