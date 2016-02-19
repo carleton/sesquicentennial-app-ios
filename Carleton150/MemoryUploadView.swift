@@ -19,6 +19,7 @@ class MemoryUploadView: UIViewController,
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var titleField: UITextField!
+    @IBOutlet weak var imageSubmitted: UIImageView!
     
     @IBAction func dismissKeyboard(sender: AnyObject) {
         nameField.resignFirstResponder()
@@ -29,6 +30,9 @@ class MemoryUploadView: UIViewController,
     override func viewDidLoad() {
         // forces background to darken
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.6)
+        
+        // hide checkmark that signifies whether an image has been added
+        self.imageSubmitted.hidden = true
         
         // set delegates
         imagePicker.delegate = self
@@ -73,6 +77,7 @@ class MemoryUploadView: UIViewController,
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         self.image = image
+        self.imageSubmitted.hidden = false
         dismissViewControllerAnimated(true, completion: nil)
     }
     
