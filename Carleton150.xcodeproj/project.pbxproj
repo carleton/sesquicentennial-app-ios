@@ -109,7 +109,6 @@
 		71676CC11BDED61700F1183D /* Carleton150-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Carleton150-Bridging-Header.h"; sourceTree = "<group>"; };
 		717FE3E51BC7001D009CA507 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		7180A72D1C685DAA0080F121 /* TimelineTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTitleView.swift; sourceTree = "<group>"; };
-		7194ED571C715066007F55D4 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		7194ED581C715066007F55D4 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		7194ED591C715066007F55D4 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		7194ED5A1C715066007F55D4 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
@@ -194,12 +193,12 @@
 			children = (
 				6368A5941C5050E900D6B5B2 /* Quest.storyboard */,
 				715AE47F1C4EB08D00C8F0C9 /* Quest.swift */,
+				715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */,
 				71340E571C5214A2007F9E2F /* QuestDataService.swift */,
 				630B0B4E1C7446D000876031 /* QuestViewController.swift */,
 				630B0B501C744A8700876031 /* QuestContentViewController.swift */,
 				63F5E99F1C72B60D00CFCB38 /* QuestPlayingViewController.swift */,
 				63A99A6A1C75859D007E6F25 /* QuestModalViewController.swift */,
-				715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */,
 				63A99A6C1C763AEA007E6F25 /* WaypointsModalViewController.swift */,
 				63A99A6E1C763D97007E6F25 /* WaypointTableCell.swift */,
 			);
@@ -268,7 +267,6 @@
 		7194ED561C715059007F55D4 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				7194ED571C715066007F55D4 /* Roboto-Black.ttf */,
 				7194ED581C715066007F55D4 /* Roboto-Bold.ttf */,
 				7194ED591C715066007F55D4 /* Roboto-Italic.ttf */,
 				7194ED5A1C715066007F55D4 /* Roboto-Light.ttf */,

@@ -33,36 +33,44 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 	}
 	
 	/**
-		Dismiss modal
-	 */
+		Upon clicking outside the modal view or on the X button,
+		dismiss the view.
+		
+		- Parameters:
+			- sender: The UI element that triggered the action.
+	*/
 	@IBAction func dismissAction(sender: AnyObject) {
 		parentVC.dismissViewControllerAnimated(true)  {() -> Void in }
 	}
 	
 	/**
+	
 		Table UITableViewDataSource methods
-	 */
+	
+	*/
+
 	/**
-	Determines the number of sections in the table view.
-	
-	- Parameters:
-	- tableView: The table view being used for the timeline.
-	
-	- Returns: 1. Nothing exciting here.
+		Determines the number of sections in the table view.
+		
+		- Parameters:
+			- tableView: The table view being used for the timeline.
+		
+		- Returns: the total number of waypoints
 	*/
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return waypoints.count
 	}
 	
 	/**
-	Determines the number of cells in the table view.
+		Determine the number of cells in each section. Each section is defined as a waypoint. If the waypoint
+		has a completion message, the section has three cells. Otherwise, it has two cells (for clue and hint)
 	
-	- Parameters:
-	- tableView: The table view being used for the timeline.
-	
-	- section: The current section of the table view.
-	
-	- Returns: The number of historical events for the triggered geofence.
+	  	- Parameters:
+			- tableView: The table view being used for the modal.
+			
+			- section: The current section of the table view.
+			
+		- Returns: The number of cells for the waypoint in question
 	*/
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		// if custom completion message
@@ -74,29 +82,31 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 	}
 	
 	/**
-	Determines the of each of the cells in the table view by
-	using autolayout to determine the cell height.
-	
-	- Parameters:
-	- tableView: The table view being used for the timeline.
-	
-	- indexPath: The current cell index of the table view.
-	
-	- Returns: The calculated height of the table view cell.
+		Determines the of each of the cells in the table view by using autolayout to determine the cell height.
+		
+		- Parameters:
+			- tableView: The table view being used for the modal.
+		
+			- indexPath: The current cell index of the table view.
+		
+		- Returns: The calculated height of the table view cell.
 	*/
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 		return UITableViewAutomaticDimension
 	}
 
 	/**
-	Adds data to each of the cells in the timeline view.
+		Adds data to each of the cells in the table view. Each section can have three possible type of cells: 
+		clues, hints, and completion. The assignment of these types to integers is arbitrary
+		
+		- Parameters:
+			- tableView: The table view being used for the timeline.
+			
+			- indexPath.section: The current section index
 	
-	- Parameters:
-	- tableView: The table view being used for the timeline.
-	
-	- indexPath: The current cell index of the table view.
-	
-	- Returns: The modified table view cell.
+			- indexPath.row: The current cell index within each each
+		
+		- Returns: The modified table view cell.
 	*/
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let waypoint = waypoints[indexPath.section]
@@ -112,6 +122,7 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
 				cell.titleText = "Clue"
 				cell.descText = waypoint.clue["text"] as? String
+				cell.setCellViewTraits()
 				return cell
 			}
 		// hint
@@ -126,6 +137,7 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
 				cell.titleText = "Hint"
 				cell.descText = waypoint.hint["text"] as? String
+				cell.setCellViewTraits()
 				return cell
 			}
 		} else if (indexPath.row == 2) {
@@ -139,6 +151,7 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
 				cell.titleText = "Completion"
 				cell.descText = waypoint.completion["text"] as? String
+				cell.setCellViewTraits()
 				return cell
 			}
 		}
@@ -146,6 +159,7 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 		let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
 		cell.titleText = ""
 		cell.descText = "Couldn't find data for waypoint"
+		cell.setCellViewTraits()
 		return cell
 	}
 	

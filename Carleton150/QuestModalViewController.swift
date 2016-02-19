@@ -2,15 +2,12 @@
 //  QuestModalViewController.swift
 //  Carleton150
 //
-//  Created by Ibrahim Rabbani on 2/17/16.
-//  Copyright © 2016 edu.carleton.carleton150. All rights reserved.
-//
 
 import UIKit
 
 class QuestModalViewController: UIViewController {
 	
-	var parentView: QuestPlayingViewController!
+	var parentVC: QuestPlayingViewController!
 	var titleText: String!
 	var isCorrect: Bool = false
 	var isComplete: Bool = false
@@ -28,6 +25,7 @@ class QuestModalViewController: UIViewController {
 		// forces background to darken
 		self.view.backgroundColor = UIColor(white: 0, alpha: 0.6)
 		
+		// set up the main body of text
 		if (descText == nil) {
 			if (isCorrect) {
 				if (isComplete) {
@@ -40,6 +38,7 @@ class QuestModalViewController: UIViewController {
 			}
 		}
 		
+		// set up title for modal
 		if (titleText == nil) {
 			if (isCorrect) {
 				if (isComplete) {
@@ -52,6 +51,7 @@ class QuestModalViewController: UIViewController {
 			}
 		}
 		
+		// set up image for modal
 		if (image == nil) {
 			if (isCorrect) {
 				if (isComplete) {
@@ -64,6 +64,7 @@ class QuestModalViewController: UIViewController {
 			}
 		}
 		
+		// set properies to view outlets
 		descTextView.text = descText
 		titleLabel.text = titleText
 		imageView.image = image
@@ -71,10 +72,13 @@ class QuestModalViewController: UIViewController {
     }
 
 	/**
-	 * Close modal and transition back to the quest playing view
-	 **/
+		Upon clicking okay or X returns to the previous view
+		
+		- Parameters:
+			- sender: The UI element that triggered the action.
+	*/
 	@IBAction func dismissModal(sender: AnyObject) {
-		parentView.setupUI()
-		parentView.dismissViewControllerAnimated(true) {}
+		parentVC.setupUI()
+		parentVC.dismissViewControllerAnimated(true) {}
 	}
 }

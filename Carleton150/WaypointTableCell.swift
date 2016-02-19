@@ -5,6 +5,10 @@
 
 import UIKit
 
+/**
+	Generic table cell that the two modal table
+	that all table cells will inherit from
+*/
 class WaypointTableCell: UITableViewCell {
 
 	var titleText: String!
@@ -13,6 +17,10 @@ class WaypointTableCell: UITableViewCell {
 	
 }
 
+
+/**
+	Contains an image and text
+*/
 class WaypointTableImageCell : WaypointTableCell {
 	
 	@IBOutlet weak var titleLabel: UILabel!
@@ -53,6 +61,9 @@ class WaypointTableImageCell : WaypointTableCell {
 	
 }
 
+/**
+	Contains just text
+*/
 class WaypointTableTextCell : WaypointTableCell {
 	
 	@IBOutlet weak var titleLabel: UILabel!
