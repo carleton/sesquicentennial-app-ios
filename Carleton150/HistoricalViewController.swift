@@ -11,16 +11,13 @@ var selectedGeofence = ""
 var landmarksInfo : Dictionary<String,[Dictionary<String, String>?]>? = Dictionary()
 
 class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GMSMapViewDelegate {
+    
+    @IBOutlet weak var momentButton: UIButton!
 
     @IBOutlet weak var mapView: GMSMapView!
 	@IBOutlet weak var Debug: UIButton!
     @IBOutlet weak var longText: UILabel!
     @IBOutlet weak var latText: UILabel!
-    
-    @IBAction func backFromModal(segue: UIStoryboardSegue) {
-        // Switch to the first tab (tabs are numbered 0, 1, 2)
-        self.tabBarController?.selectedIndex = 1
-    }
     
     let locationManager = CLLocationManager()
     let currentLocationMarker = GMSMarker()
@@ -42,6 +39,12 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      */
     override func viewDidLoad() {
         
+        // set up the memories button
+        self.momentButton.layer.cornerRadius = 5
+        self.momentButton.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
+        self.momentButton.layer.borderWidth = 1
+        mapView.bringSubviewToFront(self.momentButton)
+        
         // set properties for the navigation bar
         Utils.setUpNavigationBar(self)
         
@@ -60,7 +63,9 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
         // brings subviews in front of the map.
         if showDebugButton {
             mapView.bringSubviewToFront(Debug)
+            mapView.bringSubviewToFront(momentButton)
         }
+        
     }
     
     /**
@@ -77,13 +82,27 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
                       it that will given to the landmark detail view.
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if (segue.identifier == "showTimeline") {
-			selectedGeofence = (sender?.title)!
-			let yourNextViewController = (segue.destinationViewController as! TimelineViewController)
-			yourNextViewController.mapCtrl = self
-		}
+		if segue.identifier == "showTimeline" {
+            
+            if let geofenceTitle = (sender?.title)! {
+                selectedGeofence = geofenceTitle
+            }
+            
+			let destinationController = (segue.destinationViewController as! TimelineViewController)
+			destinationController.mapCtrl = self
+            
+            // hide the memories button so it doesn't make the view busy
+            self.momentButton.hidden = true
+            
+        } else if segue.identifier == "showMemories" {
+            selectedGeofence = "Memories Near You"
+            self.momentButton.hidden = true
+			let destinationController = (segue.destinationViewController as! TimelineViewController)
+			destinationController.mapCtrl = self
+            destinationController.showMemories = true
+            destinationController.requestMemories()
+        }
     }
-
 
     /**
         Temporary function that shows the current available geofences 
@@ -111,7 +130,6 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 			debugMode = true
 		}
 	}
-
 	
     /**
         The function immediately called by the location manager that 
@@ -173,7 +191,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 					}
 				})
 			self.updateLocation = false
-		}
+        }
 		
 		// Check to see if geofence tripped
 		for (var i = 0; i < geofences.count; i++) {
@@ -193,8 +211,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 					self.infoMarkers = exitedGeofence(geofences[i], infoMarkers: self.infoMarkers)
 				}
 			}
-		}
-
+        }
     }
 	
     /**
