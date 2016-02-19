@@ -11,8 +11,9 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	let locationManager = CLLocationManager()
 	
 	var quest: Quest!
-	var currentWayPointIndex: Int! // @todo: Load this up from Core Data
+	var currentWayPointIndex: Int!
 	var clueShown: Bool = true
+	var questCompleted: Bool = false
 	
 	@IBOutlet weak var questMapView: GMSMapView!
 	@IBOutlet weak var clueHintView: UIView!
@@ -22,20 +23,24 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	@IBOutlet weak var clueHintToggle: UIButton!
 	@IBOutlet weak var clueHintImgWidthConst: NSLayoutConstraint!
 	@IBOutlet weak var attemptCompButton: UIButton!
+	@IBOutlet weak var waypointsButton: UIButton!
 	
-	@IBAction func toggleClueHint(sender: AnyObject) {
-		clueShown = !clueShown
-		showClueHint()
-	}
+
 	
     override func viewDidLoad() {
 		
+		// Loads stored waypoint for the quest from NSUserDefaults
 		if let startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
 			if let curSavedIndex = startedQuests[self.quest.name] as Int! {
 				self.currentWayPointIndex = curSavedIndex
 			} else {
 				self.currentWayPointIndex = 0
 			}
+			
+		}
+		
+		if (self.currentWayPointIndex >= quest.wayPoints.count) {
+			questCompleted = true;
 		}
 
 		// set properties for the navigation bar
@@ -50,26 +55,51 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		questMapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16) // @todo: Make this current location
 		questMapView.delegate = self;
 		
+		// show waypoints button
+		questMapView.bringSubviewToFront(waypointsButton)
+
+		
 		// set up tiling
 		Utils.setUpTiling(questMapView)
 		
 		setupUI()
     }
-
 	
+	
+	/**
+		Upon clicking the attemptCompButton, the quest will either restart
+		or perform a segue to the attempt modal
+	
+		- Parameters:
+			- sender: The UI button attemptCompButton
+	*/
 	@IBAction func attemptCompletion(sender: AnyObject) {
 	}
 	
+	/**
+		Upon clicking the show hint / show clue button, the UI shows a clue or a hint
+	
+		- Parameters:
+			- sender: The UI button clueHintToggle
+	 */
+	@IBAction func toggleClueHint(sender: AnyObject) {
+		clueShown = !clueShown
+		showClueHint()
+	}
+	
+	/**
+		Sets up the entire UI for the ClueHintView. Checks to see if the quest has been completed
+		and disables UI elements based on that
+		@todo: add a restart quest button
+	 */
 	func setupUI () {
-		print("HERE")
 		// setting up UI
 		self.questName.text = quest.name
 		if (self.currentWayPointIndex >= quest.wayPoints.count) {
 			self.clueHintToggle.enabled = false
 			self.clueHintToggle.setTitleColor(UIColor.grayColor(), forState: .Disabled)
-			self.attemptCompButton.enabled = false
 			self.attemptCompButton.backgroundColor = UIColor(red: 230/255, green: 159/255, blue: 19/255, alpha: 1)
-			self.attemptCompButton.setTitle("Quest Completed", forState: UIControlState.Disabled)
+			self.attemptCompButton.setTitle("Quest Completed: Restart?", forState: UIControlState.Normal)
 			self.clueHintImage.image = UIImage(named: "quest_modal_completion_default")
 			self.clueHintText.text = "Quest Has been completed!"
 		} else if (self.currentWayPointIndex < quest.wayPoints.count) {
@@ -77,6 +107,13 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		}
 	}
 	
+	
+	/**
+		Creates part of the UI for the ClueHintView. Chooses between the hint and clue based on
+		the clueShown bool. If the item on display does not have an image associated
+		with it, it sets the width of the imageview to zero by manipulating its width 
+		constraint
+	 */
 	func showClueHint() {
 		if (clueShown) {
 			clueHintText.text = quest.wayPoints[currentWayPointIndex].clue["text"] as? String
@@ -105,29 +142,69 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	}
 	
 	/**
-	Prepares for a segue to the detail view for a particular point of
-	interest on the map.
+		Suppress segue to the attempt modal if the quest has been completed. Instead, restart quest
+		
+		- Parameters:
+			- identifier: segue identifier from storyboard
+			- sender: the sender, in our case will be either the attemptCompButton or the
+					  waypointsButton
+		
+		- Returns: true if questAttemptModal segue and quest has been completed
 	
-	Parameters:
-	- segue:  The segue that was triggered by user. If this is not the
-	segue to the landmarkDetail view, then don't perform the
-	segue.
+	 */
+	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+		// restart quest
+		if (identifier == "questAttemptModal") {
+			// if quest has been completing suppress this segue
+			if (questCompleted) {
+				self.currentWayPointIndex = 0
+				self.attemptCompButton.setTitle("Are We There Yet?", forState: .Normal)
+				self.attemptCompButton.backgroundColor = UIColor(red: 254/255, green: 214/255, blue: 70/255, alpha: 1)
+				self.clueHintToggle.enabled = true
+				showClueHint()
+				questCompleted = false
+
+				print("Stopping Segue")
+				return false
+			}
+			return true
+		}
+		return true
+	}
 	
-	- sender: The sender, in our case, will be one of the Google Maps markers
-	that was pressed, which will in turn have data associated with
-	it that will given to the landmark detail view.
-	
+	/**
+		Prepares for a segue to another view. In the case, there are two possible segues:
+		one to the attempt modal triggered by the Are We There Yet? button and the other
+		to the completed waypoints modal triggered by the button on the map
+		
+		Parameters:
+			- segue:  The segue that was triggered by user. Either to the attempt modal
+					  or the completed waypoints modal
+			- sender: The sender, in our case, will be either the attemptCompButton
+					  or waypointsButton
 	*/
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		/**
+		 * Attempt Modal
+		 */
 		if segue.identifier == "questAttemptModal" {
 			// get next controller
 			let nextCtrl = segue.destinationViewController as! QuestModalViewController
-			nextCtrl.parentView = self
+			nextCtrl.parentVC = self
 			// check to see quest status
 			if quest.wayPoints[currentWayPointIndex].checkIfTriggered(locationManager.location!.coordinate) {
 				nextCtrl.isCorrect = true
 				// increment waypointIndex and store it
 				currentWayPointIndex!++
+				// store the waypoint 
+				if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
+					startedQuests[quest.name] = currentWayPointIndex
+					NSUserDefaults.standardUserDefaults().setObject(startedQuests,forKey: "startedQuests")
+				}
+				// check to see if quest has been completed
+				if (self.currentWayPointIndex >= self.quest.wayPoints.count) {
+					self.questCompleted = true
+				}
 				if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
 					startedQuests[quest.name] = self.currentWayPointIndex
 					NSUserDefaults.standardUserDefaults().setObject(startedQuests,forKey: "startedQuests")
@@ -154,19 +231,28 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 				nextCtrl.isComplete = false
 				nextCtrl.isCorrect = false
 			}
-			
-			// set completion text
+		/**
+		 * Completed waypoints modal
+		 */
+		} else if (segue.identifier == "showWaypoints") {
+			// get next controller
+			let nextCtrl = segue.destinationViewController as! WaypointsModalViewController
+			nextCtrl.parentVC = self
+			var waypoints = [WayPoint]()
+			for (var i = 0; i < currentWayPointIndex; i++) {
+				waypoints.append((self.quest?.wayPoints[i])!)
+			}
+			nextCtrl.waypoints = waypoints
 		}
 	}
 	
 	/**
-	The function immediately called by the location manager that
-	begins keeping track of location to determine if the user is
-	at a waypoint.
+		The function immediately called by the location manager that
+		begins keeping track of location to determine if the user is
+		at a waypoint.
 	
         Parameters:
-            - manager: The location manager that was
-                       started within this view.
+            - manager: The location manager that was started within this view.
         
             - didChangeAuthorizationStatus: The current authorization status for the user
                                             determining whether we can use location.

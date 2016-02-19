@@ -19,6 +19,8 @@
 		635B37451BF4231400F1508B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 635B37441BF4231400F1508B /* Assets.xcassets */; };
 		6368A5961C5050E900D6B5B2 /* Quest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6368A5941C5050E900D6B5B2 /* Quest.storyboard */; };
 		63A99A6B1C75859D007E6F25 /* QuestModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99A6A1C75859D007E6F25 /* QuestModalViewController.swift */; };
+		63A99A6D1C763AEA007E6F25 /* WaypointsModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99A6C1C763AEA007E6F25 /* WaypointsModalViewController.swift */; };
+		63A99A6F1C763D97007E6F25 /* WaypointTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99A6E1C763D97007E6F25 /* WaypointTableCell.swift */; };
 		63F5E9A01C72B60D00CFCB38 /* QuestPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F5E99F1C72B60D00CFCB38 /* QuestPlayingViewController.swift */; };
 		6A3094401BD9CD4600A16342 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A30943F1BD9CD4600A16342 /* Geotification.swift */; };
 		71043C741C72FD970091D99A /* CalendarDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71043C731C72FD970091D99A /* CalendarDetailView.swift */; };
@@ -78,6 +80,8 @@
 		635B37441BF4231400F1508B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6368A5951C5050E900D6B5B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Quest.storyboard; sourceTree = "<group>"; };
 		63A99A6A1C75859D007E6F25 /* QuestModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestModalViewController.swift; sourceTree = "<group>"; };
+		63A99A6C1C763AEA007E6F25 /* WaypointsModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointsModalViewController.swift; sourceTree = "<group>"; };
+		63A99A6E1C763D97007E6F25 /* WaypointTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointTableCell.swift; sourceTree = "<group>"; };
 		63F5E99F1C72B60D00CFCB38 /* QuestPlayingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestPlayingViewController.swift; sourceTree = "<group>"; };
 		6A30943F1BD9CD4600A16342 /* Geotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
 		71043C731C72FD970091D99A /* CalendarDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDetailView.swift; sourceTree = "<group>"; };
@@ -105,7 +109,6 @@
 		71676CC11BDED61700F1183D /* Carleton150-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Carleton150-Bridging-Header.h"; sourceTree = "<group>"; };
 		717FE3E51BC7001D009CA507 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		7180A72D1C685DAA0080F121 /* TimelineTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTitleView.swift; sourceTree = "<group>"; };
-		7194ED571C715066007F55D4 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		7194ED581C715066007F55D4 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		7194ED591C715066007F55D4 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		7194ED5A1C715066007F55D4 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
@@ -156,13 +159,13 @@
 		63036B311C4CB55C00193A78 /* Historical */ = {
 			isa = PBXGroup;
 			children = (
+				63036B321C4CB5A200193A78 /* Historical.storyboard */,
 				71294DAF1BC6FC1500B9F81B /* HistoricalViewController.swift */,
 				63291F351C5971A30064C296 /* TimelineViewController.swift */,
 				63291F371C5979730064C296 /* TimelineTableCells.swift */,
 				71340E591C5216C8007F9E2F /* HistoricalDataService.swift */,
 				71C4302E1C765105005D8112 /* Memory.swift */,
 				6A30943F1BD9CD4600A16342 /* Geotification.swift */,
-				63036B321C4CB5A200193A78 /* Historical.storyboard */,
 				71FF6D361C72B2CD004A2B3D /* TimelineImageDetailView.swift */,
 				71573EB31C707E5400B3E265 /* TimelineTextDetailView.swift */,
 				71F0C7BF1C7273920063EDB1 /* TimelineDetailView.swift */,
@@ -196,6 +199,8 @@
 				630B0B501C744A8700876031 /* QuestContentViewController.swift */,
 				63F5E99F1C72B60D00CFCB38 /* QuestPlayingViewController.swift */,
 				63A99A6A1C75859D007E6F25 /* QuestModalViewController.swift */,
+				63A99A6C1C763AEA007E6F25 /* WaypointsModalViewController.swift */,
+				63A99A6E1C763D97007E6F25 /* WaypointTableCell.swift */,
 			);
 			name = Quest;
 			sourceTree = "<group>";
@@ -262,7 +267,6 @@
 		7194ED561C715059007F55D4 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				7194ED571C715066007F55D4 /* Roboto-Black.ttf */,
 				7194ED581C715066007F55D4 /* Roboto-Bold.ttf */,
 				7194ED591C715066007F55D4 /* Roboto-Italic.ttf */,
 				7194ED5A1C715066007F55D4 /* Roboto-Light.ttf */,
@@ -507,9 +511,11 @@
 				7151A3661C75A894005889EF /* MemoryUploadView.swift in Sources */,
 				63291F381C5979730064C296 /* TimelineTableCells.swift in Sources */,
 				71FF6D371C72B2CD004A2B3D /* TimelineImageDetailView.swift in Sources */,
+				63A99A6F1C763D97007E6F25 /* WaypointTableCell.swift in Sources */,
 				71340E5C1C5217C3007F9E2F /* CalendarDataService.swift in Sources */,
 				63A99A6B1C75859D007E6F25 /* QuestModalViewController.swift in Sources */,
 				715AE4801C4EB08D00C8F0C9 /* Quest.swift in Sources */,
+				63A99A6D1C763AEA007E6F25 /* WaypointsModalViewController.swift in Sources */,
 				630B0B511C744A8700876031 /* QuestContentViewController.swift in Sources */,
 				715AE47E1C4EADF200C8F0C9 /* WayPoint.swift in Sources */,
 				71340E581C5214A2007F9E2F /* QuestDataService.swift in Sources */,

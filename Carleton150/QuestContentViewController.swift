@@ -23,6 +23,7 @@ class QuestContentViewController: UIViewController {
 	@IBOutlet weak var startButton: UIButton!
 	@IBOutlet weak var imageView: UIImageView!
 	
+	
 	/**
 	Prepares for a segue to the detail view for a particular point of
 	interest on the map.
@@ -43,21 +44,7 @@ class QuestContentViewController: UIViewController {
 			nextCtrl.quest = self.quest
 		}
 	}
-	
-	/**
-	Prepares for a segue to the detail view for a particular point of
-	interest on the map.
-	
-	Parameters:
-	- segue:  The segue that was triggered by user. If this is not the
-	segue to the landmarkDetail view, then don't perform the
-	segue.
-	
-	- sender: The sender, in our case, will be one of the Google Maps markers
-	that was pressed, which will in turn have data associated with
-	it that will given to the landmark detail view.
-	
-	*/
+
     override func viewDidLoad() {
 		// Quest Name
 		if let titleText = titleText {
@@ -85,6 +72,7 @@ class QuestContentViewController: UIViewController {
 		// Data Persistance
 		if let startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! NSDictionary! {
 			if let curQuestWaypoint = startedQuests[titleText] as! Int! {
+				print("Cur Index for quest \(titleText) is \(curQuestWaypoint)")
 				let percentageCompleted = Int((Float(curQuestWaypoint) / Float(quest.wayPoints.count))*100)
 				if (percentageCompleted == 100) {
 					self.startButton.setTitle("Quest Completed", forState: .Normal)

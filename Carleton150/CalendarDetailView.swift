@@ -49,7 +49,7 @@ class CalendarDetailView: UIViewController {
      */
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.descriptionText.setContentOffset(CGPointZero, animated: false)
+        self.eventDescriptionText.setContentOffset(CGPointZero, animated: false)
     }
     
     
