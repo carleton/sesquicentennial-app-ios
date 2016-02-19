@@ -90,6 +90,7 @@ final class HistoricalDataService {
      */
     class func requestMemoriesContent(location: CLLocationCoordinate2D,
         completion: (success: Bool, result: [Dictionary<String, String>?]) -> Void) {
+        
             
         let parameters = [
             "lat" : location.latitude,
@@ -144,10 +145,10 @@ final class HistoricalDataService {
     
     class func uploadMemory(memory: Memory, completion: (success: Bool) -> Void) {
         // build the base64 representation of the image
-        let imageData = UIImagePNGRepresentation(memory.image)
+        let imageData = UIImageJPEGRepresentation(memory.image, 0.1)
         let base64Image: String = imageData!.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
-
-        let parameters = [
+        
+        let parameters: [String : AnyObject] = [
             "title" : memory.title,
             "desc" : memory.desc,
             "timestamp" :  memory.timestamp,
@@ -160,8 +161,9 @@ final class HistoricalDataService {
         ]
         
     
-        Alamofire.request(.POST, Endpoints.addMemory, parameters: parameters as? [String : AnyObject], encoding: .JSON).responseJSON() {
+        Alamofire.request(.POST, Endpoints.addMemory, parameters: parameters , encoding: .JSON).responseJSON() {
             (request, response, result) in
+            
             
             if let result = result.value {
                 let json = JSON(result)

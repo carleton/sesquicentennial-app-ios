@@ -166,7 +166,7 @@ class MemoryUploadView: UIViewController,
                 
             // start wait screen
             SwiftOverlays.showBlockingWaitOverlayWithText("Uploading your image...")
-                
+
             var emptyFields: [String] = []
             
             if title == "" {

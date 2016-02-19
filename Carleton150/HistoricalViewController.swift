@@ -272,8 +272,6 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 				marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
 				self.infoMarkers.append(marker)
 				geofence.active = true;
-			} else {
-				print("Didn't get data. Oops!")
 			}
 		}
 	}
