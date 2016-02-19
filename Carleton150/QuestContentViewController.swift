@@ -72,6 +72,7 @@ class QuestContentViewController: UIViewController {
 		// Data Persistance
 		if let startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! NSDictionary! {
 			if let curQuestWaypoint = startedQuests[titleText] as! Int! {
+				print("Cur Index for quest \(titleText) is \(curQuestWaypoint)")
 				let percentageCompleted = Int((Float(curQuestWaypoint) / Float(quest.wayPoints.count))*100)
 				if (percentageCompleted == 100) {
 					self.startButton.setTitle("Quest Completed", forState: .Normal)

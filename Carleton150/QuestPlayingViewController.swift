@@ -11,8 +11,9 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	let locationManager = CLLocationManager()
 	
 	var quest: Quest!
-	var currentWayPointIndex: Int! // @todo: Load this up from Core Data
+	var currentWayPointIndex: Int!
 	var clueShown: Bool = true
+	var questCompleted: Bool = false
 	
 	@IBOutlet weak var questMapView: GMSMapView!
 	@IBOutlet weak var clueHintView: UIView!
@@ -36,6 +37,10 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 				self.currentWayPointIndex = 0
 			}
 			
+		}
+		
+		if (self.currentWayPointIndex >= quest.wayPoints.count) {
+			questCompleted = true;
 		}
 
 		// set properties for the navigation bar
@@ -93,9 +98,8 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		if (self.currentWayPointIndex >= quest.wayPoints.count) {
 			self.clueHintToggle.enabled = false
 			self.clueHintToggle.setTitleColor(UIColor.grayColor(), forState: .Disabled)
-			self.attemptCompButton.enabled = false
 			self.attemptCompButton.backgroundColor = UIColor(red: 230/255, green: 159/255, blue: 19/255, alpha: 1)
-			self.attemptCompButton.setTitle("Quest Completed", forState: UIControlState.Disabled)
+			self.attemptCompButton.setTitle("Quest Completed: Restart?", forState: UIControlState.Normal)
 			self.clueHintImage.image = UIImage(named: "quest_modal_completion_default")
 			self.clueHintText.text = "Quest Has been completed!"
 		} else if (self.currentWayPointIndex < quest.wayPoints.count) {
@@ -138,6 +142,37 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	}
 	
 	/**
+		Suppress segue to the attempt modal if the quest has been completed. Instead, restart quest
+		
+		- Parameters:
+			- identifier: segue identifier from storyboard
+			- sender: the sender, in our case will be either the attemptCompButton or the
+					  waypointsButton
+		
+		- Returns: true if questAttemptModal segue and quest has been completed
+	
+	 */
+	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+		// restart quest
+		if (identifier == "questAttemptModal") {
+			// if quest has been completing suppress this segue
+			if (questCompleted) {
+				self.currentWayPointIndex = 0
+				self.attemptCompButton.setTitle("Are We There Yet?", forState: .Normal)
+				self.attemptCompButton.backgroundColor = UIColor(red: 254/255, green: 214/255, blue: 70/255, alpha: 1)
+				self.clueHintToggle.enabled = true
+				showClueHint()
+				questCompleted = false
+
+				print("Stopping Segue")
+				return false
+			}
+			return true
+		}
+		return true
+	}
+	
+	/**
 		Prepares for a segue to another view. In the case, there are two possible segues:
 		one to the attempt modal triggered by the Are We There Yet? button and the other
 		to the completed waypoints modal triggered by the button on the map
@@ -161,6 +196,15 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 				nextCtrl.isCorrect = true
 				// increment waypointIndex and store it
 				currentWayPointIndex!++
+				// store the waypoint 
+				if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
+					startedQuests[quest.name] = currentWayPointIndex
+					NSUserDefaults.standardUserDefaults().setObject(startedQuests,forKey: "startedQuests")
+				}
+				// check to see if quest has been completed
+				if (self.currentWayPointIndex >= self.quest.wayPoints.count) {
+					self.questCompleted = true
+				}
 				if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
 					startedQuests[quest.name] = self.currentWayPointIndex
 					NSUserDefaults.standardUserDefaults().setObject(startedQuests,forKey: "startedQuests")
@@ -198,7 +242,6 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 			for (var i = 0; i < currentWayPointIndex; i++) {
 				waypoints.append((self.quest?.wayPoints[i])!)
 			}
-			print(waypoints)
 			nextCtrl.waypoints = waypoints
 		}
 	}
