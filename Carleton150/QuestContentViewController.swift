@@ -23,7 +23,6 @@ class QuestContentViewController: UIViewController {
 	@IBOutlet weak var startButton: UIButton!
 	@IBOutlet weak var imageView: UIImageView!
 	
-	
 	/**
 	Prepares for a segue to the detail view for a particular point of
 	interest on the map.
@@ -46,6 +45,9 @@ class QuestContentViewController: UIViewController {
 	}
 
     override func viewDidLoad() {
+		
+//		self.view.frame = (self.view.superview?.frame)!
+
 		// Quest Name
 		if let titleText = titleText {
 			self.nameLabel.text = titleText

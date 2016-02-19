@@ -104,10 +104,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bGz-SQ-HMs" userLabel="Quest Start">
-                                <rect key="frame" x="30" y="488" width="540" height="32"/>
+                                <rect key="frame" x="30" y="490" width="540" height="32"/>
                                 <color key="backgroundColor" red="0.99607843139999996" green="0.83529411760000005" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="hAg-eL-b8z"/>
+                                    <constraint firstAttribute="height" constant="30" id="hAg-eL-b8z"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                 <state key="normal" title="Begin">
@@ -122,11 +122,11 @@
                                 <rect key="frame" x="30" y="61" width="540" height="330"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hZn-Sj-1V8" userLabel="Quest Description">
-                                <rect key="frame" x="30" y="401" width="540" height="77"/>
+                                <rect key="frame" x="30" y="401" width="540" height="79"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -139,7 +139,9 @@
                             <constraint firstItem="hZn-Sj-1V8" firstAttribute="bottom" secondItem="f1X-PV-kqb" secondAttribute="bottom" id="9GM-eL-LzL"/>
                             <constraint firstItem="f1X-PV-kqb" firstAttribute="width" secondItem="z2U-ni-S4m" secondAttribute="width" multiplier="0.9" id="A2X-Pv-1HA"/>
                             <constraint firstItem="Xtd-Ah-GPG" firstAttribute="centerX" secondItem="z2U-ni-S4m" secondAttribute="centerX" id="DiH-Nl-lz6"/>
-                            <constraint firstItem="4K5-8z-lTG" firstAttribute="top" secondItem="bGz-SQ-HMs" secondAttribute="bottom" constant="50" id="ExE-ck-J8G"/>
+                            <constraint firstItem="4K5-8z-lTG" firstAttribute="top" secondItem="bGz-SQ-HMs" secondAttribute="bottom" constant="75" id="ExE-ck-J8G">
+                                <variation key="heightClass=compact" constant="70"/>
+                            </constraint>
                             <constraint firstItem="f1X-PV-kqb" firstAttribute="leading" secondItem="z2U-ni-S4m" secondAttribute="leading" constant="10" id="G0c-h8-CXI"/>
                             <constraint firstItem="f1X-PV-kqb" firstAttribute="width" secondItem="hZn-Sj-1V8" secondAttribute="width" id="HZf-s2-yuJ"/>
                             <constraint firstItem="f1X-PV-kqb" firstAttribute="leading" secondItem="z2U-ni-S4m" secondAttribute="leading" constant="10" id="TNA-IY-toT"/>
@@ -158,7 +160,7 @@
                             <constraint firstItem="bGz-SQ-HMs" firstAttribute="width" secondItem="z2U-ni-S4m" secondAttribute="width" multiplier="0.8" id="vIQ-UV-fmd"/>
                             <constraint firstItem="bGz-SQ-HMs" firstAttribute="width" secondItem="hZn-Sj-1V8" secondAttribute="width" id="wh5-DJ-Pdc"/>
                             <constraint firstItem="f1X-PV-kqb" firstAttribute="centerX" secondItem="z2U-ni-S4m" secondAttribute="centerX" id="wpe-92-PQt"/>
-                            <constraint firstItem="4K5-8z-lTG" firstAttribute="top" secondItem="bGz-SQ-HMs" secondAttribute="bottom" constant="80" id="xHa-Li-NbN"/>
+                            <constraint firstItem="4K5-8z-lTG" firstAttribute="top" secondItem="bGz-SQ-HMs" secondAttribute="bottom" constant="78" id="xHa-Li-NbN"/>
                             <constraint firstAttribute="trailing" secondItem="hZn-Sj-1V8" secondAttribute="trailing" constant="10" id="xfY-zB-Ro7"/>
                             <constraint firstItem="f1X-PV-kqb" firstAttribute="top" secondItem="Xtd-Ah-GPG" secondAttribute="bottom" constant="10" id="xft-bR-9xW"/>
                             <constraint firstItem="Xtd-Ah-GPG" firstAttribute="top" secondItem="z2U-ni-S4m" secondAttribute="topMargin" constant="10" id="zgo-Uu-wZp"/>
