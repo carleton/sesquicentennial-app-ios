@@ -21,6 +21,12 @@ class MemoryUploadView: UIViewController,
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var imageSubmitted: UIImageView!
     
+    
+    /**
+        If the keyboard is currently active, this allows 
+        the user to press anywhere on the view that is not
+        a text field to exit from the keyboard.
+     */
     @IBAction func dismissKeyboard(sender: AnyObject) {
         nameField.resignFirstResponder()
         titleField.resignFirstResponder()
@@ -44,11 +50,23 @@ class MemoryUploadView: UIViewController,
         nameField.tag = 0
         titleField.tag = 1
     }
-    
+   
+    /**
+        Dismiss the view if the X button in the corner is pressed.
+     */
     @IBAction func dismissView(sender: AnyObject) {
         parentView.dismissViewControllerAnimated(true, completion: nil)
     }
-   
+  
+    /**
+        Handles transitions between the text fields when pressing return. 
+        Starting with the name field, it goes on to the title field and then
+        the description field.
+        
+        - Parameters: 
+            - textField: the current active text field when 
+                         return is pressed on the keyboard.
+     */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         let nextTag: NSInteger = textField.tag + 1
         
@@ -60,7 +78,10 @@ class MemoryUploadView: UIViewController,
         return false
     }
  
-    
+    /**
+        Handles closing the keyboard when pressing done on
+        the description text view.
+     */
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
@@ -69,18 +90,36 @@ class MemoryUploadView: UIViewController,
         return true
     }
 
+    /**
+        Launches the image picker over the current form view 
+        when the "upload an image" button is pressed.
+     
+        - Parameters: 
+            - sender: The "upload an image" button in this case.
+     */
     @IBAction func selectImage(sender: AnyObject) {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .PhotoLibrary
         presentViewController(imagePicker, animated: true, completion: nil)
     }
-    
+   
+    /**
+        Once an image is selected, this method handles giving back the image
+        to be saved in the view so it can be uploaded.
+     */
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         self.image = image
         self.imageSubmitted.hidden = false
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
+   
+    /**
+        Upon pressing the "submit" button, attempt to upload the image, but
+        validate the user input first.
+     
+        - Parameters:
+            - sender: The "submit" button.
+     */
     @IBAction func uploadMemory(sender: AnyObject) {
         if let title = titleField.text,
                desc = descriptionTextView.text,
@@ -132,7 +171,14 @@ class MemoryUploadView: UIViewController,
             presentViewController(alert, animated: true, completion: nil)
         }
     }
-    
+   
+    /**
+        If one of the fields is empty, issue an alert detailing the fields
+        that the user needs to fill out.
+        
+        - Parameters:
+            - emptyFields: the names of the empty fields.
+     */
     func issueValidationAlert(emptyFields: [String]) {
         let fields = emptyFields.joinWithSeparator(", ")
         let message = "The following fields are empty: \n \(fields)"
@@ -145,6 +191,16 @@ class MemoryUploadView: UIViewController,
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    /**
+        Alert the user on whether the memory was successfully uploaded.
+        
+        - Parameters: 
+            - memory: The memory to be uploaded, just in case it needs
+                      another attempt.
+        
+            - success: Whether the upload succeeded. Display different
+                       messages depending on the result.
+     */
     func alertUserOfUploadAttempt(memory: Memory, success: Bool) {
         if success {
             let alert = UIAlertController(title: "Upload Succeeded", message: "Thanks for sharing a memory!", preferredStyle: UIAlertControllerStyle.Alert)
