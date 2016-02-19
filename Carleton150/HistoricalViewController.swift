@@ -270,7 +270,6 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 				marker.title = geofence.identifier
 				marker.map = self.mapView
 				marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
-				self.mapView.selectedMarker = marker
 				self.infoMarkers.append(marker)
 				geofence.active = true;
 			} else {
