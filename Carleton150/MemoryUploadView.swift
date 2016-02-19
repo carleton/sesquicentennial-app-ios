@@ -104,14 +104,52 @@ class MemoryUploadView: UIViewController,
     }
    
     /**
+        Launches the camera, and lets the user take a photo to upload 
+        to the memories server.
+     */
+    @IBAction func takePicture(sender: AnyObject) {
+        if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
+            imagePicker.allowsEditing = false
+            imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+            imagePicker.cameraCaptureMode = .Photo
+            presentViewController(imagePicker, animated: true, completion: nil)
+        } else {
+            issueNoCameraAlert()
+        }
+    }
+   
+    /**
+        In the case that there is no camera, alerts the user.
+     */
+    func issueNoCameraAlert() {
+        let alertVC = UIAlertController(
+            title: "No Camera",
+            message: "Sorry, this device has no camera",
+            preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertVC.addAction(okAction)
+        presentViewController(alertVC, animated: true, completion: nil)
+    }
+    
+    /**
         Once an image is selected, this method handles giving back the image
         to be saved in the view so it can be uploaded.
      */
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        self.image = image
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        self.image = chosenImage
         self.imageSubmitted.hidden = false
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    /**
+        In the event that the user cancels selection or doesn't take a picture, 
+        dismiss the image picker view.
+     */
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+   
    
     /**
         Upon pressing the "submit" button, attempt to upload the image, but
@@ -125,6 +163,9 @@ class MemoryUploadView: UIViewController,
                desc = descriptionTextView.text,
                uploader = nameField.text,
                image = self.image {
+                
+            // start wait screen
+            SwiftOverlays.showBlockingWaitOverlayWithText("Uploading your image...")
                 
             var emptyFields: [String] = []
             
@@ -148,8 +189,6 @@ class MemoryUploadView: UIViewController,
             let location = self.parentView.mapCtrl.locationManager.location!.coordinate
             let memory: Memory = Memory(title: title, desc: desc, timestamp: NSDate(), uploader: uploader, location: location, image: image)
                 
-            // start wait screen
-            SwiftOverlays.showBlockingWaitOverlayWithText("Uploading your image...")
             
             HistoricalDataService.uploadMemory(memory) { success in
                 // stop wait screen
