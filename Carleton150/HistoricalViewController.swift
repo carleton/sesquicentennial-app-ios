@@ -10,7 +10,7 @@ import MapKit
 var selectedGeofence = ""
 var landmarksInfo : Dictionary<String,[Dictionary<String, String>?]>? = Dictionary()
 
-class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GMSMapViewDelegate {
+class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
     @IBOutlet weak var momentButton: UIButton!
 
@@ -65,7 +65,6 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
             mapView.bringSubviewToFront(Debug)
             mapView.bringSubviewToFront(momentButton)
         }
-        
     }
     
     /**
@@ -187,7 +186,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
                         self.geofences.append(geotification)
                     }
                 } else {
-                    print("Could not fetch data from the server.")
+                    print("Could not nearby geofences from the server.")
                 }
 			}
 			self.updateLocation = false
@@ -267,6 +266,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 					}
 				}
 				let marker = GMSMarker(position: position)
+                marker.icon = UIImage(named: "marker.png")
 				marker.title = geofence.identifier
 				marker.map = self.mapView
 				marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
@@ -277,10 +277,10 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 	}
 	
     /**
-        Designates the currently selected marker upon a tap from the user.
+        Selects a marker and shows the popover upon a tap from the user.
      
         Parameters:
-            - mapView:  The Google Maps view the marker is attached to.
+            - mapView: The Google Maps view the marker is attached to.
      
             - didTapMarker: The marker that was tapped by the user.
      
