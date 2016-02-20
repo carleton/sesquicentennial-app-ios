@@ -10,7 +10,9 @@ import MapKit
 var selectedGeofence = ""
 var landmarksInfo : Dictionary<String,[Dictionary<String, String>?]>? = Dictionary()
 
-class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GMSMapViewDelegate {
+class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+    
+    @IBOutlet weak var momentButton: UIButton!
 
     @IBOutlet weak var mapView: GMSMapView!
 	@IBOutlet weak var Debug: UIButton!
@@ -44,6 +46,11 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
         }
         defaults.synchronize()
         
+        // set up the memories button
+        self.momentButton.layer.cornerRadius = 5
+        self.momentButton.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
+        self.momentButton.layer.borderWidth = 1
+        mapView.bringSubviewToFront(self.momentButton)
         
         // set properties for the navigation bar
         Utils.setUpNavigationBar(self)
@@ -63,6 +70,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
         // brings subviews in front of the map.
         if showDebugButton {
             mapView.bringSubviewToFront(Debug)
+            mapView.bringSubviewToFront(momentButton)
         }
     }
     
@@ -84,16 +92,30 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
                       it that will given to the landmark detail view.
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if (segue.identifier == "showTimeline") {
-			selectedGeofence = (sender?.title)!
-			let yourNextViewController = (segue.destinationViewController as! TimelineViewController)
-			yourNextViewController.mapCtrl = self
-		}
+		if segue.identifier == "showTimeline" {
+            
+            if let geofenceTitle = (sender?.title)! {
+                selectedGeofence = geofenceTitle
+            }
+            
+			let destinationController = (segue.destinationViewController as! TimelineViewController)
+			destinationController.mapCtrl = self
+            
+            // hide the memories button so it doesn't make the view busy
+            self.momentButton.hidden = true
+            
+        } else if segue.identifier == "showMemories" {
+            selectedGeofence = "Memories Near You"
+            self.momentButton.hidden = true
+			let destinationController = (segue.destinationViewController as! TimelineViewController)
+			destinationController.mapCtrl = self
+            destinationController.showMemories = true
+            destinationController.requestMemories()
+        }
     }
 
-
     /**
-        Temporary function that shows the current available geofences 
+        Debug function that shows the current available geofences
         and the current latitude and longitude coordinates.
      
         Parameters: 
@@ -118,7 +140,6 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 			debugMode = true
 		}
 	}
-
 	
     /**
         The function immediately called by the location manager that 
@@ -162,25 +183,25 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 				locationManager.stopMonitoringForRegion(place)
 			}
 			let position = CLLocationCoordinate2D(latitude: location.coordinate.latitude,longitude: location.coordinate.longitude)
-			HistoricalDataService.requestNearbyGeofences(position, completion:
-				{ (success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
-					if (success) {
-						// scrap old geofences
-						self.geofences = []
-						// create geofences
-						for geofence in result! {
-							let circle: GMSCircle = GMSCircle(position: geofence.center, radius: Double(geofence.radius))
-							circle.fillColor = UIColor.orangeColor().colorWithAlphaComponent(0.1)
-							self.circles.append(circle)
-							let geotification = Geotification(coordinate: geofence.center, radius: Double(geofence.radius), identifier: geofence.name)
-							self.geofences.append(geotification)
-						}
-					} else {
-						print("Could not fetch data from the server.")
-					}
-				})
+			HistoricalDataService.requestNearbyGeofences(position) {
+                (success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
+                if (success) {
+                    // scrap old geofences
+                    self.geofences = []
+                    // create geofences
+                    for geofence in result! {
+                        let circle: GMSCircle = GMSCircle(position: geofence.center, radius: Double(geofence.radius))
+                        circle.fillColor = UIColor.orangeColor().colorWithAlphaComponent(0.1)
+                        self.circles.append(circle)
+                        let geotification = Geotification(coordinate: geofence.center, radius: Double(geofence.radius), identifier: geofence.name)
+                        self.geofences.append(geotification)
+                    }
+                } else {
+                    print("Could not nearby geofences from the server.")
+                }
+			}
 			self.updateLocation = false
-		}
+        }
 		
 		// Check to see if geofence tripped
 		for (var i = 0; i < geofences.count; i++) {
@@ -190,7 +211,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
                 longitude: location.coordinate.longitude
             )
             
-			// If a geofence is triggered...
+            // If a geofence is triggered...
 			if (Utils.getDistance(currentLocation,point2: geofences[i].coordinate) <= geofences[i].radius) {
 				if !(geofences[i].active) {
 					enteredGeofence(geofences[i], mapView: mapView)
@@ -200,8 +221,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 					self.infoMarkers = exitedGeofence(geofences[i], infoMarkers: self.infoMarkers)
 				}
 			}
-		}
-
+        }
     }
 	
     /**
@@ -257,45 +277,30 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 					}
 				}
 				let marker = GMSMarker(position: position)
+                marker.icon = UIImage(named: "marker.png")
 				marker.title = geofence.identifier
 				marker.map = self.mapView
 				marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
-				self.mapView.selectedMarker = marker
 				self.infoMarkers.append(marker)
 				geofence.active = true;
-			} else {
-				print("Didn't get data. Oops!")
 			}
 		}
 	}
 	
     /**
-        Designates the currently selected marker upon a tap from the user.
+        Selects a marker and shows the popover upon a tap from the user.
      
         Parameters:
-            - mapView:  The Google Maps view the marker is attached to.
+            - mapView: The Google Maps view the marker is attached to.
      
             - didTapMarker: The marker that was tapped by the user.
      
      */
 	func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
-		mapView.selectedMarker = marker
+        self.performSegueWithIdentifier("showTimeline", sender: marker)
 		return true
 	}
 
-    /**
-        Performs the segue to the detail view when the info window on a
-        marker is pressed.
-     
-        Parameters:
-            - mapView:  The Google Maps view the marker is attached to.
-     
-            - didTapMarker: The marker that was tapped by the user.
-     
-     */
-	func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) -> Void {
-        self.performSegueWithIdentifier("showTimeline", sender: marker)
-	}
 }
 
 

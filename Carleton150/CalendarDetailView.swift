@@ -43,6 +43,15 @@ class CalendarDetailView: UIViewController {
         self.eventDescriptionText.editable = false
     }
     
+    /**
+        Once the subviews are placed, the description text
+        needs to be set so that the text doesn't start at the bottom.
+     */
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.eventDescriptionText.setContentOffset(CGPointZero, animated: false)
+    }
+    
     
     /**
         A convenience method for setting the data as a segue

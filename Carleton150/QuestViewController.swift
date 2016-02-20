@@ -1,209 +1,150 @@
 //
 //  QuestViewController.swift
 //  Carleton150
+//
 
 import UIKit
-import CoreLocation
-import GoogleMaps
 
-class QuestViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate,
-                           UITableViewDelegate, UITableViewDataSource {
-
-	var quest: Quest!
-    var currentWayPointIndex: Int = 0
-	var initialDist: Double!
-	let locationManager = CLLocationManager()
-    var hintCurrentlyHidden : Bool = true
-    var cellHeight : CGFloat = 100
-    var hintImage: Bool = true
-    var clueImage: Bool = false
-    @IBOutlet weak var questInfoView: UITableView!
-    @IBOutlet var questMapView: GMSMapView!
-	@IBOutlet weak var curProgress: UIProgressView!
-  
-    /**
-        The button that, when pressed, shows or hides the current hint
-        depending on the current state of the hint text.
-     */
-    @IBAction func getHint(sender: AnyObject) {
-//        let alphaValue = hintCurrentlyHidden ? 1.0 : 0.0
-//        UIView.animateWithDuration(0.75, animations: {
-//            self.hintText.alpha = CGFloat(alphaValue)
-//        })
-        hintCurrentlyHidden = !hintCurrentlyHidden
-        questInfoView.reloadData()
-//        hintButton.setTitle(hintCurrentlyHidden ? "Show" : "Hide", forState: UIControlState())
-    }
-    
-    /**
-        The button that, when pressed, checks to see if you're inside 
-        the geofence. If so, you get a message
-        and the next location. Otherwise, you get
-        a message stating you haven't quite gotten there yet.
-     */
-    @IBAction func amIThere(sender: UIButton) {
-        if quest.wayPoints[currentWayPointIndex].checkIfTriggered(locationManager.location!.coordinate) {
-            // found the waypoint
-			let alert = UIAlertController(title: "You found it!", message: quest.completionMessage, preferredStyle: UIAlertControllerStyle.Alert)
-			let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
-			alert.addAction(alertAction)
-			presentViewController(alert, animated: true) { () -> Void in }
-		} else {
-            // did not find the waypoint
-			let alert = UIAlertController(title: "Not quite there yet!", message: "Keep trying!", preferredStyle: UIAlertControllerStyle.Alert)
-			let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
-			alert.addAction(alertAction)
-			presentViewController(alert, animated: true) { () -> Void in }
-        }
-    }
+class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 	
-    /**
-        Upon load of this view, start the location manager and
-        set the camera on the map view to focus on Carleton. 
-        Additionally, load the initial distance for the progress meter and the 
-        clue.
-     */
+	var pageViewController: UIPageViewController!
+	var quests = [Quest]()
+
+	
+	/**
+		Upon load setup the persistent storage if it has not been setup already, request data for
+		 quests. Once the data has been loaded, create the first page of the paged layout
+	 */
     override func viewDidLoad() {
-        
-        // set the information view's data source
-		questInfoView.dataSource = self
-		questInfoView.delegate = self
-        
-        // set properties for the navigation bar 
-        Utils.setUpNavigationBar(self)
-        
-        // start the location manager
-        self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestAlwaysAuthorization()
-        
-        // center the camera and set the controller delegate for the map
-        questMapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
-		questMapView.delegate = self;
-        
-        // set up tiling
-        Utils.setUpTiling(questMapView)
-        
-        // set an initial distance
-		initialDist = Utils.getDistance(locationManager.location!.coordinate, point2: self.quest.wayPoints.first!.location)
-    }
-    
-    /**
-        Performs a distance check from the waypoint
-        to show the amount of progress to the goal
-        location.
-     
-        Parameters: 
-            - manager:   The location manager that was started 
-                         within this module.
-     
-            - locations: The past few locations that were detected by 
-                         the location manager.
-     */
-	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-		let location: CLLocationCoordinate2D = (locations.last?.coordinate)!
-		let curDistance = Utils.getDistance(location, point2: self.quest.wayPoints.first!.location)
-		if (curDistance <= 1000) {
-			curProgress.progress = 0.5
-		} else if (curDistance <= 500) {
-			curProgress.progress = 0.8
-		} else if (curDistance <= 100) {
-			curProgress.progress = 1.0
+		
+		// setting up data persistence 
+		if NSUserDefaults.standardUserDefaults().arrayForKey("startedQuests") == nil {
+			NSUserDefaults.standardUserDefaults().setObject(Dictionary<String,Int>(), forKey: "startedQuests")
 		}
+		
+		Utils.setUpNavigationBar(self)
+		
+		/**
+			Request data from the server
+		 */
+		QuestDataService.requestQuest("", limit: 5, completion: { (success, result) -> Void in
+			if let quests = result {
+		
+				self.quests = quests
+				self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
+				self.pageViewController.dataSource = self
+				
+				let startVC = self.getViewControllerAtIndex(0) as QuestContentViewController
+				let viewControllers = NSArray(object: startVC)
+				
+				self.pageViewController.setViewControllers(viewControllers as? [UIViewController], direction: .Forward, animated: true, completion: nil)
+				self.addChildViewController(self.pageViewController)
+				self.view.addSubview(self.pageViewController.view)
+				self.pageViewController.didMoveToParentViewController(self)
+				
+			} else {
+				// handle error gracefully here i.e. create a button that allows you to make the request again
+			}
+		});
+		
 	}
 	
-    /**
-        The function immediately called by the location manager that 
-        begins keeping track of location to determine if the user is
-        at a waypoint.
-     
-        Parameters: 
-            - manager:                      The location manager that was
-                                            started within this view.
-     
-            - didChangeAuthorizationStatus: The current authorization status for the user
-                                            determining whether we can use location.
-     */
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedAlways {
-            locationManager.startUpdatingLocation()
-            questMapView.myLocationEnabled = true
-            questMapView.settings.myLocationButton = true
-        }
-    }
-    
-	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		return 1
+	/**
+		Fetches the appropriate UIViewController when swiping between pages. It creates a new
+		instance of QuestContentViewController and sets the quest name, description, image and
+		passes the quest to the QuestContentViewController
+	
+		- Parameters:
+			index: integer used to fetch data from the quests array
+	
+		- Returns: UI View Controller
+	
+	*/
+	func getViewControllerAtIndex(index: Int) -> QuestContentViewController {
+		// if we're at the edges of the page view
+		if ((self.quests.count == 0 ) || (index >= self.quests.count)) {
+			return QuestContentViewController()
+		}
+		// create new page view
+		let vc: QuestContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("QuestContentViewController") as! QuestContentViewController
+		// set attributes of the new view
+		vc.pageIndex = index
+		vc.titleText = quests[index].name
+		vc.descText = quests[index].questDescription
+		vc.image = quests[index].image
+		vc.quest = quests[index]
+		return vc
 	}
-    
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+	
+	/**
+	 * MARK: - Data Source
+	 * UIPageViewControllerDataSource Methods
+	**/
+	
+	/**
+		Gets the view controller for the previous page or nil if at first page
+		
+		- Parameters:
+			pageViewController: the view controller responsible for managing the page layout.
+		
+		- Returns: view controller for the previous page or nil
+	
+	*/
+	func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+		let vc = viewController as! QuestContentViewController
+		var index  = vc.pageIndex as Int
+		if (index == 0 || index == NSNotFound) {
+			return nil
+		}
+		index--
+		return self.getViewControllerAtIndex(index)
+	}
+	
+	/**
+		Gets the view controller for the next page or nil if at last page
+		
+		- Parameters:
+			pageViewController: the view controller responsible for managing the page layout.
+		
+		- Returns: view controller for the next page or nil
+	
+	*/
+	func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+		let vc = viewController as! QuestContentViewController
+		var index = vc.pageIndex as Int
+		if (index == NSNotFound){
+			return nil
+		}
+		index++
+		if (index == self.quests.count) {
+			return nil
+		}
+		return self.getViewControllerAtIndex(index)
 	}
 
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return cellHeight
-    }
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return cellHeight
-    }
-    
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    
-        if hintCurrentlyHidden{
-            if hintImage{
-                let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoPicCell", forIndexPath: indexPath) as! QuestInfoPicCell
-                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].hint
-                
-                
-                cell.selectionStyle = UITableViewCellSelectionStyle.None
-                cell.ClueText.sizeToFit()
-                cellHeight = cell.ClueText.frame.height + cell.Header.frame.height + cell.img.frame.height + 50
-                //cellHeight = tableView.frame.height
-                cell.Header.text = "  Clue"
-                cell.ClueText.textContainer.exclusionPaths = [UIBezierPath(rect: cell.img.bounds)]
-                cell.ClueText.selectable = false
-                cell.ClueText.editable = false
-                cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
-                return cell
-            }
-            else{
-                let cell = tableView.dequeueReusableCellWithIdentifier("QuestInformationCell", forIndexPath: indexPath) as! QuestInformationCell
-                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].hint
-                cell.selectionStyle = UITableViewCellSelectionStyle.None
-                cell.ClueText.sizeToFit()
-                cellHeight = tableView.frame.height
-                cell.Header.text = "  Clue"
-                cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
-                return cell
-            }
-            
-        }
-        else{
-            if clueImage{
-                let cell = tableView.dequeueReusableCellWithIdentifier("QuestInfoPicCell", forIndexPath: indexPath) as! QuestInfoPicCell
-                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].clue
-                cell.selectionStyle = UITableViewCellSelectionStyle.None
-                cell.ClueText.sizeToFit()
-                cellHeight = tableView.frame.height
-                cell.Header.text = "  Hint"
-                cell.ClueText.textContainer.exclusionPaths = [UIBezierPath(rect: cell.img.bounds)]
-                cell.ClueText.selectable = false
-                cell.ClueText.editable = false
-                cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
-                return cell
-            }
-            else{
-                let cell = tableView.dequeueReusableCellWithIdentifier("QuestInformationCell", forIndexPath: indexPath) as! QuestInformationCell
-                cell.ClueText.text = quest.wayPoints[currentWayPointIndex].clue
-                cell.selectionStyle = UITableViewCellSelectionStyle.None
-                cell.ClueText.sizeToFit()
-                cellHeight = tableView.frame.height
-                cell.Header.text = "  Hint"
-                cell.showHint.setTitle(hintCurrentlyHidden ? "Show Hint" : "Show Clue", forState: UIControlState())
-                return cell
-            }
-        }
+	/**
+		Set the number of pages in the page view
+	
+		- Parameters:
+			pageViewController: the view controller responsible for managing the page layout.
+	
+		- Returns: total number of quests
 
-}
+	*/
+	func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+		return self.quests.count
+	}
+	
+	/**
+		Returns the index of the selected item to be reflected in the page indicator.
+		
+		- Parameters:
+			pageViewController: the view controlelr responsible for managing the page layout.
+		- Returns: index of first item in the quests array i.e. 0
+	
+	*/
+	func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+		return 0
+	}
+	
 }

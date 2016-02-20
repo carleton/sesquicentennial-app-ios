@@ -8,6 +8,7 @@ import Alamofire
 
 /// Data Service that contains relevant endpoints for the Quest module.
 final class QuestDataService {
+	
     /**
         Request quests for the game mode.
      
@@ -35,48 +36,80 @@ final class QuestDataService {
             (request, response, result) in
             
             var quests: [Quest] = []
-            
-            if let result = result.value {
-                let json = JSON(result)
-                
-                if let answer = json["content"].array {
-                    for i in 0 ..< answer.count {
-                        var wayPoints: [WayPoint] = []
-                        let points = answer[i]["waypoints"]
-                        
-                        for i in 0 ..< points.count {
-                            let position: String = String(i)
-                            let wayPoint = points[position]
-                            let geofence = points[position]["geofence"]
-                            let location = CLLocationCoordinate2D(
-                                    latitude: geofence["lat"].double!,
-                                    longitude: geofence["lng"].double!
-                            )
-                            wayPoints.append(
-                                WayPoint(location: location,
-                                         radius: geofence["rad"].double!,
-                                         clue: wayPoint["clue"].string!,
-                                         hint: wayPoint["hint"].string!)
-                            )
-                        }
-                        
-                        quests.append(
-                            Quest(
-                                wayPoints: wayPoints,
-                                name: answer[i]["name"].string!,
-                                description: answer[i]["desc"].string!,
-                                completionMessage: answer[i]["compMsg"].string!)
-                        )
-                    }
-                    completion(success: true, result: quests)
-                } else {
-                    print("No results were found.")
-                    completion(success: false, result: nil)
-                }
-            } else {
-                print("Connection to server failed.")
-                completion(success: false, result: nil)
-            }
-        }
-    }
+			
+			if let result = result.value {
+				let json = JSON(result)
+				
+				if let answer = json["content"].array {
+					for i in 0 ..< answer.count {
+						
+						// create empty array of waypoints
+						var wayPoints: [WayPoint] = []
+						
+						let points = answer[i]["waypoints"]
+						
+						// iterate through the waypoints from the server
+						for i in 0 ..< points.count {
+							let location = CLLocationCoordinate2D(
+								latitude: points[i]["lat"].double!,
+								longitude: points[i]["lng"].double!
+							)
+							
+							var clue = [String: AnyObject]()
+							var hint = [String: AnyObject]()
+							var completion = [String: AnyObject]()
+							
+							clue["text"] = points[i]["clue"]["text"].string!
+							hint["text"] = points[i]["hint"]["text"].string!
+							
+							if let compText = points[i]["completion"]["text"].string {
+								completion["text"] = compText
+							}
+							
+							
+							if let clueImage = points[i]["clue"]["image"]["image"].string {
+								clue["image"] = clueImage
+							}
+							if let hintImage = points[i]["hint"]["image"]["image"].string {
+								hint["image"] = hintImage
+							}
+							if let compImage = points[i]["completion"]["image"].string {
+								completion["image"] = compImage
+							}
+							
+							wayPoints.append(
+								WayPoint(location: location,
+									radius: points[i]["rad"].double!,
+									clue: clue,
+									hint: hint,
+									completion: completion
+								)
+							)
+						}
+						
+						quests.append(
+							Quest(
+								wayPoints: wayPoints,
+								name: answer[i]["name"].string!,
+								description: answer[i]["desc"].string!,
+								completionMessage: answer[i]["compMsg"].string!,
+								creator: answer[i]["creator"].string!,
+								image: answer[i]["image"].string!
+							)
+						)
+						
+					}
+					print(quests)
+					completion(success: true, result: quests)
+					
+				} else {
+					print("No results were found.")
+					completion(success: false, result: nil)
+				}
+			} else {
+				print("Connection to server failed.")
+				completion(success: false, result: nil)
+			}
+		}
+	}
 }
