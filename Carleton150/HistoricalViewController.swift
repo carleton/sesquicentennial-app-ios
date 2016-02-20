@@ -105,7 +105,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
     }
 
     /**
-        Temporary function that shows the current available geofences 
+        Debug function that shows the current available geofences
         and the current latitude and longitude coordinates.
      
         Parameters: 
@@ -173,23 +173,23 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 				locationManager.stopMonitoringForRegion(place)
 			}
 			let position = CLLocationCoordinate2D(latitude: location.coordinate.latitude,longitude: location.coordinate.longitude)
-			HistoricalDataService.requestNearbyGeofences(position, completion:
-				{ (success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
-					if (success) {
-						// scrap old geofences
-						self.geofences = []
-						// create geofences
-						for geofence in result! {
-							let circle: GMSCircle = GMSCircle(position: geofence.center, radius: Double(geofence.radius))
-							circle.fillColor = UIColor.orangeColor().colorWithAlphaComponent(0.1)
-							self.circles.append(circle)
-							let geotification = Geotification(coordinate: geofence.center, radius: Double(geofence.radius), identifier: geofence.name)
-							self.geofences.append(geotification)
-						}
-					} else {
-						print("Could not fetch data from the server.")
-					}
-				})
+			HistoricalDataService.requestNearbyGeofences(position) {
+                (success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
+                if (success) {
+                    // scrap old geofences
+                    self.geofences = []
+                    // create geofences
+                    for geofence in result! {
+                        let circle: GMSCircle = GMSCircle(position: geofence.center, radius: Double(geofence.radius))
+                        circle.fillColor = UIColor.orangeColor().colorWithAlphaComponent(0.1)
+                        self.circles.append(circle)
+                        let geotification = Geotification(coordinate: geofence.center, radius: Double(geofence.radius), identifier: geofence.name)
+                        self.geofences.append(geotification)
+                    }
+                } else {
+                    print("Could not fetch data from the server.")
+                }
+			}
 			self.updateLocation = false
         }
 		
@@ -201,7 +201,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
                 longitude: location.coordinate.longitude
             )
             
-			// If a geofence is triggered...
+            // If a geofence is triggered...
 			if (Utils.getDistance(currentLocation,point2: geofences[i].coordinate) <= geofences[i].radius) {
 				if !(geofences[i].active) {
 					enteredGeofence(geofences[i], mapView: mapView)
@@ -286,23 +286,10 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      
      */
 	func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
-		mapView.selectedMarker = marker
+        self.performSegueWithIdentifier("showTimeline", sender: marker)
 		return true
 	}
 
-    /**
-        Performs the segue to the detail view when the info window on a
-        marker is pressed.
-     
-        Parameters:
-            - mapView:  The Google Maps view the marker is attached to.
-     
-            - didTapMarker: The marker that was tapped by the user.
-     
-     */
-	func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) -> Void {
-        self.performSegueWithIdentifier("showTimeline", sender: marker)
-	}
 }
 
 
