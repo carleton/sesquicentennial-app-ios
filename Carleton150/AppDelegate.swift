@@ -66,9 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		UITabBar.appearance().selectionIndicatorImage = tabResizableIndicator
 
 		UITabBar.appearance().barTintColor = UIColor(
-			red: 0/255,
-			green: 62/255,
-			blue: 126/255,
+			red: 10/255,
+			green: 29/255,
+			blue: 57/255,
 			alpha: 1.0
 		)
 		

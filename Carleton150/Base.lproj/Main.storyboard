@@ -28,7 +28,7 @@
         <scene sceneID="bEB-yd-W9r">
             <objects>
                 <viewControllerPlaceholder storyboardName="Historical" id="gnk-LK-qhy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Historical" image="bank11.png" id="9SC-U2-ooe"/>
+                    <tabBarItem key="tabBarItem" title="Historical" image="Map-50.png" id="9SC-U2-ooe"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3y3-L6-lof" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -56,7 +56,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bank11.png" width="24" height="24"/>
+        <image name="Map-50.png" width="24" height="24"/>
         <image name="calendar53.png" width="24" height="24"/>
         <image name="quest.png" width="24" height="24"/>
     </resources>
