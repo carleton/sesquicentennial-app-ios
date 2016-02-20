@@ -20,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         customizeNavigationBar()
-        
+		
+        customizeTabBar()
+		
         if let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist") {
             keys = NSDictionary(contentsOfFile: path)
         }
@@ -49,6 +51,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
 		pageController.currentPageIndicatorTintColor = UIColor.blackColor()
 		pageController.backgroundColor = UIColor.whiteColor()
+	}
+
+	/**
+		Performs UI changes to the tab bar in the app.
+	*/
+	func customizeTabBar() {
+
+		UITabBar.appearance().barStyle = UIBarStyle.Black
+
+		let tabIndicator = UIImage(named: "tabBarSelectionIndicator")?.imageWithRenderingMode(.AlwaysTemplate)
+		let tabResizableIndicator = tabIndicator?.resizableImageWithCapInsets(
+			UIEdgeInsets(top: 0, left: 2.0, bottom: 0, right: 2.0))
+		UITabBar.appearance().selectionIndicatorImage = tabResizableIndicator
+
+		UITabBar.appearance().barTintColor = UIColor(
+			red: 0/255,
+			green: 62/255,
+			blue: 126/255,
+			alpha: 1.0
+		)
+		
+		UITabBar.appearance().tintColor = UIColor(
+			red: 238/255,
+			green: 177/255,
+			blue: 17/255,
+			alpha: 1.0
+		)
+		
 	}
 	
     /**
