@@ -96,25 +96,25 @@ final class Utils {
 //		
 
         // shows the Carleton logo on the navigation bar
-        let imagePortrait = UIImage(named: "nav-bar-logo-portrait")
+//        let imagePortrait = UIImage(named: "nav-bar-logo-portrait")
 //		let imageLandscape = UIImage(named: "nav-bar-logo-landscape")
 
 //		currentController.navigationController?.navigationBar.setBackgroundImage(imagePortrait, forBarMetrics: .Default)
 //		currentController.navigationController?.navigationBar.setBackgroundImage(imageLandscape, forBarMetrics: .Compact)
-		let imageView = UIImageView(
-			frame: CGRect(
-				x: 0,
-				y: 0,
-				width: currentController.navigationController!.navigationBar.frame.width,
-				height: currentController.navigationController!.navigationBar.frame.height
-			)
-		)
+//		let imageView = UIImageView(
+//			frame: CGRect(
+//				x: 0,
+//				y: 0,
+//				width: currentController.navigationController!.navigationBar.frame.width,
+//				height: currentController.navigationController!.navigationBar.frame.height
+//			)
+//		)
 //
-		imageView.contentMode = .ScaleAspectFit
-		imageView.image = imagePortrait
+//		imageView.contentMode = .ScaleAspectFit
+//		imageView.image = imagePortrait
 
 		
-		currentController.navigationItem.titleView = imageView
+//		currentController.navigationItem.titleView = imageView
 		
         // stop the navigation bar from covering the calendar content
         currentController.navigationController!.navigationBar.translucent = false;

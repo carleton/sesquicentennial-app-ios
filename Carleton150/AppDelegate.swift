@@ -33,9 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
 		
-		// status bar colour 
-		application.statusBarStyle = UIStatusBarStyle.LightContent
-		
         // gets the calendar for the first time
         CalendarDataService.updateEvents()
 		
@@ -58,11 +55,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         Performs UI changes to the primary top navigation bar in the app.
      */
     func customizeNavigationBar() {
-        UINavigationBar.appearance().barTintColor = UIColor(red: 0.0/255.0,
-            green: 62.0/255.0, blue: 126.0/255.0, alpha: 1.0)
+		
+		UINavigationBar.appearance().barStyle = UIBarStyle.BlackTranslucent
+		
+		UINavigationBar.appearance().setBackgroundImage(
+			UIImage(named: "nav-bg-portrait"),
+			forBarMetrics: .Default
+		)
+		UINavigationBar.appearance().setBackgroundImage(
+			UIImage(named: "nav-bg-landscape"),
+			forBarMetrics: .Compact
+		)
+		
+		UINavigationBar.appearance().backIndicatorImage = UIImage(named: "backArrow")
+		UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "backArrowMask")
+		UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "backArrow")
+		UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "backArrowMaskFixed")
+		
+//        UINavigationBar.appearance().barTintColor = UIColor(red: 0.0/255.0,
+//            green: 62.0/255.0, blue: 126.0/255.0, alpha: 1.0)
         UINavigationBar.appearance().tintColor = UIColor(red: 255.0/255.0,
             green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-		UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
     
     func applicationWillResignActive(application: UIApplication) {

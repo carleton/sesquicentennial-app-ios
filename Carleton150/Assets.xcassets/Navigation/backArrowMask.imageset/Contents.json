@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "flag_image.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "backArrowMask.png",
       "scale" : "2x"
     },
     {
