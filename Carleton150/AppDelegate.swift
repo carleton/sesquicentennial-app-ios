@@ -20,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         customizeNavigationBar()
-        
+		
+        customizeTabBar()
+		
         if let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist") {
             keys = NSDictionary(contentsOfFile: path)
         }
@@ -32,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
        
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-       
+		
         // gets the calendar for the first time
         CalendarDataService.updateEvents()
 		
@@ -50,15 +52,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		pageController.currentPageIndicatorTintColor = UIColor.blackColor()
 		pageController.backgroundColor = UIColor.whiteColor()
 	}
+
+	/**
+		Performs UI changes to the tab bar in the app.
+	*/
+	func customizeTabBar() {
+
+		UITabBar.appearance().barStyle = UIBarStyle.Black
+
+		let tabIndicator = UIImage(named: "tabBarSelectionIndicator")?.imageWithRenderingMode(.AlwaysTemplate)
+		let tabResizableIndicator = tabIndicator?.resizableImageWithCapInsets(
+			UIEdgeInsets(top: 0, left: 2.0, bottom: 0, right: 2.0))
+		UITabBar.appearance().selectionIndicatorImage = tabResizableIndicator
+
+		UITabBar.appearance().barTintColor = UIColor(
+			red: 10/255,
+			green: 29/255,
+			blue: 57/255,
+			alpha: 1.0
+		)
+		
+		UITabBar.appearance().tintColor = UIColor(
+			red: 238/255,
+			green: 177/255,
+			blue: 17/255,
+			alpha: 1.0
+		)
+		
+	}
 	
     /**
         Performs UI changes to the primary top navigation bar in the app.
      */
     func customizeNavigationBar() {
-        UINavigationBar.appearance().barTintColor = UIColor(red: 30.0/255.0,
-            green: 69.0/255.0, blue: 119.0/255.0, alpha: 1.0)
+		
+		UINavigationBar.appearance().backIndicatorImage = UIImage(named: "backArrow")
+		UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "backArrowMask")
+		UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "backArrow")
+		UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "backArrowMaskFixed")
+		
+		UINavigationBar.appearance().barTintColor = UIColor(
+			red: 10/255,
+			green: 29/255,
+			blue: 57/255,
+			alpha: 1.0
+		)
+
         UINavigationBar.appearance().tintColor = UIColor(red: 255.0/255.0,
             green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+		
+		UINavigationBar.appearance().barStyle = UIBarStyle.Black
+		
     }
     
     func applicationWillResignActive(application: UIApplication) {

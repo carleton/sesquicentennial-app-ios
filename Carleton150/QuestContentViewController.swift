@@ -13,11 +13,13 @@ class QuestContentViewController: UIViewController {
 	var pageIndex: Int!
 	
 	var titleText: String!
+	var difficultyRating : Int!
 	var image: String!
 	var descText: String!
 	var buttonText: String!
 	var quest: Quest!
 	
+	@IBOutlet weak var difficultyLabel: UILabel!
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var descTextView: UITextView!
 	@IBOutlet weak var startButton: UIButton!
@@ -53,6 +55,37 @@ class QuestContentViewController: UIViewController {
 			self.nameLabel.text = titleText
 		} else {
 			self.nameLabel.text = ""
+		}
+		// Quest Difficulty
+		if let difficultyRating = difficultyRating {
+			if difficultyRating == 0 {
+				self.difficultyLabel.text = "Easy"
+				self.difficultyLabel.textColor =
+					UIColor(
+						red: 79/255,
+						green: 138/255,
+						blue: 16/255,
+						alpha: 1.0
+				)
+			} else if difficultyRating == 1 {
+				self.difficultyLabel.text = "Medium"
+				self.difficultyLabel.textColor =
+					UIColor(
+						red: 159/255,
+						green: 96/255,
+						blue: 0/255,
+						alpha: 1.0
+				)
+			} else if difficultyRating == 2 {
+				self.difficultyLabel.text = "Hard"
+				self.difficultyLabel.textColor =
+					UIColor(
+						red: 216/255,
+						green: 0/255,
+						blue: 12/255,
+						alpha: 1.0
+				)
+			}
 		}
 		// Quest Description
 		if let descText = descText {
