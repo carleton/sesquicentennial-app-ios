@@ -77,44 +77,11 @@ final class Utils {
         the top navigation bar in the designated view.
      */
     class func setUpNavigationBar(currentController: UIViewController) {
-		
-//		currentController.navigationController?.navigationBar.backgroundColor =
-//			UIColor(
-//				red: 0.0/255.0,
-//				green: 62.0/255.0,
-//				blue: 126.0/255.0,
-//				alpha: 1.0
-//			)
-//		
-//		currentController.navigationController?.navigationBar.tintColor =
-//			UIColor(
-//				red: 255.0/255.0,
-//				green: 255.0/255.0,
-//				blue: 255.0/255.0,
-//				alpha: 1.0
-//		)
-//		
 
-        // shows the Carleton logo on the navigation bar
-//        let imagePortrait = UIImage(named: "nav-bar-logo-portrait")
-//		let imageLandscape = UIImage(named: "nav-bar-logo-landscape")
-
-//		currentController.navigationController?.navigationBar.setBackgroundImage(imagePortrait, forBarMetrics: .Default)
-//		currentController.navigationController?.navigationBar.setBackgroundImage(imageLandscape, forBarMetrics: .Compact)
-//		let imageView = UIImageView(
-//			frame: CGRect(
-//				x: 0,
-//				y: 0,
-//				width: currentController.navigationController!.navigationBar.frame.width,
-//				height: currentController.navigationController!.navigationBar.frame.height
-//			)
-//		)
-//
-//		imageView.contentMode = .ScaleAspectFit
-//		imageView.image = imagePortrait
-
-		
-//		currentController.navigationItem.titleView = imageView
+		let logo = UIImage(named: "carleton_knight")
+		let imageView = UIImageView(image: logo)
+		imageView.contentMode = .ScaleAspectFit
+		currentController.navigationItem.titleView = imageView
 		
         // stop the navigation bar from covering the calendar content
         currentController.navigationController!.navigationBar.translucent = false;

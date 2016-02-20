@@ -86,26 +86,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
      */
     func customizeNavigationBar() {
 		
-		UINavigationBar.appearance().barStyle = UIBarStyle.BlackTranslucent
-		
-		UINavigationBar.appearance().setBackgroundImage(
-			UIImage(named: "nav-bg-portrait"),
-			forBarMetrics: .Default
-		)
-		UINavigationBar.appearance().setBackgroundImage(
-			UIImage(named: "nav-bg-landscape"),
-			forBarMetrics: .Compact
-		)
-		
 		UINavigationBar.appearance().backIndicatorImage = UIImage(named: "backArrow")
 		UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "backArrowMask")
 		UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "backArrow")
 		UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "backArrowMaskFixed")
 		
-//        UINavigationBar.appearance().barTintColor = UIColor(red: 0.0/255.0,
-//            green: 62.0/255.0, blue: 126.0/255.0, alpha: 1.0)
+		UINavigationBar.appearance().barTintColor = UIColor(
+			red: 10/255,
+			green: 29/255,
+			blue: 57/255,
+			alpha: 1.0
+		)
+
         UINavigationBar.appearance().tintColor = UIColor(red: 255.0/255.0,
             green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+		
+		UINavigationBar.appearance().barStyle = UIBarStyle.Black
+		
     }
     
     func applicationWillResignActive(application: UIApplication) {
