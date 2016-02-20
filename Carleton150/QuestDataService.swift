@@ -94,7 +94,9 @@ final class QuestDataService {
 								description: answer[i]["desc"].string!,
 								completionMessage: answer[i]["compMsg"].string!,
 								creator: answer[i]["creator"].string!,
-								image: answer[i]["image"].string!
+								image: answer[i]["image"].string!,
+								difficulty: answer[i]["difficulty"].int!,
+								audience: answer[i]["audience"].string!
 							)
 						)
 						
