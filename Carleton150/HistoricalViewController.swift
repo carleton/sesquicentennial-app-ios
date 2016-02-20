@@ -12,6 +12,7 @@ var landmarksInfo : Dictionary<String,[Dictionary<String, String>?]>? = Dictiona
 
 class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
+    @IBOutlet weak var questionButton: UIImageView!
     @IBOutlet weak var momentButton: UIButton!
 
     @IBOutlet weak var mapView: GMSMapView!
@@ -46,11 +47,12 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         }
         defaults.synchronize()
         
-        // set up the memories button
+        // set up the memories button and the question button
         self.momentButton.layer.cornerRadius = 5
         self.momentButton.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
         self.momentButton.layer.borderWidth = 1
         mapView.bringSubviewToFront(self.momentButton)
+        mapView.bringSubviewToFront(self.questionButton)
         
         // set properties for the navigation bar
         Utils.setUpNavigationBar(self)
