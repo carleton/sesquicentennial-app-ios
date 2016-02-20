@@ -79,8 +79,14 @@ final class Utils {
     class func setUpNavigationBar(currentController: UIViewController) {
         
         // shows the Carleton logo on the navigation bar
-        let logo = UIImage(named: "carleton_logo.png")
+        let logo = UIImage(named: "carleton-logo-2.png")
         let imageView = UIImageView(image:logo)
+		let imageSize = CGSize(
+			width: currentController.navigationItem.titleView!.frame.width,
+			height: currentController.navigationItem.titleView!.frame.height
+		)
+		logo.size = imageSize
+//		imageView.frame = currentController.navigationItem.titleView!.frame
         currentController.navigationItem.titleView = imageView
         
         // stop the navigation bar from covering the calendar content

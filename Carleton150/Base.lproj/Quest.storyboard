@@ -64,7 +64,7 @@
                     <view key="view" contentMode="scaleToFill" id="cU4-wu-8ad">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.039215686270000001" green="0.16078431369999999" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="BO4-3w-kfy"/>
                 </viewController>
@@ -104,7 +104,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bGz-SQ-HMs" userLabel="Quest Start">
-                                <rect key="frame" x="30" y="490" width="540" height="32"/>
+                                <rect key="frame" x="30" y="492" width="540" height="30"/>
                                 <color key="backgroundColor" red="0.99607843139999996" green="0.83529411760000005" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="hAg-eL-b8z"/>
@@ -122,7 +122,7 @@
                                 <rect key="frame" x="30" y="61" width="540" height="330"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hZn-Sj-1V8" userLabel="Quest Description">
-                                <rect key="frame" x="30" y="401" width="540" height="79"/>
+                                <rect key="frame" x="30" y="401" width="540" height="81"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -167,34 +167,25 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="zgo-Uu-wZp"/>
-                                <exclude reference="YZR-rA-0wm"/>
-                                <exclude reference="vIQ-UV-fmd"/>
-                                <exclude reference="ExE-ck-J8G"/>
-                                <exclude reference="2gy-db-jGv"/>
                                 <exclude reference="943-Qq-muH"/>
                                 <exclude reference="G0c-h8-CXI"/>
                                 <exclude reference="HZf-s2-yuJ"/>
                                 <exclude reference="TNA-IY-toT"/>
                                 <exclude reference="V38-i9-M7N"/>
+                                <exclude reference="zgo-Uu-wZp"/>
+                                <exclude reference="2gy-db-jGv"/>
                                 <exclude reference="9GM-eL-LzL"/>
                                 <exclude reference="cGY-Oq-35q"/>
                                 <exclude reference="cpg-vM-h2V"/>
                                 <exclude reference="fw3-C2-4XD"/>
                                 <exclude reference="xfY-zB-Ro7"/>
+                                <exclude reference="YZR-rA-0wm"/>
+                                <exclude reference="vIQ-UV-fmd"/>
+                                <exclude reference="ExE-ck-J8G"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
-                                <exclude reference="d9y-OC-sWN"/>
-                                <include reference="zgo-Uu-wZp"/>
-                                <include reference="YZR-rA-0wm"/>
-                                <exclude reference="onM-yz-Oot"/>
-                                <include reference="vIQ-UV-fmd"/>
-                                <exclude reference="wh5-DJ-Pdc"/>
-                                <include reference="ExE-ck-J8G"/>
-                                <exclude reference="xHa-Li-NbN"/>
-                                <include reference="2gy-db-jGv"/>
                                 <exclude reference="943-Qq-muH"/>
                                 <exclude reference="A2X-Pv-1HA"/>
                                 <include reference="G0c-h8-CXI"/>
@@ -203,6 +194,9 @@
                                 <exclude reference="V38-i9-M7N"/>
                                 <exclude reference="oRh-fv-k5b"/>
                                 <exclude reference="wpe-92-PQt"/>
+                                <exclude reference="d9y-OC-sWN"/>
+                                <include reference="zgo-Uu-wZp"/>
+                                <include reference="2gy-db-jGv"/>
                                 <include reference="9GM-eL-LzL"/>
                                 <include reference="cGY-Oq-35q"/>
                                 <include reference="cpg-vM-h2V"/>
@@ -211,6 +205,12 @@
                                 <exclude reference="iI6-Ky-8m5"/>
                                 <exclude reference="mqo-Bt-dqG"/>
                                 <exclude reference="xfY-zB-Ro7"/>
+                                <include reference="YZR-rA-0wm"/>
+                                <exclude reference="onM-yz-Oot"/>
+                                <include reference="vIQ-UV-fmd"/>
+                                <exclude reference="wh5-DJ-Pdc"/>
+                                <include reference="ExE-ck-J8G"/>
+                                <exclude reference="xHa-Li-NbN"/>
                             </mask>
                         </variation>
                     </view>
@@ -275,7 +275,7 @@
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="hIk-Pr-Dfj">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="hIk-Pr-Dfj">
                                         <rect key="frame" x="8" y="38.5" width="390" height="257.5"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gco-FA-lEZ" userLabel="Toggle">

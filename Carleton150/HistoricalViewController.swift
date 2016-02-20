@@ -269,7 +269,8 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
 				let marker = GMSMarker(position: position)
 				marker.title = geofence.identifier
 				marker.map = self.mapView
-				marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
+//				marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
+				marker.icon = UIImage(named: "map_pin_1x")
 				self.infoMarkers.append(marker)
 				geofence.active = true;
 			}
@@ -287,6 +288,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      */
 	func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
 		mapView.selectedMarker = marker
+		self.performSegueWithIdentifier("showTimeline", sender: marker)
 		return true
 	}
 
@@ -301,7 +303,7 @@ class HistoricalViewController: UIViewController,  CLLocationManagerDelegate, GM
      
      */
 	func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) -> Void {
-        self.performSegueWithIdentifier("showTimeline", sender: marker)
+//        self.performSegueWithIdentifier("showTimeline", sender: marker)
 	}
 }
 
