@@ -118,7 +118,7 @@
                                     <segue destination="3ev-Mg-3x0" kind="show" identifier="questStartSegue" id="GX0-Yc-dIh"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f1X-PV-kqb" userLabel="Quest Image">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f1X-PV-kqb" userLabel="Quest Image">
                                 <rect key="frame" x="30" y="61" width="540" height="330"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hZn-Sj-1V8" userLabel="Quest Description">

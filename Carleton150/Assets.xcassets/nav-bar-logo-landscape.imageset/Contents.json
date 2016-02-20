@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "carleton-logo-2.jpg",
+      "filename" : "nav-bar-logo-landscape-1x.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "nav-bar-logo-landscape-2x.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "nav-bar-logo-landscape-3x.jpg",
       "scale" : "3x"
     }
   ],
