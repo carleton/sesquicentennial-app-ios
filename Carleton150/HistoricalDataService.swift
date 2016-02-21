@@ -8,6 +8,14 @@ import SwiftyJSON
 
 /// Data Service that contains relevant endpoints for the Historical module.
 final class HistoricalDataService {
+	
+	let alamofireManager : Alamofire.Manager?
+	
+	init() {
+		let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+		configuration.timeoutIntervalForResource = 2 // seconds
+		self.alamofireManager = Alamofire.Manager(configuration: configuration)
+	}
     
     /**
         Request content from the server associated with a landmark on campus.
@@ -18,8 +26,7 @@ final class HistoricalDataService {
                           that you want given a dictionary with all content
                           from the server.
      */
-    class func requestContent(geofenceName: String,
-                              completion: (success: Bool, result: [Dictionary<String, String>?]) ->Void) {
+    class func requestContent(geofenceName: String, completion: (success: Bool, result: [Dictionary<String, String>?]) ->Void) {
         let parameters = [
             "geofences": [geofenceName]
         ]
@@ -69,7 +76,7 @@ final class HistoricalDataService {
 					}
                     completion(success: true, result: historicalEntries)
                 } else {
-                    print("No results were found.")
+                    print("No results were found for Geofences.")
                     completion(success: false, result: [])
                 }
             } else {
@@ -95,7 +102,7 @@ final class HistoricalDataService {
         let parameters = [
             "lat" : location.latitude,
             "lng" : location.longitude,
-            "rad" : 1.0
+            "rad" : 0.1
         ]
         
         Alamofire.request(.POST, Endpoints.memoriesInfo, parameters: parameters, encoding: .JSON).responseJSON() {
@@ -133,7 +140,7 @@ final class HistoricalDataService {
                     }
                     completion(success: true, result: memoriesEntries)
                 } else {
-                    print("No results were found.")
+                    print("No results were found for Memories.")
                     completion(success: false, result: [])
                 }
             } else {
