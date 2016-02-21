@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SwiftOverlays
 
 class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 	
@@ -17,6 +18,8 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 	 */
     override func viewDidLoad() {
 		
+		self.showWaitOverlay()
+		
 		// setting up data persistence 
 		if NSUserDefaults.standardUserDefaults().arrayForKey("startedQuests") == nil {
 			NSUserDefaults.standardUserDefaults().setObject(Dictionary<String,Int>(), forKey: "startedQuests")
@@ -29,7 +32,8 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 		 */
 		QuestDataService.requestQuest("", limit: 5, completion: { (success, result) -> Void in
 			if let quests = result {
-		
+				
+				self.removeAllOverlays()
 				self.quests = quests
 				self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
 				self.pageViewController.dataSource = self
@@ -72,6 +76,7 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 		vc.titleText = quests[index].name
 		vc.descText = quests[index].questDescription
 		vc.image = quests[index].image
+		vc.difficultyRating = quests[index].difficulty
 		vc.quest = quests[index]
 		return vc
 	}

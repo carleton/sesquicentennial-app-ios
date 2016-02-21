@@ -14,9 +14,9 @@
 		630B0B511C744A8700876031 /* QuestContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630B0B501C744A8700876031 /* QuestContentViewController.swift */; };
 		63291F361C5971A30064C296 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63291F351C5971A30064C296 /* TimelineViewController.swift */; };
 		63291F381C5979730064C296 /* TimelineTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63291F371C5979730064C296 /* TimelineTableCells.swift */; };
+		634AD3A31C780D26005EBE9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 634AD3A21C780D26005EBE9C /* Assets.xcassets */; };
 		6357E6F21C4ED3BC00A28D00 /* HistoricalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAF1BC6FC1500B9F81B /* HistoricalViewController.swift */; };
 		6357E6F31C4ED3BC00A28D00 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		635B37451BF4231400F1508B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 635B37441BF4231400F1508B /* Assets.xcassets */; };
 		6368A5961C5050E900D6B5B2 /* Quest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6368A5941C5050E900D6B5B2 /* Quest.storyboard */; };
 		63A99A6B1C75859D007E6F25 /* QuestModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99A6A1C75859D007E6F25 /* QuestModalViewController.swift */; };
 		63A99A6D1C763AEA007E6F25 /* WaypointsModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99A6C1C763AEA007E6F25 /* WaypointsModalViewController.swift */; };
@@ -78,7 +78,7 @@
 		630B0B501C744A8700876031 /* QuestContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestContentViewController.swift; sourceTree = "<group>"; };
 		63291F351C5971A30064C296 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		63291F371C5979730064C296 /* TimelineTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableCells.swift; sourceTree = "<group>"; };
-		635B37441BF4231400F1508B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		634AD3A21C780D26005EBE9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6368A5951C5050E900D6B5B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Quest.storyboard; sourceTree = "<group>"; };
 		63A99A6A1C75859D007E6F25 /* QuestModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestModalViewController.swift; sourceTree = "<group>"; };
 		63A99A6C1C763AEA007E6F25 /* WaypointsModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointsModalViewController.swift; sourceTree = "<group>"; };
@@ -250,8 +250,8 @@
 				63036B351C4CB6CD00193A78 /* Calendar */,
 				63036B311C4CB55C00193A78 /* Historical */,
 				63036B361C4CB72800193A78 /* Quest */,
-				635B37441BF4231400F1508B /* Assets.xcassets */,
 				717FE3E51BC7001D009CA507 /* Keys.plist */,
+				634AD3A21C780D26005EBE9C /* Assets.xcassets */,
 				71294DB91BC6FC1500B9F81B /* Info.plist */,
 				71676CC11BDED61700F1183D /* Carleton150-Bridging-Header.h */,
 			);
@@ -425,9 +425,9 @@
 				717FE3E61BC7001D009CA507 /* Keys.plist in Resources */,
 				71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */,
 				71294DB31BC6FC1500B9F81B /* Main.storyboard in Resources */,
+				634AD3A31C780D26005EBE9C /* Assets.xcassets in Resources */,
 				6368A5961C5050E900D6B5B2 /* Quest.storyboard in Resources */,
 				63036B341C4CB5A200193A78 /* Historical.storyboard in Resources */,
-				635B37451BF4231400F1508B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XAg-IB-RO2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XAg-IB-RO2">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -12,7 +12,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="gWc-cP-btt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.039215686270000001" green="0.086274509799999996" blue="0.35924720770000002" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="gnk-LK-qhy" kind="relationship" relationship="viewControllers" id="Zt0-4O-qah"/>
@@ -28,7 +28,7 @@
         <scene sceneID="bEB-yd-W9r">
             <objects>
                 <viewControllerPlaceholder storyboardName="Historical" id="gnk-LK-qhy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Historical" image="bank11.png" id="9SC-U2-ooe"/>
+                    <tabBarItem key="tabBarItem" title="Historical" image="Map-50.png" id="9SC-U2-ooe"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3y3-L6-lof" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -56,7 +56,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bank11.png" width="24" height="24"/>
+        <image name="Map-50.png" width="24" height="24"/>
         <image name="calendar53.png" width="24" height="24"/>
         <image name="quest.png" width="24" height="24"/>
     </resources>
