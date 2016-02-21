@@ -60,7 +60,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		mapView.camera = GMSCameraPosition.cameraWithTarget((self.locationManager.location?.coordinate)!, zoom: 16)
 		mapView.delegate = self;
 		
-		self.lastRequestLocation = self.locationManager.location
+//		self.lastRequestLocation = self.locationManager.location
 		
         // set up the tiling for the map
         Utils.setUpTiling(mapView)
@@ -209,7 +209,11 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	
 	
 	func shouldUpdateLocation(curLocation: CLLocation) -> Bool {
-		if (Utils.getDistance(curLocation.coordinate, point2: self.lastRequestLocation.coordinate) <= minRequestThreshold) {
+		if self.lastRequestLocation == nil {
+			self.lastRequestLocation = curLocation
+			return true
+		}
+		if (Utils.getDistance(curLocation.coordinate, point2: self.lastRequestLocation.coordinate) >= minRequestThreshold) {
 			self.lastRequestLocation = curLocation
 			return true
 		}

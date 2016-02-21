@@ -8,6 +8,14 @@ import SwiftyJSON
 
 /// Data Service that contains relevant endpoints for the Historical module.
 final class HistoricalDataService {
+	
+	let alamofireManager : Alamofire.Manager?
+	
+	init() {
+		let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+		configuration.timeoutIntervalForResource = 2 // seconds
+		self.alamofireManager = Alamofire.Manager(configuration: configuration)
+	}
     
     /**
         Request content from the server associated with a landmark on campus.
@@ -18,8 +26,7 @@ final class HistoricalDataService {
                           that you want given a dictionary with all content
                           from the server.
      */
-    class func requestContent(geofenceName: String,
-                              completion: (success: Bool, result: [Dictionary<String, String>?]) ->Void) {
+    class func requestContent(geofenceName: String, completion: (success: Bool, result: [Dictionary<String, String>?]) ->Void) {
         let parameters = [
             "geofences": [geofenceName]
         ]
