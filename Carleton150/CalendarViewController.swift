@@ -20,9 +20,8 @@ class CalendarViewController: UICollectionViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
+       
+        // set the parent view
         self.calendar = self.parentView.calendar
         
         // set the current table limit
@@ -34,8 +33,6 @@ class CalendarViewController: UICollectionViewController {
         
         // set the deceleration rate for the event cell snap
         collectionView!.decelerationRate = UIScrollViewDecelerationRateFast
-        
-//        self.collectionView!.reloadData()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -60,23 +57,6 @@ class CalendarViewController: UICollectionViewController {
         }
         return eventImages
     }
-    
-//    /**
-//        Upon noticing that the calendar has been updated,
-//        update the UI accordingly.
-//     
-//        - Parameters:
-//            - notification: The notification triggered from the CalendarDataService.
-//     */
-//    func actOnCalendarUpdate(notification: NSNotification) {
-//        if let calendar = CalendarDataService.schedule {
-//            self.calendar = calendar
-//            let indexPath = NSIndexPath(forItem: 0, inSection: 0)
-//            let _ = CalendarDetailView()
-//            let _ = self.collectionView!
-//                .dequeueReusableCellWithReuseIdentifier("CalendarCell", forIndexPath: indexPath) as! CalendarCell
-//        }
-//    }
     
     /**
         Determines the number of sections in the calendar collection view.

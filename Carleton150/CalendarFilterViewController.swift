@@ -12,10 +12,14 @@ class CalendarFilterViewController: UIViewController {
      */
     required init?(coder decoder : NSCoder) {
         super.init(coder: decoder)
-        print("here")
         NSNotificationCenter
             .defaultCenter()
             .addObserver(self, selector: "actOnCalendarUpdate:", name: "carleton150.calendarUpdate", object: nil)
+    }
+    
+    override func viewDidLoad() {
+        // set up the navigation bar
+        Utils.setUpNavigationBar(self)
     }
     
     /**
@@ -26,16 +30,13 @@ class CalendarFilterViewController: UIViewController {
             - notification: The notification triggered from the CalendarDataService.
      */
     func actOnCalendarUpdate(notification: NSNotification) {
-        print("checking data")
         if let calendar = CalendarDataService.schedule {
-            print("got the data")
             self.calendar = calendar
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "segueToContainer") {
-            print("Doing the container segue")
             let containerViewController = (segue.destinationViewController as! CalendarViewController)
             containerViewController.parentView = self
         }

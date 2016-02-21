@@ -186,7 +186,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			let position = CLLocationCoordinate2D(latitude: location.coordinate.latitude,longitude: location.coordinate.longitude)
 			HistoricalDataService.requestNearbyGeofences(position) {
                 (success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
-                print("fdjsaklfjdsak")
                 if (success) {
                     // scrap old geofences
                     self.geofences = []
