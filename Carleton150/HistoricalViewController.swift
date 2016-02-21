@@ -28,10 +28,14 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	var networkMonitor: Reachability!
 	var geofences: Dictionary<String,Geotification>!
 	var minRequestThreshold: Double = 10 // in meters
-	var lastRequestLocation: CLLocation!
+	var lastGeoReqLocation: CLLocation!
 	var selectedGeofence: String!
 	var debugMode: Bool = false
 	var circles: [GMSCircle] = [GMSCircle]()
+	
+	// variables stored for caching the memories
+	var loadedMemories: [Dictionary<String, String>?]!
+	var lastMemReqLocation: CLLocation!
 	
     /**
         Set to true to show the debug button for testing, set to false to hide
@@ -113,7 +117,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			self.connectionIndicator.hidden = true
 			self.connectionView.hidden = true
 			// reload data from the server
-			self.lastRequestLocation = nil
+			self.lastGeoReqLocation = nil
 			self.updateGeofences(self.locationManager.location!)
 		} else {
 			self.connectionLabel.hidden = false
@@ -188,7 +192,13 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			destinationController.parentVC = self
 			destinationController.selectedGeofence = "Memories Near You"
             destinationController.showMemories = true
-            destinationController.requestMemories()
+			// memories loading and caching options
+			if let curMemories = self.loadedMemories {
+				destinationController.memories = curMemories
+			}
+			if let lastLoc = self.lastMemReqLocation {
+				destinationController.lastRequestLocation = lastLoc
+			}
         } else if segue.identifier == "showTutorial" {
 			let destinationController = (segue.destinationViewController as! TutorialViewController)
 			destinationController.parent = self
@@ -285,12 +295,12 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
             - curLocation: The user's current location.
      */
 	func shouldUpdateLocation(curLocation: CLLocation) -> Bool {
-		if self.lastRequestLocation == nil {
-			self.lastRequestLocation = curLocation
+		if self.lastGeoReqLocation == nil {
+			self.lastGeoReqLocation = curLocation
 			return true
 		}
-		if (Utils.getDistance(curLocation.coordinate, point2: self.lastRequestLocation.coordinate) >= minRequestThreshold) {
-			self.lastRequestLocation = curLocation
+		if (Utils.getDistance(curLocation.coordinate, point2: self.lastGeoReqLocation.coordinate) >= minRequestThreshold) {
+			self.lastGeoReqLocation = curLocation
 			return true
 		}
 		return false
