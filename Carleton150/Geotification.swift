@@ -9,10 +9,10 @@ import MapKit
 import GoogleMaps
 import CoreLocation
 
-enum EventType: Int {
-    case OnEntry = 0
-    case OnExit
-}
+//enum EventType: Int {
+//    case OnEntry = 0
+//    case OnExit
+//}
 
 /// A geofence object with an activation.
 class Geotification: NSObject, MKAnnotation {
@@ -21,6 +21,7 @@ class Geotification: NSObject, MKAnnotation {
     var identifier: String
 	var marker: GMSMarker!
 	var data: [Dictionary<String, String>?]!
+	var isActive: Bool = false
 	var requestingData: Bool = false
 	
 	init(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance, identifier: String) {
@@ -39,28 +40,39 @@ class Geotification: NSObject, MKAnnotation {
             - mapView:  The Google Maps view to attach the marker to.
 	*/
 	func enteredGeofence(mapview: GMSMapView) {
-		if self.data == nil && !self.requestingData {
-			self.requestingData = true
-			HistoricalDataService.requestContent(self.identifier) {
-				(success: Bool, result: [Dictionary<String, String>?]) -> Void in
-				if (success) {
-					if let data = result as [Dictionary<String, String>?]! {
-						self.data = data
-						self.marker.title = self.identifier
-						self.marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
-						self.marker.map = mapview
-						self.marker.icon = UIImage(named: "marker.png")
+		if !self.isActive {
+			// set to active
+			self.isActive = true
+			// if no data or data isn't being requested
+			if self.data == nil && !self.requestingData {
+				// data being requested flag set
+				self.requestingData = true
+				// data requested from server
+				HistoricalDataService.requestContent(self.identifier) {
+					(success: Bool, result: [Dictionary<String, String>?]) -> Void in
+					if (success) {
+						if let data = result as [Dictionary<String, String>?]! {
+							self.data = data
+							self.marker.title = self.identifier
+							self.marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
+							self.marker.map = mapview
+							self.marker.icon = UIImage(named: "marker.png")
+						}
+				
 					}
+					self.requestingData = false
 				}
-				self.requestingData = false
-			}
-		} else {
-			if self.marker.map == nil {
-				self.marker.map = mapview
+			} else if let _ = self.data {
+				if self.marker.map == nil {
+					self.marker.title = self.identifier
+					self.marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
+					self.marker.map = mapview
+					self.marker.icon = UIImage(named: "marker.png")
+				}
 			}
 		}
 	}
-	
+
 	/**
         Takes a geofence off of the map if the geofence is not currently within
         the geofence search radius of the user's location. If there are fewer
@@ -76,7 +88,10 @@ class Geotification: NSObject, MKAnnotation {
 	
 	*/
 	func exitedGeofence() {
-		self.marker.map = nil
+		if (self.isActive) {
+			self.marker.map = nil
+			self.isActive = false
+		}
 	}
 	
 }

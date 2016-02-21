@@ -33,6 +33,7 @@ final class HistoricalDataService {
         Alamofire.request(.POST, Endpoints.historicalInfo, parameters: parameters, encoding: .JSON).responseJSON() {
             (request, response, result) in
             if let result = result.value {
+				print("Data Successfully retrieved for the \(geofenceName)")
                 let json = JSON(result)
 				let answer = json["content"][geofenceName]
 				if answer.count > 0 {
@@ -68,7 +69,6 @@ final class HistoricalDataService {
 								result["day"] = day
 							}
 							historicalEntries.append(result as? Dictionary<String, String>)
-							print("Data Successfully retrieved for the \(geofenceName)")
 						} else {
 							print("Data returned at endpoint: \(Endpoints.historicalInfo) is malformed. Geofence name: \(geofenceName)")
 							completion(success: false, result: [])
@@ -77,7 +77,7 @@ final class HistoricalDataService {
 					}
                     completion(success: true, result: historicalEntries)
                 } else {
-                    print("No results were found for Geofences.")
+                    print("No results were found for \(geofenceName)")
                     completion(success: false, result: [])
                 }
             } else {
@@ -248,7 +248,7 @@ final class HistoricalDataService {
                             return
                         }
                     }
-					print("Data Successfully retrieved for the Geofences")
+					print("Data Successfully retrieved for the Geofences Endpoint")
                     completion(success: true, result: final_result)
                 } else {
                     print("No results were found.")
