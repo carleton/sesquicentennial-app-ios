@@ -38,6 +38,16 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         set the camera on the map view to focus on Carleton.
      */
     override func viewDidLoad() {
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+       
+        // if the user is opening the app for the first time,
+        if !defaults.boolForKey("hasSeenTutorial") {
+            defaults.setBool(true, forKey: "hasSeenTutorial")
+            // show the tutorial
+            self.performSegueWithIdentifier("showTutorial", sender: nil)
+        }
+        defaults.synchronize()
 		
 		// initialize geofences dictionary
 		self.geofences = Dictionary<String,Geotification>()

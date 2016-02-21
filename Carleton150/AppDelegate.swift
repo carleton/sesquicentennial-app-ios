@@ -2,11 +2,7 @@
 //  AppDelegate.swift
 //  Carleton150
 
-import UIKit
 import GoogleMaps
-import CoreLocation
-import Alamofire
-import SwiftyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate  {
@@ -20,7 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        
+       
+        // if the user doesn't have this boolean, 
+        // that means they've opened the app for the 
+        // first time, and we should show the tutorial.
         if !defaults.boolForKey("hasSeenTutorial") {
             defaults.setBool(false, forKey: "hasSeenTutorial")
         }
@@ -52,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 	
 	/**
-	 * Performs Ui changes to page views
+        Performs UI changes to page views.
 	 */
 	func customizePageViews() {
 		let pageController = UIPageControl.appearance()
@@ -63,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
 	/**
 		Performs UI changes to the tab bar in the app.
-	*/
+     */
 	func customizeTabBar() {
 
 		UITabBar.appearance().barStyle = UIBarStyle.Black
@@ -86,7 +85,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 			blue: 17/255,
 			alpha: 1.0
 		)
-		
 	}
 	
     /**
