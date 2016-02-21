@@ -8,7 +8,7 @@ import Foundation
 final class Endpoints {
    
     /**
-        The current server API url.
+        The current server API URL.
      */
     static var hostServerURL: String = "https://carl150.carleton.edu"
    

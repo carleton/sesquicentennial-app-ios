@@ -1,10 +1,6 @@
 //
 //  CalendarDetailView.swift
 //  Carleton150
-//
-//  Created by Chet Aldrich on 2/16/16.
-//  Copyright © 2016 edu.carleton.carleton150. All rights reserved.
-//
 
 import Foundation
 
@@ -52,7 +48,6 @@ class CalendarDetailView: UIViewController {
         self.eventDescriptionText.setContentOffset(CGPointZero, animated: false)
     }
     
-    
     /**
         A convenience method for setting the data as a segue
         is initiated.
@@ -63,5 +58,4 @@ class CalendarDetailView: UIViewController {
         self.eventTitle = calendarCell.eventTitle.text
         self.eventLocation = calendarCell.locationLabel.text
     }
-    
 }

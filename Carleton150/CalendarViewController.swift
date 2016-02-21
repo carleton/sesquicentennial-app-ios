@@ -13,7 +13,6 @@ class CalendarViewController: UICollectionViewController {
     var eventImages: [UIImage] = []
     var tableLimit : Int!
     var parentView: CalendarFilterViewController!
-   
     
     /**
         Upon load of this view, load the calendar and adjust the 
@@ -21,7 +20,8 @@ class CalendarViewController: UICollectionViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
+        // set an observer to see if the filter button is pressed
         NSNotificationCenter
             .defaultCenter()
             .addObserver(self, selector: "actOnFilterUpdate:", name: "carleton150.filterUpdate", object: nil)
@@ -40,7 +40,16 @@ class CalendarViewController: UICollectionViewController {
         // set the deceleration rate for the event cell snap
         collectionView!.decelerationRate = UIScrollViewDecelerationRateFast
     }
-    
+   
+    /**
+        Prepares for segues from the calendar to its detail modals by passing
+        the data required for the modal along to the modal instance.
+     
+        - Parameters:
+            - segue: The triggered segue.
+     
+            - sender: The collecton view cell that triggered the segue.
+     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if (segue.identifier == "showCalendarDetail") {
 			let detailViewController = (segue.destinationViewController as! CalendarDetailView)
@@ -48,7 +57,16 @@ class CalendarViewController: UICollectionViewController {
             detailViewController.setData(sender as! CalendarCell)
 		}
     }
-    
+   
+    /**
+        Upon an update to the filter (which occurs whenever the checkmark 
+        is pressed next to the date picker) changes the currently viewed
+        events by filtering on the current day.
+     
+        - Parameters:
+            - notification: The notification that passes along the date used
+                            for filtering and triggers this method.
+     */
     func actOnFilterUpdate(notification: NSNotification) {
         if let date: NSDate = notification.userInfo!["date"] as? NSDate {
             self.filteredCalendar = calendar.filter() {
@@ -140,7 +158,14 @@ class CalendarViewController: UICollectionViewController {
         cell.eventDescription = filteredCalendar[indexPath.item]["description"]! as? String
         return cell
     }
-    
+   
+    /**
+        A convenience function to turn the NSDate objects returned
+        from the data service into human readable strings for presentation.
+     
+        - Parameters:
+            - date: A date to be turned into a nice stringified version of itself.
+     */
     private func parseDate(date: NSDate) -> String {
         let outFormatter = NSDateFormatter()
         outFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
@@ -174,35 +199,31 @@ class CalendarViewController: UICollectionViewController {
     }
 }
 
+/// An extension to NSDate to provide simpler functions for comparison.
 extension NSDate {
+    
+    /**
+        If the current date object is later in time than 
+        the other date return true, otherwise return false.
+     */
     func isGreaterThanDate(dateToCompare: NSDate) -> Bool {
-        var isGreater = false
-        
-        if self.compare(dateToCompare) == NSComparisonResult.OrderedDescending {
-            isGreater = true
-        }
-        
-        return isGreater
+        return self.compare(dateToCompare) == NSComparisonResult.OrderedDescending
     }
     
+    /**
+        If the current date object is earlier in time than
+        the other date return true, otherwise return false.
+     */
     func isLessThanDate(dateToCompare: NSDate) -> Bool {
-        var isLess = false
-        
-        if self.compare(dateToCompare) == NSComparisonResult.OrderedAscending {
-            isLess = true
-        }
-        
-        return isLess
+        return self.compare(dateToCompare) == NSComparisonResult.OrderedAscending
     }
     
+    /**
+        If the current date object is at the same time as
+        the other date return true, otherwise return false.
+     */
     func equalToDate(dateToCompare: NSDate) -> Bool {
-        var isEqualTo = false
-        
-        if self.compare(dateToCompare) == NSComparisonResult.OrderedSame {
-            isEqualTo = true
-        }
-        
-        return isEqualTo
+        return self.compare(dateToCompare) == NSComparisonResult.OrderedSame
     }
 }
 
