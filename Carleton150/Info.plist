@@ -30,7 +30,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>In order to do a live historical tour of the campus through the app, we&apos;ll need your location to find out if you&apos;re close to cool stuff!</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Geotify requires access to your phone’s location to notify you when you enter or leave a geofence.</string>
+	<string>The Carleton App requires access to your phone’s location to notify you when you enter or leave points of interest!</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

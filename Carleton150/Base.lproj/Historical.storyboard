@@ -18,6 +18,7 @@
             <string>Roboto-BoldItalic</string>
             <string>Roboto-BoldItalic</string>
             <string>Roboto-BoldItalic</string>
+            <string>Roboto-BoldItalic</string>
         </mutableArray>
         <mutableArray key="Roboto-Italic.ttf">
             <string>Roboto-Italic</string>
@@ -71,16 +72,6 @@
                                     <constraint firstAttribute="height" constant="59" id="rJ4-Ed-aha"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click above to get memories that were tagged nearby where you are now!" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVx-SY-vSa">
-                                <rect key="frame" x="10" y="110" width="190" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="Hpc-Mn-fbz"/>
-                                    <constraint firstAttribute="width" constant="190" id="skY-z1-yqj"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-BoldItalic" family="Roboto" pointSize="15"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="1qo-LX-bAd">
                                 <rect key="frame" x="493" y="481" width="57" height="64"/>
                                 <constraints>
@@ -97,7 +88,17 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click on the markers to get a history at that location!" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8g6-MQ-uCG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Walk around campus to find more points of interest!" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJf-ks-u5o">
+                                <rect key="frame" x="10" y="270" width="192" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Fk1-E8-h1e"/>
+                                    <constraint firstAttribute="width" constant="192" id="Z22-MF-bVA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-BoldItalic" family="Roboto" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click on the markers to get a history of that location!" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8g6-MQ-uCG">
                                 <rect key="frame" x="360" y="214" width="180" height="61"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="oic-wR-D3a"/>
@@ -107,10 +108,21 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click above to get memories that were tagged nearby where you are now!" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVx-SY-vSa">
+                                <rect key="frame" x="10" y="110" width="190" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Hpc-Mn-fbz"/>
+                                    <constraint firstAttribute="width" constant="190" id="skY-z1-yqj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-BoldItalic" family="Roboto" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="KVx-SY-vSa" firstAttribute="leading" secondItem="grS-CQ-z28" secondAttribute="leading" constant="10" id="1j9-4U-4p6"/>
+                            <constraint firstItem="0Uz-Id-TuP" firstAttribute="top" secondItem="hJf-ks-u5o" secondAttribute="bottom" priority="999" constant="150" id="53g-Ls-9uU"/>
                             <constraint firstItem="NAe-Vq-1c7" firstAttribute="top" secondItem="n2R-VB-tvF" secondAttribute="bottom" id="6qA-DX-pz2"/>
                             <constraint firstItem="8g6-MQ-uCG" firstAttribute="centerY" secondItem="grS-CQ-z28" secondAttribute="centerY" priority="999" constant="-55.5" id="76D-ba-acL"/>
                             <constraint firstAttribute="trailing" secondItem="NAe-Vq-1c7" secondAttribute="trailing" constant="20" id="7SU-EC-TNA"/>
@@ -121,8 +133,10 @@
                             <constraint firstItem="0Uz-Id-TuP" firstAttribute="top" secondItem="1qo-LX-bAd" secondAttribute="bottom" constant="55" id="JRE-5b-2t8"/>
                             <constraint firstItem="1qo-LX-bAd" firstAttribute="leading" secondItem="zbb-Ii-2Q3" secondAttribute="trailing" constant="-10" id="QzA-s2-Zm5"/>
                             <constraint firstItem="KVx-SY-vSa" firstAttribute="top" secondItem="n2R-VB-tvF" secondAttribute="bottom" constant="90" id="Tow-2M-YDf"/>
+                            <constraint firstItem="hJf-ks-u5o" firstAttribute="top" secondItem="KVx-SY-vSa" secondAttribute="bottom" constant="80" id="aH1-1d-Jjk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="w4A-Gc-Mo8" secondAttribute="trailing" constant="40" id="dNo-gy-dPa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1qo-LX-bAd" secondAttribute="trailing" constant="30" id="q9A-UO-vin"/>
+                            <constraint firstItem="hJf-ks-u5o" firstAttribute="leading" secondItem="KVx-SY-vSa" secondAttribute="leading" id="xgk-Zw-ww5"/>
                         </constraints>
                     </view>
                 </viewController>
