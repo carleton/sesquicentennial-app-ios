@@ -31,12 +31,12 @@ class Geotification: NSObject, MKAnnotation {
     }
 	
 	/**
-	Sets up and places a marker upon entering a geofence.
+        Sets up and places a marker upon entering a geofence.
 	
-	Parameters:
-	- geofence: The geofence that was entered.
+        - Parameters:
+            - geofence: The geofence that was entered.
 	
-	- mapView:  The Google Maps view to attach the marker to.
+            - mapView:  The Google Maps view to attach the marker to.
 	*/
 	func enteredGeofence(mapview: GMSMapView) {
 		if self.data == nil && !self.requestingData {
@@ -59,18 +59,17 @@ class Geotification: NSObject, MKAnnotation {
 	}
 	
 	/**
-	Takes a geofence off of the map if the geofence is not currently within
-	the geofence search radius of the user's location. If there are fewer
-	than 4, however, the points remain so that the user doesn't just lose everything
-	that they could interact with.
+        Takes a geofence off of the map if the geofence is not currently within
+        the geofence search radius of the user's location. If there are fewer
+        than 4, however, the points remain so that the user doesn't just lose everything
+        that they could interact with.
 	
-	Parameters:
-	- geofence:    The geofence that was exited.
+        - Parameters:
+            - geofence:    The geofence that was exited.
 	
-	- infoMarkers: The set of markers that are still currently in scope.
+            - infoMarkers: The set of markers that are still currently in scope.
 	
-	Returns:
-	- A new list of the current active geofences.
+        - Returns: A new list of the current active geofences.
 	
 	*/
 	func exitedGeofence() {

@@ -7,23 +7,12 @@ import SwiftOverlays
 
 class CalendarViewController: UICollectionViewController {
    
-    var calendar: [Dictionary<String, String>] = []
+    var calendar: [Dictionary<String, AnyObject?>] = []
+    var filteredCalendar: [Dictionary<String, AnyObject?>] = []
     var cells: [CalendarCell] = []
     var eventImages: [UIImage] = []
     var tableLimit : Int!
-   
-    /**
-        Initializes this view and sets up the 
-        observer for the calendar data.
-     */
-    required init?(coder decoder : NSCoder) {
-        super.init(coder: decoder)
-
-        NSNotificationCenter
-            .defaultCenter()
-            .addObserver(self, selector: "actOnCalendarUpdate:", name: "carleton150.calendarUpdate", object: nil)
-        
-    }
+    var parentView: CalendarFilterViewController!
     
     /**
         Upon load of this view, load the calendar and adjust the 
@@ -31,15 +20,18 @@ class CalendarViewController: UICollectionViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        // set an observer to see if the filter button is pressed
+        NSNotificationCenter
+            .defaultCenter()
+            .addObserver(self, selector: "actOnFilterUpdate:", name: "carleton150.filterUpdate", object: nil)
+       
+        // set the parent view
+        self.calendar = self.parentView.calendar
+        self.filteredCalendar = self.parentView.calendar
         
         // set the current table limit
-        self.tableLimit = calendar.count
-        
-        // set properties on the navigation bar 
-        Utils.setUpNavigationBar(self)
-       
-        // stop the navigation bar from covering the calendar content
-        self.navigationController!.navigationBar.translucent = false;
+        self.tableLimit = self.filteredCalendar.count
 
         // set the view's background colors
         view.backgroundColor = UIColor(red: 252, green: 212, blue: 80, alpha: 1.0)
@@ -48,13 +40,42 @@ class CalendarViewController: UICollectionViewController {
         // set the deceleration rate for the event cell snap
         collectionView!.decelerationRate = UIScrollViewDecelerationRateFast
     }
-    
+   
+    /**
+        Prepares for segues from the calendar to its detail modals by passing
+        the data required for the modal along to the modal instance.
+     
+        - Parameters:
+            - segue: The triggered segue.
+     
+            - sender: The collecton view cell that triggered the segue.
+     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if (segue.identifier == "showCalendarDetail") {
 			let detailViewController = (segue.destinationViewController as! CalendarDetailView)
 			detailViewController.parentView = self
             detailViewController.setData(sender as! CalendarCell)
 		}
+    }
+   
+    /**
+        Upon an update to the filter (which occurs whenever the checkmark 
+        is pressed next to the date picker) changes the currently viewed
+        events by filtering on the current day.
+     
+        - Parameters:
+            - notification: The notification that passes along the date used
+                            for filtering and triggers this method.
+     */
+    func actOnFilterUpdate(notification: NSNotification) {
+        if let date: NSDate = notification.userInfo!["date"] as? NSDate {
+            self.filteredCalendar = calendar.filter() {
+                event in
+                return (event["startTime"] as! NSDate).isGreaterThanDate(date)
+            }
+            self.collectionView!.reloadData()
+            self.collectionView!.setContentOffset(CGPoint(x: 0,y: 0), animated: false)
+        }
     }
     
     /**
@@ -70,23 +91,6 @@ class CalendarViewController: UICollectionViewController {
             }
         }
         return eventImages
-    }
-    
-    /**
-        Upon noticing that the calendar has been updated,
-        update the UI accordingly.
-     
-        - Parameters:
-            - notification: The notification triggered from the CalendarDataService.
-     */
-    func actOnCalendarUpdate(notification: NSNotification) {
-        if let calendar = CalendarDataService.schedule {
-            self.calendar = calendar
-            let indexPath = NSIndexPath(forItem: 0, inSection: 0)
-            let _ = CalendarDetailView()
-            let _ = self.collectionView!
-                .dequeueReusableCellWithReuseIdentifier("CalendarCell", forIndexPath: indexPath) as! CalendarCell
-        }
     }
     
     /**
@@ -140,13 +144,33 @@ class CalendarViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CalendarCell", forIndexPath: indexPath) as! CalendarCell
         let images = getEventImages()
-        let eventText = calendar[indexPath.item]["title"]
-        cell.eventTitle.text = eventText
+        let eventText = filteredCalendar[indexPath.item]["title"]
+        cell.eventTitle.text = eventText as? String
         cell.currentImage = images[indexPath.item % 10]
-        cell.locationLabel.text = calendar[indexPath.item]["location"]!
-        cell.timeLabel.text = calendar[indexPath.item]["startTime"]!
-        cell.eventDescription = calendar[indexPath.item]["description"]!
+        cell.locationLabel.text = filteredCalendar[indexPath.item]["location"]! as? String
+        let date: String
+        if let result: NSDate = filteredCalendar[indexPath.item]["startTime"] as? NSDate {
+            date = parseDate(result)
+        } else {
+            date = "No Time Available"
+        }
+        cell.timeLabel.text = date
+        cell.eventDescription = filteredCalendar[indexPath.item]["description"]! as? String
         return cell
+    }
+   
+    /**
+        A convenience function to turn the NSDate objects returned
+        from the data service into human readable strings for presentation.
+     
+        - Parameters:
+            - date: A date to be turned into a nice stringified version of itself.
+     */
+    private func parseDate(date: NSDate) -> String {
+        let outFormatter = NSDateFormatter()
+        outFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        outFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        return outFormatter.stringFromDate(date)
     }
    
     /**
@@ -174,3 +198,32 @@ class CalendarViewController: UICollectionViewController {
         self.presentViewController(alert, animated: true) { () -> Void in }
     }
 }
+
+/// An extension to NSDate to provide simpler functions for comparison.
+extension NSDate {
+    
+    /**
+        If the current date object is later in time than 
+        the other date return true, otherwise return false.
+     */
+    func isGreaterThanDate(dateToCompare: NSDate) -> Bool {
+        return self.compare(dateToCompare) == NSComparisonResult.OrderedDescending
+    }
+    
+    /**
+        If the current date object is earlier in time than
+        the other date return true, otherwise return false.
+     */
+    func isLessThanDate(dateToCompare: NSDate) -> Bool {
+        return self.compare(dateToCompare) == NSComparisonResult.OrderedAscending
+    }
+    
+    /**
+        If the current date object is at the same time as
+        the other date return true, otherwise return false.
+     */
+    func equalToDate(dateToCompare: NSDate) -> Bool {
+        return self.compare(dateToCompare) == NSComparisonResult.OrderedSame
+    }
+}
+

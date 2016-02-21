@@ -14,7 +14,7 @@ final class CalendarDataService {
         (in this case, just the calendar view). Currently this is not updated
         periodically, but on app launch.
      */
-    private(set) static var schedule: [Dictionary<String, String>]? {
+    private(set) static var schedule: [Dictionary<String, AnyObject?>]? {
         didSet {
             NSNotificationCenter
                 .defaultCenter()
@@ -26,8 +26,8 @@ final class CalendarDataService {
         Update events in the calendar.
      */
     class func updateEvents() {
-        CalendarDataService.requestEvents(NSDate(), limit: 20) {
-            (success: Bool, result: [Dictionary<String, String>]?) in
+        CalendarDataService.requestEvents(NSDate(), limit: 2000) {
+            (success: Bool, result: [Dictionary<String, AnyObject?>]?) in
             if success {
                 self.schedule = result!
             } else {
@@ -51,7 +51,7 @@ final class CalendarDataService {
      
      */
     class func requestEvents(date: NSDate?, limit: Int, completion:
-        (success: Bool, result: [Dictionary<String, String>]?) -> Void) {
+        (success: Bool, result: [Dictionary<String, AnyObject?>]?) -> Void) {
             
         let dateFormatter : NSDateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -72,7 +72,7 @@ final class CalendarDataService {
         Alamofire.request(.POST, Endpoints.calendar, parameters: (parameters as! [String : AnyObject]), encoding: .JSON).responseJSON() {
             (request, response, result) in
             
-            var events : [Dictionary<String, String>] = []
+            var events : [Dictionary<String, AnyObject?>] = []
             
             if let result = result.value {
                 let json = JSON(result)
@@ -81,12 +81,12 @@ final class CalendarDataService {
                         let title = answer[i]["title"].string!
                         let description = answer[i]["description"].string!
                         let location = answer[i]["location"].string!
-                        let startTime = CalendarDataService.parseDate(answer[i]["startTime"].string!)
+                        let startTime: NSDate? = CalendarDataService.parseDate(answer[i]["startTime"].string!)!
                         let duration = answer[i]["duration"].string!
-                        let event = ["title": title,
+                        let event: Dictionary<String, AnyObject?> = ["title": title,
                                      "description": description,
                                      "location": location,
-                                     "startTime": startTime,
+                                     "startTime": startTime!,
                                      "duration": duration]
                         events.append(event)
                     }
@@ -111,7 +111,7 @@ final class CalendarDataService {
         - Returns: A more easily readable start time and date.
      
      */
-    private class func parseDate(dateString: String) -> String {
+    private class func parseDate(dateString: String) -> NSDate? {
         
         let inFormatter = NSDateFormatter()
         let outFormatter = NSDateFormatter()
@@ -119,15 +119,15 @@ final class CalendarDataService {
         outFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
         
         if dateString == "No Time Available" {
-            return ""
+            return nil
         } else if dateString.contains("T") {
             inFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss"
             let calendarDate: NSDate = inFormatter.dateFromString(dateString)!
-            return outFormatter.stringFromDate(calendarDate)
+            return calendarDate
         } else {
             inFormatter.dateFormat = "yyyy'-'MM'-'dd"
             let calendarDate: NSDate = inFormatter.dateFromString(dateString)!
-            return outFormatter.stringFromDate(calendarDate)
+            return calendarDate
         }
     }
 }

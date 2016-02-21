@@ -23,6 +23,7 @@
 		63A99A6F1C763D97007E6F25 /* WaypointTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99A6E1C763D97007E6F25 /* WaypointTableCell.swift */; };
 		63F5E9A01C72B60D00CFCB38 /* QuestPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F5E99F1C72B60D00CFCB38 /* QuestPlayingViewController.swift */; };
 		6A3094401BD9CD4600A16342 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A30943F1BD9CD4600A16342 /* Geotification.swift */; };
+		710361451C79A0560013762C /* CalendarFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710361441C79A0560013762C /* CalendarFilterViewController.swift */; };
 		71043C741C72FD970091D99A /* CalendarDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71043C731C72FD970091D99A /* CalendarDetailView.swift */; };
 		710726FB1C58001F0071FABC /* CalendarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710726FA1C58001F0071FABC /* CalendarLayout.swift */; };
 		710726FD1C5813650071FABC /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710726FC1C5813650071FABC /* CalendarCell.swift */; };
@@ -85,6 +86,7 @@
 		63A99A6E1C763D97007E6F25 /* WaypointTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointTableCell.swift; sourceTree = "<group>"; };
 		63F5E99F1C72B60D00CFCB38 /* QuestPlayingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestPlayingViewController.swift; sourceTree = "<group>"; };
 		6A30943F1BD9CD4600A16342 /* Geotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
+		710361441C79A0560013762C /* CalendarFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarFilterViewController.swift; sourceTree = "<group>"; };
 		71043C731C72FD970091D99A /* CalendarDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDetailView.swift; sourceTree = "<group>"; };
 		710726FA1C58001F0071FABC /* CalendarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarLayout.swift; sourceTree = "<group>"; };
 		710726FC1C5813650071FABC /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				714DB8721C57DC6300770A44 /* CalendarViewController.swift */,
 				710726FA1C58001F0071FABC /* CalendarLayout.swift */,
 				710726FC1C5813650071FABC /* CalendarCell.swift */,
+				710361441C79A0560013762C /* CalendarFilterViewController.swift */,
 			);
 			name = Calendar;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				71340E581C5214A2007F9E2F /* QuestDataService.swift in Sources */,
 				71B379B91C7928F40057B5B8 /* TutorialViewController.swift in Sources */,
 				714C58B01C5ABF1600D6C33E /* Endpoints.swift in Sources */,
+				710361451C79A0560013762C /* CalendarFilterViewController.swift in Sources */,
 				7180A72E1C685DAA0080F121 /* TimelineTitleView.swift in Sources */,
 				710726FB1C58001F0071FABC /* CalendarLayout.swift in Sources */,
 				6A3094401BD9CD4600A16342 /* Geotification.swift in Sources */,

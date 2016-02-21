@@ -43,7 +43,12 @@ final class Utils {
         return degrees * M_PI / 180
     }
     
-    
+    /**
+        Builds the Carleton tiling on top of Google Maps.
+     
+        - Parameters: 
+            - currentMap: the map view that we want to tile.
+     */
     class func setUpTiling(currentMap: GMSMapView) {
         // Implement GMSTileURLConstructor
         // Returns a Tile based on the x, y, zoom coordinates
@@ -63,7 +68,6 @@ final class Utils {
         let layerLabel = GMSURLTileLayer(URLConstructor: urlsLabel)
         
         // Display on the map at a specific zIndex
-        //Labels should go on top
         layerBase.zIndex = 0
         layerBase.tileSize = 256
         layerBase.map = currentMap

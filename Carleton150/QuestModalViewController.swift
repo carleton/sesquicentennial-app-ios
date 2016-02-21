@@ -1,7 +1,6 @@
 //
 //  QuestModalViewController.swift
 //  Carleton150
-//
 
 import UIKit
 
