@@ -55,6 +55,9 @@ class Geotification: NSObject, MKAnnotation {
 				self.requestingData = false
 			}
 		} else {
+			if self.marker.map == nil {
+				self.marker.map = mapview
+			}
 		}
 	}
 	
