@@ -12,7 +12,7 @@ var landmarksInfo : Dictionary<String,[Dictionary<String, String>?]>? = Dictiona
 
 class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
-    @IBOutlet weak var questionButton: UIImageView!
+    @IBOutlet weak var questionButton: UIButton!
     @IBOutlet weak var momentButton: UIButton!
 
     @IBOutlet weak var mapView: GMSMapView!
@@ -32,7 +32,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         Set to true to show the debug button for testing, set to false to hide
      */
     let showDebugButton = false
-    
+
 	
     /**
         Upon load of this view, start the location manager and
@@ -42,7 +42,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         
         let defaults = NSUserDefaults.standardUserDefaults()
         if !defaults.boolForKey("hasSeenTutorial") {
-            self.displayTutorial()
             defaults.setBool(true, forKey: "hasSeenTutorial")
         }
         defaults.synchronize()
@@ -76,8 +75,8 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         }
     }
     
-    func displayTutorial() {
-        // do nothing for now.
+    @IBAction func showTutorial(sender: AnyObject) {
+        
     }
     
     /**
@@ -113,9 +112,12 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			destinationController.mapCtrl = self
             destinationController.showMemories = true
             destinationController.requestMemories()
+        } else if segue.identifier == "showTutorial" {
+			let destinationController = (segue.destinationViewController as! TutorialViewController)
+			destinationController.parent = self
         }
     }
-
+    
     /**
         Debug function that shows the current available geofences
         and the current latitude and longitude coordinates.
