@@ -160,12 +160,12 @@
 			isa = PBXGroup;
 			children = (
 				63036B321C4CB5A200193A78 /* Historical.storyboard */,
+				6A30943F1BD9CD4600A16342 /* Geotification.swift */,
 				71294DAF1BC6FC1500B9F81B /* HistoricalViewController.swift */,
 				63291F351C5971A30064C296 /* TimelineViewController.swift */,
 				63291F371C5979730064C296 /* TimelineTableCells.swift */,
 				71340E591C5216C8007F9E2F /* HistoricalDataService.swift */,
 				71C4302E1C765105005D8112 /* Memory.swift */,
-				6A30943F1BD9CD4600A16342 /* Geotification.swift */,
 				71FF6D361C72B2CD004A2B3D /* TimelineImageDetailView.swift */,
 				71573EB31C707E5400B3E265 /* TimelineTextDetailView.swift */,
 				71F0C7BF1C7273920063EDB1 /* TimelineDetailView.swift */,

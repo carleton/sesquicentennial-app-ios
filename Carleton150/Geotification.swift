@@ -21,11 +21,13 @@ class Geotification: NSObject, MKAnnotation {
     var identifier: String
 	var marker: GMSMarker!
 	var data: [Dictionary<String, String>?]!
+	var requestingData: Bool = false
 	
 	init(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance, identifier: String) {
         self.coordinate = coordinate
         self.radius = radius
         self.identifier = identifier
+		self.marker = GMSMarker(position: self.coordinate)
     }
 	
 	/**
@@ -37,21 +39,24 @@ class Geotification: NSObject, MKAnnotation {
 	- mapView:  The Google Maps view to attach the marker to.
 	*/
 	func enteredGeofence(mapview: GMSMapView) {
-		if self.data != nil {
+		if self.data == nil && !self.requestingData {
+			self.requestingData = true
+			print("WTF")
 			HistoricalDataService.requestContent(self.identifier) {
 				(success: Bool, result: [Dictionary<String, String>?]) -> Void in
 				if (success) {
 					if let data = result as [Dictionary<String, String>?]! {
 						self.data = data
+						self.marker.title = self.identifier
+						self.marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
+						self.marker.map = mapview
+						self.marker.icon = UIImage(named: "marker.png")
 					}
 				}
+				self.requestingData = false
 			}
+		} else {
 		}
-		self.marker = GMSMarker(position: self.coordinate)
-		self.marker.title = self.identifier
-		self.marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
-		self.marker.map = mapview
-		self.marker.icon = UIImage(named: "marker.png")
 	}
 	
 	/**

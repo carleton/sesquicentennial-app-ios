@@ -33,18 +33,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
      */
     let showDebugButton = false
 	
-	
-	override func viewWillAppear(animated: Bool) {
-		self.minRequestThreshold = 10
-		self.updateGeofences(locationManager.location!)
-		print("The min threshold is \(self.minRequestThreshold)")
-	}
-	
-	override func viewWillDisappear(animated: Bool) {
-		self.minRequestThreshold = 1000000
-		print("The min threshold is \(self.minRequestThreshold)")
-	}
-	
     /**
         Upon load of this view, start the location manager and
         set the camera on the map view to focus on Carleton.
@@ -68,10 +56,12 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestAlwaysAuthorization()
 		
-        // set up the map view
-        mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
+		// set up the map view
+		mapView.camera = GMSCameraPosition.cameraWithTarget((self.locationManager.location?.coordinate)!, zoom: 16)
 		mapView.delegate = self;
-        
+		
+		self.lastRequestLocation = self.locationManager.location
+		
         // set up the tiling for the map
         Utils.setUpTiling(mapView)
         
@@ -81,7 +71,19 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
             mapView.bringSubviewToFront(momentButton)
         }
     }
-    
+	
+	
+	override func viewWillAppear(animated: Bool) {
+		self.minRequestThreshold = 10
+		self.updateGeofences(locationManager.location!)
+		print("The min threshold is \(self.minRequestThreshold)")
+	}
+	
+	override func viewWillDisappear(animated: Bool) {
+		self.minRequestThreshold = 1000000
+		print("The min threshold is \(self.minRequestThreshold)")
+	}
+	
     /**
         Prepares for a segue to the detail view for a particular point of
         interest on the map.
@@ -98,22 +100,26 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "showTimeline" {
             
-            if let geofenceTitle = (sender?.title)! {
-                selectedGeofence = geofenceTitle
-            }
-            
 			let destinationController = (segue.destinationViewController as! TimelineViewController)
-			destinationController.mapCtrl = self
-            
+			destinationController.parentVC = self
+			
+			if let geofenceTitle = (sender?.title)! as String! {
+				destinationController.selectedGeofence = geofenceTitle
+				if let geofence = geofences[geofenceTitle] {
+					destinationController.timeline = geofence.data
+				}
+			}
+			
+
+			
             // hide the memories button so it doesn't make the view busy
             self.momentButton.hidden = true
             
         } else if segue.identifier == "showMemories" {
-			print("Getting Memories Segue")
-            selectedGeofence = "Memories Near You"
             self.momentButton.hidden = true
 			let destinationController = (segue.destinationViewController as! TimelineViewController)
-			destinationController.mapCtrl = self
+			destinationController.parentVC = self
+			destinationController.selectedGeofence = "Memories Near You"
             destinationController.showMemories = true
             destinationController.requestMemories()
         }
@@ -203,23 +209,16 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	
 	
 	func shouldUpdateLocation(curLocation: CLLocation) -> Bool {
-		if self.lastRequestLocation != nil {
-			if (Utils.getDistance(curLocation.coordinate, point2: self.lastRequestLocation.coordinate) >= minRequestThreshold) {
-				self.lastRequestLocation = curLocation
-				return true
-			} else {
-				return false
-			}
+		if (Utils.getDistance(curLocation.coordinate, point2: self.lastRequestLocation.coordinate) <= minRequestThreshold) {
+			self.lastRequestLocation = curLocation
+			return true
 		}
-		self.lastRequestLocation = curLocation
-		return true
+		return false
 	}
 	
 	func updateGeofenceVisibility(curLocation: CLLocation) {
 		for (_,geofence) in self.geofences! {
-			if (Utils.getDistance(curLocation.coordinate, point2: geofence.coordinate) > geofence.radius) {
-				geofence.exitedGeofence()
-			} else {
+			if (Utils.getDistance(curLocation.coordinate, point2: geofence.coordinate) <= geofence.radius) {
 				geofence.enteredGeofence(self.mapView)
 			}
 		}
@@ -237,7 +236,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			HistoricalDataService.requestNearbyGeofences(curLocation.coordinate) {
 				(success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
 				if (success) {
-					print("Getting New Historical Data")
 					// create geofences
 					for geofence in result! {
 						if (self.showDebugButton) {

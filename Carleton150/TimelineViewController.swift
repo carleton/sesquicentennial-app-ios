@@ -12,11 +12,12 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var uploadButton: UIButton!
     
-	var mapCtrl: HistoricalViewController!
-    var timeline: [Dictionary<String, String>?] = []
+	var parentVC: HistoricalViewController!
+	var selectedGeofence: String!
+    var timeline: [Dictionary<String, String>?]!
     var memories: [Dictionary<String, String>?] = []
     var showMemories: Bool = false
-
+	
     override func viewDidLoad() {
         // add bottom border to the timeline title
         titleView.addBottomBorderWithColor(UIColor(white: 0.9, alpha: 0.95), width: 1.5)
@@ -26,19 +27,26 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 		tableView.delegate = self
 	
         // set the title
-		geofenceName.text = selectedGeofence
+		if let selectedGeofence = selectedGeofence {
+			geofenceName.text = selectedGeofence
+		} else {
+			geofenceName.text = ""
+		}
       
         // set a default row height
         tableView.estimatedRowHeight = 160.0
        
         if !showMemories {
-            // sort the event timeline by date
-            if let unsortedTimeline = landmarksInfo?[selectedGeofence] {
-                timeline = unsortedTimeline.sort() {
-                    event1, event2 in
-                    return event1!["year"] > event2!["year"]
-                }
-            }
+			if var timeline = timeline {
+				// sort the event timeline by date
+				self.timeline = timeline.sort() {
+					event1, event2 in
+					return event1!["year"] > event2!["year"]
+				}
+			} else {
+				self.timeline  = []
+			}
+
             // hide the upload button if in timeline
             self.uploadButton.hidden = true
             
@@ -60,7 +68,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func requestMemories() {
-        if let location: CLLocation = self.mapCtrl.locationManager.location {
+		print("WTF")
+        if let location: CLLocation = self.parentVC.locationManager.location {
             let currentLocation: CLLocationCoordinate2D = location.coordinate
             HistoricalDataService.requestMemoriesContent(currentLocation) { success, result in
                 if (success) {
@@ -86,8 +95,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             - sender: The UI element that triggered the action.
      */
 	@IBAction func exitTimeline(sender: AnyObject) {
-        mapCtrl.momentButton.hidden = false
-		mapCtrl.dismissViewControllerAnimated(true) { () -> Void in }
+        parentVC.momentButton.hidden = false
+		parentVC.dismissViewControllerAnimated(true) { () -> Void in }
 	}
 
     /**
