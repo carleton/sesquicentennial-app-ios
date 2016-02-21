@@ -69,7 +69,7 @@ final class HistoricalDataService {
 					}
                     completion(success: true, result: historicalEntries)
                 } else {
-                    print("No results were found.")
+                    print("No results were found for Geofences.")
                     completion(success: false, result: [])
                 }
             } else {
@@ -133,7 +133,7 @@ final class HistoricalDataService {
                     }
                     completion(success: true, result: memoriesEntries)
                 } else {
-                    print("No results were found.")
+                    print("No results were found for Memories.")
                     completion(success: false, result: [])
                 }
             } else {
