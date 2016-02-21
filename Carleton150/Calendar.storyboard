@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Roboto-Bold.ttf">
@@ -30,7 +31,34 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="SbU-JV-pey">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="476"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.039215686270000001" green="0.16078431369999999" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="I0N-A3-Nwr" firstAttribute="width" secondItem="SbU-JV-pey" secondAttribute="width" multiplier="0.8" id="PqO-0I-rOz"/>
+                        </constraints>
                         <collectionViewLayout key="collectionViewLayout" id="VbH-pL-bbV" customClass="CalendarLayout" customModule="Carleton150" customModuleProvider="target"/>
+                        <view key="backgroundView" contentMode="scaleToFill" id="wdZ-kP-7wb">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="476"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="I0N-A3-Nwr">
+                                    <rect key="frame" x="117" y="223" width="368" height="49"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="b4z-PZ-wu1"/>
+                                    </constraints>
+                                    <state key="normal" title="Seems like there isn't any data. ">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="reloadCalendarData:" destination="DiF-D4-Jp7" eventType="touchUpInside" id="Plo-08-suZ"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.039215686270000001" green="0.16078431369999999" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="I0N-A3-Nwr" firstAttribute="centerY" secondItem="wdZ-kP-7wb" secondAttribute="centerY" id="XIs-mQ-d2E"/>
+                                <constraint firstItem="I0N-A3-Nwr" firstAttribute="centerX" secondItem="wdZ-kP-7wb" secondAttribute="centerX" id="ucL-gX-Rxs"/>
+                            </constraints>
+                        </view>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CalendarCell" id="alX-ZD-1AM" customClass="CalendarCell" customModule="Carleton150" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="199" height="186"/>
@@ -50,19 +78,19 @@
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIr-Lz-Avv">
-                                            <rect key="frame" x="28" y="78" width="143" height="29.5"/>
+                                            <rect key="frame" x="28" y="80" width="143" height="26"/>
                                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="22"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="0.95000000000000007" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spg-uT-lZH">
-                                            <rect key="frame" x="0.0" y="116" width="199" height="21.5"/>
+                                            <rect key="frame" x="0.0" y="114.5" width="199" height="21.5"/>
                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhk-dB-yYD">
-                                            <rect key="frame" x="8" y="137.5" width="183" height="21.5"/>
+                                            <rect key="frame" x="8" y="136" width="183" height="21.5"/>
                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -105,6 +133,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="YpE-WW-IoP"/>
+                    <connections>
+                        <outlet property="noDataButton" destination="I0N-A3-Nwr" id="8at-Ur-blu"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hyl-yd-H64" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -228,7 +259,7 @@
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1UQ-p6-P1G">
-                                        <rect key="frame" x="14" y="173" width="526" height="373"/>
+                                        <rect key="frame" x="14" y="168" width="526" height="378"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
@@ -241,13 +272,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GM2-zo-A7W">
-                                        <rect key="frame" x="20" y="112" width="520" height="24"/>
+                                        <rect key="frame" x="20" y="112" width="520" height="21.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="18"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ix-jQ-xny">
-                                        <rect key="frame" x="19" y="144" width="521" height="24"/>
+                                        <rect key="frame" x="19" y="141.5" width="521" height="21.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="18"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>

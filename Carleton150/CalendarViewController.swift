@@ -14,6 +14,8 @@ class CalendarViewController: UICollectionViewController {
     var tableLimit : Int!
     var parentView: CalendarFilterViewController!
     
+    @IBOutlet weak var noDataButton: UIButton!
+    
     /**
         Upon load of this view, load the calendar and adjust the 
         collection cells for the calendar.
@@ -25,7 +27,14 @@ class CalendarViewController: UICollectionViewController {
         NSNotificationCenter
             .defaultCenter()
             .addObserver(self, selector: "actOnFilterUpdate:", name: "carleton150.filterUpdate", object: nil)
-       
+      
+        // depending on the current state of the calendar data, change the button text
+        if calendar.count == 0 {
+            self.noDataButton.setTitle("Seems like we didn't get data for some reason. Try again?", forState: UIControlState.Normal)
+        } else {
+            self.noDataButton.setTitle("Seems like there isn't data for this date. Go back?", forState: UIControlState.Normal)
+        }
+        
         // set the parent view
         self.calendar = self.parentView.calendar
         self.filteredCalendar = self.parentView.calendar
@@ -35,10 +44,36 @@ class CalendarViewController: UICollectionViewController {
 
         // set the view's background colors
         view.backgroundColor = UIColor(red: 252, green: 212, blue: 80, alpha: 1.0)
-        collectionView!.backgroundColor = UIColor(red: 224, green: 224, blue: 224, alpha: 1.0)
         
         // set the deceleration rate for the event cell snap
         collectionView!.decelerationRate = UIScrollViewDecelerationRateFast
+    }
+    
+    /**
+        If there's nothing in the calendar view, there's either
+        data that's missing or we simply don't have information for
+        that date. Either way, the user should get either today's stuff
+        or we should get more data.
+     */
+    @IBAction func reloadCalendarData(sender: AnyObject) {
+        if calendar.count == 0 {
+            NSNotificationCenter
+                .defaultCenter()
+                .addObserver(self, selector: "actOnParentCalendarUpdate:", name: "carleton150.filterCalendarUpdate", object: nil)
+            CalendarDataService.updateEvents()
+        } else {
+            if filteredCalendar.count == 0 {
+                let userInfo: [NSObject : AnyObject]? = ["date" : NSDate()]
+                NSNotificationCenter
+                    .defaultCenter()
+                    .postNotificationName("carleton150.filterUpdate", object: nil, userInfo: userInfo)
+            }
+        }
+    }
+    
+    func actOnParentCalendarUpdate(notification: NSNotification) {
+        self.calendar = self.parentView.calendar
+        self.collectionView!.reloadData()
     }
    
     /**

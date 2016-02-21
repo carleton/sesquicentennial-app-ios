@@ -26,7 +26,7 @@ final class CalendarDataService {
         Update events in the calendar.
      */
     class func updateEvents() {
-        CalendarDataService.requestEvents(NSDate(), limit: 2000) {
+        CalendarDataService.requestEvents(NSDate(), limit: 3000) {
             (success: Bool, result: [Dictionary<String, AnyObject?>]?) in
             if success {
                 self.schedule = result!
