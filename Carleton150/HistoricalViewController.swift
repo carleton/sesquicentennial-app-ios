@@ -27,7 +27,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	
 	var networkMonitor: Reachability!
 	var geofences: Dictionary<String,Geotification>!
-	var minRequestThreshold: Double = 10 // in meters
+	var minRequestThreshold: Double = 50 // in meters
 	var lastGeoReqLocation: CLLocation!
 	var selectedGeofence: String!
 	var debugMode: Bool = false
@@ -141,7 +141,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			selector: "connectionStatusChanged:",
 			name: kReachabilityChangedNotification,
 			object: nil)
-		self.minRequestThreshold = 10
+		self.minRequestThreshold = 50
 		if let curLocation = locationManager.location {
 			self.updateGeofences(curLocation)
 		}
