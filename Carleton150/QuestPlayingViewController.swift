@@ -52,7 +52,12 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		self.locationManager.requestAlwaysAuthorization()
 		
 		// center the camera and set the controller delegate for the map
-		questMapView.camera = GMSCameraPosition.cameraWithTarget((self.locationManager.location?.coordinate)!, zoom: 16)
+		if let curLocation = self.locationManager.location {
+			self.questMapView.camera = GMSCameraPosition.cameraWithTarget(curLocation.coordinate, zoom: 16)
+		} else {
+			questMapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
+		}
+		
 		questMapView.delegate = self;
 		
 		

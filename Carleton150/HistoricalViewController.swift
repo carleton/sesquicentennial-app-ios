@@ -57,11 +57,16 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestAlwaysAuthorization()
 		
+		if let curLocation = self.locationManager.location {
+			self.mapView.camera = GMSCameraPosition.cameraWithTarget(curLocation.coordinate, zoom: 16)
+			self.lastRequestLocation = curLocation
+		} else {
+			mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
+		}
+		
 		// set up the map view
 		mapView.camera = GMSCameraPosition.cameraWithTarget((self.locationManager.location?.coordinate)!, zoom: 16)
 		mapView.delegate = self;
-		
-//		self.lastRequestLocation = self.locationManager.location
 		
         // set up the tiling for the map
         Utils.setUpTiling(mapView)
@@ -76,13 +81,13 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	
 	override func viewWillAppear(animated: Bool) {
 		self.minRequestThreshold = 10
-//		self.updateGeofences(locationManager.location!)
-		print("The min threshold is \(self.minRequestThreshold)")
+		if let curLocation = locationManager.location {
+			self.updateGeofences(curLocation)
+		}
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
 		self.minRequestThreshold = 1000000
-		print("The min threshold is \(self.minRequestThreshold)")
 	}
 	
     /**
@@ -214,12 +219,10 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	
 	func shouldUpdateLocation(curLocation: CLLocation) -> Bool {
 		if self.lastRequestLocation == nil {
-			print("Happens Once")
 			self.lastRequestLocation = curLocation
 			return true
 		}
 		if (Utils.getDistance(curLocation.coordinate, point2: self.lastRequestLocation.coordinate) >= minRequestThreshold) {
-			print("Happens more than once")
 			self.lastRequestLocation = curLocation
 			return true
 		}
@@ -244,7 +247,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	func updateGeofences(curLocation: CLLocation) {
 		// if the user has traveled far enough
 		if (shouldUpdateLocation(curLocation)) {
-			print("HERE?")
 			// get new geofences from server and save them
 			HistoricalDataService.requestNearbyGeofences(curLocation.coordinate) {
 				(success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
