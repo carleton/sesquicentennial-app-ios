@@ -286,10 +286,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPM-Dp-ujY">
-                                        <rect key="frame" x="20" y="11" width="30" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="52"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="htk-cG-oXU"/>
-                                            <constraint firstAttribute="width" constant="30" id="wuU-aL-Ctq"/>
+                                            <constraint firstAttribute="width" constant="60" id="wuU-aL-Ctq"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal">
@@ -319,12 +318,13 @@
                                     <constraint firstItem="egf-Dy-hZb" firstAttribute="leading" secondItem="bPM-Dp-ujY" secondAttribute="trailing" priority="999" constant="6" id="0MK-s9-zcR"/>
                                     <constraint firstItem="egf-Dy-hZb" firstAttribute="centerY" secondItem="zs1-f1-1pz" secondAttribute="centerY" id="1GH-uh-1o1"/>
                                     <constraint firstItem="egf-Dy-hZb" firstAttribute="width" relation="lessThanOrEqual" secondItem="zs1-f1-1pz" secondAttribute="width" priority="998" id="5I8-BQ-CoR"/>
-                                    <constraint firstItem="bPM-Dp-ujY" firstAttribute="top" secondItem="zs1-f1-1pz" secondAttribute="top" constant="11" id="ALl-qO-MBW"/>
+                                    <constraint firstItem="bPM-Dp-ujY" firstAttribute="height" secondItem="zs1-f1-1pz" secondAttribute="height" id="97S-DS-Qin"/>
+                                    <constraint firstItem="bPM-Dp-ujY" firstAttribute="top" secondItem="zs1-f1-1pz" secondAttribute="top" id="ALl-qO-MBW"/>
                                     <constraint firstItem="0SB-d4-B7M" firstAttribute="top" secondItem="zs1-f1-1pz" secondAttribute="top" id="Rqv-7u-OYd"/>
                                     <constraint firstItem="egf-Dy-hZb" firstAttribute="centerY" secondItem="0SB-d4-B7M" secondAttribute="centerY" id="SXV-xu-qdY"/>
                                     <constraint firstItem="egf-Dy-hZb" firstAttribute="centerX" secondItem="zs1-f1-1pz" secondAttribute="centerX" id="UTP-Eu-kcW"/>
                                     <constraint firstItem="egf-Dy-hZb" firstAttribute="top" secondItem="zs1-f1-1pz" secondAttribute="top" constant="15" id="fkI-mF-zfz"/>
-                                    <constraint firstItem="bPM-Dp-ujY" firstAttribute="leading" secondItem="zs1-f1-1pz" secondAttribute="leading" constant="20" id="kfh-HZ-AVX"/>
+                                    <constraint firstItem="bPM-Dp-ujY" firstAttribute="leading" secondItem="zs1-f1-1pz" secondAttribute="leading" id="kfh-HZ-AVX"/>
                                     <constraint firstItem="0SB-d4-B7M" firstAttribute="leading" secondItem="egf-Dy-hZb" secondAttribute="trailing" constant="-20" id="lDz-i7-dtJ"/>
                                     <constraint firstAttribute="trailing" secondItem="0SB-d4-B7M" secondAttribute="trailing" id="wtA-Ol-sMb"/>
                                 </constraints>
