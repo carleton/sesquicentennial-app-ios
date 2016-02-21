@@ -45,7 +45,7 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="b4z-PZ-wu1"/>
                                     </constraints>
-                                    <state key="normal" title="Seems like there isn't any data past this date. Reload?">
+                                    <state key="normal" title="Seems like there isn't any data. ">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -133,6 +133,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="YpE-WW-IoP"/>
+                    <connections>
+                        <outlet property="noDataButton" destination="I0N-A3-Nwr" id="8at-Ur-blu"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hyl-yd-H64" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

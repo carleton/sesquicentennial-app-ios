@@ -4,7 +4,15 @@
 
 class CalendarFilterViewController: UIViewController {
     
-    var calendar: [Dictionary<String, AnyObject?>] = []
+    var calendarViewController: CalendarViewController!
+    
+    var calendar: [Dictionary<String, AnyObject?>] = [] {
+        didSet {
+            NSNotificationCenter
+                .defaultCenter()
+                .postNotificationName("carleton150.filterCalendarUpdate", object: self)
+        }
+    }
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
@@ -36,7 +44,14 @@ class CalendarFilterViewController: UIViewController {
             - sender: The checkmark that triggers a calendar date change.
      */
     @IBAction func filterByDate(sender: AnyObject) {
-       
+        
+        // depending on the current state of the calendar data, change the button text
+        if self.calendarViewController.calendar.count == 0 {
+            self.calendarViewController.noDataButton.setTitle("Seems like we didn't get data for some reason. Try again?", forState: UIControlState.Normal)
+        } else {
+            self.calendarViewController.noDataButton.setTitle("Seems like there isn't data for this date. Go back?", forState: UIControlState.Normal)
+        }
+        
         let userInfo: [NSObject : AnyObject]? = ["date" : datePicker.date]
         
         NSNotificationCenter
@@ -66,6 +81,7 @@ class CalendarFilterViewController: UIViewController {
         if (segue.identifier == "segueToContainer") {
             let containerViewController = (segue.destinationViewController as! CalendarViewController)
             containerViewController.parentView = self
+            self.calendarViewController = containerViewController
         }
     }
 }
