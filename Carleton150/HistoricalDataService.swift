@@ -68,6 +68,7 @@ final class HistoricalDataService {
 								result["day"] = day
 							}
 							historicalEntries.append(result as? Dictionary<String, String>)
+							print("Data Successfully retrieved for the \(geofenceName)")
 						} else {
 							print("Data returned at endpoint: \(Endpoints.historicalInfo) is malformed. Geofence name: \(geofenceName)")
 							completion(success: false, result: [])
@@ -218,7 +219,7 @@ final class HistoricalDataService {
                     "lat" : location.latitude,
                     "lng" : location.longitude
                 ],
-                "radius": 2000
+                "radius": 100
             ]
         ]
             
@@ -241,13 +242,13 @@ final class HistoricalDataService {
                                     longitude: longitude
                                 )
                                 final_result.append((name: fenceName, radius: rad, center: center))
-                                
                         } else {
                             print("Data returned at endpoint: \(Endpoints.geofences) is malformed.")
                             completion(success: false, result: nil)
                             return
                         }
                     }
+					print("Data Successfully retrieved for the Geofences")
                     completion(success: true, result: final_result)
                 } else {
                     print("No results were found.")

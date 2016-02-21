@@ -15,6 +15,7 @@
 		63291F361C5971A30064C296 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63291F351C5971A30064C296 /* TimelineViewController.swift */; };
 		63291F381C5979730064C296 /* TimelineTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63291F371C5979730064C296 /* TimelineTableCells.swift */; };
 		634AD3A31C780D26005EBE9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 634AD3A21C780D26005EBE9C /* Assets.xcassets */; };
+		6353259E1C7A44700027F6E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6353259D1C7A44700027F6E3 /* SystemConfiguration.framework */; };
 		6357E6F21C4ED3BC00A28D00 /* HistoricalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAF1BC6FC1500B9F81B /* HistoricalViewController.swift */; };
 		6357E6F31C4ED3BC00A28D00 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		6368A5961C5050E900D6B5B2 /* Quest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6368A5941C5050E900D6B5B2 /* Quest.storyboard */; };
@@ -80,6 +81,7 @@
 		63291F351C5971A30064C296 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		63291F371C5979730064C296 /* TimelineTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableCells.swift; sourceTree = "<group>"; };
 		634AD3A21C780D26005EBE9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6353259D1C7A44700027F6E3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6368A5951C5050E900D6B5B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Quest.storyboard; sourceTree = "<group>"; };
 		63A99A6A1C75859D007E6F25 /* QuestModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestModalViewController.swift; sourceTree = "<group>"; };
 		63A99A6C1C763AEA007E6F25 /* WaypointsModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointsModalViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6353259E1C7A44700027F6E3 /* SystemConfiguration.framework in Frameworks */,
 				DE91C2426C63D15AFB832D1D /* Pods.framework in Frameworks */,
 				3C7C651B588C8C78CEBC3E38 /* Pods_Carleton150.framework in Frameworks */,
 			);
@@ -298,6 +301,7 @@
 		93AFF1052C40EADBED9AA042 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6353259D1C7A44700027F6E3 /* SystemConfiguration.framework */,
 				B806A61E13CBDF524607BD9E /* Pods.framework */,
 				39FEB0FEB30D513E7B3C1CDA /* Pods_Carleton150.framework */,
 				A13C89B298A898D72EE69AED /* Pods_Carleton150Tests.framework */,

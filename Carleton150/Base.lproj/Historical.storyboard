@@ -36,6 +36,7 @@
         <mutableArray key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -229,18 +230,50 @@
                                     <constraint firstItem="48n-Vv-TH8" firstAttribute="top" secondItem="H6Q-fC-NPG" secondAttribute="bottom" constant="8" symbolic="YES" id="xSi-mz-vi3"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ZF-dj-PrW" userLabel="Connection View">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Internet Connection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eb-hW-0Pn">
+                                        <rect key="frame" x="211" y="318" width="178.5" height="20.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="178.5" id="C1v-nh-1cf"/>
+                                            <constraint firstAttribute="height" constant="20.5" id="Gl8-8j-mgU"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="8E5-oy-4AQ">
+                                        <rect key="frame" x="282" y="281" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.60202047413793103" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="8E5-oy-4AQ" firstAttribute="centerX" secondItem="6ZF-dj-PrW" secondAttribute="centerX" id="2rN-wm-WCZ"/>
+                                    <constraint firstItem="0eb-hW-0Pn" firstAttribute="top" secondItem="8E5-oy-4AQ" secondAttribute="bottom" id="7F0-vA-Av3"/>
+                                    <constraint firstItem="8E5-oy-4AQ" firstAttribute="centerY" secondItem="6ZF-dj-PrW" secondAttribute="centerY" id="Qyu-iE-kpW"/>
+                                    <constraint firstItem="0eb-hW-0Pn" firstAttribute="centerX" secondItem="6ZF-dj-PrW" secondAttribute="centerX" id="cv0-Hp-Dfy"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Wzj-au-GJO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="167-c2-u4f"/>
                             <constraint firstAttribute="trailing" secondItem="Wzj-au-GJO" secondAttribute="trailing" id="6OO-E0-phj"/>
                             <constraint firstItem="Wzj-au-GJO" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="6Oi-R7-ibX"/>
+                            <constraint firstItem="6ZF-dj-PrW" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="IEY-tp-NiY"/>
+                            <constraint firstItem="6ZF-dj-PrW" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="MJm-M9-Xme"/>
                             <constraint firstItem="Wzj-au-GJO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="g30-53-Kwj"/>
+                            <constraint firstItem="6ZF-dj-PrW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="whO-PX-wyh"/>
+                            <constraint firstItem="6ZF-dj-PrW" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="xyW-wc-7Gx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Wcd-bq-6uy"/>
                     <connections>
                         <outlet property="Debug" destination="EKD-oY-5Zb" id="EEQ-iH-KfO"/>
+                        <outlet property="connectionIndicator" destination="8E5-oy-4AQ" id="3XF-4w-oQC"/>
+                        <outlet property="connectionLabel" destination="0eb-hW-0Pn" id="LNX-F2-Poj"/>
+                        <outlet property="connectionView" destination="6ZF-dj-PrW" id="aAc-fb-nG3"/>
                         <outlet property="latText" destination="H6Q-fC-NPG" id="2Or-sG-rhM"/>
                         <outlet property="longText" destination="48n-Vv-TH8" id="Vor-sb-xVu"/>
                         <outlet property="mapView" destination="Wzj-au-GJO" id="q87-rK-Kei"/>
@@ -251,7 +284,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="642" y="-234"/>
+            <point key="canvasLocation" x="754" y="-6"/>
         </scene>
         <!--Historical-->
         <scene sceneID="kWu-r1-2Bc">
@@ -580,7 +613,7 @@
                                             <action selector="dismissDetailView:" destination="njp-yh-IEy" eventType="touchUpInside" id="LXe-iq-GS2"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="XY1-Tn-Xxn">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="XY1-Tn-Xxn">
                                         <rect key="frame" x="24" y="24" width="448" height="25"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="21"/>
                                         <color key="textColor" red="0.90216385690000001" green="0.62171052630000001" blue="0.073054933399999994" alpha="1" colorSpace="calibratedRGB"/>
@@ -655,7 +688,7 @@
                                             <action selector="dismissDetailView:" destination="y4n-Eb-NgZ" eventType="touchUpInside" id="i2S-Qv-UuZ"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mai-gl-4TJ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mai-gl-4TJ">
                                         <rect key="frame" x="24" y="24" width="476" height="25"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="21"/>
                                         <color key="textColor" red="0.90216385690000001" green="0.62171052630000001" blue="0.073054933399999994" alpha="1" colorSpace="calibratedRGB"/>

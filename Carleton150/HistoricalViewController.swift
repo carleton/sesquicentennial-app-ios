@@ -6,7 +6,7 @@ import UIKit
 import GoogleMaps
 import CoreLocation
 import MapKit
-
+import Reachability
 
 class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
@@ -17,10 +17,15 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	@IBOutlet weak var Debug: UIButton!
     @IBOutlet weak var longText: UILabel!
     @IBOutlet weak var latText: UILabel!
-
+	@IBOutlet weak var connectionIndicator: UIActivityIndicatorView!
+	@IBOutlet weak var connectionLabel: UILabel!
+	@IBOutlet weak var connectionView: UIView!
+	
 	let locationManager: CLLocationManager = CLLocationManager()
 	let currentLocationMarker: GMSMarker = GMSMarker()
-
+	var reach: Reachability?
+	
+	var networkMonitor: Reachability!
 	var geofences: Dictionary<String,Geotification>!
 	var minRequestThreshold: Double = 10 // in meters
 	var lastRequestLocation: CLLocation!
@@ -70,10 +75,12 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         // set up current map location based on the user's location, if possible.
 		if let curLocation = self.locationManager.location {
 			self.mapView.camera = GMSCameraPosition.cameraWithTarget(curLocation.coordinate, zoom: 16)
-			self.lastRequestLocation = curLocation
 		} else {
 			mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
 		}
+		
+		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		self.networkMonitor = appDelegate.networkMonitor
 		
 		// set up the map view
 		mapView.delegate = self;
@@ -86,7 +93,37 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
             mapView.bringSubviewToFront(Debug)
             mapView.bringSubviewToFront(momentButton)
         }
-    }
+		
+	}
+	
+	/**
+		Called by Observer everything the internet connection changes. Toggles UI elements for
+		to show current state of the connection. Triggers an update on the geofence information
+		if network restored
+		
+		Parameters
+			- notification: notification sent by observer
+	
+	*/
+	func connectionStatusChanged(notification: NSNotification) {
+		if self.networkMonitor!.isReachableViaWiFi() || self.networkMonitor!.isReachableViaWWAN()
+		{
+			self.connectionLabel.hidden = true
+			self.connectionIndicator.stopAnimating()
+			self.connectionIndicator.hidden = true
+			self.connectionView.hidden = true
+			// reload data from the server
+			self.lastRequestLocation = nil
+			self.updateGeofences(self.locationManager.location!)
+		} else {
+			self.connectionLabel.hidden = false
+			self.connectionIndicator.startAnimating()
+			self.connectionIndicator.hidden = false
+			self.connectionView.hidden = false
+		}
+	}
+	
+	
 	
     /**
         If the view is about to appear, lower the threshold
@@ -95,6 +132,11 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         geofences based on the curent location.
      */
 	override func viewWillAppear(animated: Bool) {
+		// Setup networking monitoring
+		NSNotificationCenter.defaultCenter().addObserver(self,
+			selector: "connectionStatusChanged:",
+			name: kReachabilityChangedNotification,
+			object: nil)
 		self.minRequestThreshold = 10
 		if let curLocation = locationManager.location {
 			self.updateGeofences(curLocation)
@@ -108,6 +150,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
      */
 	override func viewWillDisappear(animated: Bool) {
 		self.minRequestThreshold = 1000000
+		// Stop networking monitoring
 	}
 	
     /**
@@ -216,8 +259,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		latText.text = String(format:"%f", curLocation.coordinate.latitude)
         longText.text = String(format:"%f", curLocation.coordinate.longitude)
 		
-		mapView.animateToLocation(curLocation.coordinate)
-		
 		self.updateGeofences(curLocation)
 
 	}
@@ -279,6 +320,8 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	func updateGeofences(curLocation: CLLocation) {
 		// if the user has traveled far enough
 		if (shouldUpdateLocation(curLocation)) {
+			// Center map around user
+			mapView.animateToLocation(curLocation.coordinate)
 			// get new geofences from server and save them
 			HistoricalDataService.requestNearbyGeofences(curLocation.coordinate) {
 				(success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
