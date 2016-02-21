@@ -17,6 +17,7 @@
         <mutableArray key="Roboto-BoldItalic.ttf">
             <string>Roboto-BoldItalic</string>
             <string>Roboto-BoldItalic</string>
+            <string>Roboto-BoldItalic</string>
         </mutableArray>
         <mutableArray key="Roboto-Italic.ttf">
             <string>Roboto-Italic</string>
@@ -87,7 +88,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap here to go on an adventure around campus!" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbb-Ii-2Q3">
-                                <rect key="frame" x="365" y="470" width="140" height="60"/>
+                                <rect key="frame" x="363" y="470" width="140" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="NpT-KX-B9Q"/>
                                     <constraint firstAttribute="height" constant="60" id="YZd-OC-giP"/>
@@ -102,7 +103,7 @@
                                     <constraint firstAttribute="width" constant="180" id="oic-wR-D3a"/>
                                     <constraint firstAttribute="height" constant="61" id="vgN-p1-7ya"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Roboto-BoldItalic" family="Roboto" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -118,7 +119,7 @@
                             <constraint firstItem="1qo-LX-bAd" firstAttribute="centerX" secondItem="w4A-Gc-Mo8" secondAttribute="centerX" id="GFi-0a-7jO"/>
                             <constraint firstItem="w4A-Gc-Mo8" firstAttribute="trailing" secondItem="8g6-MQ-uCG" secondAttribute="trailing" id="IAL-Cn-4lz"/>
                             <constraint firstItem="0Uz-Id-TuP" firstAttribute="top" secondItem="1qo-LX-bAd" secondAttribute="bottom" constant="55" id="JRE-5b-2t8"/>
-                            <constraint firstItem="1qo-LX-bAd" firstAttribute="leading" secondItem="zbb-Ii-2Q3" secondAttribute="trailing" constant="-12" id="QzA-s2-Zm5"/>
+                            <constraint firstItem="1qo-LX-bAd" firstAttribute="leading" secondItem="zbb-Ii-2Q3" secondAttribute="trailing" constant="-10" id="QzA-s2-Zm5"/>
                             <constraint firstItem="KVx-SY-vSa" firstAttribute="top" secondItem="n2R-VB-tvF" secondAttribute="bottom" constant="90" id="Tow-2M-YDf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="w4A-Gc-Mo8" secondAttribute="trailing" constant="40" id="dNo-gy-dPa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1qo-LX-bAd" secondAttribute="trailing" constant="30" id="q9A-UO-vin"/>
