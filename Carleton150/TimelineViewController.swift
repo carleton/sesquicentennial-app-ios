@@ -68,7 +68,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func requestMemories() {
-		print("WTF")
         if let location: CLLocation = self.parentVC.locationManager.location {
             let currentLocation: CLLocationCoordinate2D = location.coordinate
             HistoricalDataService.requestMemoriesContent(currentLocation) { success, result in
