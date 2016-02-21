@@ -65,7 +65,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		}
 		
 		// set up the map view
-		mapView.camera = GMSCameraPosition.cameraWithTarget((self.locationManager.location?.coordinate)!, zoom: 16)
 		mapView.delegate = self;
 		
         // set up the tiling for the map

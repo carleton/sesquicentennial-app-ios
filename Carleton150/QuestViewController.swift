@@ -21,7 +21,7 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 		self.showWaitOverlay()
 		
 		// setting up data persistence 
-		if NSUserDefaults.standardUserDefaults().arrayForKey("startedQuests") == nil {
+		if NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") == nil {
 			NSUserDefaults.standardUserDefaults().setObject(Dictionary<String,Int>(), forKey: "startedQuests")
 		}
 		
