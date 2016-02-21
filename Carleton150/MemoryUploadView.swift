@@ -11,9 +11,14 @@ class MemoryUploadView: UIViewController,
                         UINavigationControllerDelegate,
                         UITextViewDelegate,
                         UITextFieldDelegate {
-    
+   
+    /// the parent memories view controller, so we can dismiss this view
     var parentView: TimelineViewController!
+    
+    /// the image picker that is called to get a camera image or one from the phone
     let imagePicker = UIImagePickerController()
+    
+    /// the current stored image to upload.
     var image: UIImage?
     
     @IBOutlet weak var nameField: UITextField!

@@ -22,13 +22,27 @@ class Memory {
         self.location = location
         self.image = image
     }
-    
+   
+    /**
+        Given the date of the upload, formats it into the server's 
+        format for accepting date strings.
+     
+        - Parameters: 
+            - date: The date for this memory (usually the current one).
+     */
     class func parseDate(date: NSDate) -> String {
         let outFormatter = NSDateFormatter()
         outFormatter.dateFormat = "yyyy'-'MM'-'dd' 'HH':'mm':'ss"
         return outFormatter.stringFromDate(date)
     }
-    
+ 
+    /**
+        A convenience initializer that uses a dictionary that contains
+        the data.
+        
+        - Parameters: 
+            - memory: The dictionary containing all of the memory information.
+     */
     convenience init(memory: Dictionary<String, AnyObject>?) {
         self.init(title: memory!["title"]! as! String, desc: memory!["desc"]! as! String,
                   timestamp: memory!["timestamp"]! as! NSDate, uploader: memory!["uploader"]! as! String,
