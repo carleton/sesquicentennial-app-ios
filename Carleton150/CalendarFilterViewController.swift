@@ -6,6 +6,8 @@ class CalendarFilterViewController: UIViewController {
     
     var calendar: [Dictionary<String, String>] = []
     
+    @IBOutlet weak var datePicker: UIDatePicker!
+    
     /**
         Initializes this view and sets up the 
         observer for the calendar data.
@@ -20,6 +22,9 @@ class CalendarFilterViewController: UIViewController {
     override func viewDidLoad() {
         // set up the navigation bar
         Utils.setUpNavigationBar(self)
+       
+        // set the text color
+        self.datePicker.setValue(UIColor(red: 1, green: 1, blue: 1, alpha: 1.0), forKey: "textColor")
     }
     
     /**
@@ -41,6 +46,15 @@ class CalendarFilterViewController: UIViewController {
             containerViewController.parentView = self
         }
     }
-    
-    
+}
+
+class ColoredDatePicker: UIDatePicker {
+    var changed = false
+    override func addSubview(view: UIView) {
+        if !changed {
+            changed = true
+            self.setValue(UIColor(white: 1, alpha: 1), forKey: "textColor")
+        }
+        super.addSubview(view)
+    }
 }
