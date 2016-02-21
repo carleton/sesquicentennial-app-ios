@@ -24,7 +24,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	var geofences: [Geotification] = [Geotification]()
 	var infoMarkers: [GMSMarker] = [GMSMarker]()
 	var circles: [GMSCircle] = [GMSCircle]()
-	var debugMode: Bool = false
+	var debugMode: Bool = true
 	var minRequestThreshold: Double = 10 // in meters
 	var lastRequestLocation: CLLocation!
     
@@ -105,6 +105,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
             self.momentButton.hidden = true
             
         } else if segue.identifier == "showMemories" {
+			print("Getting Memories Segue")
             selectedGeofence = "Memories Near You"
             self.momentButton.hidden = true
 			let destinationController = (segue.destinationViewController as! TimelineViewController)
@@ -190,8 +191,8 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 				}
 			} else {
 				if (geofences[i].active) {
-					self.infoMarkers = exitedGeofence(geofences[i], infoMarkers: self.infoMarkers)
-//					didExitGeofence(geofences[i])
+//					self.infoMarkers = exitedGeofence(geofences[i], infoMarkers: self.infoMarkers)
+					didExitGeofence(curLocation,geofence: geofences[i])
 				}
 			}
         }
@@ -222,6 +223,24 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		}
 		self.lastRequestLocation = curLocation
 		return true
+	}
+	
+	func didExitGeofence(curLocation: CLLocation, geofence: Geotification) -> Void {
+		// if the geofence has been exited
+		if (Utils.getDistance(geofence.coordinate, point2: curLocation.coordinate) > geofence.radius) {
+			var geofenceIndex: Int!
+			for (var i = 0; i < self.infoMarkers.count; i++) {
+				if infoMarkers[i].title == geofence.identifier {
+					geofenceIndex = i
+				}
+			}
+			if geofenceIndex != nil {
+				infoMarkers[geofenceIndex].map = nil
+				print("Removed Geofence \(geofence.identifier)")
+				infoMarkers.removeAtIndex(geofenceIndex)
+			}
+		}
+	
 	}
 	
 	/**
