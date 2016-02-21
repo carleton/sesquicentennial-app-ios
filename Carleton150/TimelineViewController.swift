@@ -114,11 +114,30 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             let currentLocation: CLLocationCoordinate2D = location.coordinate
             HistoricalDataService.requestMemoriesContent(currentLocation) { success, result in
                 if (success) {
-                    self.memories = result.sort() { memory1, memory2 in
-                        return memory1!["year"] > memory2!["year"]
+                    if result.count == 0 {
+                        
+                        //if we are successful, but get zero images, use an alert box to ask if we want to reload or not
+                        let alert = UIAlertController(title: "No Memories Found!", message: "We couldn't find any memories near you. Try again?", preferredStyle: UIAlertControllerStyle.Alert)
+                        let alertAction1 = UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default) {
+                            (UIAlertAction) -> Void in
+                            self.requestMemories()
+                        }
+                        let alertAction2 = UIAlertAction(title: "No", style: UIAlertActionStyle.Default) {
+                            (UIAlertAction) -> Void in
+                            self.exitTimeline(self.geofenceName)
+                        }
+                        alert.addAction(alertAction1)
+                        alert.addAction(alertAction2)
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        
+                    // if we are successful and get some memories, display them
+                    } else {
+                        self.memories = result.sort() { memory1, memory2 in
+                            return memory1!["year"] > memory2!["year"]
+                        }
+                        self.tableView.reloadData()
+                        self.loadingView.stopAnimating()
                     }
-                    self.tableView.reloadData()
-                    self.loadingView.stopAnimating()
                 } else {
                     print("Failed to get info")
 					self.loadingView.stopAnimating()
