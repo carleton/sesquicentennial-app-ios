@@ -1,7 +1,6 @@
 //
 //  WaypointTableCells.swift
 //  Carleton150
-//
 
 import UIKit
 

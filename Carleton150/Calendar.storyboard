@@ -49,19 +49,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="199" height="186"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Event" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIr-Lz-Avv">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIr-Lz-Avv">
                                             <rect key="frame" x="28" y="78" width="143" height="29.5"/>
                                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="22"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="0.95000000000000007" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spg-uT-lZH">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spg-uT-lZH">
                                             <rect key="frame" x="0.0" y="116" width="199" height="19"/>
                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhk-dB-yYD">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhk-dB-yYD">
                                             <rect key="frame" x="8" y="135" width="183" height="19"/>
                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -164,12 +164,12 @@
                                     <!--2020-12-31 11:00:00 +0000-->
                                 </date>
                             </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSP-4J-E3X">
-                                <rect key="frame" x="544" y="79" width="56" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSP-4J-E3X">
+                                <rect key="frame" x="558" y="78" width="29" height="31"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="56" id="Ovq-ik-IU9"/>
+                                    <constraint firstAttribute="width" constant="29" id="Ovq-ik-IU9"/>
                                 </constraints>
-                                <state key="normal" title="Check"/>
+                                <state key="normal" title="Check" image="checkmark"/>
                                 <connections>
                                     <action selector="filterByDate:" destination="Q0k-07-Cl0" eventType="touchUpInside" id="HtF-VH-dHJ"/>
                                 </connections>
@@ -181,12 +181,12 @@
                             <constraint firstItem="qm9-Qy-qWU" firstAttribute="top" secondItem="Dig-IK-Wrs" secondAttribute="bottom" id="7n0-mG-TvQ"/>
                             <constraint firstItem="ceZ-ao-Wpn" firstAttribute="leading" secondItem="XXl-4J-2G4" secondAttribute="leading" id="AqT-pQ-9lx"/>
                             <constraint firstAttribute="trailing" secondItem="Dig-IK-Wrs" secondAttribute="trailing" id="DUM-md-XGb"/>
-                            <constraint firstItem="JSP-4J-E3X" firstAttribute="top" secondItem="gTy-S9-CoE" secondAttribute="bottom" constant="15" id="FCx-5W-y05"/>
+                            <constraint firstItem="JSP-4J-E3X" firstAttribute="top" secondItem="gTy-S9-CoE" secondAttribute="bottom" constant="14" id="FCx-5W-y05"/>
                             <constraint firstItem="Dig-IK-Wrs" firstAttribute="top" secondItem="ceZ-ao-Wpn" secondAttribute="bottom" id="IIB-MM-Sab"/>
                             <constraint firstItem="Dig-IK-Wrs" firstAttribute="top" secondItem="JSP-4J-E3X" secondAttribute="bottom" constant="15" id="XVV-tb-eLe"/>
                             <constraint firstItem="Dig-IK-Wrs" firstAttribute="leading" secondItem="XXl-4J-2G4" secondAttribute="leading" id="XXg-g7-7Bp"/>
-                            <constraint firstItem="JSP-4J-E3X" firstAttribute="leading" secondItem="ceZ-ao-Wpn" secondAttribute="trailing" constant="2" id="pVU-DW-93l"/>
-                            <constraint firstAttribute="trailing" secondItem="JSP-4J-E3X" secondAttribute="trailing" id="vtB-R6-5Qw"/>
+                            <constraint firstItem="JSP-4J-E3X" firstAttribute="leading" secondItem="ceZ-ao-Wpn" secondAttribute="trailing" constant="16" id="pVU-DW-93l"/>
+                            <constraint firstAttribute="trailing" secondItem="JSP-4J-E3X" secondAttribute="trailing" constant="13" id="vtB-R6-5Qw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5Q8-qN-UQh"/>
@@ -236,13 +236,13 @@
                                         <color key="textColor" red="0.90216385690000001" green="0.62171052630000001" blue="0.073054933399999994" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GM2-zo-A7W">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GM2-zo-A7W">
                                         <rect key="frame" x="20" y="115" width="520" height="24"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="18"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ix-jQ-xny">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ix-jQ-xny">
                                         <rect key="frame" x="19" y="147" width="521" height="24"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="18"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -291,5 +291,6 @@
     </scenes>
     <resources>
         <image name="calendar53.png" width="24" height="24"/>
+        <image name="checkmark" width="128" height="128"/>
     </resources>
 </document>
