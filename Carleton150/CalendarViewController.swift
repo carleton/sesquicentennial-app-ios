@@ -11,19 +11,8 @@ class CalendarViewController: UICollectionViewController {
     var cells: [CalendarCell] = []
     var eventImages: [UIImage] = []
     var tableLimit : Int!
+    var parentView: CalendarFilterViewController!
    
-    /**
-        Initializes this view and sets up the 
-        observer for the calendar data.
-     */
-    required init?(coder decoder : NSCoder) {
-        super.init(coder: decoder)
-
-        NSNotificationCenter
-            .defaultCenter()
-            .addObserver(self, selector: "actOnCalendarUpdate:", name: "carleton150.calendarUpdate", object: nil)
-        
-    }
     
     /**
         Upon load of this view, load the calendar and adjust the 
@@ -32,14 +21,12 @@ class CalendarViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        self.calendar = self.parentView.calendar
+        
         // set the current table limit
         self.tableLimit = calendar.count
-        
-        // set properties on the navigation bar 
-        Utils.setUpNavigationBar(self)
-       
-        // stop the navigation bar from covering the calendar content
-        self.navigationController!.navigationBar.translucent = false;
 
         // set the view's background colors
         view.backgroundColor = UIColor(red: 252, green: 212, blue: 80, alpha: 1.0)
@@ -47,6 +34,8 @@ class CalendarViewController: UICollectionViewController {
         
         // set the deceleration rate for the event cell snap
         collectionView!.decelerationRate = UIScrollViewDecelerationRateFast
+        
+//        self.collectionView!.reloadData()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -72,22 +61,22 @@ class CalendarViewController: UICollectionViewController {
         return eventImages
     }
     
-    /**
-        Upon noticing that the calendar has been updated,
-        update the UI accordingly.
-     
-        - Parameters:
-            - notification: The notification triggered from the CalendarDataService.
-     */
-    func actOnCalendarUpdate(notification: NSNotification) {
-        if let calendar = CalendarDataService.schedule {
-            self.calendar = calendar
-            let indexPath = NSIndexPath(forItem: 0, inSection: 0)
-            let _ = CalendarDetailView()
-            let _ = self.collectionView!
-                .dequeueReusableCellWithReuseIdentifier("CalendarCell", forIndexPath: indexPath) as! CalendarCell
-        }
-    }
+//    /**
+//        Upon noticing that the calendar has been updated,
+//        update the UI accordingly.
+//     
+//        - Parameters:
+//            - notification: The notification triggered from the CalendarDataService.
+//     */
+//    func actOnCalendarUpdate(notification: NSNotification) {
+//        if let calendar = CalendarDataService.schedule {
+//            self.calendar = calendar
+//            let indexPath = NSIndexPath(forItem: 0, inSection: 0)
+//            let _ = CalendarDetailView()
+//            let _ = self.collectionView!
+//                .dequeueReusableCellWithReuseIdentifier("CalendarCell", forIndexPath: indexPath) as! CalendarCell
+//        }
+//    }
     
     /**
         Determines the number of sections in the calendar collection view.

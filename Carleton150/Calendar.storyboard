@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XOf-Hu-MR1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XOf-Hu-MR1">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -28,12 +28,12 @@
             <objects>
                 <collectionViewController id="DiF-D4-Jp7" customClass="CalendarViewController" customModule="Carleton150" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="SbU-JV-pey">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewLayout key="collectionViewLayout" id="VbH-pL-bbV" customClass="CalendarLayout" customModule="Carleton150" customModuleProvider="target"/>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CalendarCell" id="alX-ZD-1AM" customClass="CalendarCell" customModule="Carleton150" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="199" height="186"/>
+                                <rect key="frame" x="0.0" y="0.0" width="199" height="186"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="199" height="186"/>
@@ -108,7 +108,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hyl-yd-H64" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="770" y="490"/>
+            <point key="canvasLocation" x="1507" y="631"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="dS2-dH-Wvz">
@@ -123,12 +123,45 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="DiF-D4-Jp7" kind="relationship" relationship="rootViewController" id="sFW-XH-1s6"/>
+                        <segue destination="Q0k-07-Cl0" kind="relationship" relationship="rootViewController" id="aIH-Pz-KeO"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ch7-7s-gQU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-53" y="490"/>
+        </scene>
+        <!--Calendar Filter View Controller-->
+        <scene sceneID="qha-VA-zsD">
+            <objects>
+                <viewController id="Q0k-07-Cl0" customClass="CalendarFilterViewController" customModule="Carleton150" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gTy-S9-CoE"/>
+                        <viewControllerLayoutGuide type="bottom" id="qm9-Qy-qWU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XXl-4J-2G4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dig-IK-Wrs">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <connections>
+                                    <segue destination="DiF-D4-Jp7" kind="embed" identifier="segueToContainer" id="EY0-VE-ZLp"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qm9-Qy-qWU" firstAttribute="top" secondItem="Dig-IK-Wrs" secondAttribute="bottom" id="7n0-mG-TvQ"/>
+                            <constraint firstAttribute="trailing" secondItem="Dig-IK-Wrs" secondAttribute="trailing" id="DUM-md-XGb"/>
+                            <constraint firstItem="Dig-IK-Wrs" firstAttribute="top" secondItem="gTy-S9-CoE" secondAttribute="bottom" id="TAS-Nn-QKN"/>
+                            <constraint firstItem="Dig-IK-Wrs" firstAttribute="leading" secondItem="XXl-4J-2G4" secondAttribute="leading" id="XXg-g7-7Bp"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="5Q8-qN-UQh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ct5-6M-KXi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="730" y="631"/>
         </scene>
         <!--Calendar Detail View-->
         <scene sceneID="J5n-ti-fhJ">
@@ -142,7 +175,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Wt-Qh-Hka">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Wt-Qh-Hka">
                                 <rect key="frame" x="20" y="28" width="560" height="552"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qwx-1X-jq9">
@@ -162,7 +195,7 @@
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="eventTitle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="KhU-MR-imR">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="eventTitle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="KhU-MR-imR">
                                         <rect key="frame" x="19" y="72" width="521" height="28"/>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="21"/>
                                         <color key="textColor" red="0.90216385690000001" green="0.62171052630000001" blue="0.073054933399999994" alpha="1" colorSpace="calibratedRGB"/>
@@ -218,7 +251,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8j-LX-oiR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1512" y="490"/>
+            <point key="canvasLocation" x="2360" y="631"/>
         </scene>
     </scenes>
     <resources>
