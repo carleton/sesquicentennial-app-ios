@@ -43,6 +43,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         let defaults = NSUserDefaults.standardUserDefaults()
         if !defaults.boolForKey("hasSeenTutorial") {
             defaults.setBool(true, forKey: "hasSeenTutorial")
+            self.performSegueWithIdentifier("showTutorial", sender: nil)
         }
         defaults.synchronize()
         
@@ -73,10 +74,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
             mapView.bringSubviewToFront(Debug)
             mapView.bringSubviewToFront(momentButton)
         }
-    }
-    
-    @IBAction func showTutorial(sender: AnyObject) {
-        
     }
     
     /**

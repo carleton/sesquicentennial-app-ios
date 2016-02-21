@@ -14,6 +14,10 @@
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
         </mutableArray>
+        <mutableArray key="Roboto-BoldItalic.ttf">
+            <string>Roboto-BoldItalic</string>
+            <string>Roboto-BoldItalic</string>
+        </mutableArray>
         <mutableArray key="Roboto-Italic.ttf">
             <string>Roboto-Italic</string>
             <string>Roboto-Italic</string>
@@ -59,8 +63,41 @@
                                     <action selector="dismissTutorial:" destination="MZV-wv-bli" eventType="touchUpInside" id="Ydb-eb-pTf"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marker" translatesAutoresizingMaskIntoConstraints="NO" id="w4A-Gc-Mo8">
+                                <rect key="frame" x="503" y="273" width="37" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="oyE-BJ-Owa"/>
+                                    <constraint firstAttribute="height" constant="59" id="rJ4-Ed-aha"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click above to get memories that were tagged nearby where you are now!" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVx-SY-vSa">
+                                <rect key="frame" x="10" y="110" width="190" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Hpc-Mn-fbz"/>
+                                    <constraint firstAttribute="width" constant="190" id="skY-z1-yqj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-BoldItalic" family="Roboto" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="1qo-LX-bAd">
+                                <rect key="frame" x="493" y="481" width="57" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="eDu-pw-rR5"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap here to go on an adventure around campus!" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbb-Ii-2Q3">
+                                <rect key="frame" x="365" y="470" width="140" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="NpT-KX-B9Q"/>
+                                    <constraint firstAttribute="height" constant="60" id="YZd-OC-giP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-BoldItalic" family="Roboto" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click on the markers to get a history at that location!" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8g6-MQ-uCG">
-                                <rect key="frame" x="360" y="229.5" width="180" height="61"/>
+                                <rect key="frame" x="360" y="214" width="180" height="61"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="oic-wR-D3a"/>
                                     <constraint firstAttribute="height" constant="61" id="vgN-p1-7ya"/>
@@ -69,22 +106,22 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marker" translatesAutoresizingMaskIntoConstraints="NO" id="w4A-Gc-Mo8">
-                                <rect key="frame" x="503" y="283" width="37" height="59"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="37" id="oyE-BJ-Owa"/>
-                                    <constraint firstAttribute="height" constant="59" id="rJ4-Ed-aha"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="KVx-SY-vSa" firstAttribute="leading" secondItem="grS-CQ-z28" secondAttribute="leading" constant="10" id="1j9-4U-4p6"/>
                             <constraint firstItem="NAe-Vq-1c7" firstAttribute="top" secondItem="n2R-VB-tvF" secondAttribute="bottom" id="6qA-DX-pz2"/>
+                            <constraint firstItem="8g6-MQ-uCG" firstAttribute="centerY" secondItem="grS-CQ-z28" secondAttribute="centerY" priority="999" constant="-55.5" id="76D-ba-acL"/>
                             <constraint firstAttribute="trailing" secondItem="NAe-Vq-1c7" secondAttribute="trailing" constant="20" id="7SU-EC-TNA"/>
+                            <constraint firstItem="0Uz-Id-TuP" firstAttribute="top" secondItem="zbb-Ii-2Q3" secondAttribute="bottom" constant="70" id="9qJ-Zq-syF"/>
+                            <constraint firstItem="w4A-Gc-Mo8" firstAttribute="top" secondItem="8g6-MQ-uCG" secondAttribute="bottom" constant="-2" id="9qY-g1-ARq"/>
+                            <constraint firstItem="1qo-LX-bAd" firstAttribute="centerX" secondItem="w4A-Gc-Mo8" secondAttribute="centerX" id="GFi-0a-7jO"/>
                             <constraint firstItem="w4A-Gc-Mo8" firstAttribute="trailing" secondItem="8g6-MQ-uCG" secondAttribute="trailing" id="IAL-Cn-4lz"/>
-                            <constraint firstItem="8g6-MQ-uCG" firstAttribute="top" secondItem="n2R-VB-tvF" secondAttribute="bottom" constant="209.5" id="aiX-9k-ukK"/>
+                            <constraint firstItem="0Uz-Id-TuP" firstAttribute="top" secondItem="1qo-LX-bAd" secondAttribute="bottom" constant="55" id="JRE-5b-2t8"/>
+                            <constraint firstItem="1qo-LX-bAd" firstAttribute="leading" secondItem="zbb-Ii-2Q3" secondAttribute="trailing" constant="-12" id="QzA-s2-Zm5"/>
+                            <constraint firstItem="KVx-SY-vSa" firstAttribute="top" secondItem="n2R-VB-tvF" secondAttribute="bottom" constant="90" id="Tow-2M-YDf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="w4A-Gc-Mo8" secondAttribute="trailing" constant="40" id="dNo-gy-dPa"/>
-                            <constraint firstItem="w4A-Gc-Mo8" firstAttribute="top" secondItem="n2R-VB-tvF" secondAttribute="bottom" constant="263" id="jhQ-8x-4tn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1qo-LX-bAd" secondAttribute="trailing" constant="30" id="q9A-UO-vin"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -158,7 +195,6 @@
                                         </constraints>
                                         <state key="normal" title="Button" image="question_button"/>
                                         <connections>
-                                            <action selector="showTutorial:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KhG-xp-nBP"/>
                                             <segue destination="MZV-wv-bli" kind="presentation" identifier="showTutorial" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="cZN-Wq-wBv"/>
                                         </connections>
                                     </button>
@@ -194,7 +230,7 @@
                         <outlet property="longText" destination="48n-Vv-TH8" id="Vor-sb-xVu"/>
                         <outlet property="mapView" destination="Wzj-au-GJO" id="q87-rK-Kei"/>
                         <outlet property="momentButton" destination="hp0-PX-kfR" id="8uw-4T-2OV"/>
-                        <outlet property="questionButton" destination="kCl-QK-XDS" id="FTZ-zN-aC3"/>
+                        <outlet property="questionButton" destination="kCl-QK-XDS" id="Glk-fy-KKf"/>
                         <segue destination="2Ed-yO-PXD" kind="presentation" identifier="showTimeline" modalPresentationStyle="overFullScreen" id="s5d-X5-My7"/>
                     </connections>
                 </viewController>
@@ -529,7 +565,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="XY1-Tn-Xxn">
-                                        <rect key="frame" x="24" y="22.5" width="448" height="28"/>
+                                        <rect key="frame" x="24" y="24" width="448" height="25"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="21"/>
                                         <color key="textColor" red="0.90216385690000001" green="0.62171052630000001" blue="0.073054933399999994" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -603,7 +639,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mai-gl-4TJ">
-                                        <rect key="frame" x="24" y="22.5" width="476" height="28"/>
+                                        <rect key="frame" x="24" y="24" width="476" height="25"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="21"/>
                                         <color key="textColor" red="0.90216385690000001" green="0.62171052630000001" blue="0.073054933399999994" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -688,36 +724,36 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="A suitable title for your memory" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BTw-WA-871">
-                                        <rect key="frame" x="15" y="204" width="525" height="30"/>
+                                        <rect key="frame" x="15" y="199" width="525" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share Your Own Memory!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="vel-4p-mZH">
-                                        <rect key="frame" x="15" y="23" width="448" height="24"/>
+                                        <rect key="frame" x="15" y="23" width="448" height="21.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="KIZ-37-7H9">
-                                        <rect key="frame" x="15" y="171" width="39" height="22.5"/>
+                                        <rect key="frame" x="15" y="168.5" width="39.5" height="20"/>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="ft7-ed-aSb">
-                                        <rect key="frame" x="15" y="100" width="89" height="22.5"/>
+                                        <rect key="frame" x="15" y="100" width="89.5" height="20"/>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="zNd-t7-XUg">
-                                        <rect key="frame" x="15" y="244" width="92.5" height="22.5"/>
+                                        <rect key="frame" x="15" y="239" width="92.5" height="20"/>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iL7-de-XDi">
-                                        <rect key="frame" x="15" y="276" width="525" height="100"/>
+                                        <rect key="frame" x="15" y="268.5" width="525" height="100"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="JIe-sY-GDl"/>
@@ -726,13 +762,13 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="3Gl-tg-QAJ">
-                                        <rect key="frame" x="15" y="386" width="52.5" height="30"/>
+                                        <rect key="frame" x="15" y="378.5" width="52.5" height="30"/>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xn-gR-3AG">
-                                        <rect key="frame" x="87" y="386" width="116" height="30"/>
+                                        <rect key="frame" x="87" y="378.5" width="116" height="30"/>
                                         <state key="normal" title="Upload an Image">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -750,12 +786,12 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your name here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T0J-vD-s5I">
-                                        <rect key="frame" x="15" y="133" width="525" height="30"/>
+                                        <rect key="frame" x="15" y="130.5" width="525" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SLE-8q-Nw6">
-                                        <rect key="frame" x="87" y="416" width="116" height="30"/>
+                                        <rect key="frame" x="87" y="408.5" width="116" height="30"/>
                                         <state key="normal" title="Take a Picture">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -764,7 +800,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="2TK-w3-fcZ">
-                                        <rect key="frame" x="221" y="405" width="19" height="20"/>
+                                        <rect key="frame" x="221" y="397.5" width="19" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="Tme-Uw-Fxc"/>
                                             <constraint firstAttribute="width" constant="19" id="zLv-Q2-DP5"/>
@@ -833,6 +869,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow" width="612" height="792"/>
         <image name="bank11.png" width="24" height="24"/>
         <image name="checkmark" width="128" height="128"/>
         <image name="marker" width="40" height="65"/>

@@ -16,7 +16,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     var timeline: [Dictionary<String, String>?] = []
     var memories: [Dictionary<String, String>?] = []
     var showMemories: Bool = false
-
+    
+   
     override func viewDidLoad() {
         // add bottom border to the timeline title
         titleView.addBottomBorderWithColor(UIColor(white: 0.9, alpha: 0.95), width: 1.5)
@@ -47,7 +48,11 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             loadingView.startAnimating()
         }
 	}
-    
+  
+    /**
+        Depending on whether an event or the add button is pressed, triggers the 
+        appropriate view.
+     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if (segue.identifier == "showTimelineDetail") {
 			let detailViewController = (segue.destinationViewController as! TimelineDetailView)
@@ -58,7 +63,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 			detailViewController.parentView = self
         }
     }
-    
+   
+    /**
+        Request the memories from the server and sort them by date.
+     */
     func requestMemories() {
         if let location: CLLocation = self.mapCtrl.locationManager.location {
             let currentLocation: CLLocationCoordinate2D = location.coordinate
