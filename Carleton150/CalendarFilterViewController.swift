@@ -33,6 +33,7 @@ class CalendarFilterViewController: UIViewController {
         Utils.setUpNavigationBar(self)
        
         // set the text color
+        self.datePicker.minimumDate = NSDate()
         self.datePicker.setValue(UIColor(red: 1, green: 1, blue: 1, alpha: 1.0), forKey: "textColor")
     }
     

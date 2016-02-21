@@ -8,6 +8,7 @@ import SwiftOverlays
 class CalendarViewController: UICollectionViewController {
    
     var calendar: [Dictionary<String, AnyObject?>] = []
+    var filteredCalendar: [Dictionary<String, AnyObject?>] = []
     var cells: [CalendarCell] = []
     var eventImages: [UIImage] = []
     var tableLimit : Int!
@@ -27,9 +28,10 @@ class CalendarViewController: UICollectionViewController {
        
         // set the parent view
         self.calendar = self.parentView.calendar
+        self.filteredCalendar = self.parentView.calendar
         
         // set the current table limit
-        self.tableLimit = calendar.count
+        self.tableLimit = self.filteredCalendar.count
 
         // set the view's background colors
         view.backgroundColor = UIColor(red: 252, green: 212, blue: 80, alpha: 1.0)
@@ -48,12 +50,13 @@ class CalendarViewController: UICollectionViewController {
     }
     
     func actOnFilterUpdate(notification: NSNotification) {
-        if let date = notification.userInfo!["date"] {
-            print(date)
-//            let newCalendar = calendar.filter() {
-//                event in
-//                if event
-//            }
+        if let date: NSDate = notification.userInfo!["date"] as? NSDate {
+            self.filteredCalendar = calendar.filter() {
+                event in
+                return (event["startTime"] as! NSDate).isGreaterThanDate(date)
+            }
+            self.collectionView!.reloadData()
+            self.collectionView!.setContentOffset(CGPoint(x: 0,y: 0), animated: false)
         }
     }
     
@@ -123,18 +126,18 @@ class CalendarViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CalendarCell", forIndexPath: indexPath) as! CalendarCell
         let images = getEventImages()
-        let eventText = calendar[indexPath.item]["title"]
+        let eventText = filteredCalendar[indexPath.item]["title"]
         cell.eventTitle.text = eventText as? String
         cell.currentImage = images[indexPath.item % 10]
-        cell.locationLabel.text = calendar[indexPath.item]["location"]! as? String
+        cell.locationLabel.text = filteredCalendar[indexPath.item]["location"]! as? String
         let date: String
-        if let result: NSDate = calendar[indexPath.item]["startTime"] as? NSDate {
+        if let result: NSDate = filteredCalendar[indexPath.item]["startTime"] as? NSDate {
             date = parseDate(result)
         } else {
             date = "No Time Available"
         }
         cell.timeLabel.text = date
-        cell.eventDescription = calendar[indexPath.item]["description"]! as? String
+        cell.eventDescription = filteredCalendar[indexPath.item]["description"]! as? String
         return cell
     }
     
@@ -170,3 +173,36 @@ class CalendarViewController: UICollectionViewController {
         self.presentViewController(alert, animated: true) { () -> Void in }
     }
 }
+
+extension NSDate {
+    func isGreaterThanDate(dateToCompare: NSDate) -> Bool {
+        var isGreater = false
+        
+        if self.compare(dateToCompare) == NSComparisonResult.OrderedDescending {
+            isGreater = true
+        }
+        
+        return isGreater
+    }
+    
+    func isLessThanDate(dateToCompare: NSDate) -> Bool {
+        var isLess = false
+        
+        if self.compare(dateToCompare) == NSComparisonResult.OrderedAscending {
+            isLess = true
+        }
+        
+        return isLess
+    }
+    
+    func equalToDate(dateToCompare: NSDate) -> Bool {
+        var isEqualTo = false
+        
+        if self.compare(dateToCompare) == NSComparisonResult.OrderedSame {
+            isEqualTo = true
+        }
+        
+        return isEqualTo
+    }
+}
+
