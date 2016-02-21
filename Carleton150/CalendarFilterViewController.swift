@@ -4,9 +4,18 @@
 
 class CalendarFilterViewController: UIViewController {
     
-    var calendar: [Dictionary<String, String>] = []
+    var calendar: [Dictionary<String, AnyObject?>] = []
     
     @IBOutlet weak var datePicker: UIDatePicker!
+    
+    @IBAction func filterByDate(sender: AnyObject) {
+       
+        let userInfo: [NSObject : AnyObject]? = ["date" : datePicker.date]
+        
+        NSNotificationCenter
+            .defaultCenter()
+            .postNotificationName("carleton150.filterUpdate", object: nil, userInfo: userInfo)
+    }
     
     /**
         Initializes this view and sets up the 

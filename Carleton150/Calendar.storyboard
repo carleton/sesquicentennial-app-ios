@@ -170,6 +170,9 @@
                                     <constraint firstAttribute="width" constant="56" id="Ovq-ik-IU9"/>
                                 </constraints>
                                 <state key="normal" title="Check"/>
+                                <connections>
+                                    <action selector="filterByDate:" destination="Q0k-07-Cl0" eventType="touchUpInside" id="HtF-VH-dHJ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.039215686270000001" green="0.16078431369999999" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>

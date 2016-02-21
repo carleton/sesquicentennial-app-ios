@@ -7,7 +7,7 @@ import SwiftOverlays
 
 class CalendarViewController: UICollectionViewController {
    
-    var calendar: [Dictionary<String, String>] = []
+    var calendar: [Dictionary<String, AnyObject?>] = []
     var cells: [CalendarCell] = []
     var eventImages: [UIImage] = []
     var tableLimit : Int!
@@ -20,6 +20,10 @@ class CalendarViewController: UICollectionViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter
+            .defaultCenter()
+            .addObserver(self, selector: "actOnFilterUpdate:", name: "carleton150.filterUpdate", object: nil)
        
         // set the parent view
         self.calendar = self.parentView.calendar
@@ -41,6 +45,16 @@ class CalendarViewController: UICollectionViewController {
 			detailViewController.parentView = self
             detailViewController.setData(sender as! CalendarCell)
 		}
+    }
+    
+    func actOnFilterUpdate(notification: NSNotification) {
+        if let date = notification.userInfo!["date"] {
+            print(date)
+//            let newCalendar = calendar.filter() {
+//                event in
+//                if event
+//            }
+        }
     }
     
     /**
@@ -110,12 +124,25 @@ class CalendarViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CalendarCell", forIndexPath: indexPath) as! CalendarCell
         let images = getEventImages()
         let eventText = calendar[indexPath.item]["title"]
-        cell.eventTitle.text = eventText
+        cell.eventTitle.text = eventText as? String
         cell.currentImage = images[indexPath.item % 10]
-        cell.locationLabel.text = calendar[indexPath.item]["location"]!
-        cell.timeLabel.text = calendar[indexPath.item]["startTime"]!
-        cell.eventDescription = calendar[indexPath.item]["description"]!
+        cell.locationLabel.text = calendar[indexPath.item]["location"]! as? String
+        let date: String
+        if let result: NSDate = calendar[indexPath.item]["startTime"] as? NSDate {
+            date = parseDate(result)
+        } else {
+            date = "No Time Available"
+        }
+        cell.timeLabel.text = date
+        cell.eventDescription = calendar[indexPath.item]["description"]! as? String
         return cell
+    }
+    
+    private func parseDate(date: NSDate) -> String {
+        let outFormatter = NSDateFormatter()
+        outFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        outFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        return outFormatter.stringFromDate(date)
     }
    
     /**
