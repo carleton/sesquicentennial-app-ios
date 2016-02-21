@@ -63,7 +63,15 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 			}
         }
 	}
-    
+	
+	
+	/**
+		Called just before segue is performed. Segue can be to the either a detail popover or an
+		upload view (for the  memories
+		
+		Parameters
+			- sender: this will be either an image view or a button
+	 */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if (segue.identifier == "showTimelineDetail") {
 			let detailViewController = (segue.destinationViewController as! TimelineDetailView)
@@ -76,6 +84,15 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
 	
 	/**
+		Checks to see if the current location is far enough away from the last place memories
+		were returned for.
+		
+		Parameters:
+			- curLocation: current location of user
+	
+		Returns:
+			- true if distance far enough or if last location not set. false otherwise
+	
 	 */
 	func shouldRequestMemories(curLocation: CLLocation) -> Bool {
 		if (self.lastRequestLocation == nil) {
@@ -89,6 +106,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	}
 	
 	/**
+		Makes call to the server to get data for nearby memories. If no memories found sets
+		sets current list of memories to []
 	 */
     func requestMemories() {
         if let location: CLLocation = self.parentVC.locationManager.location {
@@ -112,6 +131,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
 	
 	/**
+		Checks to see if distance from last request is large enough and fetches new memories
+		if true
 	 */
 	func updateMemories (curLocation: CLLocation) {
 		if (shouldRequestMemories(curLocation)) {
