@@ -219,6 +219,11 @@ class MemoryUploadView: UIViewController,
             - emptyFields: the names of the empty fields.
      */
     func issueValidationAlert(emptyFields: [String]) {
+        
+        // if there's a validation error, get rid of the blocking overlay
+        SwiftOverlays.removeAllBlockingOverlays()
+       
+        // Alert the user to what is missing from the submission
         let fields = emptyFields.joinWithSeparator(", ")
         let message = "The following fields are empty: \n \(fields)"
         let alert = UIAlertController(title: "Missing Fields", message: message, preferredStyle: UIAlertControllerStyle.Alert)
