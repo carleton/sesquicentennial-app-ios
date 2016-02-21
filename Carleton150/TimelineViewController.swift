@@ -15,8 +15,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	var parentVC: HistoricalViewController!
 	var selectedGeofence: String!
     var timeline: [Dictionary<String, String>?]!
-    var memories: [Dictionary<String, String>?] = []
+    var memories: [Dictionary<String, String>?]! = []
     var showMemories: Bool = false
+	var lastRequestLocation: CLLocation!
+	var requestThreshold: Double = 25
 	
     override func viewDidLoad() {
         // add bottom border to the timeline title
@@ -51,11 +53,25 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             self.uploadButton.hidden = true
             
         } else {
-            // start loading animation while getting memories
+			// start loading animation while getting memories
             loadingView.startAnimating()
+			// update memories
+			if let curLocation = self.parentVC.locationManager.location {
+				self.updateMemories(curLocation)
+			} else {
+				//
+			}
         }
 	}
-    
+	
+	
+	/**
+		Called just before segue is performed. Segue can be to the either a detail popover or an
+		upload view (for the  memories
+		
+		Parameters
+			- sender: this will be either an image view or a button
+	 */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if (segue.identifier == "showTimelineDetail") {
 			let detailViewController = (segue.destinationViewController as! TimelineDetailView)
@@ -66,7 +82,33 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 			detailViewController.parentView = self
         }
     }
-    
+	
+	/**
+		Checks to see if the current location is far enough away from the last place memories
+		were returned for.
+		
+		Parameters:
+			- curLocation: current location of user
+	
+		Returns:
+			- true if distance far enough or if last location not set. false otherwise
+	
+	 */
+	func shouldRequestMemories(curLocation: CLLocation) -> Bool {
+		if (self.lastRequestLocation == nil) {
+			self.lastRequestLocation = curLocation
+			return true
+		} else if (Utils.getDistance(self.lastRequestLocation.coordinate, point2: curLocation.coordinate) >= self.requestThreshold) {
+				self.lastRequestLocation = curLocation
+				return true
+		}
+		return false
+	}
+	
+	/**
+		Makes call to the server to get data for nearby memories. If no memories found sets
+		sets current list of memories to []
+	 */
     func requestMemories() {
         if let location: CLLocation = self.parentVC.locationManager.location {
             let currentLocation: CLLocationCoordinate2D = location.coordinate
@@ -79,12 +121,26 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                     self.loadingView.stopAnimating()
                 } else {
                     print("Failed to get info")
+					self.loadingView.stopAnimating()
+					self.memories = []
                 }
             }
         } else {
             print("Request failed because we didn't have location")
         }
     }
+	
+	/**
+		Checks to see if distance from last request is large enough and fetches new memories
+		if true
+	 */
+	func updateMemories (curLocation: CLLocation) {
+		if (shouldRequestMemories(curLocation)) {
+			requestMemories()
+		} else {
+			self.loadingView.stopAnimating()
+		}
+	}
 	
     /**
         Upon clicking outside the timeline view or on the X button, 
@@ -94,6 +150,13 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             - sender: The UI element that triggered the action.
      */
 	@IBAction func exitTimeline(sender: AnyObject) {
+		if let loadedMemories = self.memories {
+			parentVC.loadedMemories = loadedMemories
+		}
+		if let lastLoc = self.lastRequestLocation {
+			parentVC.lastMemReqLocation = lastLoc
+
+		}
         parentVC.momentButton.hidden = false
 		parentVC.dismissViewControllerAnimated(true) { () -> Void in }
 	}
