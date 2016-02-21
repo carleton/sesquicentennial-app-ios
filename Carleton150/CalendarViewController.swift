@@ -35,10 +35,19 @@ class CalendarViewController: UICollectionViewController {
 
         // set the view's background colors
         view.backgroundColor = UIColor(red: 252, green: 212, blue: 80, alpha: 1.0)
-        collectionView!.backgroundColor = UIColor(red: 224, green: 224, blue: 224, alpha: 1.0)
         
         // set the deceleration rate for the event cell snap
         collectionView!.decelerationRate = UIScrollViewDecelerationRateFast
+    }
+    
+    /**
+        If there's nothing in the calendar view, there's either
+        data that's missing or we simply don't have information for
+        that date. Either way, the user should get either today's stuff
+        or we should get more data.
+     */
+    @IBAction func reloadCalendarData(sender: AnyObject) {
+        
     }
    
     /**
