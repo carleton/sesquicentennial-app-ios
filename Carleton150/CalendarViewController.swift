@@ -112,7 +112,7 @@ class CalendarViewController: UICollectionViewController {
             - numberOfItemsInSection: The number of items in the calendar.
      */
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return calendar.count
+        return filteredCalendar.count
     }
     
     /**
