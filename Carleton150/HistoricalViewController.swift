@@ -7,8 +7,6 @@ import GoogleMaps
 import CoreLocation
 import MapKit
 
-var selectedGeofence = ""
-var landmarksInfo : Dictionary<String,[Dictionary<String, String>?]>? = Dictionary()
 
 class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
@@ -18,16 +16,18 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	@IBOutlet weak var Debug: UIButton!
     @IBOutlet weak var longText: UILabel!
     @IBOutlet weak var latText: UILabel!
-    
+
 	let locationManager: CLLocationManager = CLLocationManager()
 	let currentLocationMarker: GMSMarker = GMSMarker()
-	var geofences: [Geotification] = [Geotification]()
-	var infoMarkers: [GMSMarker] = [GMSMarker]()
-	var circles: [GMSCircle] = [GMSCircle]()
-	var debugMode: Bool = true
+
+	var geofences: Dictionary<String,Geotification>!
 	var minRequestThreshold: Double = 10 // in meters
 	var lastRequestLocation: CLLocation!
-    
+	var selectedGeofence: String!
+	var debugMode: Bool = false
+	var circles: [GMSCircle] = [GMSCircle]()
+
+	
     /**
         Set to true to show the debug button for testing, set to false to hide
      */
@@ -36,6 +36,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	
 	override func viewWillAppear(animated: Bool) {
 		self.minRequestThreshold = 10
+		self.updateGeofences(locationManager.location!)
 		print("The min threshold is \(self.minRequestThreshold)")
 	}
 	
@@ -49,6 +50,9 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         set the camera on the map view to focus on Carleton.
      */
     override func viewDidLoad() {
+		
+		// initialize geofences dictionary
+		self.geofences = Dictionary<String,Geotification>()
 		
         // set up the memories button
         self.momentButton.layer.cornerRadius = 5
@@ -179,24 +183,9 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		latText.text = String(format:"%f", curLocation.coordinate.latitude)
         longText.text = String(format:"%f", curLocation.coordinate.longitude)
 		
-		// Get Nearby Geofences (if distance threshold crossed)
-		fetchGeofences(curLocation)
-		
-		// Manage Current Geofences
-		for (var i = 0; i < geofences.count; i++) {
-            // If a geofence is triggered...
-			if (Utils.getDistance(curLocation.coordinate,point2: geofences[i].coordinate) <= geofences[i].radius) {
-				if !(geofences[i].active) {
-					enteredGeofence(geofences[i], mapView: mapView)
-				}
-			} else {
-				if (geofences[i].active) {
-//					self.infoMarkers = exitedGeofence(geofences[i], infoMarkers: self.infoMarkers)
-					didExitGeofence(curLocation,geofence: geofences[i])
-				}
-			}
-        }
-    }
+		self.updateGeofences(curLocation)
+
+	}
 	
     /**
         Selects a marker and shows the popover upon a tap from the user.
@@ -211,7 +200,8 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         self.performSegueWithIdentifier("showTimeline", sender: marker)
 		return true
 	}
-
+	
+	
 	func shouldUpdateLocation(curLocation: CLLocation) -> Bool {
 		if self.lastRequestLocation != nil {
 			if (Utils.getDistance(curLocation.coordinate, point2: self.lastRequestLocation.coordinate) >= minRequestThreshold) {
@@ -225,115 +215,49 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		return true
 	}
 	
-	func didExitGeofence(curLocation: CLLocation, geofence: Geotification) -> Void {
-		// if the geofence has been exited
-		if (Utils.getDistance(geofence.coordinate, point2: curLocation.coordinate) > geofence.radius) {
-			var geofenceIndex: Int!
-			for (var i = 0; i < self.infoMarkers.count; i++) {
-				if infoMarkers[i].title == geofence.identifier {
-					geofenceIndex = i
-				}
-			}
-			if geofenceIndex != nil {
-				infoMarkers[geofenceIndex].map = nil
-				print("Removed Geofence \(geofence.identifier)")
-				infoMarkers.removeAtIndex(geofenceIndex)
+	func updateGeofenceVisibility(curLocation: CLLocation) {
+		for (_,geofence) in self.geofences! {
+			if (Utils.getDistance(curLocation.coordinate, point2: geofence.coordinate) > geofence.radius) {
+				geofence.exitedGeofence()
+			} else {
+				geofence.enteredGeofence(self.mapView)
 			}
 		}
-	
 	}
 	
 	/**
-	Takes a geofence off of the map if the geofence is not currently within
-	the geofence search radius of the user's location. If there are fewer
-	than 4, however, the points remain so that the user doesn't just lose everything
-	that they could interact with.
-	
-	Parameters:
-	- geofence:    The geofence that was exited.
-	
-	- infoMarkers: The set of markers that are still currently in scope.
-	
-	Returns:
-	- A new list of the current active geofences.
-	
-	*/
-	func exitedGeofence(geofence: Geotification, infoMarkers:[GMSMarker] ) -> [GMSMarker] {
-		var markers = infoMarkers
-		if (infoMarkers.count > 10) {
-			markers = infoMarkers.filter() {
-				(marker: GMSMarker) in
-				if marker.title == geofence.identifier {
-					marker.map = nil
-					return true
-				} else {
-					return false
-				}
-			}
-		}
-		geofence.active = false
-		return markers
-	}
-	
-	
-	
-	/**
-	Sets up and places a marker upon entering a geofence.
-	
-	Parameters:
-	- geofence: The geofence that was entered.
-	
-	- mapView:  The Google Maps view to attach the marker to.
-	*/
-	func enteredGeofence(geofence: Geotification, mapView: GMSMapView) -> Void {
-		HistoricalDataService.requestContent(geofence.identifier) {
-			(success: Bool, result: [Dictionary<String, String>?]) -> Void in
-			
-			if (success) {
-				landmarksInfo![geofence.identifier] = result
-				var position = CLLocationCoordinate2DMake(44.46013,-93.15470)
-				for (var i = 0; i < self.geofences.count; i++) {
-					if (self.geofences[i].identifier == geofence.identifier) {
-						position = self.geofences[i].coordinate
-					}
-				}
-				let marker = GMSMarker(position: position)
-				marker.icon = UIImage(named: "marker.png")
-				marker.title = geofence.identifier
-				marker.map = self.mapView
-				marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
-				self.infoMarkers.append(marker)
-				geofence.active = true;
-			}
-		}
-	}
-
-	func fetchGeofences (curLocation: CLLocation) -> Void {
-		// Get any nearby geofences
+		Checks to see if user has traveled more than the threshold distance, request geofences
+		from the server and adds them to the current available geofences. Also changes visibility
+		of current geofences
+	 */
+	func updateGeofences(curLocation: CLLocation) {
+		// if the user has traveled far enough
 		if (shouldUpdateLocation(curLocation)) {
-			let position = curLocation.coordinate
-			HistoricalDataService.requestNearbyGeofences(position) {
+			// get new geofences from server and save them
+			HistoricalDataService.requestNearbyGeofences(curLocation.coordinate) {
 				(success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
 				if (success) {
 					print("Getting New Historical Data")
-					// scrap old geofences
-					self.geofences = []
 					// create geofences
 					for geofence in result! {
-						let circle: GMSCircle = GMSCircle(position: geofence.center, radius: Double(geofence.radius))
-						circle.fillColor = UIColor.orangeColor().colorWithAlphaComponent(0.1)
-						self.circles.append(circle)
+						if (self.showDebugButton) {
+							let circle = GMSCircle( position: geofence.center, radius: Double(geofence.radius))
+							circle.fillColor = UIColor.orangeColor().colorWithAlphaComponent(0.1)
+							self.circles.append(circle)
+						}
 						let geotification = Geotification(coordinate: geofence.center, radius: Double(geofence.radius), identifier: geofence.name)
-						self.geofences.append(geotification)
+						if self.geofences[geofence.name] == nil {
+							self.geofences[geofence.name] = geotification
+						}
 					}
+					self.updateGeofenceVisibility(curLocation)
 				} else {
 					print("Could not nearby geofences from the server.")
 				}
 			}
 		}
+		self.updateGeofenceVisibility(curLocation)
 	}
-	
-	
 }
 
 
