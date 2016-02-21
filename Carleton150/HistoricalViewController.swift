@@ -66,7 +66,8 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestAlwaysAuthorization()
-		
+	
+        // set up current map location based on the user's location, if possible.
 		if let curLocation = self.locationManager.location {
 			self.mapView.camera = GMSCameraPosition.cameraWithTarget(curLocation.coordinate, zoom: 16)
 			self.lastRequestLocation = curLocation
@@ -87,14 +88,24 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         }
     }
 	
-	
+    /**
+        If the view is about to appear, lower the threshold
+        for requests so that smaller distance differences will
+        cause a request to be triggered, and then update the 
+        geofences based on the curent location.
+     */
 	override func viewWillAppear(animated: Bool) {
 		self.minRequestThreshold = 10
 		if let curLocation = locationManager.location {
 			self.updateGeofences(curLocation)
 		}
 	}
-	
+
+    /**
+        If another view is about to come up, set the threshold 
+        so high as to stop requests from being sent to the 
+        server altogether.
+     */
 	override func viewWillDisappear(animated: Bool) {
 		self.minRequestThreshold = 1000000
 	}
@@ -225,7 +236,13 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		return true
 	}
 	
-	
+    /**
+        Determines if the app should make a request to the server
+        to get more data about the current surroundings.
+     
+        - Parameters: 
+            - curLocation: The user's current location.
+     */
 	func shouldUpdateLocation(curLocation: CLLocation) -> Bool {
 		if self.lastRequestLocation == nil {
 			self.lastRequestLocation = curLocation
@@ -237,7 +254,13 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		}
 		return false
 	}
-	
+
+    /**
+        If the geofence is too far away to be visible, take it off the map.
+        
+        - Parameters: 
+            - curLocation: The user's current location.
+     */
 	func updateGeofenceVisibility(curLocation: CLLocation) {
 		for (_,geofence) in self.geofences! {
 			if (Utils.getDistance(curLocation.coordinate, point2: geofence.coordinate) <= geofence.radius) {
