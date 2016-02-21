@@ -216,7 +216,7 @@
                                     <constraint firstItem="48n-Vv-TH8" firstAttribute="top" secondItem="H6Q-fC-NPG" secondAttribute="bottom" constant="8" symbolic="YES" id="xSi-mz-vi3"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ZF-dj-PrW" userLabel="Connection View">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ZF-dj-PrW" userLabel="Connection View">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Internet Connection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eb-hW-0Pn">
@@ -233,7 +233,7 @@
                                         <rect key="frame" x="282" y="281" width="37" height="37"/>
                                     </activityIndicatorView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.60202047413793103" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="8E5-oy-4AQ" firstAttribute="centerX" secondItem="6ZF-dj-PrW" secondAttribute="centerX" id="2rN-wm-WCZ"/>
                                     <constraint firstItem="0eb-hW-0Pn" firstAttribute="top" secondItem="8E5-oy-4AQ" secondAttribute="bottom" id="7F0-vA-Av3"/>

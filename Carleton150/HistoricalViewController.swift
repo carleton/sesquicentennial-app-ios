@@ -97,6 +97,12 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	}
 	
 	/**
+		Called by Observer everything the internet connection changes. Toggles UI elements for
+		to show current state of the connection. Triggers an update on the geofence information
+		if network restored
+		
+		Parameters
+			- notification: notification sent by observer
 	
 	*/
 	func connectionStatusChanged(notification: NSNotification) {
@@ -106,11 +112,10 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			self.connectionIndicator.stopAnimating()
 			self.connectionIndicator.hidden = true
 			self.connectionView.hidden = true
+			// reload data from the server
 			self.lastRequestLocation = nil
 			self.updateGeofences(self.locationManager.location!)
-			print("Service avalaible!!!")
 		} else {
-			print("No service avalaible!!!")
 			self.connectionLabel.hidden = false
 			self.connectionIndicator.startAnimating()
 			self.connectionIndicator.hidden = false
