@@ -104,6 +104,23 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 		}
 		return false
 	}
+    
+    
+    /**
+        Parses datestrings from the server.
+     
+        - Parameters:
+            - date: The datestring from the server.
+     
+        - Returns: An NSDate object with the result time
+     
+     */
+    private func parseDate(dateString: String) -> NSDate {
+        let inFormatter = NSDateFormatter()
+        inFormatter.dateFormat = "yyyy'-'MM'-'dd' 'HH':'mm':'ss"
+        let calendarDate: NSDate = inFormatter.dateFromString(dateString)!
+        return calendarDate
+    }
 	
 	/**
 		Makes call to the server to get data for nearby memories. If no memories found sets
@@ -115,7 +132,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             HistoricalDataService.requestMemoriesContent(currentLocation) { success, result in
                 if (success) {
                     self.memories = result.sort() { memory1, memory2 in
-                        return memory1!["year"] > memory2!["year"]
+                        return self.parseDate(memory1!["taken"]!)
+                                .isGreaterThanDate(self.parseDate(memory2!["taken"]!))
                     }
                     self.tableView.reloadData()
                     self.loadingView.stopAnimating()
