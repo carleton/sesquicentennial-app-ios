@@ -150,7 +150,16 @@ final class HistoricalDataService {
             }
         }
     }
-    
+   
+    /**
+        Add a memory to the server!
+     
+        - Parameters: 
+            - memory: The memory and the associated data to upload. 
+            
+            - completion: The function to be triggered upon
+                          completion of the upload
+     */
     class func uploadMemory(memory: Memory, completion: (success: Bool) -> Void) {
         // build the base64 representation of the image
         let imageData = UIImageJPEGRepresentation(memory.image, 0.1)
