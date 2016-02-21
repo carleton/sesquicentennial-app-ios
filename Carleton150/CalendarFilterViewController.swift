@@ -8,15 +8,6 @@ class CalendarFilterViewController: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    @IBAction func filterByDate(sender: AnyObject) {
-       
-        let userInfo: [NSObject : AnyObject]? = ["date" : datePicker.date]
-        
-        NSNotificationCenter
-            .defaultCenter()
-            .postNotificationName("carleton150.filterUpdate", object: nil, userInfo: userInfo)
-    }
-    
     /**
         Initializes this view and sets up the 
         observer for the calendar data.
@@ -38,6 +29,22 @@ class CalendarFilterViewController: UIViewController {
     }
     
     /**
+        Once the button is pressed, grab the date in the date picker
+        at the moment and then send a notification to the calendar view.
+     
+        - Parameters: 
+            - sender: The checkmark that triggers a calendar date change.
+     */
+    @IBAction func filterByDate(sender: AnyObject) {
+       
+        let userInfo: [NSObject : AnyObject]? = ["date" : datePicker.date]
+        
+        NSNotificationCenter
+            .defaultCenter()
+            .postNotificationName("carleton150.filterUpdate", object: nil, userInfo: userInfo)
+    }
+    
+    /**
         Upon noticing that the calendar has been updated, set
         the calendar data in the class
      
@@ -50,6 +57,11 @@ class CalendarFilterViewController: UIViewController {
         }
     }
     
+   
+    /**
+        Provides information about the parent view to the calendar view so that 
+        it can get calendar data.
+     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "segueToContainer") {
             let containerViewController = (segue.destinationViewController as! CalendarViewController)
@@ -59,7 +71,14 @@ class CalendarFilterViewController: UIViewController {
 }
 
 class ColoredDatePicker: UIDatePicker {
+    
     var changed = false
+    
+    /**
+        Overrides the default addSubview functionality to provide
+        white text, since it is not currently customizable in the 
+        Interface Builder.
+     */
     override func addSubview(view: UIView) {
         if !changed {
             changed = true
