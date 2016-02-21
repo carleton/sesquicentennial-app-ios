@@ -1,7 +1,6 @@
 //
 //  WaypointsModalViewController.swift
 //  Carleton150
-//
 
 import UIKit
 

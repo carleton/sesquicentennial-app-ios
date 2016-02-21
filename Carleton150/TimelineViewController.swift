@@ -37,7 +37,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.estimatedRowHeight = 160.0
        
         if !showMemories {
-			if var timeline = timeline {
+			if let timeline = timeline {
 				// sort the event timeline by date
 				self.timeline = timeline.sort() {
 					event1, event2 in
