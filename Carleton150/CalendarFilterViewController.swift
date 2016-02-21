@@ -14,6 +14,7 @@ class CalendarFilterViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var currentDay: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
     
     /**
@@ -34,6 +35,18 @@ class CalendarFilterViewController: UIViewController {
         // set the text color
         self.datePicker.minimumDate = NSDate()
         self.datePicker.setValue(UIColor(red: 1, green: 1, blue: 1, alpha: 1.0), forKey: "textColor")
+        
+        self.datePicker.datePickerMode = UIDatePickerMode.Date
+        // add target for the trigger update function to change the weekday date is changed
+        self.datePicker.addTarget(self, action: Selector("triggerDayUpdate:"), forControlEvents: UIControlEvents.ValueChanged)
+        self.currentDay.text = self.datePicker.date.weekday
+    }
+   
+    /**
+        If the date picker has been updated, update the weekday accordingly.
+     */
+    @IBAction func triggerDayUpdate(sender: AnyObject) {
+        self.currentDay.text = self.datePicker.date.weekday
     }
     
     /**
@@ -101,5 +114,13 @@ class ColoredDatePicker: UIDatePicker {
             self.setValue(UIColor(white: 1, alpha: 1), forKey: "textColor")
         }
         super.addSubview(view)
+    }
+}
+
+extension NSDate {
+    // returns weekday name (Sunday-Saturday) as String
+    var weekday: String {
+        let formatter = NSDateFormatter(); formatter.dateFormat = "EEEE"
+        return formatter.stringFromDate(self)
     }
 }
