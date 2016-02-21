@@ -19,6 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        
+        if !defaults.boolForKey("hasSeenTutorial") {
+            defaults.setBool(false, forKey: "hasSeenTutorial")
+        }
+        
+        defaults.synchronize()
+
         customizeNavigationBar()
 		
         customizeTabBar()
