@@ -3,14 +3,16 @@
 //  Carleton150
 
 import GoogleMaps
+import Reachability
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate  {
 
     var window: UIWindow?
     var keys: NSDictionary?
-    let locationManager = CLLocationManager()
-	
+	var networkMonitor: Reachability?
+	let locationManager = CLLocationManager()
+
     var schedule: [Dictionary<String, String>] = []
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -47,9 +49,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		
 		customizePageViews()
 
+		// start monitoring network connection
+		startNetworkMonitoring()
+		
         return true
     }
 	
+	
+	/**
+		Setup instance of Reachability for Network Monitoring
+	 */
+	func startNetworkMonitoring() {
+		// Allocate a reachability object
+		self.networkMonitor = Reachability.reachabilityForInternetConnection()
+		// Tell the reachability that we DON'T want to be reachable on 3G/EDGE/CDMA
+		self.networkMonitor!.reachableOnWWAN = false
+		self.networkMonitor!.startNotifier()
+	}
 	
 	/**
         Performs UI changes to page views.

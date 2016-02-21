@@ -24,7 +24,8 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	let locationManager: CLLocationManager = CLLocationManager()
 	let currentLocationMarker: GMSMarker = GMSMarker()
 	var reach: Reachability?
-
+	
+	var networkMonitor: Reachability!
 	var geofences: Dictionary<String,Geotification>!
 	var minRequestThreshold: Double = 10 // in meters
 	var lastRequestLocation: CLLocation!
@@ -74,10 +75,12 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         // set up current map location based on the user's location, if possible.
 		if let curLocation = self.locationManager.location {
 			self.mapView.camera = GMSCameraPosition.cameraWithTarget(curLocation.coordinate, zoom: 16)
-			self.lastRequestLocation = curLocation
 		} else {
 			mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
 		}
+		
+		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		self.networkMonitor = appDelegate.networkMonitor
 		
 		// set up the map view
 		mapView.delegate = self;
@@ -91,31 +94,20 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
             mapView.bringSubviewToFront(momentButton)
         }
 		
-		// Allocate a reachability object
-		self.reach = Reachability.reachabilityForInternetConnection()
-		
-		// Tell the reachability that we DON'T want to be reachable on 3G/EDGE/CDMA
-		self.reach!.reachableOnWWAN = false
-		
-		// Here we set up a NSNotification observer. The Reachability that caused the notification
-		// is passed in the object parameter
-		NSNotificationCenter.defaultCenter().addObserver(self,
-			selector: "reachabilityChanged:",
-			name: kReachabilityChangedNotification,
-			object: nil)
-		
-		self.reach!.startNotifier()
-    }
+	}
 	
 	/**
 	
 	*/
-	func reachabilityChanged(notification: NSNotification) {
-		if self.reach!.isReachableViaWiFi() || self.reach!.isReachableViaWWAN() {
+	func connectionStatusChanged(notification: NSNotification) {
+		if self.networkMonitor!.isReachableViaWiFi() || self.networkMonitor!.isReachableViaWWAN()
+		{
 			self.connectionLabel.hidden = true
 			self.connectionIndicator.stopAnimating()
 			self.connectionIndicator.hidden = true
 			self.connectionView.hidden = true
+			self.lastRequestLocation = nil
+			self.updateGeofences(self.locationManager.location!)
 			print("Service avalaible!!!")
 		} else {
 			print("No service avalaible!!!")
@@ -126,6 +118,8 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		}
 	}
 	
+	
+	
     /**
         If the view is about to appear, lower the threshold
         for requests so that smaller distance differences will
@@ -133,6 +127,11 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         geofences based on the curent location.
      */
 	override func viewWillAppear(animated: Bool) {
+		// Setup networking monitoring
+		NSNotificationCenter.defaultCenter().addObserver(self,
+			selector: "connectionStatusChanged:",
+			name: kReachabilityChangedNotification,
+			object: nil)
 		self.minRequestThreshold = 10
 		if let curLocation = locationManager.location {
 			self.updateGeofences(curLocation)
@@ -146,7 +145,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
      */
 	override func viewWillDisappear(animated: Bool) {
 		self.minRequestThreshold = 1000000
-//		self.reach!.stopNotifier()
+		// Stop networking monitoring
 	}
 	
     /**
@@ -255,8 +254,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		latText.text = String(format:"%f", curLocation.coordinate.latitude)
         longText.text = String(format:"%f", curLocation.coordinate.longitude)
 		
-		mapView.animateToLocation(curLocation.coordinate)
-		
 		self.updateGeofences(curLocation)
 
 	}
@@ -318,6 +315,8 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	func updateGeofences(curLocation: CLLocation) {
 		// if the user has traveled far enough
 		if (shouldUpdateLocation(curLocation)) {
+			// Center map around user
+			mapView.animateToLocation(curLocation.coordinate)
 			// get new geofences from server and save them
 			HistoricalDataService.requestNearbyGeofences(curLocation.coordinate) {
 				(success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
