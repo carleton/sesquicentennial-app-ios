@@ -6,7 +6,7 @@ import UIKit
 import GoogleMaps
 import CoreLocation
 import MapKit
-
+import Reachability
 
 class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
@@ -17,9 +17,13 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	@IBOutlet weak var Debug: UIButton!
     @IBOutlet weak var longText: UILabel!
     @IBOutlet weak var latText: UILabel!
-
+	@IBOutlet weak var connectionIndicator: UIActivityIndicatorView!
+	@IBOutlet weak var connectionLabel: UILabel!
+	@IBOutlet weak var connectionView: UIView!
+	
 	let locationManager: CLLocationManager = CLLocationManager()
 	let currentLocationMarker: GMSMarker = GMSMarker()
+	var reach: Reachability?
 
 	var geofences: Dictionary<String,Geotification>!
 	var minRequestThreshold: Double = 10 // in meters
@@ -75,8 +79,41 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
             mapView.bringSubviewToFront(Debug)
             mapView.bringSubviewToFront(momentButton)
         }
+		
+		// Allocate a reachability object
+		self.reach = Reachability.reachabilityForInternetConnection()
+		
+		// Tell the reachability that we DON'T want to be reachable on 3G/EDGE/CDMA
+		self.reach!.reachableOnWWAN = false
+		
+		// Here we set up a NSNotification observer. The Reachability that caused the notification
+		// is passed in the object parameter
+		NSNotificationCenter.defaultCenter().addObserver(self,
+			selector: "reachabilityChanged:",
+			name: kReachabilityChangedNotification,
+			object: nil)
+		
+		self.reach!.startNotifier()
     }
 	
+	/**
+	
+	*/
+	func reachabilityChanged(notification: NSNotification) {
+		if self.reach!.isReachableViaWiFi() || self.reach!.isReachableViaWWAN() {
+			self.connectionLabel.hidden = true
+			self.connectionIndicator.stopAnimating()
+			self.connectionIndicator.hidden = true
+			self.connectionView.hidden = true
+			print("Service avalaible!!!")
+		} else {
+			print("No service avalaible!!!")
+			self.connectionLabel.hidden = false
+			self.connectionIndicator.startAnimating()
+			self.connectionIndicator.hidden = false
+			self.connectionView.hidden = false
+		}
+	}
 	
 	override func viewWillAppear(animated: Bool) {
 		self.minRequestThreshold = 10
@@ -87,6 +124,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	
 	override func viewWillDisappear(animated: Bool) {
 		self.minRequestThreshold = 1000000
+//		self.reach!.stopNotifier()
 	}
 	
     /**

@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     var keys: NSDictionary?
     let locationManager = CLLocationManager()
-    
+	
     var schedule: [Dictionary<String, String>] = []
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -47,9 +47,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         CalendarDataService.updateEvents()
 		
 		customizePageViews()
-		
+
         return true
     }
+	
 	
 	/**
 	 * Performs Ui changes to page views
