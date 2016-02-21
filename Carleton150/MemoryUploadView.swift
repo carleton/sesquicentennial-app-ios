@@ -186,7 +186,7 @@ class MemoryUploadView: UIViewController,
                 return
             }
                 
-            let location = self.parentView.mapCtrl.locationManager.location!.coordinate
+            let location = self.parentView.parentVC.locationManager.location!.coordinate
             let memory: Memory = Memory(title: title, desc: desc, timestamp: NSDate(), uploader: uploader, location: location, image: image)
                 
             

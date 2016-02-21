@@ -52,8 +52,14 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		self.locationManager.requestAlwaysAuthorization()
 		
 		// center the camera and set the controller delegate for the map
-		questMapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16) // @todo: Make this current location
+		if let curLocation = self.locationManager.location {
+			self.questMapView.camera = GMSCameraPosition.cameraWithTarget(curLocation.coordinate, zoom: 16)
+		} else {
+			questMapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
+		}
+		
 		questMapView.delegate = self;
+		
 		
 		// show waypoints button
 		questMapView.bringSubviewToFront(waypointsButton)
@@ -65,6 +71,22 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		setupUI()
     }
 	
+
+	/**
+	Performs geofence checking upon an update to the current location.
+	Parameters:
+	- manager:   The location manager that was started
+	within this module.
+	
+	- locations: The past few locations that were detected by
+	the location manager.
+	*/
+	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+	{
+		let curLocation: CLLocation = locationManager.location!
+		questMapView.animateToLocation(curLocation.coordinate)
+		
+	}
 	
 	/**
 		Upon clicking the attemptCompButton, the quest will either restart
