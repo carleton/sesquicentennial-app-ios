@@ -12,6 +12,7 @@ var landmarksInfo : Dictionary<String,[Dictionary<String, String>?]>? = Dictiona
 
 class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
+    @IBOutlet weak var questionButton: UIButton!
     @IBOutlet weak var momentButton: UIButton!
 
     @IBOutlet weak var mapView: GMSMapView!
@@ -31,7 +32,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         Set to true to show the debug button for testing, set to false to hide
      */
     let showDebugButton = false
-    
+
 	
     /**
         Upon load of this view, start the location manager and
@@ -39,11 +40,19 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
      */
     override func viewDidLoad() {
         
-        // set up the memories button
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if !defaults.boolForKey("hasSeenTutorial") {
+            defaults.setBool(true, forKey: "hasSeenTutorial")
+            self.performSegueWithIdentifier("showTutorial", sender: nil)
+        }
+        defaults.synchronize()
+        
+        // set up the memories button and the question button
         self.momentButton.layer.cornerRadius = 5
         self.momentButton.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
         self.momentButton.layer.borderWidth = 1
         mapView.bringSubviewToFront(self.momentButton)
+        mapView.bringSubviewToFront(self.questionButton)
         
         // set properties for the navigation bar
         Utils.setUpNavigationBar(self)
@@ -100,9 +109,12 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			destinationController.mapCtrl = self
             destinationController.showMemories = true
             destinationController.requestMemories()
+        } else if segue.identifier == "showTutorial" {
+			let destinationController = (segue.destinationViewController as! TutorialViewController)
+			destinationController.parent = self
         }
     }
-
+    
     /**
         Debug function that shows the current available geofences
         and the current latitude and longitude coordinates.
