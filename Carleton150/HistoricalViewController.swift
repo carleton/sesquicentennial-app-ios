@@ -12,6 +12,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
     
     @IBOutlet weak var momentButton: UIButton!
 
+	@IBOutlet weak var questionButton: UIButton!
     @IBOutlet weak var mapView: GMSMapView!
 	@IBOutlet weak var Debug: UIButton!
     @IBOutlet weak var longText: UILabel!
@@ -26,7 +27,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	var selectedGeofence: String!
 	var debugMode: Bool = false
 	var circles: [GMSCircle] = [GMSCircle]()
-
 	
     /**
         Set to true to show the debug button for testing, set to false to hide
@@ -42,12 +42,13 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		// initialize geofences dictionary
 		self.geofences = Dictionary<String,Geotification>()
 		
-        // set up the memories button
-        self.momentButton.layer.cornerRadius = 5
-        self.momentButton.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
-        self.momentButton.layer.borderWidth = 1
-        mapView.bringSubviewToFront(self.momentButton)
-        
+		// set up the memories button and the question button
+		self.momentButton.layer.cornerRadius = 5
+		self.momentButton.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
+		self.momentButton.layer.borderWidth = 1
+		mapView.bringSubviewToFront(self.momentButton)
+		mapView.bringSubviewToFront(self.questionButton)
+		
         // set properties for the navigation bar
         Utils.setUpNavigationBar(self)
         
@@ -75,7 +76,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	
 	override func viewWillAppear(animated: Bool) {
 		self.minRequestThreshold = 10
-		self.updateGeofences(locationManager.location!)
+//		self.updateGeofences(locationManager.location!)
 		print("The min threshold is \(self.minRequestThreshold)")
 	}
 	
@@ -110,8 +111,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 				}
 			}
 			
-
-			
             // hide the memories button so it doesn't make the view busy
             self.momentButton.hidden = true
             
@@ -122,7 +121,10 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			destinationController.selectedGeofence = "Memories Near You"
             destinationController.showMemories = true
             destinationController.requestMemories()
-        }
+        } else if segue.identifier == "showTutorial" {
+			let destinationController = (segue.destinationViewController as! TutorialViewController)
+			destinationController.parent = self
+		}
     }
 
     /**
@@ -189,6 +191,8 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		latText.text = String(format:"%f", curLocation.coordinate.latitude)
         longText.text = String(format:"%f", curLocation.coordinate.longitude)
 		
+		mapView.animateToLocation(curLocation.coordinate)
+		
 		self.updateGeofences(curLocation)
 
 	}
@@ -210,10 +214,12 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	
 	func shouldUpdateLocation(curLocation: CLLocation) -> Bool {
 		if self.lastRequestLocation == nil {
+			print("Happens Once")
 			self.lastRequestLocation = curLocation
 			return true
 		}
 		if (Utils.getDistance(curLocation.coordinate, point2: self.lastRequestLocation.coordinate) >= minRequestThreshold) {
+			print("Happens more than once")
 			self.lastRequestLocation = curLocation
 			return true
 		}
@@ -224,6 +230,8 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		for (_,geofence) in self.geofences! {
 			if (Utils.getDistance(curLocation.coordinate, point2: geofence.coordinate) <= geofence.radius) {
 				geofence.enteredGeofence(self.mapView)
+			} else if (Utils.getDistance(curLocation.coordinate, point2: geofence.coordinate) > 500) {
+				geofence.exitedGeofence()
 			}
 		}
 	}
@@ -236,6 +244,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	func updateGeofences(curLocation: CLLocation) {
 		// if the user has traveled far enough
 		if (shouldUpdateLocation(curLocation)) {
+			print("HERE?")
 			// get new geofences from server and save them
 			HistoricalDataService.requestNearbyGeofences(curLocation.coordinate) {
 				(success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in

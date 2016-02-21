@@ -41,7 +41,6 @@ class Geotification: NSObject, MKAnnotation {
 	func enteredGeofence(mapview: GMSMapView) {
 		if self.data == nil && !self.requestingData {
 			self.requestingData = true
-			print("WTF")
 			HistoricalDataService.requestContent(self.identifier) {
 				(success: Bool, result: [Dictionary<String, String>?]) -> Void in
 				if (success) {
