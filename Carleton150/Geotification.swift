@@ -72,79 +72,7 @@ class Geotification: NSObject, MKAnnotation {
 			}
 		}
 	}
-//		if self.data == nil {
-//			self.isActive = true
-//			HistoricalDataService.requestContent(self.identifier) {
-//				(success: Bool, result: [Dictionary<String, String>?]) -> Void in
-//				if (success) {
-//					if let data = result as [Dictionary<String, String>?]! {
-//						self.data = data
-//						self.marker.title = self.identifier
-//						self.marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
-//						self.marker.map = mapview
-//						self.marker.icon = UIImage(named: "marker.png")
-//					}
-//				}
-//				self.requestingData = false
-//			}
-//		}
-//		}
-//		// first time execution
-//		if self.data == nil {
-//			if self.requestingData == false {
-//				self.requestingData = true
-//				print(self.identifier)
-//				HistoricalDataService.requestContent(self.identifier) {
-//					(success: Bool, result: [Dictionary<String, String>?]) -> Void in
-//					if (success) {
-//						if let data = result as [Dictionary<String, String>?]! {
-//							self.data = data
-//							self.marker.title = self.identifier
-//							self.marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
-//							self.marker.map = mapview
-//							self.marker.icon = UIImage(named: "marker.png")
-//						}
-//					}
-//					self.requestingData = false
-//				}
-//			}
-//		} else if (self.marker.map == nil && !self.requestingData) {
-//			print("The data for \(self.identifier) is")
-//			print(self.data)
-//			self.marker.title = self.identifier
-//			self.marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
-//			self.marker.map = mapview
-//			self.marker.icon = UIImage(named: "marker.png")
-//		}
-//	}
 
-////		if self.data == nil && !self.requestingData {
-//			self.requestingData = true
-//			HistoricalDataService.requestContent(self.identifier) {
-//				(success: Bool, result: [Dictionary<String, String>?]) -> Void in
-//				if (success) {
-//					if let data = result as [Dictionary<String, String>?]! {
-//						self.data = data
-//						self.marker.title = self.identifier
-//						self.marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
-//						self.marker.map = mapview
-//						self.marker.icon = UIImage(named: "marker.png")
-//					}
-//				}
-//				self.requestingData = false
-//			}
-//		} e{
-//			if self.marker.map == nil {
-//				print("The data for \(self.identifier) is")
-//				print(self.data)
-//				self.marker.title = self.identifier
-//				self.marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
-//				self.marker.map = mapview
-//				self.marker.icon = UIImage(named: "marker.png")
-//			}
-//		}
-//	}
-	
 	/**
         Takes a geofence off of the map if the geofence is not currently within
         the geofence search radius of the user's location. If there are fewer
@@ -160,7 +88,10 @@ class Geotification: NSObject, MKAnnotation {
 	
 	*/
 	func exitedGeofence() {
-		self.marker.map = nil
+		if (self.isActive) {
+			self.marker.map = nil
+			self.isActive = false
+		}
 	}
 	
 }

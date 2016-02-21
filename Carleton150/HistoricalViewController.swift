@@ -330,7 +330,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	func updateGeofences(curLocation: CLLocation) {
 		// if the user has traveled far enough
 		if (shouldUpdateLocation(curLocation)) {
-			print("HERE?")
 			// Center map around user
 			mapView.animateToLocation(curLocation.coordinate)
 			// get new geofences from server and save them
