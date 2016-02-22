@@ -104,23 +104,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 		}
 		return false
 	}
-    
-    
-    /**
-        Parses datestrings from the server.
-     
-        - Parameters:
-            - date: The datestring from the server.
-     
-        - Returns: An NSDate object with the result time
-     
-     */
-    private func parseDate(dateString: String) -> NSDate {
-        let inFormatter = NSDateFormatter()
-        inFormatter.dateFormat = "yyyy'-'MM'-'dd' 'HH':'mm':'ss"
-        let calendarDate: NSDate = inFormatter.dateFromString(dateString)!
-        return calendarDate
-    }
 	
 	/**
 		Makes call to the server to get data for nearby memories. If no memories found sets
@@ -131,12 +114,30 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             let currentLocation: CLLocationCoordinate2D = location.coordinate
             HistoricalDataService.requestMemoriesContent(currentLocation) { success, result in
                 if (success) {
-                    self.memories = result.sort() { memory1, memory2 in
-                        return self.parseDate(memory1!["taken"]!)
-                                .isGreaterThanDate(self.parseDate(memory2!["taken"]!))
+                    if result.count == 0 {
+                        
+                        //if we are successful, but get zero images, use an alert box to ask if we want to reload or not
+                        let alert = UIAlertController(title: "No Memories Found!", message: "We couldn't find any memories near you. Try again?", preferredStyle: UIAlertControllerStyle.Alert)
+                        let alertAction1 = UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default) {
+                            (UIAlertAction) -> Void in
+                            self.requestMemories()
+                        }
+                        let alertAction2 = UIAlertAction(title: "No", style: UIAlertActionStyle.Default) {
+                            (UIAlertAction) -> Void in
+                            self.exitTimeline(self.geofenceName)
+                        }
+                        alert.addAction(alertAction1)
+                        alert.addAction(alertAction2)
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        
+                    // if we are successful and get some memories, display them
+                    } else {
+                        self.memories = result.sort() { memory1, memory2 in
+                            return memory1!["year"] > memory2!["year"]
+                        }
+                        self.tableView.reloadData()
+                        self.loadingView.stopAnimating()
                     }
-                    self.tableView.reloadData()
-                    self.loadingView.stopAnimating()
                 } else {
                     print("Failed to get info")
 					self.loadingView.stopAnimating()
@@ -154,7 +155,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	 */
 	func updateMemories (curLocation: CLLocation) {
 		if (shouldRequestMemories(curLocation)) {
-			requestMemories()
+			self.requestMemories()
 		} else {
 			self.loadingView.stopAnimating()
 		}
