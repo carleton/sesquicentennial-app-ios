@@ -14,6 +14,8 @@ class CalendarViewController: UICollectionViewController {
     var tableLimit : Int!
     var parentView: CalendarFilterViewController!
     
+    
+    @IBOutlet weak var warningSign: UIImageView!
     @IBOutlet weak var noDataButton: UIButton!
     
     /**
@@ -27,7 +29,17 @@ class CalendarViewController: UICollectionViewController {
         NSNotificationCenter
             .defaultCenter()
             .addObserver(self, selector: "actOnFilterUpdate:", name: "carleton150.filterUpdate", object: nil)
-      
+        
+        // set an observer to see if the parent calendar can update
+        NSNotificationCenter
+            .defaultCenter()
+            .addObserver(self, selector: "actOnParentCalendarUpdate:", name: "carleton150.filterCalendarUpdate", object: nil)
+    
+        // set an observer to see if the parent calendar fails to update
+        NSNotificationCenter
+            .defaultCenter()
+            .addObserver(self, selector: "actOnFailure:", name: "carleton150.calendarUpdateFailure", object: nil)
+        
         // depending on the current state of the calendar data, change the button text
         if calendar.count == 0 {
             self.noDataButton.setTitle("Seems like we didn't get data for some reason. Try again?", forState: UIControlState.Normal)
@@ -56,10 +68,10 @@ class CalendarViewController: UICollectionViewController {
         or we should get more data.
      */
     @IBAction func reloadCalendarData(sender: AnyObject) {
+        self.noDataButton.hidden = true
+        self.warningSign.hidden = true
         if calendar.count == 0 {
-            NSNotificationCenter
-                .defaultCenter()
-                .addObserver(self, selector: "actOnParentCalendarUpdate:", name: "carleton150.filterCalendarUpdate", object: nil)
+            self.showWaitOverlay()
             CalendarDataService.updateEvents()
         } else {
             if filteredCalendar.count == 0 {
@@ -70,10 +82,28 @@ class CalendarViewController: UICollectionViewController {
             }
         }
     }
-    
+   
+    /**
+        When the calendar has been updated, set the calendar and 
+        reload the view.
+     */
     func actOnParentCalendarUpdate(notification: NSNotification) {
+        self.removeAllOverlays()
+        self.noDataButton.hidden = true
+        self.warningSign.hidden = true
         self.calendar = self.parentView.calendar
+        self.filteredCalendar = self.calendar
         self.collectionView!.reloadData()
+    }
+    
+    /**
+        If the calendar fails to update, bring back the button
+        and get rid of the overlay.
+     */
+    func actOnFailure(notification: NSNotification) {
+        self.removeAllOverlays()
+        self.noDataButton.hidden = false
+        self.warningSign.hidden = false
     }
    
     /**
