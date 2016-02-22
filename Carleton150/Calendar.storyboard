@@ -209,9 +209,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSP-4J-E3X">
-                                <rect key="frame" x="550" y="102" width="45" height="39"/>
+                                <rect key="frame" x="555" y="103" width="36" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="Ovq-ik-IU9"/>
+                                    <constraint firstAttribute="width" constant="36" id="Ovq-ik-IU9"/>
                                 </constraints>
                                 <state key="normal" title="Check" image="checkmark"/>
                                 <connections>
@@ -230,11 +230,11 @@
                             <constraint firstItem="O5X-Zh-yol" firstAttribute="top" secondItem="gTy-S9-CoE" secondAttribute="bottom" constant="5" id="Hu4-M8-fOv"/>
                             <constraint firstItem="Dig-IK-Wrs" firstAttribute="top" secondItem="ceZ-ao-Wpn" secondAttribute="bottom" constant="-2" id="IIB-MM-Sab"/>
                             <constraint firstItem="ceZ-ao-Wpn" firstAttribute="top" secondItem="O5X-Zh-yol" secondAttribute="bottom" constant="2" id="Ku2-2K-Ude"/>
-                            <constraint firstItem="Dig-IK-Wrs" firstAttribute="top" secondItem="JSP-4J-E3X" secondAttribute="bottom" constant="8" id="XVV-tb-eLe"/>
+                            <constraint firstItem="Dig-IK-Wrs" firstAttribute="top" secondItem="JSP-4J-E3X" secondAttribute="bottom" constant="11" id="XVV-tb-eLe"/>
                             <constraint firstItem="Dig-IK-Wrs" firstAttribute="leading" secondItem="XXl-4J-2G4" secondAttribute="leading" id="XXg-g7-7Bp"/>
-                            <constraint firstItem="JSP-4J-E3X" firstAttribute="leading" secondItem="ceZ-ao-Wpn" secondAttribute="trailing" constant="8" id="pVU-DW-93l"/>
-                            <constraint firstItem="JSP-4J-E3X" firstAttribute="top" secondItem="O5X-Zh-yol" secondAttribute="bottom" constant="13" id="uwC-k5-epC"/>
-                            <constraint firstAttribute="trailing" secondItem="JSP-4J-E3X" secondAttribute="trailing" constant="5" id="vtB-R6-5Qw"/>
+                            <constraint firstItem="JSP-4J-E3X" firstAttribute="leading" secondItem="ceZ-ao-Wpn" secondAttribute="trailing" constant="13" id="pVU-DW-93l"/>
+                            <constraint firstItem="JSP-4J-E3X" firstAttribute="top" secondItem="O5X-Zh-yol" secondAttribute="bottom" constant="14" id="uwC-k5-epC"/>
+                            <constraint firstAttribute="trailing" secondItem="JSP-4J-E3X" secondAttribute="trailing" constant="9" id="vtB-R6-5Qw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5Q8-qN-UQh"/>
@@ -276,7 +276,7 @@
                                             <action selector="dismissDetailView:" destination="5C2-GG-GNa" eventType="touchUpInside" id="7yu-Mm-2W5"/>
                                         </connections>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1UQ-p6-P1G">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1UQ-p6-P1G">
                                         <rect key="frame" x="14" y="171" width="526" height="375"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -289,13 +289,13 @@
                                         <color key="textColor" red="0.90216385690000001" green="0.62171052630000001" blue="0.073054933399999994" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GM2-zo-A7W">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GM2-zo-A7W">
                                         <rect key="frame" x="20" y="115" width="520" height="21.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="18"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ix-jQ-xny">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ix-jQ-xny">
                                         <rect key="frame" x="19" y="144.5" width="521" height="21.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="18"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>

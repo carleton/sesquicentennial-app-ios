@@ -155,7 +155,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	 */
 	func updateMemories (curLocation: CLLocation) {
 		if (shouldRequestMemories(curLocation)) {
-			requestMemories()
+			self.requestMemories()
 		} else {
 			self.loadingView.stopAnimating()
 		}
