@@ -220,7 +220,7 @@ final class HistoricalDataService {
                     "lat" : location.latitude,
                     "lng" : location.longitude
                 ],
-                "radius": 100
+                "radius": Constants.geofenceRequestRadius
             ]
         ]
             

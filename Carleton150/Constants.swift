@@ -32,6 +32,6 @@ final class Constants {
     /**
         Maximum number of calendar events requested
      */
-    static var questEventsLim: Int = 500 // meters
+    static var questEventsLimit: Int = 500 // meters
     
 }

@@ -25,7 +25,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	var reach: Reachability?
 	var networkMonitor: Reachability!
 	var geofences: Dictionary<String,Geotification>!
-	var minRequestThreshold: Double = 50 // in meters
+	var minRequestThreshold: Double = Constants.geofenceRequestThreshold // in meters
 	var lastGeoReqLocation: CLLocation!
 	var selectedGeofence: String!
 	var debugMode: Bool = false
@@ -85,7 +85,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		self.networkMonitor = appDelegate.networkMonitor
 		
 		// set up the map view
-		mapView.delegate = self;
+		mapView.delegate = self
 		
         // set up the tiling for the map
         Utils.setUpTiling(mapView)
@@ -116,7 +116,9 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			self.connectionView.hidden = true
 			// reload data from the server
 			self.lastGeoReqLocation = nil
-			self.updateGeofences(self.locationManager.location!)
+            if let location = self.locationManager.location {
+                self.updateGeofences(location)
+            }
 		} else {
 			self.connectionLabel.hidden = false
 			self.connectionIndicator.startAnimating()
@@ -141,7 +143,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			name: kReachabilityChangedNotification,
 			object: nil
 		)
-		self.minRequestThreshold = 50
+		self.minRequestThreshold = Constants.geofenceRequestThreshold
 		if let curLocation = locationManager.location {
 			self.updateGeofences(curLocation)
 		}

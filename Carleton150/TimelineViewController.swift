@@ -58,8 +58,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 			// update memories
 			if let curLocation = self.parentVC.locationManager.location {
 				self.updateMemories(curLocation)
-			} else {
-				//
 			}
         }
 	}
