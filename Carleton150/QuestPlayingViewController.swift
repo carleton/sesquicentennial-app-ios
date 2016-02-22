@@ -5,6 +5,7 @@
 import UIKit
 import CoreLocation
 import GoogleMaps
+import Reachability
 
 class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 
@@ -14,7 +15,8 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	var currentWayPointIndex: Int!
 	var clueShown: Bool = true
 	var questCompleted: Bool = false
-	
+	var networkMonitor: Reachability!
+
 	@IBOutlet weak var questMapView: GMSMapView!
 	@IBOutlet weak var clueHintView: UIView!
 	@IBOutlet weak var questName: UILabel!
@@ -24,6 +26,9 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	@IBOutlet weak var clueHintImgWidthConst: NSLayoutConstraint!
 	@IBOutlet weak var attemptCompButton: UIButton!
 	@IBOutlet weak var waypointsButton: UIButton!
+	@IBOutlet weak var connectionIndicator: UIActivityIndicatorView!
+	@IBOutlet weak var connectionLabel: UILabel!
+	@IBOutlet weak var connectionView: UIView!
 	
 
 	
@@ -59,7 +64,10 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		}
 		
 		questMapView.delegate = self;
-		
+	
+		// setup network monitoring
+		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		self.networkMonitor = appDelegate.networkMonitor
 		
 		// show waypoints button
 		questMapView.bringSubviewToFront(waypointsButton)
@@ -71,7 +79,59 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		setupUI()
     }
 	
+	/**
+		If the view is about to appear, lower the threshold
+		for requests so that smaller distance differences will
+		cause a request to be triggered, and then update the
+		geofences based on the curent location.
+	*/
+	override func viewWillAppear(animated: Bool) {
+		// Setup networking monitoring
+		NSNotificationCenter.defaultCenter().addObserver(self,
+			selector: "connectionStatusChanged:",
+			name: kReachabilityChangedNotification,
+			object: nil)
+	}
 
+	/**
+		If another view is about to come up, set the threshold
+		so high as to stop requests from being sent to the
+		server altogether.
+	*/
+	override func viewWillDisappear(animated: Bool) {
+		// Stop networking monitoring
+		NSNotificationCenter.defaultCenter().removeObserver(
+			self,
+			name: kReachabilityChangedNotification,
+			object: nil
+		)
+	}
+	
+	/**
+		Called by Observer everything the internet connection changes. Toggles UI elements for
+		to show current state of the connection. Triggers an update on the geofence information
+		if network restored
+		
+		Parameters
+			- notification: notification sent by observer
+	*/
+	func connectionStatusChanged(notification: NSNotification) {
+		if self.networkMonitor!.isReachableViaWiFi() || self.networkMonitor!.isReachableViaWWAN()
+		{
+			self.connectionLabel.hidden = true
+			self.connectionIndicator.stopAnimating()
+			self.connectionIndicator.hidden = true
+			self.connectionView.hidden = true
+			// reload data from the server
+		} else {
+			self.connectionLabel.hidden = false
+			self.connectionIndicator.startAnimating()
+			self.connectionIndicator.hidden = false
+			self.connectionView.hidden = false
+		}
+	}
+	
+	
 	/**
 	Performs geofence checking upon an update to the current location.
 	Parameters:

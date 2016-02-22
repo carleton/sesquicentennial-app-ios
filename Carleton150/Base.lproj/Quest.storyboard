@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yBP-BT-jzr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yBP-BT-jzr">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -22,6 +22,7 @@
             <string>Roboto-Medium</string>
         </mutableArray>
         <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -320,10 +321,36 @@
                                     <constraint firstItem="gco-FA-lEZ" firstAttribute="top" secondItem="pcH-6g-MWp" secondAttribute="top" constant="3" id="xZC-0i-nto"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E37-6Q-Nvk" userLabel="Connection View">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Internet Connection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="seI-LW-EqK">
+                                        <rect key="frame" x="211" y="318" width="178.5" height="20.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20.5" id="IHT-AY-VUP"/>
+                                            <constraint firstAttribute="width" constant="178.5" id="xFq-UD-ykD"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Evb-R3-DUH">
+                                        <rect key="frame" x="282" y="281" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.60202047410000004" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="seI-LW-EqK" firstAttribute="centerX" secondItem="E37-6Q-Nvk" secondAttribute="centerX" id="6fb-k0-S5z"/>
+                                    <constraint firstItem="seI-LW-EqK" firstAttribute="top" secondItem="Evb-R3-DUH" secondAttribute="bottom" id="FF3-TN-K84"/>
+                                    <constraint firstItem="Evb-R3-DUH" firstAttribute="centerX" secondItem="E37-6Q-Nvk" secondAttribute="centerX" id="Xi7-3f-LAY"/>
+                                    <constraint firstItem="Evb-R3-DUH" firstAttribute="centerY" secondItem="E37-6Q-Nvk" secondAttribute="centerY" id="eTV-uL-Kcm"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.92299561652564099" green="0.92299561652564099" blue="0.92299561652564099" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="pcH-6g-MWp" firstAttribute="leading" secondItem="peo-gm-Jws" secondAttribute="trailing" id="1IK-q3-1bW"/>
+                            <constraint firstItem="fPZ-Zm-AGd" firstAttribute="top" secondItem="E37-6Q-Nvk" secondAttribute="bottom" id="1Vf-dM-8F5"/>
                             <constraint firstItem="peo-gm-Jws" firstAttribute="width" secondItem="Me0-A8-UI9" secondAttribute="width" id="3hj-bq-6wg"/>
                             <constraint firstItem="pcH-6g-MWp" firstAttribute="top" secondItem="peo-gm-Jws" secondAttribute="bottom" id="4aW-5Z-qCA"/>
                             <constraint firstItem="peo-gm-Jws" firstAttribute="top" secondItem="5S5-Xi-yGN" secondAttribute="bottom" id="4ek-U5-7FJ"/>
@@ -335,10 +362,13 @@
                             <constraint firstItem="peo-gm-Jws" firstAttribute="leading" secondItem="Me0-A8-UI9" secondAttribute="leading" id="WYz-dT-gGK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pcH-6g-MWp" secondAttribute="trailing" constant="20" id="WzD-hK-pYr"/>
                             <constraint firstItem="fPZ-Zm-AGd" firstAttribute="top" secondItem="peo-gm-Jws" secondAttribute="bottom" id="Xfz-sq-ORw"/>
+                            <constraint firstItem="E37-6Q-Nvk" firstAttribute="leading" secondItem="Me0-A8-UI9" secondAttribute="leading" id="cvZ-Ls-HUH"/>
                             <constraint firstItem="pcH-6g-MWp" firstAttribute="width" secondItem="Me0-A8-UI9" secondAttribute="width" id="dmm-b1-t1J"/>
                             <constraint firstItem="peo-gm-Jws" firstAttribute="top" secondItem="5S5-Xi-yGN" secondAttribute="bottom" id="dnp-0t-aWS"/>
+                            <constraint firstItem="E37-6Q-Nvk" firstAttribute="top" secondItem="Me0-A8-UI9" secondAttribute="top" id="fme-55-pSa"/>
                             <constraint firstAttribute="trailing" secondItem="pcH-6g-MWp" secondAttribute="trailing" id="hpl-1Y-Fia"/>
                             <constraint firstItem="peo-gm-Jws" firstAttribute="width" secondItem="Me0-A8-UI9" secondAttribute="width" multiplier="0.5" id="jQu-AX-7zT"/>
+                            <constraint firstAttribute="trailing" secondItem="E37-6Q-Nvk" secondAttribute="trailing" id="jyv-d6-DJ1"/>
                             <constraint firstItem="pcH-6g-MWp" firstAttribute="centerX" secondItem="Me0-A8-UI9" secondAttribute="centerX" id="qnw-MB-E1Z"/>
                             <constraint firstItem="peo-gm-Jws" firstAttribute="height" secondItem="Me0-A8-UI9" secondAttribute="height" multiplier="0.4" id="rCk-2a-hyL"/>
                             <constraint firstItem="peo-gm-Jws" firstAttribute="centerX" secondItem="Me0-A8-UI9" secondAttribute="centerX" id="uK2-Wu-tU7"/>
@@ -386,6 +416,9 @@
                         <outlet property="clueHintText" destination="ZNa-f4-uKO" id="UrA-w8-c1m"/>
                         <outlet property="clueHintToggle" destination="gco-FA-lEZ" id="mDE-8c-vV7"/>
                         <outlet property="clueHintView" destination="pcH-6g-MWp" id="Tdm-gt-fT1"/>
+                        <outlet property="connectionIndicator" destination="Evb-R3-DUH" id="Ie9-pn-ezO"/>
+                        <outlet property="connectionLabel" destination="seI-LW-EqK" id="MMC-5X-nGS"/>
+                        <outlet property="connectionView" destination="E37-6Q-Nvk" id="lcT-vS-I8i"/>
                         <outlet property="questMapView" destination="peo-gm-Jws" id="iFs-Rx-vMJ"/>
                         <outlet property="questName" destination="nKc-yv-Du2" id="SaG-rF-4uJ"/>
                         <outlet property="waypointsButton" destination="MGT-8E-Ete" id="Njq-I0-GkN"/>

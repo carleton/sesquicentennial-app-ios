@@ -22,9 +22,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	@IBOutlet weak var connectionView: UIView!
 	
 	let locationManager: CLLocationManager = CLLocationManager()
-	let currentLocationMarker: GMSMarker = GMSMarker()
 	var reach: Reachability?
-	
 	var networkMonitor: Reachability!
 	var geofences: Dictionary<String,Geotification>!
 	var minRequestThreshold: Double = 50 // in meters
@@ -137,14 +135,23 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
      */
 	override func viewWillAppear(animated: Bool) {
 		// Setup networking monitoring
-		NSNotificationCenter.defaultCenter().addObserver(self,
+		NSNotificationCenter.defaultCenter().addObserver(
+			self,
 			selector: "connectionStatusChanged:",
 			name: kReachabilityChangedNotification,
-			object: nil)
+			object: nil
+		)
 		self.minRequestThreshold = 50
 		if let curLocation = locationManager.location {
 			self.updateGeofences(curLocation)
 		}
+		// check to see if connected
+		self.connectionStatusChanged(
+			NSNotification(
+				name: "Initial Connection Check",
+				object: nil
+			)
+		)
 	}
 
     /**
@@ -155,6 +162,11 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	override func viewWillDisappear(animated: Bool) {
 		self.minRequestThreshold = 1000000
 		// Stop networking monitoring
+		NSNotificationCenter.defaultCenter().removeObserver(
+			self,
+			name: kReachabilityChangedNotification,
+			object: nil
+		)
 	}
 	
     /**
