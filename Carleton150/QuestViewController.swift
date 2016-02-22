@@ -10,13 +10,17 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 	
 	var pageViewController: UIPageViewController!
 	var quests = [Quest]()
-
-	
+    @IBOutlet weak var noDataButton: UIButton!
+    @IBOutlet weak var warningSign: UIImageView!
+    
 	/**
 		Upon load setup the persistent storage if it has not been setup already, request data for
 		 quests. Once the data has been loaded, create the first page of the paged layout
 	 */
     override func viewDidLoad() {
+        
+        self.noDataButton.hidden = true
+        self.warningSign.hidden = true
 		
 		self.showWaitOverlay()
 		
@@ -24,12 +28,28 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 		if NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") == nil {
 			NSUserDefaults.standardUserDefaults().setObject(Dictionary<String,Int>(), forKey: "startedQuests")
 		}
-		
+        
 		Utils.setUpNavigationBar(self)
-		
-		/**
-			Request data from the server
-		 */
+        
+        self.getQuests()
+	}
+   
+    /**
+        If the data is not available, give the user the option
+        to try to get the data again.
+     */
+    @IBAction func getData(sender: AnyObject) {
+        self.noDataButton.hidden = true
+        self.warningSign.hidden = true
+        self.showWaitOverlay()
+        
+        self.getQuests()
+    }
+    
+    /**
+        Get quests from the server.
+     */
+    func getQuests() {
 		QuestDataService.requestQuest("", limit: 5, completion: { (success, result) -> Void in
 			if let quests = result {
 				
@@ -47,11 +67,12 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 				self.pageViewController.didMoveToParentViewController(self)
 				
 			} else {
-				// handle error gracefully here i.e. create a button that allows you to make the request again
+                self.noDataButton.hidden = false
+                self.warningSign.hidden = false
+                self.removeAllOverlays()
 			}
 		});
-		
-	}
+    }
 	
 	/**
 		Fetches the appropriate UIViewController when swiping between pages. It creates a new
