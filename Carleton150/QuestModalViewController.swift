@@ -54,20 +54,46 @@ class QuestModalViewController: UIViewController {
 		if (image == nil) {
 			if (isCorrect) {
 				if (isComplete) {
-					image = UIImage(named: "quest_modal_complete_default")
+                    imageView.animationImages = [
+                        UIImage(named: "s1")!,
+                        UIImage(named: "s2")!,
+                        UIImage(named: "s3")!,
+                        UIImage(named: "s4")!,
+                        UIImage(named: "s5")!,
+                        UIImage(named: "s6")!,
+                        UIImage(named: "s7")!,
+                        UIImage(named: "s8")!,
+                        UIImage(named: "s9")!,
+                        UIImage(named: "s10")!
+                    ]
+                    imageView.animationDuration = 10
+                    imageView.startAnimating()
 				} else {
-					image = UIImage(named: "quest_modal_correct_default")
+                    imageView.animationImages = [
+                        UIImage(named: "found1")!,
+                        UIImage(named: "found2")!,
+                        UIImage(named: "found3")!
+                    ]
+                    
+                    imageView.animationDuration = 3
+                    imageView.startAnimating()
 				}
 			} else {
-				image = UIImage(named: "quest_modal_incorrect_default")
+                imageView.animationImages = [
+                    UIImage(named: "t1")!,
+                    UIImage(named: "t2")!
+                ]
+                
+                imageView.animationDuration = 2
+                imageView.startAnimating()
 			}
-		}
+        } else {
+            imageView.image = image
+        }
 		
 		// set properies to view outlets
 		descTextView.text = descText
 		titleLabel.text = titleText
-		imageView.image = image
-		
     }
 
 	/**
