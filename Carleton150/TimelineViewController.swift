@@ -114,7 +114,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 if (success) {
                     if result.count == 0 {
                         
-                        //if we are successful, but get zero images, use an alert box to ask if we want to reload or not
+                        // if we are successful, but get zero images, use an alert box to ask if we want to reload or not
                         let alert = UIAlertController(title: "No Memories Found!", message: "We couldn't find any memories near you. Try again?", preferredStyle: UIAlertControllerStyle.Alert)
                         let alertAction1 = UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default) {
                             (UIAlertAction) -> Void in
@@ -128,10 +128,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                         alert.addAction(alertAction2)
                         self.presentViewController(alert, animated: true, completion: nil)
                         
-                    // if we are successful and get some memories, display them
                     } else {
+                        // if we are successful and get some memories, display them
                         self.memories = result.sort() { memory1, memory2 in
-                            return memory1!["year"] > memory2!["year"]
+                            return memory1!["taken"] > memory2!["taken"]
                         }
                         self.tableView.reloadData()
                         self.loadingView.stopAnimating()
@@ -239,7 +239,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             cell.setCellViewTraits()
             cell.cellCaption = memories[indexPath.row]?["caption"]
             cell.cellSummary = memories[indexPath.row]?["uploader"]
-            cell.cellTimestamp = memories[indexPath.row]?["year"]
+            cell.cellTimestamp = Memory.parseDateString((memories[indexPath.row]?["taken"])!)
             cell.cellDescription = memories[indexPath.row]?["desc"]
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             return cell

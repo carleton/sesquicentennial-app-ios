@@ -103,7 +103,7 @@ final class HistoricalDataService {
         let parameters = [
             "lat" : location.latitude,
             "lng" : location.longitude,
-            "rad" : 0.5 // half a kilometer
+            "rad" : 0.2 // 20% of a kilometer
         ]
         
         Alamofire.request(.POST, Endpoints.memoriesInfo, parameters: parameters, encoding: .JSON).responseJSON() {

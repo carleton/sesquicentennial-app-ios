@@ -9,11 +9,6 @@ import MapKit
 import GoogleMaps
 import CoreLocation
 
-//enum EventType: Int {
-//    case OnEntry = 0
-//    case OnExit
-//}
-
 /// A geofence object with an activation.
 class Geotification: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
