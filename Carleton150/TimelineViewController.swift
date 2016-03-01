@@ -15,7 +15,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	var parentVC: HistoricalViewController!
 	var selectedGeofence: String!
     var timeline: [Dictionary<String, String>?]!
-    var memories: [Dictionary<String, String>?]! = []
+    var memories: [Memory] = []
     var showMemories: Bool = false
 	var lastRequestLocation: CLLocation!
 	var requestThreshold: Double = 25
@@ -131,7 +131,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                     } else {
                         // if we are successful and get some memories, display them
                         self.memories = result.sort() { memory1, memory2 in
-                            return memory1!["taken"] > memory2!["taken"]
+                            return memory1.timestamp.isGreaterThanDate(memory2.timestamp)
                         }
                         self.tableView.reloadData()
                         self.loadingView.stopAnimating()
@@ -167,12 +167,12 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             - sender: The UI element that triggered the action.
      */
 	@IBAction func exitTimeline(sender: AnyObject) {
-		if let loadedMemories = self.memories {
-			parentVC.loadedMemories = loadedMemories
-		}
+        if self.memories.count > 0 {
+            parentVC.loadedMemories = self.memories
+        }
+        
 		if let lastLoc = self.lastRequestLocation {
 			parentVC.lastMemReqLocation = lastLoc
-
 		}
         parentVC.momentButton.hidden = false
 		parentVC.dismissViewControllerAnimated(true) { () -> Void in }
@@ -232,15 +232,12 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if showMemories {
             let cell: TimelineTableCellImageOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellImageOnly", forIndexPath: indexPath) as! TimelineTableCellImageOnly
-            if let image = memories[indexPath.row]?["data"],
-                   data = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters) {
-                cell.cellImage = UIImage(data: data)
-            }
             cell.setCellViewTraits()
-            cell.cellCaption = memories[indexPath.row]?["caption"]
-            cell.cellSummary = memories[indexPath.row]?["uploader"]
-            cell.cellTimestamp = Memory.parseDateString((memories[indexPath.row]?["taken"])!)
-            cell.cellDescription = memories[indexPath.row]?["desc"]
+            cell.cellImage = memories[indexPath.row].image
+            cell.cellCaption = memories[indexPath.row].title
+            cell.cellSummary = memories[indexPath.row].uploader
+            cell.cellTimestamp = Memory.buildReadableDate(memories[indexPath.row].timestamp)
+            cell.cellDescription = memories[indexPath.row].desc
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             return cell
         } else {

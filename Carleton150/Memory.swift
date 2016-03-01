@@ -6,21 +6,56 @@ class Memory {
     
     var title: String!
     var desc: String!
-    var timestamp: String!
+    var timestamp: NSDate!
+    var timeString: String!
     var uploader: String!
     var location: CLLocationCoordinate2D!
     var image: UIImage!
-    
+   
     init(title: String, desc: String,
-         timestamp: NSDate, uploader: String,
-         location: CLLocationCoordinate2D, image: UIImage) {
-            
+         time: String, uploader: String,
+         location: CLLocationCoordinate2D?, image: UIImage) {
         self.title = title
         self.desc = desc
-        self.timestamp = Memory.buildDateString(timestamp)
+        self.timestamp = Memory.parseDateString(time)
+        self.timeString = time
         self.uploader = uploader
         self.location = location
         self.image = image
+    }
+   
+    /**
+        For building memories to be served to the user.
+     */
+    convenience init(title: String, desc: String,
+        timestamp: String, uploader: String,
+        image: UIImage) {
+            
+        self.init(
+            title: title,
+            desc: desc,
+            time: timestamp,
+            uploader: uploader,
+            location: nil,
+            image: image
+        )
+    }
+    
+    /**
+        For building memories to be sent to the server.
+     */
+    convenience init(title: String, desc: String,
+        timestamp: NSDate, uploader: String,
+        location: CLLocationCoordinate2D, image: UIImage) {
+            
+        self.init(
+            title: title,
+            desc: desc,
+            time: Memory.buildDateString(timestamp),
+            uploader: uploader,
+            location: location,
+            image: image
+        )
     }
    
     /**
@@ -39,33 +74,45 @@ class Memory {
     
     /**
         Given the date string from the server, formats the date
+        into a NSDate object.
+     
+        - Parameters: 
+            - dateString: The dateString for the memory from the server.
+     */
+    class func parseDateString(dateString: String) -> NSDate {
+        let inFormatter = NSDateFormatter()
+        inFormatter.dateFormat = "yyyy'-'MM'-'dd' 'HH':'mm':'ss"
+        return inFormatter.dateFromString(dateString)!
+    }
+    
+    /**
+        Given the date string from the server, formats the date
         into a nice date string with words.
      
         - Parameters: 
             - dateString: The dateString for the memory from the server.
      */
-    class func parseDateString(dateString: String) -> String {
-        let inFormatter = NSDateFormatter()
-        inFormatter.dateFormat = "yyyy'-'MM'-'dd' 'HH':'mm':'ss"
-        let currentDate = inFormatter.dateFromString(dateString)
-        
+    class func buildReadableDate(date: NSDate) -> String {
         let outFormatter = NSDateFormatter()
         outFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
         outFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        return outFormatter.stringFromDate(currentDate!)
+        return outFormatter.stringFromDate(date)
     }
-    
- 
+   
     /**
-        A convenience initializer that uses a dictionary that contains
-        the data.
-        
+        Builds a UIImage from a base64 encoded string.
+     
         - Parameters: 
-            - memory: The dictionary containing all of the memory information.
+            - imageString: The base64 encoded string.
+     
+        - Returns: The built UIImage.
      */
-    convenience init(memory: Dictionary<String, AnyObject>?) {
-        self.init(title: memory!["title"]! as! String, desc: memory!["desc"]! as! String,
-                  timestamp: memory!["timestamp"]! as! NSDate, uploader: memory!["uploader"]! as! String,
-                  location: memory!["location"]! as! CLLocationCoordinate2D, image: memory!["image"]! as! UIImage)
+    class func buildImageFromString(imageString: String?) -> UIImage? {
+        if let imageString = imageString,
+            data = NSData(base64EncodedString: imageString, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters) {
+            return UIImage(data: data)
+        } else {
+            return nil
+        }
     }
 }

@@ -11,7 +11,6 @@ import Reachability
 class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
     @IBOutlet weak var momentButton: UIButton!
-
 	@IBOutlet weak var questionButton: UIButton!
     @IBOutlet weak var mapView: GMSMapView!
 	@IBOutlet weak var Debug: UIButton!
@@ -32,7 +31,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	var circles: [GMSCircle] = [GMSCircle]()
 	
 	// variables stored for caching the memories
-	var loadedMemories: [Dictionary<String, String>?]!
+	var loadedMemories: [Memory]!
 	var lastMemReqLocation: CLLocation!
 	
     /**
