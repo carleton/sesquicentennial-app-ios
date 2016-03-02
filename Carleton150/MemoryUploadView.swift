@@ -25,7 +25,7 @@ class MemoryUploadView: UIViewController,
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var imageSubmitted: UIImageView!
-    
+    @IBOutlet weak var scrollView: UIScrollView!
     
     /**
         If the keyboard is currently active, this allows 
@@ -50,7 +50,10 @@ class MemoryUploadView: UIViewController,
         nameField.delegate = self
         titleField.delegate = self
         descriptionTextView.delegate = self
-        
+      
+        // enable scroll on the form
+        scrollView.scrollEnabled = true
+
         // set tags for keyboard
         nameField.tag = 0
         titleField.tag = 1
