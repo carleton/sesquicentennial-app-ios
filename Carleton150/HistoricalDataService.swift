@@ -97,7 +97,7 @@ final class HistoricalDataService {
                           from the server.
      */
     class func requestMemoriesContent(location: CLLocationCoordinate2D,
-        completion: (success: Bool, result: [Dictionary<String, String>?]) -> Void) {
+        completion: (success: Bool, result: [Memory]) -> Void) {
         
             
         let parameters = [
@@ -112,27 +112,23 @@ final class HistoricalDataService {
                 let json = JSON(result)
                 let answer = json["content"].arrayValue
                 if answer.count > 0 {
-                    var memoriesEntries : [Dictionary<String, String>?] = []
+                    var memoriesEntries : [Memory] = []
                     for i in 0 ..< answer.count {
                         if let image = answer[i]["image"].string,
-                               caption = answer[i]["caption"].string,
+                               title = answer[i]["caption"].string,
                                desc = answer[i]["desc"].string,
                                uploader = answer[i]["uploader"].string,
-                               takenTimestamp = answer[i]["timestamps"]["taken"].string,
-                               postedTimestamp = answer[i]["timestamps"]["posted"].string {
+                               takenTimestamp = answer[i]["timestamps"]["taken"].string {
                                 
-                            var result: Dictionary<String, String> = Dictionary()
-                            result["data"] = image
-                            result["type"] = "memory"
-                            result["desc"] = desc
-                            result["caption"] = caption
-                            result["uploader"] = uploader
-                            result["taken"] = takenTimestamp
-                            let dateString = takenTimestamp
-                                                .characters.split{$0 == " "}.map(String.init)
-                            result["year"] = dateString[0]
-                            result["posted"] = postedTimestamp
-                            memoriesEntries.append(result)
+                            let memory: Memory = Memory(
+                                title: title,
+                                desc: desc,
+                                timestamp: takenTimestamp,
+                                uploader: uploader,
+                                image: Memory.buildImageFromString(image)!
+                            )
+                                
+                            memoriesEntries.append(memory)
                         } else {
                             print("Data returned at endpoint: \(Endpoints.memoriesInfo) is malformed.")
                             completion(success: false, result: [])
@@ -169,7 +165,7 @@ final class HistoricalDataService {
         let parameters: [String : AnyObject] = [
             "title" : memory.title,
             "desc" : memory.desc,
-            "timestamp" :  memory.timestamp,
+            "timestamp" :  memory.timeString,
             "uploader" : memory.uploader,
             "location" : [
                 "lat": memory.location.latitude,
@@ -178,7 +174,7 @@ final class HistoricalDataService {
             "image" : base64Image
         ]
         
-    
+        
         Alamofire.request(.POST, Endpoints.addMemory, parameters: parameters , encoding: .JSON).responseJSON() {
             (request, response, result) in
             

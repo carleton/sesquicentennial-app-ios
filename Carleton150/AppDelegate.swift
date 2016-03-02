@@ -169,3 +169,31 @@ extension String {
         return self.rangeOfString(find) != nil
     }
 }
+
+/// An extension to NSDate to provide simpler functions for comparison.
+extension NSDate {
+    
+    /**
+        If the current date object is later in time than 
+        the other date return true, otherwise return false.
+     */
+    func isGreaterThanDate(dateToCompare: NSDate) -> Bool {
+        return self.compare(dateToCompare) == NSComparisonResult.OrderedDescending
+    }
+    
+    /**
+        If the current date object is earlier in time than
+        the other date return true, otherwise return false.
+     */
+    func isLessThanDate(dateToCompare: NSDate) -> Bool {
+        return self.compare(dateToCompare) == NSComparisonResult.OrderedAscending
+    }
+    
+    /**
+        If the current date object is at the same time as
+        the other date return true, otherwise return false.
+     */
+    func equalToDate(dateToCompare: NSDate) -> Bool {
+        return self.compare(dateToCompare) == NSComparisonResult.OrderedSame
+    }
+}
