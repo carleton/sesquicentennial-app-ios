@@ -6,10 +6,18 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+
+// 500km = max radius. Will be less if off campus but within max distance
+let offCampusRadius : Double = 5000
+
+// radius to be used while on campus. currently at .02km
+let onCampusRadius : Double = 0.2
+
 /// Data Service that contains relevant endpoints for the Historical module.
 final class HistoricalDataService {
 	
 	let alamofireManager : Alamofire.Manager?
+  
 	
 	init() {
 		let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -87,6 +95,43 @@ final class HistoricalDataService {
         }
     }
     
+    private class func getRadius(location : CLLocationCoordinate2D) -> Double{
+        let lat = location.latitude
+        let long = location.longitude
+        let latMin = 44.457564
+        let latMax = 44.486469
+        let longMin = -93.159549
+        let longMax = -93.127566
+        var nearestLong : Double = long
+        var nearestLat : Double = lat
+        var nearestPoint : CLLocationCoordinate2D
+        var radius : Double = onCampusRadius
+        // Carleton campus 44.457564<Lat<44.486469
+        // -93.159549<long<-93.127566
+        if lat < latMin {
+            nearestLat = latMin
+        } else if lat > latMax {
+            nearestLat = latMax
+        }
+        if long < longMin {
+            nearestLong = longMin
+        } else if long > longMax{
+            nearestLong = longMax
+        }
+        nearestPoint = CLLocationCoordinate2D(latitude : nearestLat, longitude: nearestLong)
+        
+        let distance = Utils.getDistance(nearestPoint, point2: location)
+        //let distance = sqrt(pow(longDiff, 2) + pow(latDiff, 2))
+        if distance > onCampusRadius && distance < offCampusRadius {
+            radius = distance
+        } else if distance > onCampusRadius && distance > offCampusRadius {
+            radius = offCampusRadius
+        }
+        return radius
+        
+        
+    }
+    
     /**
         Request memories content on the server.
 
@@ -98,12 +143,12 @@ final class HistoricalDataService {
      */
     class func requestMemoriesContent(location: CLLocationCoordinate2D,
         completion: (success: Bool, result: [Memory]) -> Void) {
-        
+        let radius = getRadius(location)
             
         let parameters = [
             "lat" : location.latitude,
             "lng" : location.longitude,
-            "rad" : 0.2 // 20% of a kilometer
+            "rad" : radius
         ]
         
         Alamofire.request(.POST, Endpoints.memoriesInfo, parameters: parameters, encoding: .JSON).responseJSON() {
