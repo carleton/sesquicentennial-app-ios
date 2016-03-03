@@ -7,12 +7,6 @@ import Alamofire
 import SwiftyJSON
 
 
-// 500km = max radius. Will be less if off campus but within max distance
-let offCampusRadius : Double = 5000
-
-// radius to be used while on campus. currently at .02km
-let onCampusRadius : Double = 0.2
-
 /// Data Service that contains relevant endpoints for the Historical module.
 final class HistoricalDataService {
 	
@@ -95,41 +89,22 @@ final class HistoricalDataService {
         }
     }
     
-    private class func getRadius(location : CLLocationCoordinate2D) -> Double{
-        let lat = location.latitude
-        let long = location.longitude
-        let latMin = 44.457564
-        let latMax = 44.486469
-        let longMin = -93.159549
-        let longMax = -93.127566
-        var nearestLong : Double = long
-        var nearestLat : Double = lat
-        var nearestPoint : CLLocationCoordinate2D
-        var radius : Double = onCampusRadius
-        // Carleton campus 44.457564<Lat<44.486469
-        // -93.159549<long<-93.127566
-        if lat < latMin {
-            nearestLat = latMin
-        } else if lat > latMax {
-            nearestLat = latMax
-        }
-        if long < longMin {
-            nearestLong = longMin
-        } else if long > longMax{
-            nearestLong = longMax
-        }
-        nearestPoint = CLLocationCoordinate2D(latitude : nearestLat, longitude: nearestLong)
+    /**
+        Determines if the user is more than the radius at which we consider 
+        the user off campus, at which point we give them a larger radius to
+        search. 
         
-        let distance = Utils.getDistance(nearestPoint, point2: location)
-        //let distance = sqrt(pow(longDiff, 2) + pow(latDiff, 2))
-        if distance > onCampusRadius && distance < offCampusRadius {
-            radius = distance
-        } else if distance > onCampusRadius && distance > offCampusRadius {
-            radius = offCampusRadius
-        }
-        return radius
-        
-        
+        - Parameters: 
+            - location: The user's current location.
+     
+        - Returns: The radius to search.
+     */
+    private class func getRadius(location : CLLocationCoordinate2D) -> Double {
+        let centerPoint = CLLocationCoordinate2D(latitude: 44.460421, longitude: -93.152749)
+        let distance = Utils.getDistance(centerPoint, point2: location)
+        return distance > Constants.offCampusRadius
+            ? Constants.memoriesRequestRadiusOffCampus
+            : Constants.memoriesRequestRadiusOnCampus
     }
     
     /**
@@ -143,12 +118,11 @@ final class HistoricalDataService {
      */
     class func requestMemoriesContent(location: CLLocationCoordinate2D,
         completion: (success: Bool, result: [Memory]) -> Void) {
-        let radius = getRadius(location)
             
         let parameters = [
             "lat" : location.latitude,
             "lng" : location.longitude,
-            "rad" : radius
+            "rad" : getRadius(location)
         ]
         
         Alamofire.request(.POST, Endpoints.memoriesInfo, parameters: parameters, encoding: .JSON).responseJSON() {
