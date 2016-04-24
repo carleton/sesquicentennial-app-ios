@@ -81,12 +81,6 @@ final class Utils {
         the top navigation bar in the designated view.
      */
     class func setUpNavigationBar(currentController: UIViewController) {
-
-		let logo = UIImage(named: "carleton_knight")
-		let imageView = UIImageView(image: logo)
-		imageView.contentMode = .ScaleAspectFit
-		currentController.navigationItem.titleView = imageView
-		
         // stop the navigation bar from covering the calendar content
         currentController.navigationController!.navigationBar.translucent = false;
     }
