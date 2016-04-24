@@ -84,7 +84,7 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 	
 		- Returns: UI View Controller
 	
-	*/
+	 */
 	func getViewControllerAtIndex(index: Int) -> QuestContentViewController {
 		// if we're at the edges of the page view
 		if ((self.quests.count == 0 ) || (index >= self.quests.count)) {

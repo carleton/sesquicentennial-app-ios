@@ -240,7 +240,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 			// if quest has been completing suppress this segue
 			if (questCompleted) {
 				self.currentWayPointIndex = 0
-				self.attemptCompButton.setTitle("Are We There Yet?", forState: .Normal)
+				self.attemptCompButton.setTitle("Am I There?", forState: .Normal)
 				self.attemptCompButton.backgroundColor = UIColor(red: 254/255, green: 214/255, blue: 70/255, alpha: 1)
 				self.clueHintToggle.enabled = true
 				showClueHint()
@@ -256,7 +256,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	
 	/**
 		Prepares for a segue to another view. In the case, there are two possible segues:
-		one to the attempt modal triggered by the Are We There Yet? button and the other
+		one to the attempt modal triggered by the "Am I there?" button and the other
 		to the completed waypoints modal triggered by the button on the map
 		
 		Parameters:
