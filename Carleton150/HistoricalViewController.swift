@@ -23,7 +23,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	let locationManager: CLLocationManager = CLLocationManager()
 	var reach: Reachability?
 	var networkMonitor: Reachability!
-	var geofences: Dictionary<String,Geotification>!
+	var geofences: Dictionary<String,Landmark>!
 	var selectedGeofence: String!
 	var debugMode: Bool = false
 	var circles: [GMSCircle] = [GMSCircle]()
@@ -54,7 +54,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         defaults.synchronize()
 		
 		// initialize geofences dictionary
-		self.geofences = Dictionary<String,Geotification>()
+		self.geofences = Dictionary<String,Landmark>()
 		
 		// set up the memories button and the question button
 		self.momentButton.layer.cornerRadius = 5
@@ -93,14 +93,14 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
             mapView.bringSubviewToFront(momentButton)
         }
         
-        requestGeofences(locationManager.location?.coordinate)
+        loadLandmarks(locationManager.location?.coordinate)
 	}
     
     
     /**
         Requests the geofences from the server. 
      */
-    func requestGeofences(currentLocation: CLLocationCoordinate2D?) {
+    func loadLandmarks(currentLocation: CLLocationCoordinate2D?) {
         if let currentLocation = currentLocation {
             HistoricalDataService.requestNearbyGeofences(currentLocation) {
                 (success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
@@ -108,26 +108,27 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
                     // create geofences
                     for geofence in result! {
                         if (self.showDebugButton) {
-                            let circle = GMSCircle( position: geofence.center, radius: Double(geofence.radius))
+                            let circle = GMSCircle(
+                                            position: geofence.center,
+                                            radius: Double(geofence.radius)
+                                         )
                             circle.fillColor = UIColor.orangeColor().colorWithAlphaComponent(0.1)
                             self.circles.append(circle)
                         }
-                        let geotification = Geotification(coordinate: geofence.center, radius: Double(geofence.radius), identifier: geofence.name)
+                        let geotification = Landmark(coordinate: geofence.center, identifier: geofence.name)
                         if self.geofences[geofence.name] == nil {
                             self.geofences[geofence.name] = geotification
                         }
                     }
-                    self.displayGeofences()
+                    
+                    for entry in self.geofences {
+                        entry.1.displayLandmark(self.mapView)
+                    }
+                    
                 } else {
                     print("Could not nearby geofences from the server.")
                 }
             }
-        }
-    }
-    
-    func displayGeofences() {
-        for entry in self.geofences {
-            entry.1.enteredGeofence(self.mapView)
         }
     }
 	
