@@ -138,7 +138,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		// Setup networking monitoring
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: "connectionStatusChanged:",
+			selector: #selector(HistoricalViewController.connectionStatusChanged(_:)),
 			name: kReachabilityChangedNotification,
 			object: nil
 		)

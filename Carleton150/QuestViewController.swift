@@ -122,7 +122,7 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 		if (index == 0 || index == NSNotFound) {
 			return nil
 		}
-		index--
+		index -= 1
 		return self.getViewControllerAtIndex(index)
 	}
 	
@@ -141,7 +141,7 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 		if (index == NSNotFound){
 			return nil
 		}
-		index++
+		index += 1
 		if (index == self.quests.count) {
 			return nil
 		}

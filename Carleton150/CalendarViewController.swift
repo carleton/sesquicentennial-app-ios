@@ -28,17 +28,17 @@ class CalendarViewController: UICollectionViewController {
         // set an observer to see if the filter button is pressed
         NSNotificationCenter
             .defaultCenter()
-            .addObserver(self, selector: "actOnFilterUpdate:", name: "carleton150.filterUpdate", object: nil)
+            .addObserver(self, selector: #selector(CalendarViewController.actOnFilterUpdate(_:)), name: "carleton150.filterUpdate", object: nil)
         
         // set an observer to see if the parent calendar can update
         NSNotificationCenter
             .defaultCenter()
-            .addObserver(self, selector: "actOnParentCalendarUpdate:", name: "carleton150.filterCalendarUpdate", object: nil)
+            .addObserver(self, selector: #selector(CalendarViewController.actOnParentCalendarUpdate(_:)), name: "carleton150.filterCalendarUpdate", object: nil)
     
         // set an observer to see if the parent calendar fails to update
         NSNotificationCenter
             .defaultCenter()
-            .addObserver(self, selector: "actOnFailure:", name: "carleton150.calendarUpdateFailure", object: nil)
+            .addObserver(self, selector: #selector(CalendarViewController.actOnFailure(_:)), name: "carleton150.calendarUpdateFailure", object: nil)
         
         // depending on the current state of the calendar data, change the button text
         if calendar.count == 0 {

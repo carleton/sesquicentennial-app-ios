@@ -30,10 +30,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	@IBOutlet weak var connectionLabel: UILabel!
 	@IBOutlet weak var connectionView: UIView!
 	
-
-	
     override func viewDidLoad() {
-		
 		// Loads stored waypoint for the quest from NSUserDefaults
 		if let startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
 			if let curSavedIndex = startedQuests[self.quest.name] as Int! {
@@ -84,11 +81,11 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		for requests so that smaller distance differences will
 		cause a request to be triggered, and then update the
 		geofences based on the curent location.
-	*/
+	 */
 	override func viewWillAppear(animated: Bool) {
 		// Setup networking monitoring
 		NSNotificationCenter.defaultCenter().addObserver(self,
-			selector: "connectionStatusChanged:",
+			selector: #selector(QuestPlayingViewController.connectionStatusChanged(_:)),
 			name: kReachabilityChangedNotification,
 			object: nil)
 	}
@@ -97,7 +94,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		If another view is about to come up, set the threshold
 		so high as to stop requests from being sent to the
 		server altogether.
-	*/
+	 */
 	override func viewWillDisappear(animated: Bool) {
 		// Stop networking monitoring
 		NSNotificationCenter.defaultCenter().removeObserver(
@@ -114,7 +111,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		
 		Parameters
 			- notification: notification sent by observer
-	*/
+	 */
 	func connectionStatusChanged(notification: NSNotification) {
 		if self.networkMonitor!.isReachableViaWiFi() || self.networkMonitor!.isReachableViaWWAN()
 		{
@@ -133,14 +130,15 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	
 	
 	/**
-	Performs geofence checking upon an update to the current location.
-	Parameters:
-	- manager:   The location manager that was started
-	within this module.
-	
-	- locations: The past few locations that were detected by
-	the location manager.
-	*/
+        Performs geofence checking upon an update to the current location.
+     
+        Parameters:
+            - manager:   The location manager that was started
+                         within this module.
+                        
+            - locations: The past few locations that were detected by
+                         the location manager.
+	 */
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
 	{
 		let curLocation: CLLocation = locationManager.location!
@@ -154,7 +152,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	
 		- Parameters:
 			- sender: The UI button attemptCompButton
-	*/
+	 */
 	@IBAction func attemptCompletion(sender: AnyObject) {
 	}
 	
@@ -264,7 +262,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 					  or the completed waypoints modal
 			- sender: The sender, in our case, will be either the attemptCompButton
 					  or waypointsButton
-	*/
+	 */
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		/**
 		 * Attempt Modal
@@ -277,7 +275,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 			if quest.wayPoints[currentWayPointIndex].checkIfTriggered(locationManager.location!.coordinate) {
 				nextCtrl.isCorrect = true
 				// increment waypointIndex and store it
-				currentWayPointIndex!++
+				currentWayPointIndex! += 1
 				// store the waypoint 
 				if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
 					startedQuests[quest.name] = currentWayPointIndex
@@ -321,7 +319,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 			let nextCtrl = segue.destinationViewController as! WaypointsModalViewController
 			nextCtrl.parentVC = self
 			var waypoints = [WayPoint]()
-			for (var i = 0; i < currentWayPointIndex; i++) {
+			for i in 0 ..< currentWayPointIndex {
 				waypoints.append((self.quest?.wayPoints[i])!)
 			}
 			nextCtrl.waypoints = waypoints
@@ -338,7 +336,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
         
             - didChangeAuthorizationStatus: The current authorization status for the user
                                             determining whether we can use location.
-	*/
+	 */
 	func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
 		if status == .AuthorizedAlways {
 			locationManager.startUpdatingLocation()

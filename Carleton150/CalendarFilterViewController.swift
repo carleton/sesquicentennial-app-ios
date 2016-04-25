@@ -25,7 +25,7 @@ class CalendarFilterViewController: UIViewController {
         super.init(coder: decoder)
         NSNotificationCenter
             .defaultCenter()
-            .addObserver(self, selector: "actOnCalendarUpdate:", name: "carleton150.calendarUpdate", object: nil)
+            .addObserver(self, selector: #selector(CalendarFilterViewController.actOnCalendarUpdate(_:)), name: "carleton150.calendarUpdate", object: nil)
     }
     
     override func viewDidLoad() {
@@ -38,7 +38,7 @@ class CalendarFilterViewController: UIViewController {
         
         self.datePicker.datePickerMode = UIDatePickerMode.Date
         // add target for the trigger update function to change the weekday date is changed
-        self.datePicker.addTarget(self, action: Selector("triggerDayUpdate:"), forControlEvents: UIControlEvents.ValueChanged)
+        self.datePicker.addTarget(self, action: #selector(CalendarFilterViewController.triggerDayUpdate(_:)), forControlEvents: UIControlEvents.ValueChanged)
         self.currentDay.text = self.datePicker.date.weekday
     }
    
