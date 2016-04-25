@@ -13,7 +13,7 @@ final class Constants {
     /**
         The radius for the request for geofences.
      */
-    static let geofenceRequestRadius: Int = 500 // meters
+    static let geofenceRequestRadius: Int = 50000 // meters
     
     /**
         The distance threshold for getting new memories.
