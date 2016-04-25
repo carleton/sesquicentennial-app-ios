@@ -21,7 +21,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	var reach: Reachability?
 	var networkMonitor: Reachability!
 	var landmarks: Dictionary<String,Landmark>!
-	var selectedGeofence: String!
 	var circles: [GMSCircle] = [GMSCircle]()
 	
 	// variables stored for caching the memories
@@ -91,10 +90,10 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
                 (success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
                 if (success) {
                     // create geofences
-                    for geofence in result! {
-                        let geotification = Landmark(coordinate: geofence.center, identifier: geofence.name)
-                        if self.landmarks[geofence.name] == nil {
-                            self.landmarks[geofence.name] = geotification
+                    for entry in result! {
+                        let landmark = Landmark(coordinate: entry.center, identifier: entry.name)
+                        if self.landmarks[entry.name] == nil {
+                            self.landmarks[entry.name] = landmark
                         }
                     }
                     
@@ -111,13 +110,11 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	
     
 	/**
-		Called by Observer everything the internet connection changes. Toggles UI elements for
-		to show current state of the connection. Triggers an update on the geofence information
-		if network restored
+		Called by observer every time the internet connection changes.
+        Toggles UI elements to show the current state of the connection.
 		
 		Parameters
 			- notification: notification sent by observer
-	
 	*/
 	func connectionStatusChanged(notification: NSNotification) {
 		if self.networkMonitor!.isReachableViaWiFi() || self.networkMonitor!.isReachableViaWWAN()
@@ -158,7 +155,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		)
 	}
 
-	
+    
     /**
         Prepares for a segue to the detail view for a particular point of
         interest on the map.
@@ -178,10 +175,10 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			let destinationController = (segue.destinationViewController as! TimelineViewController)
 			destinationController.parentVC = self
 			
-			if let geofenceTitle = (sender?.title)! as String! {
-				destinationController.selectedGeofence = geofenceTitle
-				if let geofence = landmarks[geofenceTitle] {
-					destinationController.timeline = geofence.data
+			if let landmarkName = (sender?.title)! as String! {
+				destinationController.selectedGeofence = landmarkName
+				if let landmark = landmarks[landmarkName] {
+					destinationController.timeline = landmark.data
 				}
 			}
 			
