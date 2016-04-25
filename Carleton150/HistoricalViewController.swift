@@ -13,9 +13,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
     @IBOutlet weak var momentButton: UIButton!
 	@IBOutlet weak var questionButton: UIButton!
     @IBOutlet weak var mapView: GMSMapView!
-	@IBOutlet weak var Debug: UIButton!
-    @IBOutlet weak var longText: UILabel!
-    @IBOutlet weak var latText: UILabel!
 	@IBOutlet weak var connectionIndicator: UIActivityIndicatorView!
 	@IBOutlet weak var connectionLabel: UILabel!
 	@IBOutlet weak var connectionView: UIView!
@@ -23,21 +20,12 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	let locationManager: CLLocationManager = CLLocationManager()
 	var reach: Reachability?
 	var networkMonitor: Reachability!
-	var geofences: Dictionary<String,Geotification>!
-	var minRequestThreshold: Double = Constants.geofenceRequestThreshold // in meters
-	var lastGeoReqLocation: CLLocation!
-	var selectedGeofence: String!
-	var debugMode: Bool = false
+	var landmarks: Dictionary<String,Landmark>!
 	var circles: [GMSCircle] = [GMSCircle]()
 	
 	// variables stored for caching the memories
 	var loadedMemories: [Memory]!
 	var lastMemReqLocation: CLLocation!
-	
-    /**
-        Set to true to show the debug button for testing, set to false to hide
-     */
-    let showDebugButton = false
 	
     /**
         Upon load of this view, start the location manager and
@@ -56,7 +44,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         defaults.synchronize()
 		
 		// initialize geofences dictionary
-		self.geofences = Dictionary<String,Geotification>()
+		self.landmarks = Dictionary<String,Landmark>()
 		
 		// set up the memories button and the question button
 		self.momentButton.layer.cornerRadius = 5
@@ -89,35 +77,52 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         // set up the tiling for the map
         Utils.setUpTiling(mapView)
         
-        // brings subviews in front of the map.
-        if showDebugButton {
-            mapView.bringSubviewToFront(Debug)
-            mapView.bringSubviewToFront(momentButton)
-        }
-		
+        loadLandmarks(locationManager.location?.coordinate)
 	}
+    
+    
+    /**
+        Requests the geofences from the server. 
+     */
+    func loadLandmarks(currentLocation: CLLocationCoordinate2D?) {
+        if let currentLocation = currentLocation {
+            HistoricalDataService.requestNearbyGeofences(currentLocation) {
+                (success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
+                if (success) {
+                    // create geofences
+                    for entry in result! {
+                        let landmark = Landmark(coordinate: entry.center, identifier: entry.name)
+                        if self.landmarks[entry.name] == nil {
+                            self.landmarks[entry.name] = landmark
+                        }
+                    }
+                    
+                    for entry in self.landmarks {
+                        entry.1.displayLandmark(self.mapView)
+                    }
+                    
+                } else {
+                    print("Could not nearby geofences from the server.")
+                }
+            }
+        }
+    }
 	
+    
 	/**
-		Called by Observer everything the internet connection changes. Toggles UI elements for
-		to show current state of the connection. Triggers an update on the geofence information
-		if network restored
+		Called by observer every time the internet connection changes.
+        Toggles UI elements to show the current state of the connection.
 		
 		Parameters
 			- notification: notification sent by observer
-	
 	*/
 	func connectionStatusChanged(notification: NSNotification) {
 		if self.networkMonitor!.isReachableViaWiFi() || self.networkMonitor!.isReachableViaWWAN()
-		{
-			self.connectionLabel.hidden = true
-			self.connectionIndicator.stopAnimating()
-			self.connectionIndicator.hidden = true
-			self.connectionView.hidden = true
-			// reload data from the server
-			self.lastGeoReqLocation = nil
-            if let location = self.locationManager.location {
-                self.updateGeofences(location)
-            }
+        {
+            self.connectionLabel.hidden = true
+            self.connectionIndicator.stopAnimating()
+            self.connectionIndicator.hidden = true
+            self.connectionView.hidden = true
 		} else {
 			self.connectionLabel.hidden = false
 			self.connectionIndicator.startAnimating()
@@ -125,7 +130,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			self.connectionView.hidden = false
 		}
 	}
-	
 	
 	
     /**
@@ -142,10 +146,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			name: kReachabilityChangedNotification,
 			object: nil
 		)
-		self.minRequestThreshold = Constants.geofenceRequestThreshold
-		if let curLocation = locationManager.location {
-			self.updateGeofences(curLocation)
-		}
 		// check to see if connected
 		self.connectionStatusChanged(
 			NSNotification(
@@ -155,21 +155,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		)
 	}
 
-    /**
-        If another view is about to come up, set the threshold 
-        so high as to stop requests from being sent to the 
-        server altogether.
-     */
-	override func viewWillDisappear(animated: Bool) {
-		self.minRequestThreshold = 1000000
-		// Stop networking monitoring
-		NSNotificationCenter.defaultCenter().removeObserver(
-			self,
-			name: kReachabilityChangedNotification,
-			object: nil
-		)
-	}
-	
+    
     /**
         Prepares for a segue to the detail view for a particular point of
         interest on the map.
@@ -189,10 +175,10 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			let destinationController = (segue.destinationViewController as! TimelineViewController)
 			destinationController.parentVC = self
 			
-			if let geofenceTitle = (sender?.title)! as String! {
-				destinationController.selectedGeofence = geofenceTitle
-				if let geofence = geofences[geofenceTitle] {
-					destinationController.timeline = geofence.data
+			if let landmarkName = (sender?.title)! as String! {
+				destinationController.selectedGeofence = landmarkName
+				if let landmark = landmarks[landmarkName] {
+					destinationController.timeline = landmark.data
 				}
 			}
 			
@@ -217,34 +203,8 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			destinationController.parent = self
 		}
     }
-
-    /**
-        Debug function that shows the current available geofences
-        and the current latitude and longitude coordinates.
-     
-        Parameters: 
-            - sender: the button that was pressed to trigger this 
-                      function, which is currently the button in the 
-                      top right corner of the historical view.
-     */
-	@IBAction func toggleDebug(sender: AnyObject) {
-		if (debugMode) {
-			for i in 0 ..< circles.count {
-				circles[i].map = nil
-			}
-			mapView.sendSubviewToBack(latText)
-			mapView.sendSubviewToBack(longText)
-			debugMode = false
-		} else {
-			for i in 0 ..< circles.count {
-				circles[i].map = mapView
-			}
-			mapView.bringSubviewToFront(latText)
-			mapView.bringSubviewToFront(longText)
-			debugMode = true
-		}
-	}
 	
+    
     /**
         The function immediately called by the location manager that 
         begins keeping track of location for the various geofence triggers 
@@ -266,26 +226,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         
     }
     
-    /**
-        Performs geofence checking upon an update to the current location.
-        Parameters: 
-            - manager:   The location manager that was started 
-                         within this module.
-     
-            - locations: The past few locations that were detected by 
-                         the location manager.
-     */
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
-		let curLocation: CLLocation = locationManager.location!
-		
-		latText.text = String(format:"%f", curLocation.coordinate.latitude)
-        longText.text = String(format:"%f", curLocation.coordinate.longitude)
-		
-		self.updateGeofences(curLocation)
-
-	}
-	
+    
     /**
         Selects a marker and shows the popover upon a tap from the user.
      
@@ -293,82 +234,9 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
             - mapView: The Google Maps view the marker is attached to.
      
             - didTapMarker: The marker that was tapped by the user.
-     
      */
 	func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
         self.performSegueWithIdentifier("showTimeline", sender: marker)
 		return true
 	}
-	
-    /**
-        Determines if the app should make a request to the server
-        to get more data about the current surroundings.
-     
-        - Parameters: 
-            - curLocation: The user's current location.
-     */
-	func shouldUpdateLocation(curLocation: CLLocation) -> Bool {
-		if self.lastGeoReqLocation == nil {
-			self.lastGeoReqLocation = curLocation
-			return true
-		}
-		if (Utils.getDistance(curLocation.coordinate, point2: self.lastGeoReqLocation.coordinate) >= minRequestThreshold) {
-			self.lastGeoReqLocation = curLocation
-			return true
-		}
-		return false
-	}
-
-    /**
-        If the geofence is too far away to be visible, take it off the map.
-        
-        - Parameters: 
-            - curLocation: The user's current location.
-     */
-	func updateGeofenceVisibility(curLocation: CLLocation) {
-		for (_,geofence) in self.geofences! {
-			if (Utils.getDistance(curLocation.coordinate, point2: geofence.coordinate) <= geofence.radius) {
-				geofence.enteredGeofence(self.mapView)
-			} else if (Utils.getDistance(curLocation.coordinate, point2: geofence.coordinate) > 500) {
-				geofence.exitedGeofence()
-			}
-		}
-	}
-	
-	/**
-		Checks to see if user has traveled more than the threshold distance, request geofences
-		from the server and adds them to the current available geofences. Also changes visibility
-		of current geofences
-	 */
-	func updateGeofences(curLocation: CLLocation) {
-		// if the user has traveled far enough
-		if (shouldUpdateLocation(curLocation)) {
-			// Center map around user
-			mapView.animateToLocation(curLocation.coordinate)
-			// get new geofences from server and save them
-			HistoricalDataService.requestNearbyGeofences(curLocation.coordinate) {
-				(success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
-				if (success) {
-					// create geofences
-					for geofence in result! {
-						if (self.showDebugButton) {
-							let circle = GMSCircle( position: geofence.center, radius: Double(geofence.radius))
-							circle.fillColor = UIColor.orangeColor().colorWithAlphaComponent(0.1)
-							self.circles.append(circle)
-						}
-						let geotification = Geotification(coordinate: geofence.center, radius: Double(geofence.radius), identifier: geofence.name)
-						if self.geofences[geofence.name] == nil {
-							self.geofences[geofence.name] = geotification
-						}
-					}
-					self.updateGeofenceVisibility(curLocation)
-				} else {
-					print("Could not nearby geofences from the server.")
-				}
-			}
-		}
-		self.updateGeofenceVisibility(curLocation)
-	}
 }
-
-
