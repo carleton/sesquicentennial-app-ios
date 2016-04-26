@@ -30,7 +30,6 @@
 		710726FD1C5813650071FABC /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710726FC1C5813650071FABC /* CalendarCell.swift */; };
 		711704131BF3EB9E00566464 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711704121BF3EB9E00566464 /* utils.swift */; };
 		71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */; };
-		71294DB31BC6FC1500B9F81B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71294DB11BC6FC1500B9F81B /* Main.storyboard */; };
 		71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71294DB61BC6FC1500B9F81B /* LaunchScreen.storyboard */; };
 		71294DCE1BC6FC1500B9F81B /* Carleton150UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DCD1BC6FC1500B9F81B /* Carleton150UITests.swift */; };
 		71340E581C5214A2007F9E2F /* QuestDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71340E571C5214A2007F9E2F /* QuestDataService.swift */; };
@@ -44,6 +43,9 @@
 		715AE4801C4EB08D00C8F0C9 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47F1C4EB08D00C8F0C9 /* Quest.swift */; };
 		717FE3E61BC7001D009CA507 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 717FE3E51BC7001D009CA507 /* Keys.plist */; };
 		7180A72E1C685DAA0080F121 /* TimelineTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7180A72D1C685DAA0080F121 /* TimelineTitleView.swift */; };
+		71ABAA621CD0183700D6BFFE /* Info.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71ABAA611CD0183700D6BFFE /* Info.storyboard */; };
+		71ABAA641CD0189700D6BFFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71ABAA631CD0189700D6BFFE /* Main.storyboard */; };
+		71ABAA661CD01A9B00D6BFFE /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ABAA651CD01A9B00D6BFFE /* InfoViewController.swift */; };
 		71B379B91C7928F40057B5B8 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B379B81C7928F40057B5B8 /* TutorialViewController.swift */; };
 		71C4302F1C765105005D8112 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C4302E1C765105005D8112 /* Memory.swift */; };
 		71CC5F791BE944220065AA4C /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CC5F781BE944220065AA4C /* DataServiceTest.swift */; };
@@ -97,7 +99,6 @@
 		71294DAA1BC6FC1500B9F81B /* Carleton150.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carleton150.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71294DAF1BC6FC1500B9F81B /* HistoricalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewController.swift; sourceTree = "<group>"; };
-		71294DB21BC6FC1500B9F81B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		71294DB71BC6FC1500B9F81B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71294DB91BC6FC1500B9F81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71294DC91BC6FC1500B9F81B /* Carleton150UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Carleton150UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +125,9 @@
 		7194ED5E1C715066007F55D4 /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
 		7194ED5F1C715066007F55D4 /* RobotoCondensed-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Light.ttf"; sourceTree = "<group>"; };
 		7194ED601C715066007F55D4 /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
+		71ABAA611CD0183700D6BFFE /* Info.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Info.storyboard; sourceTree = "<group>"; };
+		71ABAA631CD0189700D6BFFE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		71ABAA651CD01A9B00D6BFFE /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		71B379B81C7928F40057B5B8 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		71C4302E1C765105005D8112 /* Memory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 		71CC5F6E1BE942CF0065AA4C /* Carleton150Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Carleton150Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,9 +226,9 @@
 				711704121BF3EB9E00566464 /* utils.swift */,
 				71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */,
 				71294DB61BC6FC1500B9F81B /* LaunchScreen.storyboard */,
-				71294DB11BC6FC1500B9F81B /* Main.storyboard */,
 				714C58AF1C5ABF1600D6C33E /* Endpoints.swift */,
 				71F56C251C7AA6B000BB0AE1 /* Constants.swift */,
+				71ABAA631CD0189700D6BFFE /* Main.storyboard */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -254,6 +258,7 @@
 		71294DAC1BC6FC1500B9F81B /* Carleton150 */ = {
 			isa = PBXGroup;
 			children = (
+				71ABAA601CD0181D00D6BFFE /* Info */,
 				7194ED561C715059007F55D4 /* Fonts */,
 				63036B391C4CB86F00193A78 /* Common */,
 				63036B351C4CB6CD00193A78 /* Calendar */,
@@ -290,6 +295,15 @@
 				7194ED601C715066007F55D4 /* RobotoCondensed-Regular.ttf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		71ABAA601CD0181D00D6BFFE /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				71ABAA611CD0183700D6BFFE /* Info.storyboard */,
+				71ABAA651CD01A9B00D6BFFE /* InfoViewController.swift */,
+			);
+			name = Info;
 			sourceTree = "<group>";
 		};
 		71CC5F6F1BE942CF0065AA4C /* Carleton150Tests */ = {
@@ -433,8 +447,9 @@
 			files = (
 				63036B381C4CB80000193A78 /* Calendar.storyboard in Resources */,
 				717FE3E61BC7001D009CA507 /* Keys.plist in Resources */,
+				71ABAA621CD0183700D6BFFE /* Info.storyboard in Resources */,
+				71ABAA641CD0189700D6BFFE /* Main.storyboard in Resources */,
 				71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */,
-				71294DB31BC6FC1500B9F81B /* Main.storyboard in Resources */,
 				634AD3A31C780D26005EBE9C /* Assets.xcassets in Resources */,
 				6368A5961C5050E900D6B5B2 /* Quest.storyboard in Resources */,
 				63036B341C4CB5A200193A78 /* Historical.storyboard in Resources */,
@@ -511,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63F5E9A01C72B60D00CFCB38 /* QuestPlayingViewController.swift in Sources */,
+				71ABAA661CD01A9B00D6BFFE /* InfoViewController.swift in Sources */,
 				711704131BF3EB9E00566464 /* utils.swift in Sources */,
 				714DB8731C57DC6300770A44 /* CalendarViewController.swift in Sources */,
 				71340E5A1C5216C8007F9E2F /* HistoricalDataService.swift in Sources */,
@@ -591,14 +607,6 @@
 				6368A5951C5050E900D6B5B2 /* Base */,
 			);
 			name = Quest.storyboard;
-			sourceTree = "<group>";
-		};
-		71294DB11BC6FC1500B9F81B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				71294DB21BC6FC1500B9F81B /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		71294DB61BC6FC1500B9F81B /* LaunchScreen.storyboard */ = {

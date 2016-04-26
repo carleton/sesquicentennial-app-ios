@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XOf-Hu-MR1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XOf-Hu-MR1">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -31,7 +31,7 @@
             <objects>
                 <collectionViewController id="DiF-D4-Jp7" customClass="CalendarViewController" customModule="Carleton150" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="SbU-JV-pey">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="451"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="402"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.039215686270000001" green="0.16078431369999999" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -39,7 +39,7 @@
                         </constraints>
                         <collectionViewLayout key="collectionViewLayout" id="VbH-pL-bbV" customClass="CalendarLayout" customModule="Carleton150" customModuleProvider="target"/>
                         <view key="backgroundView" contentMode="scaleToFill" id="wdZ-kP-7wb">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="451"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="402"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="I0N-A3-Nwr">
@@ -90,19 +90,19 @@
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIr-Lz-Avv">
-                                            <rect key="frame" x="28" y="80.5" width="143" height="26"/>
+                                            <rect key="frame" x="28" y="79" width="143" height="29.5"/>
                                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="22"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="0.95000000000000007" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spg-uT-lZH">
-                                            <rect key="frame" x="0.0" y="115" width="199" height="21.5"/>
+                                            <rect key="frame" x="0.0" y="117" width="199" height="19"/>
                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhk-dB-yYD">
-                                            <rect key="frame" x="8" y="136.5" width="183" height="21.5"/>
+                                            <rect key="frame" x="8" y="136" width="183" height="19"/>
                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -158,9 +158,10 @@
         <scene sceneID="dS2-dH-Wvz">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XOf-Hu-MR1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar53.png" id="F7S-wy-oNt" userLabel="Calendar"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar53" id="F7S-wy-oNt" userLabel="Calendar"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Axk-MK-oxU"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LFQ-lr-Snr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -183,11 +184,11 @@
                         <viewControllerLayoutGuide type="bottom" id="qm9-Qy-qWU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XXl-4J-2G4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dig-IK-Wrs">
-                                <rect key="frame" x="0.0" y="149" width="600" height="451"/>
+                                <rect key="frame" x="0.0" y="149" width="600" height="402"/>
                                 <connections>
                                     <segue destination="DiF-D4-Jp7" kind="embed" identifier="segueToContainer" id="EY0-VE-ZLp"/>
                                 </connections>
@@ -289,26 +290,26 @@
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1UQ-p6-P1G">
-                                        <rect key="frame" x="14" y="171" width="526" height="375"/>
+                                        <rect key="frame" x="14" y="168" width="526" height="378"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="eventTitle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="KhU-MR-imR">
-                                        <rect key="frame" x="19" y="72" width="521" height="28"/>
+                                        <rect key="frame" x="19" y="72" width="521" height="25"/>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="21"/>
                                         <color key="textColor" red="0.90216385690000001" green="0.62171052630000001" blue="0.073054933399999994" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GM2-zo-A7W">
-                                        <rect key="frame" x="20" y="115" width="520" height="21.5"/>
+                                        <rect key="frame" x="20" y="112" width="520" height="21.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="18"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ix-jQ-xny">
-                                        <rect key="frame" x="19" y="144.5" width="521" height="21.5"/>
+                                        <rect key="frame" x="19" y="141.5" width="521" height="21.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="18"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -355,7 +356,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="calendar53.png" width="24" height="24"/>
+        <image name="calendar53" width="24" height="24"/>
         <image name="checkmark" width="128" height="128"/>
         <image name="warning_white" width="614" height="460"/>
     </resources>
