@@ -35,7 +35,6 @@ final class HistoricalDataService {
         Alamofire.request(.POST, Endpoints.historicalInfo, parameters: parameters, encoding: .JSON).responseJSON() {
             (request, response, result) in
             if let result = result.value {
-				print("Data Successfully retrieved for the \(geofenceName)")
                 let json = JSON(result)
 				let answer = json["content"][geofenceName]
 				if answer.count > 0 {
@@ -264,7 +263,6 @@ final class HistoricalDataService {
                             return
                         }
                     }
-					print("Data Successfully retrieved for the Geofences Endpoint")
                     completion(success: true, result: final_result)
                 } else {
                     print("No results were found.")
