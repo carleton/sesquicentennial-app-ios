@@ -36,9 +36,24 @@
                     <view key="view" contentMode="scaleToFill" id="soW-nW-ggu">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iSw-vS-Rw6">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iSw-vS-Rw6" firstAttribute="leading" secondItem="soW-nW-ggu" secondAttribute="leading" id="Xy3-Ro-PTQ"/>
+                            <constraint firstAttribute="trailing" secondItem="iSw-vS-Rw6" secondAttribute="trailing" id="lHw-IF-25i"/>
+                            <constraint firstItem="9bu-nL-qbg" firstAttribute="top" secondItem="iSw-vS-Rw6" secondAttribute="bottom" id="pdB-4h-5sD"/>
+                            <constraint firstItem="iSw-vS-Rw6" firstAttribute="top" secondItem="k6o-Zm-Bsl" secondAttribute="bottom" id="pj2-FC-jLk"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6hu-Uc-8Na"/>
+                    <connections>
+                        <outlet property="webView" destination="iSw-vS-Rw6" id="Mw3-gH-u70"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QMe-60-Vwf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

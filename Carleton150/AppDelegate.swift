@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
 		// start monitoring network connection
 		startNetworkMonitoring()
-		
+        
         return true
     }
 	
