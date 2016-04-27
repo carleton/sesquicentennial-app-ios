@@ -13,7 +13,7 @@ class InfoViewController: UIViewController {
         self.loadInfo()
         let button = UIButton()
         button.setTitle("Home", forState: .Normal)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Home",
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Home",
                                                            style: .Plain,
                                                            target: self,
                                                            action: #selector(self.loadInfo)
