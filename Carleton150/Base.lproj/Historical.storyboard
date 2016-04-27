@@ -160,6 +160,21 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wzj-au-GJO" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hp0-PX-kfR">
+                                        <rect key="frame" x="432" y="7.5" width="158" height="47.5"/>
+                                        <color key="backgroundColor" red="0.039215686274509803" green="0.16078431372549018" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="158" id="0gd-P1-Bf6"/>
+                                            <constraint firstAttribute="height" constant="47.5" id="3o7-fw-JpK"/>
+                                        </constraints>
+                                        <size key="titleShadowOffset" width="6" height="6"/>
+                                        <state key="normal" title="Nearby Memories">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="2Ed-yO-PXD" kind="presentation" identifier="showMemories" modalPresentationStyle="overFullScreen" id="Hmv-V7-pMD"/>
+                                        </connections>
+                                    </button>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ZF-dj-PrW" userLabel="Connection View">
                                         <rect key="frame" x="0.0" y="-64" width="600" height="551"/>
                                         <subviews>
@@ -176,29 +191,12 @@
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="8E5-oy-4AQ">
                                                 <rect key="frame" x="282" y="257" width="37" height="37"/>
                                             </activityIndicatorView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hp0-PX-kfR">
-                                                <rect key="frame" x="426" y="74" width="158" height="47.5"/>
-                                                <color key="backgroundColor" red="0.039215686274509803" green="0.16078431372549018" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="158" id="0gd-P1-Bf6"/>
-                                                    <constraint firstAttribute="height" constant="47.5" id="3o7-fw-JpK"/>
-                                                </constraints>
-                                                <size key="titleShadowOffset" width="6" height="6"/>
-                                                <state key="normal" title="Nearby Memories">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="2Ed-yO-PXD" kind="presentation" identifier="showMemories" modalPresentationStyle="overFullScreen" id="Hmv-V7-pMD"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.60202047413793103" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="8E5-oy-4AQ" firstAttribute="centerX" secondItem="6ZF-dj-PrW" secondAttribute="centerX" id="2rN-wm-WCZ"/>
                                             <constraint firstItem="0eb-hW-0Pn" firstAttribute="top" secondItem="8E5-oy-4AQ" secondAttribute="bottom" id="7F0-vA-Av3"/>
-                                            <constraint firstItem="hp0-PX-kfR" firstAttribute="top" secondItem="6ZF-dj-PrW" secondAttribute="top" constant="74" id="PjA-m4-cz4"/>
                                             <constraint firstItem="8E5-oy-4AQ" firstAttribute="centerY" secondItem="6ZF-dj-PrW" secondAttribute="centerY" id="Qyu-iE-kpW"/>
-                                            <constraint firstAttribute="trailing" secondItem="hp0-PX-kfR" secondAttribute="trailing" constant="16" id="RV3-fx-5Xc"/>
                                             <constraint firstItem="0eb-hW-0Pn" firstAttribute="centerX" secondItem="6ZF-dj-PrW" secondAttribute="centerX" id="cv0-Hp-Dfy"/>
                                         </constraints>
                                     </view>
@@ -234,6 +232,8 @@
                                     <constraint firstItem="kCl-QK-XDS" firstAttribute="leading" secondItem="Wzj-au-GJO" secondAttribute="leading" constant="8" id="0ij-rS-spz"/>
                                     <constraint firstItem="6ZF-dj-PrW" firstAttribute="top" secondItem="Wzj-au-GJO" secondAttribute="top" constant="-64" id="2S2-vc-eMs"/>
                                     <constraint firstItem="6ZF-dj-PrW" firstAttribute="leading" secondItem="Wzj-au-GJO" secondAttribute="leading" id="3W5-MI-wl6"/>
+                                    <constraint firstAttribute="trailing" secondItem="hp0-PX-kfR" secondAttribute="trailing" constant="10" id="Cfv-Fc-Xg5"/>
+                                    <constraint firstItem="hp0-PX-kfR" firstAttribute="top" secondItem="Wzj-au-GJO" secondAttribute="top" constant="7.5" id="F9i-v0-dVS"/>
                                     <constraint firstAttribute="trailing" secondItem="6ZF-dj-PrW" secondAttribute="trailing" id="K9j-wB-l4B"/>
                                     <constraint firstAttribute="bottom" secondItem="kCl-QK-XDS" secondAttribute="bottom" constant="8" id="MBZ-fP-NZv"/>
                                     <constraint firstItem="blb-au-egd" firstAttribute="leading" secondItem="Wzj-au-GJO" secondAttribute="leading" constant="8" id="TzX-1W-The"/>
@@ -645,7 +645,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="XY1-Tn-Xxn">
-                                        <rect key="frame" x="24" y="22.5" width="448" height="28"/>
+                                        <rect key="frame" x="24" y="24" width="448" height="25"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="21"/>
                                         <color key="textColor" red="0.90216385690000001" green="0.62171052630000001" blue="0.073054933399999994" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -720,7 +720,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mai-gl-4TJ">
-                                        <rect key="frame" x="24" y="22.5" width="476" height="28"/>
+                                        <rect key="frame" x="24" y="24" width="476" height="25"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="21"/>
                                         <color key="textColor" red="0.90216385690000001" green="0.62171052630000001" blue="0.073054933399999994" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -805,44 +805,44 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share Your Own Memory!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="vel-4p-mZH">
-                                        <rect key="frame" x="15" y="23" width="448" height="21.5"/>
+                                        <rect key="frame" x="15" y="23" width="448" height="24"/>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WZE-hk-ynF">
-                                        <rect key="frame" x="15" y="52.5" width="537" height="485.5"/>
+                                        <rect key="frame" x="15" y="55" width="537" height="483"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="ft7-ed-aSb">
-                                                <rect key="frame" x="12" y="8" width="89" height="20"/>
+                                                <rect key="frame" x="12" y="8" width="89" height="22.5"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your name here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T0J-vD-s5I">
-                                                <rect key="frame" x="12" y="37.5" width="483.5" height="30"/>
+                                                <rect key="frame" x="12" y="40" width="483.5" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="A suitable title for your memory" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BTw-WA-871">
-                                                <rect key="frame" x="12" y="105" width="483.5" height="30"/>
+                                                <rect key="frame" x="12" y="110" width="483.5" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="KIZ-37-7H9">
-                                                <rect key="frame" x="12" y="75.5" width="39" height="20"/>
+                                                <rect key="frame" x="12" y="78" width="39" height="22.5"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="zNd-t7-XUg">
-                                                <rect key="frame" x="12" y="146" width="92.5" height="20"/>
+                                                <rect key="frame" x="12" y="151" width="92.5" height="22.5"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iL7-de-XDi">
-                                                <rect key="frame" x="12" y="174.5" width="483.5" height="55"/>
+                                                <rect key="frame" x="12" y="182" width="483.5" height="55"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="55" id="JIe-sY-GDl"/>
@@ -851,13 +851,13 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="3Gl-tg-QAJ">
-                                                <rect key="frame" x="12" y="237.5" width="52.5" height="30.5"/>
+                                                <rect key="frame" x="12" y="245" width="52.5" height="30.5"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xn-gR-3AG">
-                                                <rect key="frame" x="84" y="237.5" width="116" height="30"/>
+                                                <rect key="frame" x="84" y="245" width="116" height="30"/>
                                                 <state key="normal" title="Upload an Image">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -866,7 +866,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SLE-8q-Nw6">
-                                                <rect key="frame" x="84" y="267.5" width="116" height="30"/>
+                                                <rect key="frame" x="84" y="275" width="116" height="30"/>
                                                 <state key="normal" title="Take a Picture">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -875,14 +875,14 @@
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="2TK-w3-fcZ">
-                                                <rect key="frame" x="227" y="257.5" width="19" height="20"/>
+                                                <rect key="frame" x="227" y="265" width="19" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="Tme-Uw-Fxc"/>
                                                     <constraint firstAttribute="width" constant="19" id="zLv-Q2-DP5"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ED-BL-F0I">
-                                                <rect key="frame" x="244" y="404.5" width="49" height="30"/>
+                                                <rect key="frame" x="244" y="412" width="49" height="30"/>
                                                 <state key="normal" title="Submit">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -972,6 +972,6 @@
         <image name="timeline_point" width="34" height="34"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hmv-V7-pMD"/>
+        <segue reference="s5d-X5-My7"/>
     </inferredMetricsTieBreakers>
 </document>

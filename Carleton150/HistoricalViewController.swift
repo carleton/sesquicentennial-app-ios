@@ -136,6 +136,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
             self.connectionIndicator.hidden = true
             self.connectionView.hidden = true
             self.mapView.sendSubviewToBack(self.connectionView)
+            self.loadLandmarks(locationManager.location?.coordinate)
 		} else {
 			self.connectionLabel.hidden = false
 			self.connectionIndicator.startAnimating()

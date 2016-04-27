@@ -174,8 +174,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 		if let lastLoc = self.lastRequestLocation {
 			parentVC.lastMemReqLocation = lastLoc
 		}
-        parentVC.momentButton.hidden = false
-		parentVC.dismissViewControllerAnimated(true) { () -> Void in }
+        parentVC.momentButton.hidden = parentVC.hideMemoriesFeature
+        parentVC.dismissViewControllerAnimated(true, completion: nil)
 	}
 
     /**
