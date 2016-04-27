@@ -130,11 +130,13 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
             self.connectionIndicator.stopAnimating()
             self.connectionIndicator.hidden = true
             self.connectionView.hidden = true
+            self.mapView.sendSubviewToBack(self.connectionView)
 		} else {
 			self.connectionLabel.hidden = false
 			self.connectionIndicator.startAnimating()
 			self.connectionIndicator.hidden = false
 			self.connectionView.hidden = false
+            self.mapView.bringSubviewToFront(self.connectionView)
 		}
 	}
 	
