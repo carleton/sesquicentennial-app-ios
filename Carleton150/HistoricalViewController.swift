@@ -26,12 +26,17 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	// variables stored for caching the memories
 	var loadedMemories: [Memory]!
 	var lastMemReqLocation: CLLocation!
+    
+    var hideMemoriesFeature = true
 	
     /**
         Upon load of this view, start the location manager and
         set the camera on the map view to focus on Carleton.
      */
     override func viewDidLoad() {
+       
+        // disables memories feature.
+        self.momentButton.hidden = hideMemoriesFeature
         
         let defaults = NSUserDefaults.standardUserDefaults()
        
@@ -50,6 +55,8 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		self.momentButton.layer.cornerRadius = 5
 		self.momentButton.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
 		self.momentButton.layer.borderWidth = 1
+        
+        
 		mapView.bringSubviewToFront(self.momentButton)
 		mapView.bringSubviewToFront(self.questionButton)
 		
