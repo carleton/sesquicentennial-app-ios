@@ -16,18 +16,18 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	@IBOutlet weak var connectionIndicator: UIActivityIndicatorView!
 	@IBOutlet weak var connectionLabel: UILabel!
 	@IBOutlet weak var connectionView: UIView!
+    @IBOutlet weak var storiesButton: UIButton!
 	
 	let locationManager: CLLocationManager = CLLocationManager()
 	var reach: Reachability?
 	var networkMonitor: Reachability!
 	var landmarks: Dictionary<String,Landmark>!
-	var circles: [GMSCircle] = [GMSCircle]()
 	
 	// variables stored for caching the memories
 	var loadedMemories: [Memory]!
 	var lastMemReqLocation: CLLocation!
     
-    var hideMemoriesFeature = true
+    let hideMemoriesFeature = true
 	
     /**
         Upon load of this view, start the location manager and
@@ -51,14 +51,19 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		// initialize geofences dictionary
 		self.landmarks = Dictionary<String,Landmark>()
 		
+        // set up the stories button
+		self.storiesButton.layer.cornerRadius = 5
+		self.storiesButton.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
+		self.storiesButton.layer.borderWidth = 1
+        
 		// set up the memories button and the question button
 		self.momentButton.layer.cornerRadius = 5
 		self.momentButton.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
 		self.momentButton.layer.borderWidth = 1
-        
-        
+       
 		mapView.bringSubviewToFront(self.momentButton)
 		mapView.bringSubviewToFront(self.questionButton)
+        mapView.bringSubviewToFront(self.storiesButton)
 		
         // set properties for the navigation bar
         Utils.setUpNavigationBar(self)

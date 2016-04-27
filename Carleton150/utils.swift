@@ -82,7 +82,9 @@ final class Utils {
      */
     class func setUpNavigationBar(currentController: UIViewController) {
         // stop the navigation bar from covering the calendar content
-        currentController.navigationController!.navigationBar.translucent = false;
+        if let navigator = currentController.navigationController {
+            navigator.navigationBar.translucent = false;
+        }
     }
     
 }

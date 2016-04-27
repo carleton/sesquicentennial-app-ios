@@ -49,6 +49,7 @@
 		71B379B91C7928F40057B5B8 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B379B81C7928F40057B5B8 /* TutorialViewController.swift */; };
 		71C4302F1C765105005D8112 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C4302E1C765105005D8112 /* Memory.swift */; };
 		71CC5F791BE944220065AA4C /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CC5F781BE944220065AA4C /* DataServiceTest.swift */; };
+		71D2AD001CD06F8F0016671D /* StoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2ACFF1CD06F8F0016671D /* StoriesViewController.swift */; };
 		71F0C7C01C7273920063EDB1 /* TimelineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F0C7BF1C7273920063EDB1 /* TimelineDetailView.swift */; };
 		71F56C261C7AA6B000BB0AE1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F56C251C7AA6B000BB0AE1 /* Constants.swift */; };
 		71FF6D371C72B2CD004A2B3D /* TimelineImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF6D361C72B2CD004A2B3D /* TimelineImageDetailView.swift */; };
@@ -133,6 +134,7 @@
 		71CC5F6E1BE942CF0065AA4C /* Carleton150Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Carleton150Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		71CC5F721BE942CF0065AA4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71CC5F781BE944220065AA4C /* DataServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
+		71D2ACFF1CD06F8F0016671D /* StoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesViewController.swift; sourceTree = "<group>"; };
 		71F0C7BF1C7273920063EDB1 /* TimelineDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineDetailView.swift; sourceTree = "<group>"; };
 		71F56C251C7AA6B000BB0AE1 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		71FF6D361C72B2CD004A2B3D /* TimelineImageDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineImageDetailView.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				63036B321C4CB5A200193A78 /* Historical.storyboard */,
+				71D2ACFF1CD06F8F0016671D /* StoriesViewController.swift */,
 				6A30943F1BD9CD4600A16342 /* Landmark.swift */,
 				71B379B81C7928F40057B5B8 /* TutorialViewController.swift */,
 				71294DAF1BC6FC1500B9F81B /* HistoricalViewController.swift */,
@@ -527,6 +530,7 @@
 			files = (
 				63F5E9A01C72B60D00CFCB38 /* QuestPlayingViewController.swift in Sources */,
 				71ABAA661CD01A9B00D6BFFE /* InfoViewController.swift in Sources */,
+				71D2AD001CD06F8F0016671D /* StoriesViewController.swift in Sources */,
 				711704131BF3EB9E00566464 /* utils.swift in Sources */,
 				714DB8731C57DC6300770A44 /* CalendarViewController.swift in Sources */,
 				71340E5A1C5216C8007F9E2F /* HistoricalDataService.swift in Sources */,
