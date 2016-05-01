@@ -51,7 +51,7 @@ final class Utils {
      
         - Returns: Whether the user is off campus as a boolean.
      */
-    class func isOnCampus(location : CLLocationCoordinate2D) -> Bool {
+    class func userOffCampus(location : CLLocationCoordinate2D) -> Bool {
         let centerPoint = CLLocationCoordinate2D(latitude: 44.460421, longitude: -93.152749)
         let distance = Utils.getDistance(centerPoint, point2: location)
         return distance > 7000
