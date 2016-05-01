@@ -64,8 +64,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 	
 	
 	/**
-		Called just before segue is performed. Segue can be to the either a detail popover or an
-		upload view (for the  memories
+		Called just before segue is performed. Segue can be to the either a detail popover or
+        an upload view for the memories.
 		
 		Parameters
 			- sender: this will be either an image view or a button

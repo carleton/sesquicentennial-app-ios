@@ -12,6 +12,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
     
     @IBOutlet weak var momentButton: UIButton!
 	@IBOutlet weak var questionButton: UIButton!
+    @IBOutlet weak var recenterButton: UIButton!
     @IBOutlet weak var mapView: GMSMapView!
 	@IBOutlet weak var connectionIndicator: UIActivityIndicatorView!
 	@IBOutlet weak var connectionLabel: UILabel!
@@ -64,6 +65,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		mapView.bringSubviewToFront(self.momentButton)
 		mapView.bringSubviewToFront(self.questionButton)
         mapView.bringSubviewToFront(self.storiesButton)
+        mapView.bringSubviewToFront(self.recenterButton)
 		
         // set properties for the navigation bar
         Utils.setUpNavigationBar(self)
@@ -92,6 +94,9 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         loadLandmarks(locationManager.location?.coordinate)
 	}
     
+    @IBAction func recenterOnCarleton(sender: AnyObject) {
+		mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
+    }
     
     /**
         Requests the geofences from the server. 
@@ -114,7 +119,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
                     }
                     
                 } else {
-                    print("Could not nearby geofences from the server.")
+                    print("Could not nearby landmarks from the server.")
                 }
             }
         }

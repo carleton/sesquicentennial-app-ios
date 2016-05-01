@@ -161,7 +161,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hp0-PX-kfR">
-                                        <rect key="frame" x="432" y="7.5" width="158" height="47.5"/>
+                                        <rect key="frame" x="432" y="7" width="158" height="47.5"/>
                                         <color key="backgroundColor" red="0.039215686274509803" green="0.16078431372549018" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="158" id="0gd-P1-Bf6"/>
@@ -211,8 +211,19 @@
                                             <segue destination="MZV-wv-bli" kind="presentation" identifier="showTutorial" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="cZN-Wq-wBv"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKH-PV-BeM" userLabel="Recenter Button">
+                                        <rect key="frame" x="532" y="350" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="RkK-po-xDW"/>
+                                            <constraint firstAttribute="height" constant="60" id="bEy-Ed-gBB"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="recenter"/>
+                                        <connections>
+                                            <action selector="recenterOnCarleton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TRy-Vi-c0b"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blb-au-egd">
-                                        <rect key="frame" x="8" y="7.5" width="79" height="47.5"/>
+                                        <rect key="frame" x="8" y="7" width="79" height="47.5"/>
                                         <color key="backgroundColor" red="0.039215686270000001" green="0.16078431369999999" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="47.5" id="Vr2-2T-2TW"/>
@@ -238,6 +249,8 @@
                                     <constraint firstAttribute="bottom" secondItem="kCl-QK-XDS" secondAttribute="bottom" constant="8" id="MBZ-fP-NZv"/>
                                     <constraint firstItem="blb-au-egd" firstAttribute="leading" secondItem="Wzj-au-GJO" secondAttribute="leading" constant="8" id="TzX-1W-The"/>
                                     <constraint firstItem="blb-au-egd" firstAttribute="top" secondItem="Wzj-au-GJO" secondAttribute="top" constant="7" id="g66-Wk-Hfh"/>
+                                    <constraint firstAttribute="trailing" secondItem="uKH-PV-BeM" secondAttribute="trailing" constant="8" id="iL6-hK-baH"/>
+                                    <constraint firstAttribute="bottom" secondItem="uKH-PV-BeM" secondAttribute="bottom" constant="77" id="nAc-gO-QQC"/>
                                     <constraint firstAttribute="bottom" secondItem="6ZF-dj-PrW" secondAttribute="bottom" id="vSn-y8-b0j"/>
                                 </constraints>
                             </view>
@@ -258,6 +271,7 @@
                         <outlet property="mapView" destination="Wzj-au-GJO" id="q87-rK-Kei"/>
                         <outlet property="momentButton" destination="hp0-PX-kfR" id="8uw-4T-2OV"/>
                         <outlet property="questionButton" destination="kCl-QK-XDS" id="Glk-fy-KKf"/>
+                        <outlet property="recenterButton" destination="uKH-PV-BeM" id="51t-SU-fGX"/>
                         <outlet property="storiesButton" destination="blb-au-egd" id="U19-w4-DgA"/>
                         <segue destination="2Ed-yO-PXD" kind="presentation" identifier="showTimeline" modalPresentationStyle="overFullScreen" id="s5d-X5-My7"/>
                     </connections>
@@ -969,6 +983,7 @@
         <image name="checkmark" width="128" height="128"/>
         <image name="marker" width="40" height="65"/>
         <image name="question_button" width="60" height="60"/>
+        <image name="recenter" width="60" height="60"/>
         <image name="timeline_point" width="34" height="34"/>
     </resources>
     <inferredMetricsTieBreakers>
