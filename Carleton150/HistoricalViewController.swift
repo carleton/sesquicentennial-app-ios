@@ -10,7 +10,6 @@ import Reachability
 
 class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
-    @IBOutlet weak var momentButton: UIButton!
 	@IBOutlet weak var questionButton: UIButton!
     @IBOutlet weak var recenterButton: UIButton!
     @IBOutlet weak var mapView: GMSMapView!
@@ -24,20 +23,12 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	var networkMonitor: Reachability!
 	var landmarks: Dictionary<String,Landmark>!
 	
-	// variables stored for caching the memories
-	var loadedMemories: [Memory]!
-	var lastMemReqLocation: CLLocation!
-    
-    let hideMemoriesFeature = true
 	
     /**
         Upon load of this view, start the location manager and
         set the camera on the map view to focus on Carleton.
      */
     override func viewDidLoad() {
-       
-        // disables memories feature.
-        self.momentButton.hidden = hideMemoriesFeature
         
         let defaults = NSUserDefaults.standardUserDefaults()
        
@@ -57,12 +48,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		self.storiesButton.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
 		self.storiesButton.layer.borderWidth = 1
         
-		// set up the memories button and the question button
-		self.momentButton.layer.cornerRadius = 5
-		self.momentButton.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
-		self.momentButton.layer.borderWidth = 1
-       
-		mapView.bringSubviewToFront(self.momentButton)
 		mapView.bringSubviewToFront(self.questionButton)
         mapView.bringSubviewToFront(self.storiesButton)
         mapView.bringSubviewToFront(self.recenterButton)
@@ -191,7 +176,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "showTimeline" {
-            
 			let destinationController = (segue.destinationViewController as! TimelineViewController)
 			destinationController.parentVC = self
 			
@@ -200,23 +184,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 				if let landmark = landmarks[landmarkName] {
 					destinationController.timeline = landmark.data
 				}
-			}
-			
-            // hide the memories button so it doesn't make the view busy
-            self.momentButton.hidden = true
-            
-        } else if segue.identifier == "showMemories" {
-            self.momentButton.hidden = true
-			let destinationController = (segue.destinationViewController as! TimelineViewController)
-			destinationController.parentVC = self
-			destinationController.selectedGeofence = "Memories Near You"
-            destinationController.showMemories = true
-			// memories loading and caching options
-			if let curMemories = self.loadedMemories {
-				destinationController.memories = curMemories
-			}
-			if let lastLoc = self.lastMemReqLocation {
-				destinationController.lastRequestLocation = lastLoc
 			}
         } else if segue.identifier == "showTutorial" {
 			let destinationController = (segue.destinationViewController as! TutorialViewController)

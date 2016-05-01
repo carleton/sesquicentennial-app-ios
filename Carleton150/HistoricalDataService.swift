@@ -88,134 +88,6 @@ final class HistoricalDataService {
         }
     }
     
-    /**
-        Determines if the user is more than the radius at which we consider 
-        the user off campus, at which point we give them a larger radius to
-        search. 
-        
-        - Parameters: 
-            - location: The user's current location.
-     
-        - Returns: The radius to search.
-     */
-    private class func getRadius(location : CLLocationCoordinate2D) -> Double {
-        let centerPoint = CLLocationCoordinate2D(latitude: 44.460421, longitude: -93.152749)
-        let distance = Utils.getDistance(centerPoint, point2: location)
-        return distance > Constants.offCampusRadius
-            ? Constants.memoriesRequestRadiusOffCampus
-            : Constants.memoriesRequestRadiusOnCampus
-    }
-    
-    /**
-        Request memories content on the server.
-
-        - Parameters:
-            - location: The current location of the user.
-            - completion: function that will perform the behavior
-                          that you want given a dictionary with all content
-                          from the server.
-     */
-    class func requestMemoriesContent(location: CLLocationCoordinate2D,
-        completion: (success: Bool, result: [Memory]) -> Void) {
-            
-        let parameters = [
-            "lat" : location.latitude,
-            "lng" : location.longitude,
-            "rad" : getRadius(location)
-        ]
-        
-        Alamofire.request(.POST, Endpoints.memoriesInfo, parameters: parameters, encoding: .JSON).responseJSON() {
-            (request, response, result) in
-            if let result = result.value {
-                let json = JSON(result)
-                let answer = json["content"].arrayValue
-                if answer.count > 0 {
-                    var memoriesEntries : [Memory] = []
-                    for i in 0 ..< answer.count {
-                        if let image = answer[i]["image"].string,
-                               title = answer[i]["caption"].string,
-                               desc = answer[i]["desc"].string,
-                               uploader = answer[i]["uploader"].string,
-                               takenTimestamp = answer[i]["timestamps"]["taken"].string {
-                                
-                            let memory: Memory = Memory(
-                                title: title,
-                                desc: desc,
-                                timestamp: takenTimestamp,
-                                uploader: uploader,
-                                image: Memory.buildImageFromString(image)!
-                            )
-                                
-                            memoriesEntries.append(memory)
-                        } else {
-                            print("Data returned at endpoint: \(Endpoints.memoriesInfo) is malformed.")
-                            completion(success: false, result: [])
-                            return
-                        }
-                    }
-                    completion(success: true, result: memoriesEntries)
-                } else {
-                    print("No results were found for Memories.")
-                    completion(success: false, result: [])
-                }
-            } else {
-                print("Connection to server failed.")
-                completion(success: false, result: [])
-            }
-        }
-    }
-    
-   
-    /**
-        Add a memory to the server!
-     
-        - Parameters: 
-            - memory: The memory and the associated data to upload. 
-            
-            - completion: The function to be triggered upon
-                          completion of the upload
-     */
-    class func uploadMemory(memory: Memory, completion: (success: Bool) -> Void) {
-        // build the base64 representation of the image
-        let imageData = UIImageJPEGRepresentation(memory.image, 0.1)
-        let base64Image: String = imageData!.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
-        
-        let parameters: [String : AnyObject] = [
-            "title" : memory.title,
-            "desc" : memory.desc,
-            "timestamp" :  memory.timeString,
-            "uploader" : memory.uploader,
-            "location" : [
-                "lat": memory.location.latitude,
-                "lng": memory.location.longitude
-            ],
-            "image" : base64Image
-        ]
-        
-        
-        Alamofire.request(.POST, Endpoints.addMemory, parameters: parameters , encoding: .JSON).responseJSON() {
-            (request, response, result) in
-            
-            
-            if let result = result.value {
-                let json = JSON(result)
-                if json["status"] != nil {
-                    if json["status"] == "Success!" {
-                        completion(success: true)
-                    } else {
-                        print("Upload failed.")
-                        completion(success: false)
-                    }
-                } else {
-                    print("Upload failed.")
-                    completion(success: false)
-                }
-            } else {
-                print("Upload failed.")
-                completion(success: false)
-            }
-        }
-    }
     
     /**
         Request nearby geofences based on current location.
@@ -234,7 +106,7 @@ final class HistoricalDataService {
                     "lat" : location.latitude,
                     "lng" : location.longitude
                 ],
-                "radius": Constants.geofenceRequestRadius
+                "radius": 500
             ]
         ]
             

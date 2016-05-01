@@ -101,7 +101,6 @@ final class QuestDataService {
 						)
 						
 					}
-					print(quests)
 					completion(success: true, result: quests)
 					
 				} else {

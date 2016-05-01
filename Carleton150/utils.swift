@@ -44,6 +44,20 @@ final class Utils {
     }
     
     /**
+        Determines whether the user is off campus.
+     
+        - Parameters: 
+            - location: The user's current location.
+     
+        - Returns: Whether the user is off campus as a boolean.
+     */
+    class func isOnCampus(location : CLLocationCoordinate2D) -> Bool {
+        let centerPoint = CLLocationCoordinate2D(latitude: 44.460421, longitude: -93.152749)
+        let distance = Utils.getDistance(centerPoint, point2: location)
+        return distance > 7000
+    }
+    
+    /**
         Builds the Carleton tiling on top of Google Maps.
      
         - Parameters: 
@@ -77,8 +91,7 @@ final class Utils {
     }
     
     /**
-        Shows the Carleton logo and sets the translucency of 
-        the top navigation bar in the designated view.
+        Sets the translucency of the top navigation bar in the designated view.
      */
     class func setUpNavigationBar(currentController: UIViewController) {
         // stop the navigation bar from covering the calendar content
