@@ -18,7 +18,7 @@ final class QuestDataService {
                           from the server.
      */
     class func getQuests(completion: (success: Bool, result: [Quest]?) -> Void) {
-        Alamofire.request(.POST, Endpoints.newQuests, parameters: nil, encoding: .JSON).responseJSON() {
+        Alamofire.request(.POST, Endpoints.quests, parameters: nil, encoding: .JSON).responseJSON() {
             response in
             
             var quests: [Quest] = []

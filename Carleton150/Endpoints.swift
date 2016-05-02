@@ -2,8 +2,6 @@
 //  Endpoints.swift
 //  Carleton150
 
-import Foundation
-
 /// A class for managing the data service endpoints in the application.
 final class Endpoints {
    
@@ -11,6 +9,11 @@ final class Endpoints {
         The current server API URL.
      */
     static var hostServerURL: String = "https://carl150.carleton.edu"
+    
+    /**
+        The current server API URL.
+     */
+    static var newHostServerURL: String = "https://go.carleton.edu"
    
     /**
         The current events endpoint in the API.
@@ -44,34 +47,7 @@ final class Endpoints {
      */
     static var quests: String {
         get {
-			return self.hostServerURL + "/quest"
-        }
-    }
-    
-    /**
-        The new quests endpoint in the API.
-     */
-    static var newQuests: String {
-        get {
-			return "https://go.carleton.edu/appquests"
-        }
-    }
-    
-    /**
-        The current memory fetching endpoint in the API.
-     */
-    static var memoriesInfo: String {
-        get {
-           return self.hostServerURL + "/memories_fetch"
-        }
-    }
-    
-    /**
-        The current memory uploading endpoint in the API.
-     */
-    static var addMemory: String {
-        get {
-           return self.hostServerURL + "/memories_add"
+			return self.newHostServerURL + "/appquests"
         }
     }
 }
