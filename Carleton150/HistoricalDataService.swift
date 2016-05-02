@@ -33,8 +33,8 @@ final class HistoricalDataService {
             "geofences": [geofenceName]
         ]
         Alamofire.request(.POST, Endpoints.historicalInfo, parameters: parameters, encoding: .JSON).responseJSON() {
-            (request, response, result) in
-            if let result = result.value {
+            response in
+            if let result = response.result.value {
                 let json = JSON(result)
 				let answer = json["content"][geofenceName]
 				if answer.count > 0 {
@@ -111,10 +111,10 @@ final class HistoricalDataService {
         ]
             
         Alamofire.request(.POST, Endpoints.geofences, parameters: parameters, encoding: .JSON).responseJSON() {
-            (request, response, result) in
+            response in
             var final_result: [(name: String, radius: Int, center: CLLocationCoordinate2D)] = []
             
-            if let result = result.value {
+            if let result = response.result.value {
                 let json = JSON(result)
                 if let answer = json["content"].array {
                     for i in 0 ..< answer.count {

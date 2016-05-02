@@ -33,11 +33,11 @@ final class QuestDataService {
         ]
         
         Alamofire.request(.POST, Endpoints.quests, parameters: (parameters as! [String : AnyObject]), encoding: .JSON).responseJSON() {
-            (request, response, result) in
+            response in
             
             var quests: [Quest] = []
 			
-			if let result = result.value {
+			if let result = response.result.value {
 				let json = JSON(result)
 				
 				if let answer = json["content"].array {

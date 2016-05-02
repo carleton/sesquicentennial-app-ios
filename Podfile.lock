@@ -1,19 +1,23 @@
 PODS:
-  - Alamofire (2.0.2)
+  - Alamofire (3.3.1)
+  - AlamofireImage (2.4.0):
+    - Alamofire (~> 3.3)
   - GoogleMaps (1.10.4)
   - Reachability (3.2)
   - SwiftOverlays (1.0)
   - SwiftyJSON (2.3.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 2.0)
+  - Alamofire (~> 3.0)
+  - AlamofireImage (~> 2.0)
   - GoogleMaps
   - Reachability
   - SwiftOverlays (~> 1.0)
   - SwiftyJSON (~> 2.3)
 
 SPEC CHECKSUMS:
-  Alamofire: 8edbab00802a752bb5240cc2abe70e7e881488ad
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
   GoogleMaps: 134bcf57e8d489efbc0c29d532ed421554fabdb2
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SwiftOverlays: 6a47bab3ed2784c378f07b275269f9e8231526e6

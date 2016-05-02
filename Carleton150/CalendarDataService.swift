@@ -73,11 +73,11 @@ final class CalendarDataService {
         ]
         
         Alamofire.request(.POST, Endpoints.calendar, parameters: (parameters as! [String : AnyObject]), encoding: .JSON).responseJSON() {
-            (request, response, result) in
+            response in
             
             var events : [Dictionary<String, AnyObject?>] = []
             
-            if let result = result.value {
+            if let result = response.result.value {
                 let json = JSON(result)
                 if let answer = json["content"].array {
                     for i in 0 ..< answer.count {
