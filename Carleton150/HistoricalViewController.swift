@@ -21,7 +21,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	let locationManager: CLLocationManager = CLLocationManager()
 	var reach: Reachability?
 	var networkMonitor: Reachability!
-	var landmarks: Dictionary<String,Landmark>!
+    var landmarks: [String : Landmark]!
 	
 	
     /**
@@ -75,8 +75,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		
         // set up the tiling for the map
         Utils.setUpTiling(mapView)
-        
-        loadLandmarks(locationManager.location?.coordinate)
 	}
     
     @IBAction func recenterOnCarleton(sender: AnyObject) {
@@ -86,25 +84,18 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
     /**
         Requests the geofences from the server. 
      */
-    func loadLandmarks(currentLocation: CLLocationCoordinate2D?) {
-        if let currentLocation = currentLocation {
-            HistoricalDataService.requestNearbyGeofences(currentLocation) {
-                (success: Bool, result: [(name: String, radius: Int, center: CLLocationCoordinate2D)]? ) -> Void in
-                if (success) {
-                    // create geofences
-                    for entry in result! {
-                        let landmark = Landmark(coordinate: entry.center, identifier: entry.name)
-                        if self.landmarks[entry.name] == nil {
-                            self.landmarks[entry.name] = landmark
-                        }
+    func loadLandmarks() {
+        HistoricalDataService.getLandmarks() { success, result in
+            if success {
+                for eventGroup in result {
+                    let identifier = eventGroup.0
+                    let events = eventGroup.1
+                    let coordinate = events[0].location
+                    let landmark = Landmark(coordinate: coordinate, identifier: identifier, events: events)
+                    if self.landmarks[identifier] == nil {
+                        self.landmarks[identifier] = landmark
                     }
-                    
-                    for entry in self.landmarks {
-                        entry.1.displayLandmark(self.mapView)
-                    }
-                    
-                } else {
-                    print("Could not nearby landmarks from the server.")
+                    landmark.displayLandmark(self.mapView)
                 }
             }
         }
@@ -126,7 +117,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
             self.connectionIndicator.hidden = true
             self.connectionView.hidden = true
             self.mapView.sendSubviewToBack(self.connectionView)
-            self.loadLandmarks(locationManager.location?.coordinate)
+            self.loadLandmarks()
 		} else {
 			self.connectionLabel.hidden = false
 			self.connectionIndicator.startAnimating()
@@ -182,7 +173,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			if let landmarkName = (sender?.title)! as String! {
 				destinationController.selectedGeofence = landmarkName
 				if let landmark = landmarks[landmarkName] {
-					destinationController.timeline = landmark.data
+					destinationController.timeline = landmark.events
 				}
 			}
         } else if segue.identifier == "showTutorial" {
@@ -210,7 +201,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
             mapView.myLocationEnabled = true
             mapView.settings.myLocationButton = true
         }
-        
     }
     
     

@@ -25,20 +25,11 @@ final class Endpoints {
     }
     
     /**
-        The current geofences endpoint in the API.
+        The current historical endpoint in the API.
      */
-    static var geofences: String {
+    static var landmarks: String {
         get {
-            return self.hostServerURL + "/geofences"
-        }
-    }
-    
-    /**
-        The current historical information endpoint in the API.
-     */
-    static var historicalInfo: String {
-        get {
-            return self.hostServerURL + "/info"
+            return self.newHostServerURL + "/apphistory"
         }
     }
     

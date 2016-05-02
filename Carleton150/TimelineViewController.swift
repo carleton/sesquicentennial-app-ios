@@ -13,7 +13,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
 	var parentVC: HistoricalViewController!
 	var selectedGeofence: String!
-    var timeline: [Dictionary<String, String>?]!
+    var timeline: [Event]!
 	
     override func viewDidLoad() {
         // add bottom border to the timeline title
@@ -33,14 +33,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         // set a default row height
         tableView.estimatedRowHeight = 160.0
        
-        if let timeline = timeline {
-            // sort the event timeline by date
-            self.timeline = timeline.sort() {
-                event1, event2 in
-                return event1!["year"] > event2!["year"]
-            }
-        } else {
-            self.timeline  = []
+        if let timeline = self.timeline {
+            self.timeline = timeline.sort()
         }
 	}
 	
@@ -124,41 +118,23 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         - Returns: The modified table view cell.
      */
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let selectedEntry = timeline[indexPath.row],
-               dataType = selectedEntry["type"] {
-            if dataType == "text" {
-                let cell: TimelineTableCellTextOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
-                cell.setCellViewTraits()
-                cell.cellSummary = timeline[indexPath.row]?["summary"]
-                cell.cellDescription = timeline[indexPath.row]?["desc"]
-                cell.cellTimestamp = timeline[indexPath.row]?["year"]
-                cell.selectionStyle = UITableViewCellSelectionStyle.None
-                return cell
-                
-            } else if dataType == "image" {
-                let cell: TimelineTableCellImageOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellImageOnly", forIndexPath: indexPath) as! TimelineTableCellImageOnly
-                if let image = timeline[indexPath.row]?["data"],
-                       data = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters) {
-                    cell.cellImage = UIImage(data: data)
-                }
-                cell.setCellViewTraits()
-                cell.cellCaption = timeline[indexPath.row]?["caption"]
-                cell.cellSummary = timeline[indexPath.row]?["summary"]
-                cell.cellTimestamp = timeline[indexPath.row]?["year"]
-                cell.cellDescription = timeline[indexPath.row]?["desc"]
-                cell.selectionStyle = UITableViewCellSelectionStyle.None
-                return cell
-                
-            } else {
-                let cell = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
-                cell.setCellViewTraits()
-                cell.cellSummary = timeline[indexPath.row]?["summary"]
-                cell.cellDescription = timeline[indexPath.row]?["desc"]
-                cell.cellTimestamp = timeline[indexPath.row]?["year"]
-                cell.selectionStyle = UITableViewCellSelectionStyle.None
-                return cell
-            }
+        if let image = timeline[indexPath.row].image {
+            let cell: TimelineTableCellImageOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellImageOnly", forIndexPath: indexPath) as! TimelineTableCellImageOnly
+            cell.setCellViewTraits()
+            cell.cellImage = image
+            cell.cellSummary = timeline[indexPath.row].headline
+            cell.cellTimestamp = timeline[indexPath.row].displayDate
+            cell.cellDescription = timeline[indexPath.row].text
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell
+        } else {
+            let cell: TimelineTableCellTextOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
+            cell.setCellViewTraits()
+            cell.cellSummary = timeline[indexPath.row].headline
+            cell.cellDescription = timeline[indexPath.row].text
+            cell.cellTimestamp = timeline[indexPath.row].displayDate
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell
         }
-        return tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
     }
 }

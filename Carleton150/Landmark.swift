@@ -2,8 +2,6 @@
 //  Geotification.swift
 //  Carleton150
 
-import Foundation
-
 import UIKit
 import MapKit
 import GoogleMaps
@@ -11,14 +9,16 @@ import CoreLocation
 
 /// A Landmark object for containing location and historical information.
 class Landmark: NSObject, MKAnnotation {
-    var coordinate: CLLocationCoordinate2D
-    var identifier: String
-	var marker: GMSMarker!
+    let coordinate: CLLocationCoordinate2D
+    let identifier: String
+	let marker: GMSMarker!
 	var data: [Dictionary<String, String>?]!
+    let events: [Event]!
 	
-	init(coordinate: CLLocationCoordinate2D, identifier: String) {
+    init(coordinate: CLLocationCoordinate2D, identifier: String, events: [Event]) {
         self.coordinate = coordinate
         self.identifier = identifier
+        self.events = events
 		self.marker = GMSMarker(position: self.coordinate)
     }
 	
@@ -26,30 +26,15 @@ class Landmark: NSObject, MKAnnotation {
         Sets up and places a marker for a landmark.
 	
         - Parameters:
-            - geofence: The geofence that was entered.
-	
-            - mapView:  The Google Maps view to attach the marker to.
+            - mapView:  The Google Maps view to which we attach the marker.
 	*/
-	func displayLandmark(mapview: GMSMapView) {
-        if let _ = self.data {
+	func displayLandmark(mapView: GMSMapView) {
+        if let _ = self.events {
             if self.marker.map == nil {
                 self.marker.title = self.identifier
                 self.marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
-                self.marker.map = mapview
+                self.marker.map = mapView
                 self.marker.icon = UIImage(named: "marker.png")
-            }
-        } else {
-            HistoricalDataService.requestContent(self.identifier) {
-                (success: Bool, result: [Dictionary<String, String>?]) -> Void in
-                if (success) {
-                    if let data = result as [Dictionary<String, String>?]! {
-                        self.data = data
-                        self.marker.title = self.identifier
-                        self.marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
-                        self.marker.map = mapview
-                        self.marker.icon = UIImage(named: "marker.png")
-                    }
-                }
             }
         }
 	}
