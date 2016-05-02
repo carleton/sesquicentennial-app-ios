@@ -49,6 +49,15 @@ final class Endpoints {
     }
     
     /**
+        The new quests endpoint in the API.
+     */
+    static var newQuests: String {
+        get {
+			return "https://go.carleton.edu/appquests"
+        }
+    }
+    
+    /**
         The current memory fetching endpoint in the API.
      */
     static var memoriesInfo: String {

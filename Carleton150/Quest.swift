@@ -11,7 +11,7 @@ class Quest: NSObject {
     var questDescription: String
     var completionMessage: String
 	var creator: String
-	var image: String
+	var imageURL: String
 	var difficulty: Int
 	var audience: String
 	
@@ -34,7 +34,7 @@ class Quest: NSObject {
         self.questDescription = description
         self.completionMessage = completionMessage
 		self.creator = creator
-		self.image = image
+		self.imageURL = image
 		self.difficulty = difficulty
 		self.audience = audience
     }
