@@ -10,6 +10,8 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 	
 	var pageViewController: UIPageViewController!
     var quests: [Quest] = []
+	let locationManager: CLLocationManager = CLLocationManager()
+    
     @IBOutlet weak var noDataButton: UIButton!
     @IBOutlet weak var warningSign: UIImageView!
     
@@ -18,7 +20,6 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 		 quests. Once the data has been loaded, create the first page of the paged layout
 	 */
     override func viewDidLoad() {
-        
         self.noDataButton.hidden = true
         self.warningSign.hidden = true
 		
@@ -33,6 +34,16 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
         
         self.getQuests()
 	}
+    
+    override func viewDidAppear(animated: Bool) {
+        if Utils.userOffCampus(locationManager.location!.coordinate) {
+            let alert = UIAlertController(title: "",
+                                          message: "The Quests feature is intended to be used on the Carleton College campus. Visit campus soon to embark on a Quest!",
+                                          preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title:"OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
    
     /**
         If the data is not available, give the user the option

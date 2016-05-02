@@ -90,6 +90,14 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 			selector: #selector(QuestPlayingViewController.connectionStatusChanged(_:)),
 			name: kReachabilityChangedNotification,
 			object: nil)
+        
+        if Utils.userOffCampus(locationManager.location!.coordinate) {
+            let alert = UIAlertController(title: "",
+                                          message: "It looks like you're off campus! Return to campus soon to finish your quest.",
+                                          preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title:"OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
 	}
 
 	/**
