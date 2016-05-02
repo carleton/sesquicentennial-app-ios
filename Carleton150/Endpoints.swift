@@ -8,37 +8,35 @@ final class Endpoints {
     /**
         The current server API URL.
      */
-    static var hostServerURL: String = "https://carl150.carleton.edu"
+    static var hostServerURL: String = "https://go.carleton.edu"
     
-    /**
-        The current server API URL.
-     */
-    static var newHostServerURL: String = "https://go.carleton.edu"
    
     /**
         The current events endpoint in the API.
      */
-    static var calendar: String {
+    static var events: String {
         get {
-            return self.hostServerURL + "/events"
+            return self.hostServerURL + "/appevents"
         }
     }
+
     
     /**
         The current historical endpoint in the API.
      */
     static var landmarks: String {
         get {
-            return self.newHostServerURL + "/apphistory"
+            return self.hostServerURL + "/apphistory"
         }
     }
+    
     
     /**
         The current quests endpoint in the API.
      */
     static var quests: String {
         get {
-			return self.newHostServerURL + "/appquests"
+			return self.hostServerURL + "/appquests"
         }
     }
 }

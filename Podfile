@@ -11,7 +11,7 @@ pod 'AlamofireImage', '~> 2.0'
 pod 'SwiftyJSON', '~> 2.3'
 pod 'SwiftOverlays', '~> 1.0'
 pod 'Reachability'
-
+pod 'MXLCalendarManager'
 
 target 'Carleton150' do
 

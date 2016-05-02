@@ -3,6 +3,7 @@ PODS:
   - AlamofireImage (2.4.0):
     - Alamofire (~> 3.3)
   - GoogleMaps (1.10.4)
+  - MXLCalendarManager (1.0.4)
   - Reachability (3.2)
   - SwiftOverlays (1.0)
   - SwiftyJSON (2.3.1)
@@ -11,6 +12,7 @@ DEPENDENCIES:
   - Alamofire (~> 3.0)
   - AlamofireImage (~> 2.0)
   - GoogleMaps
+  - MXLCalendarManager
   - Reachability
   - SwiftOverlays (~> 1.0)
   - SwiftyJSON (~> 2.3)
@@ -19,6 +21,7 @@ SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
   GoogleMaps: 134bcf57e8d489efbc0c29d532ed421554fabdb2
+  MXLCalendarManager: 3432fa4fb369d352f84a0874f69b198de70119ac
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SwiftOverlays: 6a47bab3ed2784c378f07b275269f9e8231526e6
   SwiftyJSON: 592b53bee5ef3dd9b3bebc6b9cb7ee35426ae8c3

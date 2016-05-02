@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.requestAlwaysAuthorization()
 		
         // gets the calendar for the first time
-        CalendarDataService.updateEvents()
+        CalendarDataService.getEvents()
 		
 		customizePageViews()
 

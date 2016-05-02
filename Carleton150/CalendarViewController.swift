@@ -59,6 +59,7 @@ class CalendarViewController: UICollectionViewController {
         
         // set the deceleration rate for the event cell snap
         collectionView!.decelerationRate = UIScrollViewDecelerationRateFast
+        
     }
     
     /**
@@ -72,7 +73,7 @@ class CalendarViewController: UICollectionViewController {
         self.warningSign.hidden = true
         if calendar.count == 0 {
             self.showWaitOverlay()
-            CalendarDataService.updateEvents()
+            CalendarDataService.getEvents()
         } else {
             if filteredCalendar.count == 0 {
                 let userInfo: [NSObject : AnyObject]? = ["date" : NSDate()]
@@ -209,10 +210,14 @@ class CalendarViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CalendarCell", forIndexPath: indexPath) as! CalendarCell
         let images = getEventImages()
-        let eventText = filteredCalendar[indexPath.item]["title"]
+        let eventText = filteredCalendar[indexPath.item]["title"] ?? "No Title"
         cell.eventTitle.text = eventText as? String
         cell.currentImage = images[indexPath.item % 10]
-        cell.locationLabel.text = filteredCalendar[indexPath.item]["location"]! as? String
+        if let location = filteredCalendar[indexPath.item]["location"] {
+            cell.locationLabel.text = location as? String
+        } else {
+            cell.locationLabel.text = "No Location"
+        }
         let date: String
         if let result: NSDate = filteredCalendar[indexPath.item]["startTime"] as? NSDate {
             date = parseDate(result)
@@ -220,7 +225,11 @@ class CalendarViewController: UICollectionViewController {
             date = "No Time Available"
         }
         cell.timeLabel.text = date
-        cell.eventDescription = filteredCalendar[indexPath.item]["description"]! as? String
+        if let description  = filteredCalendar[indexPath.item]["description"] {
+            cell.eventDescription = description as? String
+        } else {
+            cell.eventDescription = "No Description Available"
+        }
         return cell
     }
    
