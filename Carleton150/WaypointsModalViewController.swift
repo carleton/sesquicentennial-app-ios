@@ -3,6 +3,8 @@
 //  Carleton150
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
@@ -111,9 +113,13 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 		let waypoint = waypoints[indexPath.section]
 		// clue
 		if (indexPath.row == 0) {
-			if let clueImg = waypoint.clue["image"] as! String! {
+			if let clueImageURL = waypoint.clue["image"] as! String! {
 				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableImageCell", forIndexPath: indexPath) as! WaypointTableImageCell
-				cell.cellImage = UIImage(data: NSData(base64EncodedString: clueImg, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
+                Alamofire.request(.GET, clueImageURL).responseImage { response in
+                    if let image = response.result.value {
+                        cell.cellImage = image
+                    }
+                }
 				cell.titleText = "Clue"
 				cell.descText = waypoint.clue["text"] as? String
 				return cell
@@ -126,9 +132,13 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 			}
 		// hint
 		} else if (indexPath.row == 1) {
-			if let hintImg = waypoint.hint["image"] as! String! {
+			if let hintImageURL = waypoint.hint["image"] as! String! {
 				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableImageCell", forIndexPath: indexPath) as! WaypointTableImageCell
-				cell.cellImage = UIImage(data: NSData(base64EncodedString: hintImg, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
+                Alamofire.request(.GET, hintImageURL).responseImage { response in
+                    if let image = response.result.value {
+                        cell.cellImage = image
+                    }
+                }
 				cell.titleText = "Hint"
 				cell.descText = waypoint.hint["text"] as? String
 				return cell
@@ -140,9 +150,13 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 				return cell
 			}
 		} else if (indexPath.row == 2) {
-			if let compImg = waypoint.completion["image"] as! String! {
+			if let completionImageURL = waypoint.completion["image"] as! String! {
 				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableImageCell", forIndexPath: indexPath) as! WaypointTableImageCell
-				cell.cellImage = UIImage(data: NSData(base64EncodedString: compImg, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
+                Alamofire.request(.GET, completionImageURL).responseImage { response in
+                    if let image = response.result.value {
+                        cell.cellImage = image
+                    }
+                }
 				cell.titleText = "Completion"
 				cell.descText = waypoint.completion["text"] as? String
 				return cell
@@ -161,6 +175,4 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 		cell.setCellViewTraits()
 		return cell
 	}
-	
-	
 }

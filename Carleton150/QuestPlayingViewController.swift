@@ -6,6 +6,8 @@ import UIKit
 import CoreLocation
 import GoogleMaps
 import Reachability
+import AlamofireImage
+import Alamofire
 
 class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 
@@ -198,8 +200,12 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		if (clueShown) {
 			clueHintText.text = quest.wayPoints[currentWayPointIndex].clue["text"] as? String
 			clueHintToggle.setTitle("Show Hint", forState: UIControlState.Normal)
-			if let imageData = quest.wayPoints[currentWayPointIndex].clue["image"] as? String {
-				clueHintImage.image = UIImage(data: NSData(base64EncodedString: imageData, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
+			if let imageURL = quest.wayPoints[currentWayPointIndex].clue["image"] as? String {
+                Alamofire.request(.GET, imageURL).responseImage { response in
+                    if let image = response.result.value {
+                        self.clueHintImage.image = image
+                    }
+                }
 				clueHintImage.hidden = false
 				clueHintImgWidthConst.constant = 0
 			} else {
@@ -209,8 +215,12 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		} else {
 			clueHintText.text = quest.wayPoints[currentWayPointIndex].hint["text"] as? String
 			clueHintToggle.setTitle("Show Clue", forState: UIControlState.Normal)
-			if let imageData = quest.wayPoints[currentWayPointIndex].hint["image"] as? String {
-				clueHintImage.image = UIImage(data: NSData(base64EncodedString: imageData, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
+			if let imageURL = quest.wayPoints[currentWayPointIndex].hint["image"] as? String {
+                Alamofire.request(.GET, imageURL).responseImage { response in
+                    if let image = response.result.value {
+                        self.clueHintImage.image = image
+                    }
+                }
 				clueHintImage.hidden = false
 				clueHintImgWidthConst.constant = 0
 			} else {
@@ -218,7 +228,6 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 				clueHintImage.hidden = true
 			}
 		}
-		
 	}
 	
 	/**
@@ -243,8 +252,6 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 				self.clueHintToggle.enabled = true
 				showClueHint()
 				questCompleted = false
-
-				print("Stopping Segue")
 				return false
 			}
 			return true
@@ -301,8 +308,12 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 					if let compText = quest.wayPoints[currentWayPointIndex - 1].completion["text"] as? String {
 						nextCtrl.descText = compText
 					}
-					if let imageData = quest.wayPoints[currentWayPointIndex - 1].completion["image"] as? String {
-						nextCtrl.image = UIImage(data: NSData(base64EncodedString: imageData, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!)
+					if let imageURL = quest.wayPoints[currentWayPointIndex - 1].completion["image"] as? String {
+                        Alamofire.request(.GET, imageURL).responseImage { response in
+                            if let image = response.result.value {
+                                nextCtrl.image = image
+                            }
+                        }
 					}
 					showClueHint()
 				}
