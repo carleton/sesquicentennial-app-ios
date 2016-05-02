@@ -15,15 +15,16 @@ class Event: Comparable {
     let location: CLLocationCoordinate2D!
     let name: String!
     var image: UIImage?
+    let caption: String?
     
-    init(displayDate: String, startDate: NSDate, headline: String, text: String, location: CLLocationCoordinate2D, name: String, imageURL: String?) {
+    init(displayDate: String, startDate: NSDate, headline: String, text: String, location: CLLocationCoordinate2D, name: String, imageURL: String?, caption: String?) {
         self.displayDate = displayDate
         self.startDate = startDate
         self.headline = headline
         self.text = text
         self.location = location
         self.name = name
-       
+        self.caption = caption
         if let imageURL = imageURL {
             Alamofire.request(.GET, imageURL).responseImage { response in
                 if let image = response.result.value {

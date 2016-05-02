@@ -33,11 +33,12 @@ final class HistoricalDataService {
                                startDay = event["start_date"]["day"].int,
                                headline = event["text"]["headline"].string,
                                text = event["text"]["text"].string,
-                               lat = event["geo"]["lat"].string,
-                               lon = event["geo"]["lon"].string,
+                               lat = event["geo"]["lat"].double,
+                               lon = event["geo"]["lon"].double,
                                name = event["geo"]["name"].string {
                             
-                            let imageURL = event["image"].string ?? nil
+                            let imageURL = event["media"]["url"].string ?? nil
+                            let caption = event["media"]["caption"].string ?? nil
                             
                             let c = NSDateComponents()
                             c.year = startYear
@@ -47,16 +48,16 @@ final class HistoricalDataService {
                             // Get NSDate given the above date components
                             let startDate = NSCalendar(identifier: NSCalendarIdentifierGregorian)?.dateFromComponents(c)
 
-                            
-                            if var landmark = result[name] {
-                                landmark.append(Event(
+                            if let _ = result[name] {
+                                result[name]?.append(Event(
                                     displayDate: displayDate,
                                     startDate: startDate!,
                                     headline: headline,
                                     text: text,
-                                    location: CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(lon)!),
+                                    location: CLLocationCoordinate2D(latitude: lat, longitude: lon),
                                     name: name,
-                                    imageURL: imageURL)
+                                    imageURL: imageURL,
+                                    caption: caption)
                                 )
                             } else {
                                 result[name] = []
@@ -65,14 +66,12 @@ final class HistoricalDataService {
                                     startDate: startDate!,
                                     headline: headline,
                                     text: text,
-                                    location: CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(lon)!),
+                                    location: CLLocationCoordinate2D(latitude: lat, longitude: lon),
                                     name: name,
-                                    imageURL: imageURL)
+                                    imageURL: imageURL,
+                                    caption: caption)
                                 )
                             }
-                        } else {
-							print("Data returned at endpoint: \(Endpoints.landmarks) is malformed.")
-                            completion(success: false, result: [:])
                         }
                     }
                     // finished getting events, send to completion handler

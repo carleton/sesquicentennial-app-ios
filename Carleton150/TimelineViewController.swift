@@ -125,6 +125,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             cell.cellSummary = timeline[indexPath.row].headline
             cell.cellTimestamp = timeline[indexPath.row].displayDate
             cell.cellDescription = timeline[indexPath.row].text
+            cell.caption.text = timeline[indexPath.row].caption ?? nil
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             return cell
         } else {
