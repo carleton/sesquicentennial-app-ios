@@ -9,7 +9,7 @@ import SwiftOverlays
 class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 	
 	var pageViewController: UIPageViewController!
-	var quests = [Quest]()
+    var quests: [Quest] = []
     @IBOutlet weak var noDataButton: UIButton!
     @IBOutlet weak var warningSign: UIImageView!
     
@@ -50,9 +50,8 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
         Get quests from the server.
      */
     func getQuests() {
-		QuestDataService.requestQuest("", limit: 5, completion: { (success, result) -> Void in
+		QuestDataService.getQuests() { (success, result) -> Void in
 			if let quests = result {
-				
 				self.removeAllOverlays()
 				self.quests = quests
 				self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
@@ -71,7 +70,7 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
                 self.warningSign.hidden = false
                 self.removeAllOverlays()
 			}
-		});
+		}
     }
 	
 	/**
@@ -96,7 +95,7 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 		vc.pageIndex = index
 		vc.titleText = quests[index].name
 		vc.descText = quests[index].questDescription
-		vc.image = quests[index].image
+		vc.imageURL = quests[index].imageURL
 		vc.difficultyRating = quests[index].difficulty
 		vc.quest = quests[index]
 		return vc

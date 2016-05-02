@@ -3,14 +3,15 @@
 //  Carleton150
 
 import UIKit
+import AlamofireImage
+import Alamofire
 
 class QuestContentViewController: UIViewController {
 
 	var pageIndex: Int!
-	
 	var titleText: String!
 	var difficultyRating : Int!
-	var image: String!
+	var imageURL: String!
 	var descText: String!
 	var buttonText: String!
 	var quest: Quest!
@@ -22,18 +23,17 @@ class QuestContentViewController: UIViewController {
 	@IBOutlet weak var imageView: UIImageView!
 	
 	/**
-	Prepares for a segue to the detail view for a particular point of
-	interest on the map.
+        Prepares for a segue to the detail view for a particular point of
+        interest on the map.
 	
-	Parameters:
-	- segue:  The segue that was triggered by user. If this is not the
-	segue to the landmarkDetail view, then don't perform the
-	segue.
+        Parameters:
+            - segue:  The segue that was triggered by user. If this is not the
+                      segue to the landmarkDetail view, then don't perform the
+                      segue.
 	
-	- sender: The sender, in our case, will be one of the Google Maps markers
-	that was pressed, which will in turn have data associated with
-	it that will given to the landmark detail view.
-	
+            - sender: The sender, in our case, will be one of the Google Maps markers
+                      that was pressed, which will in turn have data associated with
+                      it that will given to the landmark detail view.
 	*/
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "questStartSegue" {
@@ -43,8 +43,6 @@ class QuestContentViewController: UIViewController {
 	}
 
     override func viewDidLoad() {
-		
-//		self.view.frame = (self.view.superview?.frame)!
 
 		// Quest Name
 		if let titleText = titleText {
@@ -56,30 +54,27 @@ class QuestContentViewController: UIViewController {
 		if let difficultyRating = difficultyRating {
 			if difficultyRating == 0 {
 				self.difficultyLabel.text = "Easy"
-				self.difficultyLabel.textColor =
-					UIColor(
-						red: 79/255,
-						green: 138/255,
-						blue: 16/255,
-						alpha: 1.0
+				self.difficultyLabel.textColor = UIColor(
+                   red: 79/255,
+                   green: 138/255,
+                   blue: 16/255,
+                   alpha: 1.0
 				)
 			} else if difficultyRating == 1 {
 				self.difficultyLabel.text = "Medium"
-				self.difficultyLabel.textColor =
-					UIColor(
-						red: 159/255,
-						green: 96/255,
-						blue: 0/255,
-						alpha: 1.0
+				self.difficultyLabel.textColor = UIColor(
+                    red: 159/255,
+                    green: 96/255,
+					blue: 0/255,
+					alpha: 1.0
 				)
 			} else if difficultyRating == 2 {
 				self.difficultyLabel.text = "Hard"
-				self.difficultyLabel.textColor =
-					UIColor(
-						red: 216/255,
-						green: 0/255,
-						blue: 12/255,
-						alpha: 1.0
+				self.difficultyLabel.textColor = UIColor(
+					red: 216/255,
+					green: 0/255,
+					blue: 12/255,
+					alpha: 1.0
 				)
 			}
 		}
@@ -91,14 +86,16 @@ class QuestContentViewController: UIViewController {
 		}
 		self.descTextView.editable = false
 		// Quest Image
-		if let image = self.image {
-			self.imageView.image = UIImage(data: NSData(base64EncodedString: image, options: .IgnoreUnknownCharacters)!)
-		} else {
-			// this will do something
+		if let imageURL = self.imageURL {
+            Alamofire.request(.GET, imageURL).responseImage { response in
+                if let image = response.result.value {
+                    self.imageView.image = image
+                }
+            }
 		}
-		
     }
 
+    
 	override func viewWillAppear(animated: Bool) {
 		// Data Persistance
 		if let startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! NSDictionary! {
@@ -113,20 +110,20 @@ class QuestContentViewController: UIViewController {
 			}
 		}
 	}
-	
+    
+    
 	/**
-	Prepares for a segue to the detail view for a particular point of
-	interest on the map.
+        Prepares for a segue to the detail view for a particular point of
+        interest on the map.
 	
-	Parameters:
-	- segue:  The segue that was triggered by user. If this is not the
-	segue to the landmarkDetail view, then don't perform the
-	segue.
-	
-	- sender: The sender, in our case, will be one of the Google Maps markers
-	that was pressed, which will in turn have data associated with
-	it that will given to the landmark detail view.
-	
+        Parameters:
+            - segue:  The segue that was triggered by user. If this is not the
+                      segue to the landmarkDetail view, then don't perform the
+                      segue.
+     
+            - sender: The sender, in our case, will be one of the Google Maps markers
+                      that was pressed, which will in turn have data associated with
+                      it that will given to the landmark detail view.
 	*/
 	@IBAction func startAction(sender: AnyObject) {
 		if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
