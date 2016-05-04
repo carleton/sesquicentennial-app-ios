@@ -16,7 +16,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	@IBOutlet weak var connectionIndicator: UIActivityIndicatorView!
 	@IBOutlet weak var connectionLabel: UILabel!
 	@IBOutlet weak var connectionView: UIView!
-    @IBOutlet weak var storiesButton: UIButton!
 	
 	let locationManager: CLLocationManager = CLLocationManager()
 	var reach: Reachability?
@@ -42,14 +41,8 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		
 		// initialize geofences dictionary
 		self.landmarks = Dictionary<String,Landmark>()
-		
-        // set up the stories button
-		self.storiesButton.layer.cornerRadius = 5
-		self.storiesButton.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
-		self.storiesButton.layer.borderWidth = 1
         
 		mapView.bringSubviewToFront(self.questionButton)
-        mapView.bringSubviewToFront(self.storiesButton)
         mapView.bringSubviewToFront(self.recenterButton)
 		
         // set properties for the navigation bar

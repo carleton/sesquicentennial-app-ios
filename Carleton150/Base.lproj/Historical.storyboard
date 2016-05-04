@@ -200,21 +200,6 @@
                                             <action selector="recenterOnCarleton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TRy-Vi-c0b"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blb-au-egd">
-                                        <rect key="frame" x="8" y="7" width="79" height="47.5"/>
-                                        <color key="backgroundColor" red="0.039215686270000001" green="0.16078431369999999" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="47.5" id="Vr2-2T-2TW"/>
-                                            <constraint firstAttribute="width" constant="79" id="iSl-Vk-wfn"/>
-                                        </constraints>
-                                        <size key="titleShadowOffset" width="6" height="6"/>
-                                        <state key="normal" title="Stories">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="mwv-00-APl" kind="presentation" id="A3F-ty-Qt3"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -223,8 +208,6 @@
                                     <constraint firstItem="6ZF-dj-PrW" firstAttribute="leading" secondItem="Wzj-au-GJO" secondAttribute="leading" id="3W5-MI-wl6"/>
                                     <constraint firstAttribute="trailing" secondItem="6ZF-dj-PrW" secondAttribute="trailing" id="K9j-wB-l4B"/>
                                     <constraint firstAttribute="bottom" secondItem="kCl-QK-XDS" secondAttribute="bottom" constant="8" id="MBZ-fP-NZv"/>
-                                    <constraint firstItem="blb-au-egd" firstAttribute="leading" secondItem="Wzj-au-GJO" secondAttribute="leading" constant="8" id="TzX-1W-The"/>
-                                    <constraint firstItem="blb-au-egd" firstAttribute="top" secondItem="Wzj-au-GJO" secondAttribute="top" constant="7" id="g66-Wk-Hfh"/>
                                     <constraint firstAttribute="trailing" secondItem="uKH-PV-BeM" secondAttribute="trailing" constant="8" id="iL6-hK-baH"/>
                                     <constraint firstAttribute="bottom" secondItem="uKH-PV-BeM" secondAttribute="bottom" constant="77" id="nAc-gO-QQC"/>
                                     <constraint firstAttribute="bottom" secondItem="6ZF-dj-PrW" secondAttribute="bottom" id="vSn-y8-b0j"/>
@@ -247,63 +230,12 @@
                         <outlet property="mapView" destination="Wzj-au-GJO" id="q87-rK-Kei"/>
                         <outlet property="questionButton" destination="kCl-QK-XDS" id="Glk-fy-KKf"/>
                         <outlet property="recenterButton" destination="uKH-PV-BeM" id="51t-SU-fGX"/>
-                        <outlet property="storiesButton" destination="blb-au-egd" id="U19-w4-DgA"/>
                         <segue destination="2Ed-yO-PXD" kind="presentation" identifier="showTimeline" modalPresentationStyle="overFullScreen" id="s5d-X5-My7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="642" y="-4"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="M1b-Gc-KDP">
-            <objects>
-                <navigationController id="mwv-00-APl" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yx0-qb-O3Z">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Fzz-UQ-yR3" kind="relationship" relationship="rootViewController" id="77j-TS-th9"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7dy-oQ-sc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="642" y="828"/>
-        </scene>
-        <!--Stories View Controller-->
-        <scene sceneID="fQT-p4-iZV">
-            <objects>
-                <viewController id="Fzz-UQ-yR3" customClass="StoriesViewController" customModule="Carleton150" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="nQw-hS-H6U"/>
-                        <viewControllerLayoutGuide type="bottom" id="hqK-Pb-BEu"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="MEI-hp-egg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4i0-ta-xae">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="4i0-ta-xae" firstAttribute="top" secondItem="MEI-hp-egg" secondAttribute="top" id="0Rh-dj-jcU"/>
-                            <constraint firstAttribute="trailing" secondItem="4i0-ta-xae" secondAttribute="trailing" id="5iA-Gi-EY2"/>
-                            <constraint firstItem="4i0-ta-xae" firstAttribute="leading" secondItem="MEI-hp-egg" secondAttribute="leading" id="GPs-Av-9mV"/>
-                            <constraint firstItem="hqK-Pb-BEu" firstAttribute="top" secondItem="4i0-ta-xae" secondAttribute="bottom" id="mgM-CV-f0T"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="iFT-Rr-LjD"/>
-                    <connections>
-                        <outlet property="storiesView" destination="4i0-ta-xae" id="xQD-5a-mlq"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="faL-ad-zyh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1374" y="828"/>
         </scene>
         <!--Historical-->
         <scene sceneID="kWu-r1-2Bc">
