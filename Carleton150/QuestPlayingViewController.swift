@@ -90,13 +90,14 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 			selector: #selector(QuestPlayingViewController.connectionStatusChanged(_:)),
 			name: kReachabilityChangedNotification,
 			object: nil)
-        
-        if Utils.userOffCampus(locationManager.location!.coordinate) {
-            let alert = UIAlertController(title: "",
-                                          message: "It looks like you're off campus! Return to campus soon to finish your quest.",
-                                          preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title:"OK", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+        if let coordinates = locationManager.location?.coordinate {
+            if Utils.userOffCampus(coordinates) {
+                let alert = UIAlertController(title: "",
+                                              message: "It looks like you're off campus! Return to campus soon to finish your quest.",
+                                              preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title:"OK", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
         }
 	}
 
@@ -149,11 +150,10 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
             - locations: The past few locations that were detected by
                          the location manager.
 	 */
-	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
-	{
-		let curLocation: CLLocation = locationManager.location!
-		questMapView.animateToLocation(curLocation.coordinate)
-		
+	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let curLocation = locationManager.location {
+            questMapView.animateToLocation(curLocation.coordinate)
+        }
 	}
 	
 	/**
@@ -163,8 +163,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		- Parameters:
 			- sender: The UI button attemptCompButton
 	 */
-	@IBAction func attemptCompletion(sender: AnyObject) {
-	}
+	@IBAction func attemptCompletion(sender: AnyObject) {}
 	
 	/**
 		Upon clicking the show hint / show clue button, the UI shows a clue or a hint

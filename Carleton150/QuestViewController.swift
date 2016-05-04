@@ -36,12 +36,14 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 	}
     
     override func viewDidAppear(animated: Bool) {
-        if Utils.userOffCampus(locationManager.location!.coordinate) {
-            let alert = UIAlertController(title: "",
-                                          message: "The Quests feature is intended to be used on the Carleton College campus. Visit campus soon to embark on a Quest!",
-                                          preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title:"OK", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+        if let coordinates = locationManager.location?.coordinate {
+            if Utils.userOffCampus(coordinates) {
+                let alert = UIAlertController(title: "",
+                                              message: "The Quests feature is intended to be used on the Carleton College campus. Visit campus soon to embark on a Quest!",
+                                              preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title:"OK", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
         }
     }
    
