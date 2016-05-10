@@ -11,7 +11,17 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func goToYesterday(sender: UIBarButtonItem) {}
     @IBAction func goToTomorrow(sender: UIBarButtonItem) {}
     
+    var calendar: [Dictionary<String, AnyObject?>]?
+
     override func viewDidLoad() {
+        
+        // set the current date
+        currentDateLabel.text = chosenDate(NSDate())
+        
+        // set the dataSource and delegate for the calendar table view
+		calendarTableView.dataSource = self
+		calendarTableView.delegate = self
+        
         NSNotificationCenter.defaultCenter().addObserver(self,
              selector: #selector(self.actOnCalendarUpdate(_:)),
              name: "carleton150.calendarUpdate", object: nil)
@@ -20,7 +30,8 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func actOnCalendarUpdate(notification: NSNotification) {
-        
+        self.calendar = CalendarDataService.schedule
+        calendarTableView.reloadData()
     }
     
     
@@ -35,7 +46,11 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         - Returns: The number of calendar events.
      */
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if let count = self.calendar?.count {
+            return count
+        } else {
+            return 0
+        }
 	}
     
     
@@ -50,7 +65,46 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         - Returns: The modified table view cell.
      */
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        if let calendarEntry = calendar?[indexPath.row] {
+            let cell: calendarTableCell =
+                tableView.dequeueReusableCellWithIdentifier("calendarTableCell",
+                forIndexPath: indexPath) as! calendarTableCell
+            
+            cell.title = calendarEntry["title"] as? String ?? "No Title"
+            
+            if let time: NSDate = calendarEntry["startTime"] as? NSDate {
+                cell.time = parseDate(time)
+            } else {
+                cell.time = "No Time Available"
+            }
+            return cell
+        } else {
+            let cell: calendarTableCell =
+                tableView.dequeueReusableCellWithIdentifier("calendarTableCell",
+                forIndexPath: indexPath) as! calendarTableCell
+            return cell
+        }
     }
     
+    private func chosenDate(date: NSDate) -> String {
+        let outFormatter = NSDateFormatter()
+        outFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        outFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        return outFormatter.stringFromDate(date)
+    }
+    
+    /**
+         A convenience function to turn the NSDate objects returned
+         from the data service into human readable strings for presentation.
+         
+         - Parameters:
+            - date: A date to be turned into a nice stringified version of itself.
+     */
+    private func parseDate(date: NSDate) -> String {
+        let outFormatter = NSDateFormatter()
+        outFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        outFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        return outFormatter.stringFromDate(date)
+    }
+
 }
