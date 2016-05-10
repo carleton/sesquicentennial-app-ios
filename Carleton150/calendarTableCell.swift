@@ -8,6 +8,7 @@ class calendarTableCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
     
     var title: String? {
         didSet {
@@ -21,4 +22,9 @@ class calendarTableCell: UITableViewCell {
         }
     }
     
+    var location: String? {
+        didSet {
+            self.locationLabel.text = self.location ?? "No Location Available"
+        }
+    }
 }

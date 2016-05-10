@@ -71,12 +71,14 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
                 forIndexPath: indexPath) as! calendarTableCell
             
             cell.title = calendarEntry["title"] as? String ?? "No Title"
+            cell.location = calendarEntry["location"] as? String ?? "No Location Available"
             
             if let time: NSDate = calendarEntry["startTime"] as? NSDate {
                 cell.time = parseDate(time)
             } else {
                 cell.time = "No Time Available"
             }
+            
             return cell
         } else {
             let cell: calendarTableCell =
