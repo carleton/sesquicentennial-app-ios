@@ -133,7 +133,14 @@
                             <constraint firstItem="dKL-gt-cwj" firstAttribute="top" secondItem="O47-SX-NUA" secondAttribute="bottom" id="YJg-xX-M9a"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="dfy-ig-eaO"/>
+                    <navigationItem key="navigationItem" id="dfy-ig-eaO">
+                        <barButtonItem key="leftBarButtonItem" title="Today" id="ikN-BG-IgI">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="goToToday:" destination="oMo-FE-caS" id="ZDc-hQ-Iic"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="calendarTableView" destination="Zfq-lA-BpB" id="Q3q-X3-1qJ"/>
                         <outlet property="currentDateLabel" destination="8Jx-j2-3T3" id="a6u-s9-cMv"/>

@@ -18,18 +18,26 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     override func viewDidLoad() {
-        
-        // set the current date
+        // set and go to the current date
+        self.goToDate(NSDate())
         self.currentDate = NSDate()
         
         // set the dataSource and delegate for the calendar table view
 		calendarTableView.dataSource = self
 		calendarTableView.delegate = self
-        
+       
+        // set the observer and pull events
         NSNotificationCenter.defaultCenter().addObserver(self,
              selector: #selector(self.actOnCalendarUpdate(_:)),
              name: "carleton150.calendarUpdate", object: nil)
         CalendarDataService.getEvents()
+    }
+    
+    
+    @IBAction func goToToday(sender: UIBarButtonItem) {
+        self.goToDate(self.roundDownToNearestDay(NSDate()))
+        self.currentDate = NSDate()
+        self.testDate(self.roundDownToNearestDay(NSDate()), message: "Looks like there aren't any events today. We will show you the events that are available instead. Feel free to scroll to see more!")
     }
     
     
@@ -38,7 +46,9 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
             let newDate = NSCalendar.currentCalendar().dateByAddingUnit(
                 NSCalendarUnit.Day, value: -1, toDate: date, options: NSCalendarOptions(rawValue: 0))
             self.currentDate = newDate
-            self.goToDate(self.roundDownToNearestDay(newDate!))
+            let roundedDate = self.roundDownToNearestDay(newDate!)
+            self.goToDate(roundedDate)
+            self.testDate(roundedDate, message: nil)
         }
     }
     
@@ -48,7 +58,33 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
             let newDate = NSCalendar.currentCalendar().dateByAddingUnit(
                 NSCalendarUnit.Day, value: 1, toDate: date, options: NSCalendarOptions(rawValue: 0))
             self.currentDate = newDate
-            self.goToDate(self.roundDownToNearestDay(newDate!))
+            let roundedDate = self.roundDownToNearestDay(newDate!)
+            self.goToDate(roundedDate)
+            self.testDate(roundedDate, message: nil)
+        }
+    }
+    
+    func testDate(date: NSDate, message: String?) {
+        let nextDay = NSCalendar.currentCalendar().dateByAddingUnit(
+            NSCalendarUnit.Day, value: 1, toDate: date, options: NSCalendarOptions(rawValue: 0))
+        if let events = calendar {
+            if let firstEventDate = events[0]["startTime"] as? NSDate,
+                   lastEventDate = events[events.count - 1]["startTime"] as? NSDate {
+                if firstEventDate.isGreaterThanDate(nextDay!) ||
+                   lastEventDate.isLessThanDate(date) {
+                    var alertMessage = "Looks like there aren't any events on the chosen day. We will show you the events that are available instead. Feel free to scroll to see more!"
+                    if let passedMessage = message {
+                        alertMessage = passedMessage
+                    }
+                    let alert = UIAlertController(title: "",
+                        message: alertMessage,
+                        preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title:"OK", style: UIAlertActionStyle.Default, handler: nil))
+                    calendarTableView.setContentOffset(CGPointZero, animated: false)
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                }
+            }
         }
     }
    
