@@ -66,12 +66,13 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
      */
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let calendarEntry = calendar?[indexPath.row] {
-            let cell: calendarTableCell =
-                tableView.dequeueReusableCellWithIdentifier("calendarTableCell",
-                forIndexPath: indexPath) as! calendarTableCell
+            let cell: CalendarTableCell =
+                tableView.dequeueReusableCellWithIdentifier("CalendarTableCell",
+                forIndexPath: indexPath) as! CalendarTableCell
             
             cell.title = calendarEntry["title"] as? String ?? "No Title"
             cell.location = calendarEntry["location"] as? String ?? "No Location Available"
+            cell.summary = calendarEntry["description"] as? String ?? "No Description Available"
             
             if let time: NSDate = calendarEntry["startTime"] as? NSDate {
                 cell.time = parseDate(time)
@@ -81,9 +82,9 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
             
             return cell
         } else {
-            let cell: calendarTableCell =
-                tableView.dequeueReusableCellWithIdentifier("calendarTableCell",
-                forIndexPath: indexPath) as! calendarTableCell
+            let cell: CalendarTableCell =
+                tableView.dequeueReusableCellWithIdentifier("CalendarTableCell",
+                forIndexPath: indexPath) as! CalendarTableCell
             return cell
         }
     }

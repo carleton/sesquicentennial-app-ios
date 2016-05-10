@@ -77,15 +77,15 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="129" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zfq-lA-BpB">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="116" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zfq-lA-BpB">
                                 <rect key="frame" x="0.0" y="44" width="600" height="443"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="calendarTableCell" rowHeight="129" id="wqc-hs-cMr" customClass="calendarTableCell" customModule="Carleton150" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="129"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CalendarTableCell" rowHeight="116" id="wqc-hs-cMr" customClass="CalendarTableCell" customModule="Carleton150" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="116"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wqc-hs-cMr" id="Oqt-Vd-icL">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="128.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="115.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwo-Df-YLq">
@@ -123,9 +123,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="locationLabel" destination="iYG-kU-MFk" id="1XO-Bq-80J"/>
-                                            <outlet property="timeLabel" destination="RyW-39-RQ8" id="K1v-s1-mjp"/>
-                                            <outlet property="titleLabel" destination="Lwo-Df-YLq" id="MmT-IY-I8t"/>
+                                            <outlet property="locationLabel" destination="iYG-kU-MFk" id="S7E-7O-5AQ"/>
+                                            <outlet property="timeLabel" destination="RyW-39-RQ8" id="ACd-GV-iSx"/>
+                                            <outlet property="titleLabel" destination="Lwo-Df-YLq" id="kwR-Qv-gqm"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -52,10 +52,10 @@ class CalendarDetailView: UIViewController {
         A convenience method for setting the data as a segue
         is initiated.
      */
-//    func setData(calendarCell: CalendarCell) {
-//        self.date = calendarCell.timeLabel.text
-//        self.eventDescription = calendarCell.eventDescription
-//        self.eventTitle = calendarCell.eventTitle.text
-//        self.eventLocation = calendarCell.locationLabel.text
-//    }
+    func setData(calendarCell: CalendarTableCell) {
+        self.date = calendarCell.timeLabel.text
+        self.eventDescription = calendarCell.summary
+        self.eventTitle = calendarCell.title
+        self.eventLocation = calendarCell.location
+    }
 }
