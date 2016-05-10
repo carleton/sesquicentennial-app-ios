@@ -44,9 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
 		
-        // gets the calendar for the first time
-        CalendarDataService.getEvents()
-		
 		customizePageViews()
 
 		// start monitoring network connection
