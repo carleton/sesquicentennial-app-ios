@@ -9,6 +9,9 @@
         <mutableArray key="Roboto-Bold.ttf">
             <string>Roboto-Bold</string>
         </mutableArray>
+        <mutableArray key="Roboto-BoldItalic.ttf">
+            <string>Roboto-BoldItalic</string>
+        </mutableArray>
         <mutableArray key="Roboto-Italic.ttf">
             <string>Roboto-Italic</string>
             <string>Roboto-Italic</string>
@@ -71,13 +74,46 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zfq-lA-BpB">
+                                <rect key="frame" x="0.0" y="44" width="600" height="443"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="calendarCell" rowHeight="91" id="wqc-hs-cMr">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="91"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wqc-hs-cMr" id="Oqt-Vd-icL">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="90.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwo-Df-YLq">
+                                                    <rect key="frame" x="18" y="8" width="411" height="22.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="411" id="muM-HC-55Y"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-BoldItalic" family="Roboto" pointSize="19"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Lwo-Df-YLq" firstAttribute="top" secondItem="Oqt-Vd-icL" secondAttribute="topMargin" id="eHe-sc-bMz"/>
+                                                <constraint firstItem="Lwo-Df-YLq" firstAttribute="leading" secondItem="Oqt-Vd-icL" secondAttribute="leadingMargin" constant="10" id="xzt-nM-LEQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="8Jx-j2-3T3" firstAttribute="centerX" secondItem="f8G-wa-ekg" secondAttribute="centerX" id="2bG-hq-TkC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dKL-gt-cwj" secondAttribute="trailing" constant="-20" id="4eB-ZQ-WxG"/>
                             <constraint firstItem="8Jx-j2-3T3" firstAttribute="top" secondItem="O47-SX-NUA" secondAttribute="bottom" constant="11" id="6lG-ZJ-EIA"/>
+                            <constraint firstItem="vWf-zb-p79" firstAttribute="top" secondItem="Zfq-lA-BpB" secondAttribute="bottom" id="8zM-AM-UJN"/>
                             <constraint firstItem="dKL-gt-cwj" firstAttribute="leading" secondItem="f8G-wa-ekg" secondAttribute="leadingMargin" constant="-20" id="EqP-5H-pTf"/>
+                            <constraint firstItem="Zfq-lA-BpB" firstAttribute="top" secondItem="dKL-gt-cwj" secondAttribute="bottom" id="FV2-Kl-ZmD"/>
+                            <constraint firstItem="Zfq-lA-BpB" firstAttribute="leading" secondItem="f8G-wa-ekg" secondAttribute="leadingMargin" constant="-20" id="GYe-rU-gHg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zfq-lA-BpB" secondAttribute="trailing" constant="-20" id="Phh-Ao-6gg"/>
                             <constraint firstItem="dKL-gt-cwj" firstAttribute="top" secondItem="O47-SX-NUA" secondAttribute="bottom" id="YJg-xX-M9a"/>
                         </constraints>
                     </view>
