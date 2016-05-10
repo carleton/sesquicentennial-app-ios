@@ -26,7 +26,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="PlC-KA-Xyr"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7UA-Ug-96r">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="7UA-Ug-96r">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -48,9 +48,38 @@
                         <viewControllerLayoutGuide type="bottom" id="vWf-zb-p79"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="f8G-wa-ekg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKL-gt-cwj">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <color key="backgroundColor" red="0.039215686274509803" green="0.11372549019607843" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <barButtonItem title="&lt;" width="14" id="Plw-My-UlM">
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="lRE-MB-Za7"/>
+                                    <barButtonItem title="&gt;" width="14" id="EZG-eb-cU6">
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    </barButtonItem>
+                                </items>
+                                <color key="barTintColor" red="0.039215686274509803" green="0.11372549019607843" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Jx-j2-3T3">
+                                <rect key="frame" x="251" y="11" width="99" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8Jx-j2-3T3" firstAttribute="centerX" secondItem="f8G-wa-ekg" secondAttribute="centerX" id="2bG-hq-TkC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dKL-gt-cwj" secondAttribute="trailing" constant="-20" id="4eB-ZQ-WxG"/>
+                            <constraint firstItem="8Jx-j2-3T3" firstAttribute="top" secondItem="O47-SX-NUA" secondAttribute="bottom" constant="11" id="6lG-ZJ-EIA"/>
+                            <constraint firstItem="dKL-gt-cwj" firstAttribute="leading" secondItem="f8G-wa-ekg" secondAttribute="leadingMargin" constant="-20" id="EqP-5H-pTf"/>
+                            <constraint firstItem="dKL-gt-cwj" firstAttribute="top" secondItem="O47-SX-NUA" secondAttribute="bottom" id="YJg-xX-M9a"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dfy-ig-eaO"/>
                 </viewController>
