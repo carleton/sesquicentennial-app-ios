@@ -4,16 +4,11 @@
 
 class TutorialViewController: UIViewController {
     
-    var parent: HistoricalViewController!
-   
     /**
         Dismisses the tutorial from view on tap. 
-        
-        - Parameters: 
-            - sender: The X in the top right corner of the tutorial.
      */
-    @IBAction func dismissTutorial(sender: AnyObject) {
-        parent.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func exit() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
    
     override func viewDidLoad() {

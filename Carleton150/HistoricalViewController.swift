@@ -10,7 +10,6 @@ import Reachability
 
 class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
-	@IBOutlet weak var questionButton: UIButton!
     @IBOutlet weak var recenterButton: UIButton!
     @IBOutlet weak var mapView: GMSMapView!
 	@IBOutlet weak var connectionIndicator: UIActivityIndicatorView!
@@ -42,7 +41,15 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		// initialize geofences dictionary
 		self.landmarks = Dictionary<String,Landmark>()
         
-		mapView.bringSubviewToFront(self.questionButton)
+        let questionButton = UIButton()
+        questionButton.setTitle("?", forState: .Normal)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "?",
+                                                           style: .Plain,
+                                                           target: self,
+                                                           action: #selector(self.goToTutorial)
+        )
+       
+		mapView.bringSubviewToFront(questionButton)
         mapView.bringSubviewToFront(self.recenterButton)
 		
         // set properties for the navigation bar
@@ -69,6 +76,10 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         // set up the tiling for the map
         Utils.setUpTiling(mapView)
 	}
+    
+    func goToTutorial() {
+        self.performSegueWithIdentifier("tutorial", sender: nil)
+    }
     
     @IBAction func recenterOnCarleton(sender: AnyObject) {
 		mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
@@ -103,8 +114,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			- notification: notification sent by observer
 	*/
 	func connectionStatusChanged(notification: NSNotification) {
-		if self.networkMonitor!.isReachableViaWiFi() || self.networkMonitor!.isReachableViaWWAN()
-        {
+		if self.networkMonitor!.isReachableViaWiFi() || self.networkMonitor!.isReachableViaWWAN() {
             self.connectionLabel.hidden = true
             self.connectionIndicator.stopAnimating()
             self.connectionIndicator.hidden = true
@@ -151,7 +161,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
      
         Parameters: 
             - segue:  The segue that was triggered by user. If this is not the
-                      segue to the landmarkDetail view, then don't perform the
+                      segue to the landmarkDetail view, then don't do anything.
                       segue.
      
             - sender: The sender, in our case, will be one of the Google Maps markers
@@ -169,10 +179,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 					destinationController.timeline = landmark.events
 				}
 			}
-        } else if segue.identifier == "showTutorial" {
-			let destinationController = (segue.destinationViewController as! TutorialViewController)
-			destinationController.parent = self
-		}
+        }
     }
 	
     
