@@ -34,6 +34,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         calendarTableView.reloadData()
     }
     
+
     /**
          Prepares for segues from the calendar to its detail modals by passing
          the data required for the modal along to the modal instance.
@@ -49,7 +50,14 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
             detailViewController.setData(sender as! CalendarTableCell)
         }
     }
-
+    
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let visibleCellIndex = calendarTableView.indexPathsForVisibleRows![0].row
+        if let topDate = calendar?[visibleCellIndex]["startTime"] as? NSDate {
+            currentDateLabel.text = chosenDate(topDate)
+        }
+    }
     
     
     /**
