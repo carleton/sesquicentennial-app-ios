@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4Ua-VX-sXf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4Ua-VX-sXf">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -15,10 +15,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="aLT-bZ-lo1" kind="relationship" relationship="viewControllers" id="bew-rk-gI0"/>
-                        <segue destination="m6Z-VP-8iM" kind="relationship" relationship="viewControllers" id="9pD-JX-w4V"/>
-                        <segue destination="YZC-lL-LW9" kind="relationship" relationship="viewControllers" id="9hb-5Z-NgK"/>
                         <segue destination="pnw-79-NLq" kind="relationship" relationship="viewControllers" id="gDA-GL-wXd"/>
+                        <segue destination="m6Z-VP-8iM" kind="relationship" relationship="viewControllers" id="9pD-JX-w4V"/>
+                        <segue destination="aLT-bZ-lo1" kind="relationship" relationship="viewControllers" id="bew-rk-gI0"/>
+                        <segue destination="YZC-lL-LW9" kind="relationship" relationship="viewControllers" id="9hb-5Z-NgK"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q2D-Yc-gxU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -39,7 +39,7 @@
         <scene sceneID="CCL-8O-eq5">
             <objects>
                 <viewControllerPlaceholder storyboardName="Info" id="pnw-79-NLq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Info" image="info" id="OR3-Yi-6oa"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" id="OR3-Yi-6oa"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q6B-mV-DGN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -69,7 +69,7 @@
     <resources>
         <image name="bank11" width="24" height="24"/>
         <image name="calendar53" width="24" height="24"/>
-        <image name="info" width="24" height="24"/>
+        <image name="home" width="24" height="24"/>
         <image name="quest" width="24" height="24"/>
     </resources>
 </document>

@@ -196,11 +196,11 @@
             </objects>
             <point key="canvasLocation" x="661" y="-4"/>
         </scene>
-        <!--Historical-->
+        <!--History-->
         <scene sceneID="kWu-r1-2Bc">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vkZ-Zi-z9j" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Historical" image="bank11" id="T5x-MU-tmN"/>
+                    <tabBarItem key="tabBarItem" title="History" image="bank11" id="T5x-MU-tmN" userLabel="History"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fLT-Y3-GcO">
