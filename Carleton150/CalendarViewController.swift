@@ -8,15 +8,19 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var calendarTableView: UITableView!
     @IBOutlet weak var currentDateLabel: UILabel!
-    @IBAction func goToYesterday(sender: UIBarButtonItem) {}
-    @IBAction func goToTomorrow(sender: UIBarButtonItem) {}
-    
     var calendar: [Dictionary<String, AnyObject?>]?
+    var currentDate: NSDate? {
+        didSet {
+            if let date = currentDate {
+                currentDateLabel.text = chosenDate(date)
+            }
+        }
+    }
 
     override func viewDidLoad() {
         
         // set the current date
-        currentDateLabel.text = chosenDate(NSDate())
+        self.currentDate = NSDate()
         
         // set the dataSource and delegate for the calendar table view
 		calendarTableView.dataSource = self
@@ -26,6 +30,56 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
              selector: #selector(self.actOnCalendarUpdate(_:)),
              name: "carleton150.calendarUpdate", object: nil)
         CalendarDataService.getEvents()
+    }
+    
+    
+    @IBAction func goToYesterday(sender: UIBarButtonItem) {
+        if let date = self.currentDate {
+            let newDate = NSCalendar.currentCalendar().dateByAddingUnit(
+                NSCalendarUnit.Day, value: -1, toDate: date, options: NSCalendarOptions(rawValue: 0))
+            self.currentDate = newDate
+            self.goToDate(self.roundDownToNearestDay(newDate!))
+        }
+    }
+    
+    
+    @IBAction func goToTomorrow(sender: UIBarButtonItem) {
+        if let date = self.currentDate {
+            let newDate = NSCalendar.currentCalendar().dateByAddingUnit(
+                NSCalendarUnit.Day, value: 1, toDate: date, options: NSCalendarOptions(rawValue: 0))
+            self.currentDate = newDate
+            self.goToDate(self.roundDownToNearestDay(newDate!))
+        }
+    }
+   
+    /**
+        Goes to the specified date in the calendar table view.
+     
+        - Parameters:
+            - date: The date to go to (rounds down on time)
+     */
+    func goToDate(inputDate: NSDate?) {
+        if let calendarLength = calendar?.count, date = inputDate {
+            for i in 0 ..< calendarLength {
+                if let eventDate: NSDate = calendar?[i]["startTime"] as? NSDate {
+                    if eventDate.isGreaterThanDate(date) {
+                        calendarTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+                        break
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    func roundDownToNearestDay(date: NSDate) -> NSDate {
+        let calendar = NSCalendar.currentCalendar()
+        let components = NSDateComponents()
+        components.second = -calendar.components(NSCalendarUnit.Second, fromDate: date).second
+        components.minute = -calendar.components(NSCalendarUnit.Minute, fromDate: date).minute
+        components.hour = -calendar.components(NSCalendarUnit.Hour, fromDate: date).hour
+        return calendar.dateByAddingComponents(
+            components, toDate: date, options: NSCalendarOptions(rawValue: 0))!
     }
     
     
@@ -55,7 +109,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let visibleCellIndex = calendarTableView.indexPathsForVisibleRows![0].row
         if let topDate = calendar?[visibleCellIndex]["startTime"] as? NSDate {
-            currentDateLabel.text = chosenDate(topDate)
+            self.currentDate = topDate
         }
     }
     
@@ -130,5 +184,4 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         outFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
         return outFormatter.stringFromDate(date)
     }
-
 }
