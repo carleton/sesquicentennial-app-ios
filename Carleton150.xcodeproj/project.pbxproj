@@ -30,6 +30,7 @@
 		71340E581C5214A2007F9E2F /* QuestDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71340E571C5214A2007F9E2F /* QuestDataService.swift */; };
 		71340E5A1C5216C8007F9E2F /* HistoricalDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71340E591C5216C8007F9E2F /* HistoricalDataService.swift */; };
 		71340E5C1C5217C3007F9E2F /* CalendarDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71340E5B1C5217C3007F9E2F /* CalendarDataService.swift */; };
+		713910501CE26FCB008089DF /* CalendarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7139104F1CE26FCB008089DF /* CalendarDetailViewController.swift */; };
 		714C58B01C5ABF1600D6C33E /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C58AF1C5ABF1600D6C33E /* Endpoints.swift */; };
 		71573EB41C707E5400B3E265 /* TimelineTextDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71573EB31C707E5400B3E265 /* TimelineTextDetailView.swift */; };
 		715AE47E1C4EADF200C8F0C9 /* WayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */; };
@@ -97,6 +98,7 @@
 		71340E571C5214A2007F9E2F /* QuestDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestDataService.swift; sourceTree = "<group>"; };
 		71340E591C5216C8007F9E2F /* HistoricalDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoricalDataService.swift; sourceTree = "<group>"; };
 		71340E5B1C5217C3007F9E2F /* CalendarDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDataService.swift; sourceTree = "<group>"; };
+		7139104F1CE26FCB008089DF /* CalendarDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDetailViewController.swift; sourceTree = "<group>"; };
 		714C58AF1C5ABF1600D6C33E /* Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		71573EB31C707E5400B3E265 /* TimelineTextDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTextDetailView.swift; sourceTree = "<group>"; };
 		715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WayPoint.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				7160F69F1CE19D0300A8D41F /* Calendar.storyboard */,
+				7139104F1CE26FCB008089DF /* CalendarDetailViewController.swift */,
 				71340E5B1C5217C3007F9E2F /* CalendarDataService.swift */,
 				7160F69D1CE19BFD00A8D41F /* CalendarViewController.swift */,
 				71A08C1F1CE233D30071DADA /* CalendarTableCell.swift */,
@@ -534,6 +537,7 @@
 				714C58B01C5ABF1600D6C33E /* Endpoints.swift in Sources */,
 				7180A72E1C685DAA0080F121 /* TimelineTitleView.swift in Sources */,
 				71A08C201CE233D30071DADA /* CalendarTableCell.swift in Sources */,
+				713910501CE26FCB008089DF /* CalendarDetailViewController.swift in Sources */,
 				6A3094401BD9CD4600A16342 /* Landmark.swift in Sources */,
 				71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */,
 				71573EB41C707E5400B3E265 /* TimelineTextDetailView.swift in Sources */,

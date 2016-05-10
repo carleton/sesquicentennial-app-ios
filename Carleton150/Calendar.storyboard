@@ -143,10 +143,10 @@
             </objects>
             <point key="canvasLocation" x="553" y="480"/>
         </scene>
-        <!--View Controller-->
+        <!--Calendar Detail View Controller-->
         <scene sceneID="ieO-c5-hQm">
             <objects>
-                <viewController id="huS-68-Nei" sceneMemberID="viewController">
+                <viewController id="huS-68-Nei" customClass="CalendarDetailViewController" customModule="Carleton150" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BSv-j0-8oV"/>
                         <viewControllerLayoutGuide type="bottom" id="8ly-LJ-7HZ"/>
@@ -154,8 +154,36 @@
                     <view key="view" contentMode="scaleToFill" id="cCV-zx-XkN">
                         <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J8f-Xi-FgF">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="140"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYg-2n-1FI" userLabel="Title Label">
+                                        <rect key="frame" x="10" y="10" width="580" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.039215686270000001" green="0.1137254902" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="lYg-2n-1FI" firstAttribute="leading" secondItem="J8f-Xi-FgF" secondAttribute="leading" constant="10" id="7Je-H1-4x0"/>
+                                    <constraint firstItem="lYg-2n-1FI" firstAttribute="top" secondItem="J8f-Xi-FgF" secondAttribute="top" constant="10" id="HIy-XK-5kO"/>
+                                    <constraint firstAttribute="height" constant="140" id="MjK-vV-1Tw"/>
+                                    <constraint firstAttribute="trailing" secondItem="lYg-2n-1FI" secondAttribute="trailing" constant="10" id="jZY-QG-1s8"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="J8f-Xi-FgF" firstAttribute="leading" secondItem="cCV-zx-XkN" secondAttribute="leadingMargin" constant="-20" id="Utp-bT-JkA"/>
+                            <constraint firstItem="J8f-Xi-FgF" firstAttribute="top" secondItem="BSv-j0-8oV" secondAttribute="bottom" id="bvt-FG-cK1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="J8f-Xi-FgF" secondAttribute="trailing" constant="-20" id="zHN-EY-tfm"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="titleLabel" destination="lYg-2n-1FI" id="8wf-1a-4WZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5G4-63-xQB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -44,10 +44,10 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
              - sender: The collecton view cell that triggered the segue.
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if (segue.identifier == "showCalendarDetail") {
-//            let detailViewController = (segue.destinationViewController as! CalendarDetailView)
-//            detailViewController.setData(sender as! CalendarTableCell)
-//        }
+        if (segue.identifier == "showCalendarDetail") {
+            let detailViewController = (segue.destinationViewController as! CalendarDetailViewController)
+            detailViewController.setData(sender as! CalendarTableCell)
+        }
     }
 
     
