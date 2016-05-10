@@ -5,18 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="Roboto-Bold.ttf">
-            <string>Roboto-Bold</string>
-        </mutableArray>
-        <mutableArray key="Roboto-Italic.ttf">
-            <string>Roboto-Italic</string>
-            <string>Roboto-Italic</string>
-        </mutableArray>
-        <mutableArray key="Roboto-Regular.ttf">
-            <string>Roboto-Regular</string>
-        </mutableArray>
-    </customFonts>
     <scenes>
         <!--Calendar-->
         <scene sceneID="LPp-Gi-ioM">
@@ -77,15 +65,15 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="116" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zfq-lA-BpB">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="131" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zfq-lA-BpB">
                                 <rect key="frame" x="0.0" y="44" width="600" height="443"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CalendarTableCell" rowHeight="116" id="wqc-hs-cMr" customClass="CalendarTableCell" customModule="Carleton150" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="116"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="CalendarTableCell" rowHeight="131" id="wqc-hs-cMr" customClass="CalendarTableCell" customModule="Carleton150" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="131"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wqc-hs-cMr" id="Oqt-Vd-icL">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="115.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="533" height="130.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwo-Df-YLq">
@@ -126,6 +114,7 @@
                                             <outlet property="locationLabel" destination="iYG-kU-MFk" id="S7E-7O-5AQ"/>
                                             <outlet property="timeLabel" destination="RyW-39-RQ8" id="ACd-GV-iSx"/>
                                             <outlet property="titleLabel" destination="Lwo-Df-YLq" id="kwR-Qv-gqm"/>
+                                            <segue destination="huS-68-Nei" kind="show" identifier="showCalendarDetail" trigger="accessoryAction" id="IRf-0A-jEe"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -154,99 +143,23 @@
             </objects>
             <point key="canvasLocation" x="553" y="480"/>
         </scene>
-        <!--Calendar Detail View-->
-        <scene sceneID="8z0-hc-HBh">
+        <!--View Controller-->
+        <scene sceneID="ieO-c5-hQm">
             <objects>
-                <viewController modalPresentationStyle="overCurrentContext" id="bNA-Tr-R9y" customClass="CalendarDetailView" customModule="Carleton150" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="huS-68-Nei" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wOe-nG-bxS"/>
-                        <viewControllerLayoutGuide type="bottom" id="6Rm-Mi-h4n"/>
+                        <viewControllerLayoutGuide type="top" id="BSv-j0-8oV"/>
+                        <viewControllerLayoutGuide type="bottom" id="8ly-LJ-7HZ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="wmo-5c-W7L">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="cCV-zx-XkN">
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZvB-aB-Sid">
-                                <rect key="frame" x="20" y="28" width="560" height="552"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQM-jQ-5R8">
-                                        <rect key="frame" x="497" y="0.0" width="63" height="71"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="63" id="VKi-wP-75b"/>
-                                            <constraint firstAttribute="height" constant="71" id="o4n-Hk-mOt"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="X">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="dismissDetailView:" destination="bNA-Tr-R9y" eventType="touchUpInside" id="UCH-KT-zQH"/>
-                                        </connections>
-                                    </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KxJ-d0-nYI">
-                                        <rect key="frame" x="14" y="176" width="526" height="350"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="eventTitle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="KIM-AI-Rub">
-                                        <rect key="frame" x="19" y="72" width="521" height="28"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="21"/>
-                                        <color key="textColor" red="0.90216385690000001" green="0.62171052630000001" blue="0.073054933399999994" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HaC-6y-g3e">
-                                        <rect key="frame" x="20" y="115" width="520" height="24"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="18"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKD-e2-NJw">
-                                        <rect key="frame" x="19" y="147" width="521" height="24"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="18"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.066666666669999999" green="0.14117647059999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="UKD-e2-NJw" firstAttribute="leading" secondItem="ZvB-aB-Sid" secondAttribute="leading" constant="19" id="3Wf-eO-QRk"/>
-                                    <constraint firstItem="UKD-e2-NJw" firstAttribute="top" secondItem="HaC-6y-g3e" secondAttribute="bottom" constant="8" id="3hK-Q1-OhA"/>
-                                    <constraint firstAttribute="trailing" secondItem="UKD-e2-NJw" secondAttribute="trailing" constant="20" id="54S-6l-NJu"/>
-                                    <constraint firstItem="KIM-AI-Rub" firstAttribute="leading" secondItem="ZvB-aB-Sid" secondAttribute="leading" constant="19" id="5S8-1F-dNZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="HaC-6y-g3e" secondAttribute="trailing" constant="20" id="AtY-OK-gUY"/>
-                                    <constraint firstItem="KxJ-d0-nYI" firstAttribute="leading" secondItem="ZvB-aB-Sid" secondAttribute="leading" constant="14" id="FXG-0j-RPU"/>
-                                    <constraint firstItem="KIM-AI-Rub" firstAttribute="top" secondItem="TQM-jQ-5R8" secondAttribute="bottom" constant="1" id="ICw-nK-ui0"/>
-                                    <constraint firstItem="HaC-6y-g3e" firstAttribute="leading" secondItem="ZvB-aB-Sid" secondAttribute="leading" constant="20" id="OFe-Jd-kNC"/>
-                                    <constraint firstItem="TQM-jQ-5R8" firstAttribute="top" secondItem="ZvB-aB-Sid" secondAttribute="top" id="f0y-OP-wLt"/>
-                                    <constraint firstItem="HaC-6y-g3e" firstAttribute="top" secondItem="KIM-AI-Rub" secondAttribute="bottom" constant="15" id="fPS-HG-34q"/>
-                                    <constraint firstAttribute="trailing" secondItem="TQM-jQ-5R8" secondAttribute="trailing" id="iEW-Me-4gO"/>
-                                    <constraint firstAttribute="trailing" secondItem="KIM-AI-Rub" secondAttribute="trailing" constant="20" id="mD2-Uj-1yO"/>
-                                    <constraint firstItem="KxJ-d0-nYI" firstAttribute="top" secondItem="UKD-e2-NJw" secondAttribute="bottom" constant="5" id="mSl-YG-iFE"/>
-                                    <constraint firstAttribute="bottom" secondItem="KxJ-d0-nYI" secondAttribute="bottom" constant="26" id="wfr-4H-3ie"/>
-                                    <constraint firstAttribute="trailing" secondItem="KxJ-d0-nYI" secondAttribute="trailing" constant="20" id="yfo-GF-DEU"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="6Rm-Mi-h4n" firstAttribute="top" secondItem="ZvB-aB-Sid" secondAttribute="bottom" constant="20" id="4XZ-2v-2nX"/>
-                            <constraint firstItem="ZvB-aB-Sid" firstAttribute="leading" secondItem="wmo-5c-W7L" secondAttribute="leadingMargin" id="kbf-DK-FJV"/>
-                            <constraint firstItem="ZvB-aB-Sid" firstAttribute="trailing" secondItem="wmo-5c-W7L" secondAttribute="trailingMargin" id="qMW-w4-E5y"/>
-                            <constraint firstItem="ZvB-aB-Sid" firstAttribute="top" secondItem="wOe-nG-bxS" secondAttribute="bottom" constant="8" id="v3z-6t-Tau"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="dateLabel" destination="UKD-e2-NJw" id="gxM-HH-zbR"/>
-                        <outlet property="eventDescriptionText" destination="KxJ-d0-nYI" id="Upy-WQ-IGm"/>
-                        <outlet property="eventTitleLabel" destination="KIM-AI-Rub" id="1Vj-nS-NqC"/>
-                        <outlet property="locationLabel" destination="HaC-6y-g3e" id="bEM-J8-cdu"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AI9-CH-grB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5G4-63-xQB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1290" y="480"/>
+            <point key="canvasLocation" x="1278" y="480"/>
         </scene>
     </scenes>
     <resources>

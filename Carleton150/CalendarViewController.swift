@@ -34,6 +34,23 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         calendarTableView.reloadData()
     }
     
+    /**
+         Prepares for segues from the calendar to its detail modals by passing
+         the data required for the modal along to the modal instance.
+         
+         - Parameters:
+             - segue: The triggered segue.
+             
+             - sender: The collecton view cell that triggered the segue.
+     */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if (segue.identifier == "showCalendarDetail") {
+//            let detailViewController = (segue.destinationViewController as! CalendarDetailView)
+//            detailViewController.setData(sender as! CalendarTableCell)
+//        }
+    }
+
+    
     
     /**
         Determines the number of cells in the table view.
@@ -46,11 +63,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         - Returns: The number of calendar events.
      */
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let count = self.calendar?.count {
-            return count
-        } else {
-            return 0
-        }
+        return self.calendar?.count ?? 0
 	}
     
     
