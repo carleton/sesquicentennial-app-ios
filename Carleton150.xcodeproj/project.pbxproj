@@ -47,6 +47,7 @@
 		71B379B91C7928F40057B5B8 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B379B81C7928F40057B5B8 /* TutorialViewController.swift */; };
 		71CC5F791BE944220065AA4C /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CC5F781BE944220065AA4C /* DataServiceTest.swift */; };
 		71F0C7C01C7273920063EDB1 /* TimelineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F0C7BF1C7273920063EDB1 /* TimelineDetailView.swift */; };
+		71F4E1D11CE39D5B00A69728 /* no-connection.html in Resources */ = {isa = PBXBuildFile; fileRef = 71F4E1D01CE39D5B00A69728 /* no-connection.html */; };
 		71FF6D371C72B2CD004A2B3D /* TimelineImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF6D361C72B2CD004A2B3D /* TimelineImageDetailView.swift */; };
 		DE91C2426C63D15AFB832D1D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B806A61E13CBDF524607BD9E /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -127,6 +128,7 @@
 		71CC5F721BE942CF0065AA4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71CC5F781BE944220065AA4C /* DataServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
 		71F0C7BF1C7273920063EDB1 /* TimelineDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineDetailView.swift; sourceTree = "<group>"; };
+		71F4E1D01CE39D5B00A69728 /* no-connection.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "no-connection.html"; sourceTree = "<group>"; };
 		71FF6D361C72B2CD004A2B3D /* TimelineImageDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineImageDetailView.swift; sourceTree = "<group>"; };
 		A13C89B298A898D72EE69AED /* Pods_Carleton150Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carleton150Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B806A61E13CBDF524607BD9E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,6 +290,7 @@
 		71ABAA601CD0181D00D6BFFE /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				71F4E1D01CE39D5B00A69728 /* no-connection.html */,
 				71ABAA611CD0183700D6BFFE /* Info.storyboard */,
 				71ABAA651CD01A9B00D6BFFE /* InfoViewController.swift */,
 			);
@@ -439,6 +442,7 @@
 				71ABAA641CD0189700D6BFFE /* Main.storyboard in Resources */,
 				71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */,
 				634AD3A31C780D26005EBE9C /* Assets.xcassets in Resources */,
+				71F4E1D11CE39D5B00A69728 /* no-connection.html in Resources */,
 				6368A5961C5050E900D6B5B2 /* Quest.storyboard in Resources */,
 				63036B341C4CB5A200193A78 /* Historical.storyboard in Resources */,
 			);
