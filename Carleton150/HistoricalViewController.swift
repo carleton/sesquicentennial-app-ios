@@ -41,15 +41,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		// initialize geofences dictionary
 		self.landmarks = Dictionary<String,Landmark>()
         
-        let questionButton = UIButton()
-        questionButton.setTitle("Help", forState: .Normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Help",
-                                                           style: .Plain,
-                                                           target: self,
-                                                           action: #selector(self.goToTutorial)
-        )
-       
-		mapView.bringSubviewToFront(questionButton)
         mapView.bringSubviewToFront(self.recenterButton)
 		
         // set properties for the navigation bar
@@ -78,9 +69,11 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         Utils.setUpTiling(mapView)
 	}
     
-    func goToTutorial() {
+    
+    @IBAction func showHelp(sender: UIBarButtonItem) {
         self.performSegueWithIdentifier("tutorial", sender: nil)
     }
+    
     
     @IBAction func recenterOnCarleton(sender: AnyObject) {
 		mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)

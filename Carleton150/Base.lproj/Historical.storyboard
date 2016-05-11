@@ -210,6 +210,12 @@
                                 <action selector="recenterOnLocation:" destination="BYZ-38-t0r" id="iSL-4m-nxG"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="round-help-button" id="SQn-d0-CgU">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="showHelp:" destination="BYZ-38-t0r" id="e7c-vM-047"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="connectionIndicator" destination="8E5-oy-4AQ" id="3XF-4w-oQC"/>
@@ -675,6 +681,7 @@
         <image name="current_location_1" width="20" height="20"/>
         <image name="marker" width="40" height="65"/>
         <image name="recenter" width="60" height="60"/>
+        <image name="round-help-button" width="24" height="24"/>
         <image name="timeline_point" width="34" height="34"/>
     </resources>
 </document>
