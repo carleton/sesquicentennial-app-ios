@@ -11,6 +11,7 @@
             <string>Roboto-BoldItalic</string>
             <string>Roboto-BoldItalic</string>
             <string>Roboto-BoldItalic</string>
+            <string>Roboto-BoldItalic</string>
         </mutableArray>
         <mutableArray key="Roboto-Italic.ttf">
             <string>Roboto-Italic</string>
@@ -57,6 +58,19 @@
                                     <constraint firstAttribute="height" constant="59" id="rJ4-Ed-aha"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="1qo-LX-bAd">
+                                <rect key="frame" x="503" y="413" width="57" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="eDu-pw-rR5"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_up" translatesAutoresizingMaskIntoConstraints="NO" id="6LS-OP-Fmf">
+                                <rect key="frame" x="20" y="59" width="57" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="3uE-Ew-186"/>
+                                    <constraint firstAttribute="width" constant="57" id="PFF-9S-jmL"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap here to recenter on Carleton!" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbb-Ii-2Q3">
                                 <rect key="frame" x="360" y="395" width="140" height="60"/>
                                 <constraints>
@@ -83,15 +97,20 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="1qo-LX-bAd">
-                                <rect key="frame" x="503" y="413" width="57" height="64"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap here to recenter on your location!" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vjj-4K-pOa">
+                                <rect key="frame" x="85" y="87" width="140" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="eDu-pw-rR5"/>
+                                    <constraint firstAttribute="height" constant="60" id="gKE-rk-6Xf"/>
+                                    <constraint firstAttribute="width" constant="140" id="ylD-Lh-JJH"/>
                                 </constraints>
-                            </imageView>
+                                <fontDescription key="fontDescription" name="Roboto-BoldItalic" family="Roboto" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Vjj-4K-pOa" firstAttribute="top" secondItem="n2R-VB-tvF" secondAttribute="bottom" constant="67" id="37I-kS-Rcl"/>
                             <constraint firstItem="LMh-Vq-7hD" firstAttribute="top" secondItem="n2R-VB-tvF" secondAttribute="bottom" id="4bF-cJ-RQL"/>
                             <constraint firstItem="8g6-MQ-uCG" firstAttribute="centerY" secondItem="grS-CQ-z28" secondAttribute="centerY" priority="999" constant="-55.5" id="76D-ba-acL"/>
                             <constraint firstItem="0Uz-Id-TuP" firstAttribute="top" secondItem="zbb-Ii-2Q3" secondAttribute="bottom" constant="145" id="9qJ-Zq-syF"/>
@@ -101,8 +120,11 @@
                             <constraint firstItem="w4A-Gc-Mo8" firstAttribute="trailing" secondItem="8g6-MQ-uCG" secondAttribute="trailing" id="IAL-Cn-4lz"/>
                             <constraint firstItem="0Uz-Id-TuP" firstAttribute="top" secondItem="1qo-LX-bAd" secondAttribute="bottom" constant="123" id="JRE-5b-2t8"/>
                             <constraint firstItem="1qo-LX-bAd" firstAttribute="leading" secondItem="zbb-Ii-2Q3" secondAttribute="trailing" constant="3" id="QzA-s2-Zm5"/>
+                            <constraint firstItem="6LS-OP-Fmf" firstAttribute="leading" secondItem="grS-CQ-z28" secondAttribute="leadingMargin" id="Uj4-WS-t9R"/>
+                            <constraint firstItem="6LS-OP-Fmf" firstAttribute="top" secondItem="n2R-VB-tvF" secondAttribute="bottom" constant="39" id="cQZ-iu-cC6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="w4A-Gc-Mo8" secondAttribute="trailing" constant="40" id="dNo-gy-dPa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1qo-LX-bAd" secondAttribute="trailing" constant="20" id="q9A-UO-vin"/>
+                            <constraint firstItem="Vjj-4K-pOa" firstAttribute="leading" secondItem="6LS-OP-Fmf" secondAttribute="trailing" constant="8" id="w7z-rw-lG6"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -648,8 +670,9 @@
     </scenes>
     <resources>
         <image name="arrow" width="612" height="792"/>
+        <image name="arrow_up" width="612" height="792"/>
         <image name="bank11" width="24" height="24"/>
-        <image name="current_location_1" width="24" height="24"/>
+        <image name="current_location_1" width="20" height="20"/>
         <image name="marker" width="40" height="65"/>
         <image name="recenter" width="60" height="60"/>
         <image name="timeline_point" width="34" height="34"/>

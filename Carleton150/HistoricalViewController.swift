@@ -72,6 +72,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		
 		// set up the map view
 		mapView.delegate = self
+        mapView.myLocationEnabled = true
 		
         // set up the tiling for the map
         Utils.setUpTiling(mapView)

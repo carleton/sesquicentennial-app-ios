@@ -50,7 +50,14 @@
                             <constraint firstItem="iSw-vS-Rw6" firstAttribute="top" secondItem="k6o-Zm-Bsl" secondAttribute="bottom" id="pj2-FC-jLk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="6hu-Uc-8Na"/>
+                    <navigationItem key="navigationItem" id="6hu-Uc-8Na">
+                        <barButtonItem key="leftBarButtonItem" image="back-arrow" id="TFn-3Z-I9O">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="reloadHomePage:" destination="A8j-aW-zdh" id="sLz-d0-D4g"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="webView" destination="iSw-vS-Rw6" id="Mw3-gH-u70"/>
                     </connections>
@@ -61,6 +68,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back-arrow" width="24" height="24"/>
         <image name="home" width="24" height="24"/>
     </resources>
 </document>

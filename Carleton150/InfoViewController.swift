@@ -11,15 +11,12 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         Utils.setUpNavigationBar(self)
         self.loadInfo()
-        let button = UIButton()
-        button.setTitle("Home", forState: .Normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Home",
-                                                           style: .Plain,
-                                                           target: self,
-                                                           action: #selector(self.loadInfo)
-        )
     }
    
+    @IBAction func reloadHomePage(sender: UIBarButtonItem) {
+       self.loadInfo()
+    }
+    
     func loadInfo() {
         let url = NSURL(string: "https://go.carleton.edu/appinfo")
         let request = NSMutableURLRequest(URL: url!)
