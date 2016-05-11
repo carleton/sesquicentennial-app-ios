@@ -42,8 +42,8 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		self.landmarks = Dictionary<String,Landmark>()
         
         let questionButton = UIButton()
-        questionButton.setTitle("?", forState: .Normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "?",
+        questionButton.setTitle("Help", forState: .Normal)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Help",
                                                            style: .Plain,
                                                            target: self,
                                                            action: #selector(self.goToTutorial)
@@ -83,6 +83,12 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
     
     @IBAction func recenterOnCarleton(sender: AnyObject) {
 		mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
+    }
+    
+    @IBAction func recenterOnLocation(sender: UIBarButtonItem) {
+        if let coordinates = self.locationManager.location?.coordinate {
+            mapView.camera = GMSCameraPosition.cameraWithLatitude(coordinates.latitude, longitude: coordinates.longitude, zoom: 16)
+        }
     }
     
     /**
