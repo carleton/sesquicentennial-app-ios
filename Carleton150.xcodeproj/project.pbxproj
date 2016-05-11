@@ -48,6 +48,7 @@
 		71CC5F791BE944220065AA4C /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CC5F781BE944220065AA4C /* DataServiceTest.swift */; };
 		71F0C7C01C7273920063EDB1 /* TimelineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F0C7BF1C7273920063EDB1 /* TimelineDetailView.swift */; };
 		71F4E1D11CE39D5B00A69728 /* no-connection.html in Resources */ = {isa = PBXBuildFile; fileRef = 71F4E1D01CE39D5B00A69728 /* no-connection.html */; };
+		71F4E1D51CE3DFE600A69728 /* UpdateFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F4E1D41CE3DFE600A69728 /* UpdateFailureViewController.swift */; };
 		71FF6D371C72B2CD004A2B3D /* TimelineImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF6D361C72B2CD004A2B3D /* TimelineImageDetailView.swift */; };
 		DE91C2426C63D15AFB832D1D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B806A61E13CBDF524607BD9E /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -129,6 +130,7 @@
 		71CC5F781BE944220065AA4C /* DataServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
 		71F0C7BF1C7273920063EDB1 /* TimelineDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineDetailView.swift; sourceTree = "<group>"; };
 		71F4E1D01CE39D5B00A69728 /* no-connection.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "no-connection.html"; sourceTree = "<group>"; };
+		71F4E1D41CE3DFE600A69728 /* UpdateFailureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateFailureViewController.swift; sourceTree = "<group>"; };
 		71FF6D361C72B2CD004A2B3D /* TimelineImageDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineImageDetailView.swift; sourceTree = "<group>"; };
 		A13C89B298A898D72EE69AED /* Pods_Carleton150Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carleton150Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B806A61E13CBDF524607BD9E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,6 +189,7 @@
 			children = (
 				7160F69F1CE19D0300A8D41F /* Calendar.storyboard */,
 				7139104F1CE26FCB008089DF /* CalendarDetailViewController.swift */,
+				71F4E1D41CE3DFE600A69728 /* UpdateFailureViewController.swift */,
 				71340E5B1C5217C3007F9E2F /* CalendarDataService.swift */,
 				7160F69D1CE19BFD00A8D41F /* CalendarViewController.swift */,
 				71A08C1F1CE233D30071DADA /* CalendarTableCell.swift */,
@@ -533,6 +536,7 @@
 				7160F69E1CE19BFD00A8D41F /* CalendarViewController.swift in Sources */,
 				63A99A6B1C75859D007E6F25 /* QuestModalViewController.swift in Sources */,
 				715AE4801C4EB08D00C8F0C9 /* Quest.swift in Sources */,
+				71F4E1D51CE3DFE600A69728 /* UpdateFailureViewController.swift in Sources */,
 				63A99A6D1C763AEA007E6F25 /* WaypointsModalViewController.swift in Sources */,
 				630B0B511C744A8700876031 /* QuestContentViewController.swift in Sources */,
 				715AE47E1C4EADF200C8F0C9 /* WayPoint.swift in Sources */,

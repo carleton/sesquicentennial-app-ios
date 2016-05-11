@@ -199,7 +199,6 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         if status == .AuthorizedAlways {
             locationManager.startUpdatingLocation()
             mapView.myLocationEnabled = true
-            mapView.settings.myLocationButton = true
         }
     }
     

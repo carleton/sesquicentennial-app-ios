@@ -39,6 +39,10 @@ final class CalendarDataService {
                     }
                     self.schedule = result
                 }
+            } else {
+                NSNotificationCenter
+                    .defaultCenter()
+                    .postNotificationName("carleton150.calendarUpdateFailure", object: self)
             }
         }
     }

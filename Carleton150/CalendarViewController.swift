@@ -17,6 +17,8 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
 
+    @IBOutlet weak var noDataView: UIView!
+    
     override func viewDidLoad() {
         // set and go to the current date
         self.goToDate(NSDate())
@@ -30,6 +32,9 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         NSNotificationCenter.defaultCenter().addObserver(self,
              selector: #selector(self.actOnCalendarUpdate(_:)),
              name: "carleton150.calendarUpdate", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self,
+             selector: #selector(self.actOnCalendarUpdateFailure(_:)),
+             name: "carleton150.calendarUpdateFailure", object: nil)
         CalendarDataService.getEvents()
     }
     
@@ -122,8 +127,12 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     func actOnCalendarUpdate(notification: NSNotification) {
         self.calendar = CalendarDataService.schedule
         calendarTableView.reloadData()
+        self.view.sendSubviewToBack(noDataView)
     }
     
+    func actOnCalendarUpdateFailure(notification: NSNotification) {
+        self.view.bringSubviewToFront(noDataView)
+    }
 
     /**
          Prepares for segues from the calendar to its detail modals by passing
