@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4Ua-VX-sXf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4Ua-VX-sXf">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -581,7 +581,7 @@
                                             <action selector="dismissDetailView:" destination="r6U-qF-biu" eventType="touchUpInside" id="8pY-I9-Jo2"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="bGC-RO-z1k">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="bGC-RO-z1k">
                                         <rect key="frame" x="24" y="24" width="448" height="25"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="21"/>
                                         <color key="textColor" red="0.90216385690000001" green="0.62171052630000001" blue="0.073054933399999994" alpha="1" colorSpace="calibratedRGB"/>
@@ -656,7 +656,7 @@
                                             <action selector="dismissDetailView:" destination="SLE-eE-wvb" eventType="touchUpInside" id="b8f-9H-ktN"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGh-qz-R8m">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGh-qz-R8m">
                                         <rect key="frame" x="24" y="24" width="476" height="25"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="21"/>
                                         <color key="textColor" red="0.90216385690000001" green="0.62171052630000001" blue="0.073054933399999994" alpha="1" colorSpace="calibratedRGB"/>
@@ -1433,35 +1433,35 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="AC3-zI-GLO"/>
                                 <exclude reference="PDr-pK-jCR"/>
                                 <exclude reference="V9j-mX-BRS"/>
-                                <exclude reference="AC3-zI-GLO"/>
                                 <exclude reference="4KU-pZ-SmL"/>
-                                <exclude reference="BhP-Pg-Hdw"/>
-                                <exclude reference="fed-k5-F97"/>
-                                <exclude reference="bKh-re-DnA"/>
                                 <exclude reference="9fn-W9-0IB"/>
-                                <exclude reference="JHB-kA-hLJ"/>
+                                <exclude reference="BhP-Pg-Hdw"/>
                                 <exclude reference="Ckd-87-drc"/>
+                                <exclude reference="JHB-kA-hLJ"/>
+                                <exclude reference="bKh-re-DnA"/>
+                                <exclude reference="fed-k5-F97"/>
                                 <exclude reference="aHe-vL-zTx"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
-                                <exclude reference="Koz-ev-foZ"/>
                                 <exclude reference="6hZ-Rc-9M4"/>
+                                <include reference="AC3-zI-GLO"/>
+                                <exclude reference="Koz-ev-foZ"/>
                                 <include reference="PDr-pK-jCR"/>
                                 <include reference="V9j-mX-BRS"/>
-                                <include reference="AC3-zI-GLO"/>
                                 <exclude reference="sAy-mL-IwU"/>
                                 <exclude reference="xpd-zd-RSY"/>
                                 <include reference="4KU-pZ-SmL"/>
-                                <exclude reference="xOB-AE-bFW"/>
-                                <include reference="fed-k5-F97"/>
-                                <include reference="bKh-re-DnA"/>
                                 <include reference="9fn-W9-0IB"/>
                                 <exclude reference="Ckd-87-drc"/>
+                                <include reference="bKh-re-DnA"/>
                                 <exclude reference="dmc-ge-vuY"/>
+                                <include reference="fed-k5-F97"/>
+                                <exclude reference="xOB-AE-bFW"/>
                                 <exclude reference="R87-qT-Y2R"/>
                                 <include reference="aHe-vL-zTx"/>
                             </mask>
@@ -1587,41 +1587,41 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="1JG-kc-MSC"/>
+                                        <exclude reference="ApE-vf-iIq"/>
+                                        <exclude reference="EkD-xz-j2D"/>
                                         <exclude reference="KVz-ca-rsm"/>
                                         <exclude reference="zlT-Sl-Fow"/>
-                                        <exclude reference="EkD-xz-j2D"/>
-                                        <exclude reference="ApE-vf-iIq"/>
                                         <exclude reference="bKV-Xm-Php"/>
-                                        <exclude reference="LzP-as-u9e"/>
+                                        <exclude reference="0fk-Df-SF5"/>
                                         <exclude reference="4m5-SC-d5n"/>
+                                        <exclude reference="LzP-as-u9e"/>
+                                        <exclude reference="eGr-Sp-CNG"/>
                                         <exclude reference="eNC-aQ-7Ng"/>
                                         <exclude reference="k6C-UV-bNJ"/>
-                                        <exclude reference="0fk-Df-SF5"/>
                                         <exclude reference="nmP-bP-o3w"/>
-                                        <exclude reference="eGr-Sp-CNG"/>
                                         <exclude reference="7o4-lO-hgx"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
-                                        <exclude reference="wCW-iu-dVz"/>
                                         <include reference="1JG-kc-MSC"/>
-                                        <exclude reference="Ru8-4W-hoC"/>
-                                        <include reference="KVz-ca-rsm"/>
-                                        <exclude reference="zlT-Sl-Fow"/>
-                                        <exclude reference="EkD-xz-j2D"/>
                                         <include reference="ApE-vf-iIq"/>
                                         <exclude reference="BbI-L9-wOT"/>
+                                        <exclude reference="EkD-xz-j2D"/>
+                                        <include reference="KVz-ca-rsm"/>
+                                        <exclude reference="Ru8-4W-hoC"/>
+                                        <exclude reference="wCW-iu-dVz"/>
+                                        <exclude reference="zlT-Sl-Fow"/>
                                         <include reference="bKV-Xm-Php"/>
-                                        <include reference="LzP-as-u9e"/>
+                                        <include reference="0fk-Df-SF5"/>
                                         <exclude reference="4m5-SC-d5n"/>
                                         <exclude reference="Lk3-4d-J4f"/>
-                                        <exclude reference="eNC-aQ-7Ng"/>
+                                        <include reference="LzP-as-u9e"/>
                                         <exclude reference="Xs6-R7-doV"/>
-                                        <include reference="0fk-Df-SF5"/>
                                         <exclude reference="dnP-aq-6gn"/>
-                                        <include reference="nmP-bP-o3w"/>
                                         <include reference="eGr-Sp-CNG"/>
+                                        <exclude reference="eNC-aQ-7Ng"/>
+                                        <include reference="nmP-bP-o3w"/>
                                         <exclude reference="7o4-lO-hgx"/>
                                     </mask>
                                 </variation>
