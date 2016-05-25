@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3C7C651B588C8C78CEBC3E38 /* Pods_Carleton150.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39FEB0FEB30D513E7B3C1CDA /* Pods_Carleton150.framework */; };
-		63036B341C4CB5A200193A78 /* Historical.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63036B321C4CB5A200193A78 /* Historical.storyboard */; };
 		630B0B4F1C7446D000876031 /* QuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630B0B4E1C7446D000876031 /* QuestViewController.swift */; };
 		630B0B511C744A8700876031 /* QuestContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630B0B501C744A8700876031 /* QuestContentViewController.swift */; };
 		63291F361C5971A30064C296 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63291F351C5971A30064C296 /* TimelineViewController.swift */; };
@@ -17,7 +16,6 @@
 		6353259E1C7A44700027F6E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6353259D1C7A44700027F6E3 /* SystemConfiguration.framework */; };
 		6357E6F21C4ED3BC00A28D00 /* HistoricalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAF1BC6FC1500B9F81B /* HistoricalViewController.swift */; };
 		6357E6F31C4ED3BC00A28D00 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		6368A5961C5050E900D6B5B2 /* Quest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6368A5941C5050E900D6B5B2 /* Quest.storyboard */; };
 		63A99A6B1C75859D007E6F25 /* QuestModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99A6A1C75859D007E6F25 /* QuestModalViewController.swift */; };
 		63A99A6D1C763AEA007E6F25 /* WaypointsModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99A6C1C763AEA007E6F25 /* WaypointsModalViewController.swift */; };
 		63A99A6F1C763D97007E6F25 /* WaypointTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99A6E1C763D97007E6F25 /* WaypointTableCell.swift */; };
@@ -36,12 +34,10 @@
 		715AE47E1C4EADF200C8F0C9 /* WayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */; };
 		715AE4801C4EB08D00C8F0C9 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47F1C4EB08D00C8F0C9 /* Quest.swift */; };
 		7160F69E1CE19BFD00A8D41F /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7160F69D1CE19BFD00A8D41F /* CalendarViewController.swift */; };
-		7160F6A01CE19D0300A8D41F /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7160F69F1CE19D0300A8D41F /* Calendar.storyboard */; };
 		7173509E1CD6FF6F00B9DA7A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7173509D1CD6FF6F00B9DA7A /* Event.swift */; };
 		717FE3E61BC7001D009CA507 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 717FE3E51BC7001D009CA507 /* Keys.plist */; };
 		7180A72E1C685DAA0080F121 /* TimelineTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7180A72D1C685DAA0080F121 /* TimelineTitleView.swift */; };
 		71A08C201CE233D30071DADA /* CalendarTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A08C1F1CE233D30071DADA /* CalendarTableCell.swift */; };
-		71ABAA621CD0183700D6BFFE /* Info.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71ABAA611CD0183700D6BFFE /* Info.storyboard */; };
 		71ABAA641CD0189700D6BFFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71ABAA631CD0189700D6BFFE /* Main.storyboard */; };
 		71ABAA661CD01A9B00D6BFFE /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ABAA651CD01A9B00D6BFFE /* InfoViewController.swift */; };
 		71B379B91C7928F40057B5B8 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B379B81C7928F40057B5B8 /* TutorialViewController.swift */; };
@@ -75,14 +71,12 @@
 		3FBAB4B9CF8E6ECBB08983E6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		44F4A8948584594D31E6D696 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4EF7FF35B1F532FC92A7B8A3 /* Pods-Carleton150Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150Tests/Pods-Carleton150Tests.release.xcconfig"; sourceTree = "<group>"; };
-		63036B331C4CB5A200193A78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Historical.storyboard; sourceTree = "<group>"; };
 		630B0B4E1C7446D000876031 /* QuestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestViewController.swift; sourceTree = "<group>"; };
 		630B0B501C744A8700876031 /* QuestContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestContentViewController.swift; sourceTree = "<group>"; };
 		63291F351C5971A30064C296 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		63291F371C5979730064C296 /* TimelineTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableCells.swift; sourceTree = "<group>"; };
 		634AD3A21C780D26005EBE9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6353259D1C7A44700027F6E3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		6368A5951C5050E900D6B5B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Quest.storyboard; sourceTree = "<group>"; };
 		63A99A6A1C75859D007E6F25 /* QuestModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestModalViewController.swift; sourceTree = "<group>"; };
 		63A99A6C1C763AEA007E6F25 /* WaypointsModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointsModalViewController.swift; sourceTree = "<group>"; };
 		63A99A6E1C763D97007E6F25 /* WaypointTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointTableCell.swift; sourceTree = "<group>"; };
@@ -106,7 +100,6 @@
 		715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WayPoint.swift; sourceTree = "<group>"; };
 		715AE47F1C4EB08D00C8F0C9 /* Quest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		7160F69D1CE19BFD00A8D41F /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		7160F69F1CE19D0300A8D41F /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		71676CC11BDED61700F1183D /* Carleton150-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Carleton150-Bridging-Header.h"; sourceTree = "<group>"; };
 		7173509D1CD6FF6F00B9DA7A /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		717FE3E51BC7001D009CA507 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
@@ -121,7 +114,6 @@
 		7194ED5F1C715066007F55D4 /* RobotoCondensed-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Light.ttf"; sourceTree = "<group>"; };
 		7194ED601C715066007F55D4 /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
 		71A08C1F1CE233D30071DADA /* CalendarTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTableCell.swift; sourceTree = "<group>"; };
-		71ABAA611CD0183700D6BFFE /* Info.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Info.storyboard; sourceTree = "<group>"; };
 		71ABAA631CD0189700D6BFFE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		71ABAA651CD01A9B00D6BFFE /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		71B379B81C7928F40057B5B8 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
@@ -168,7 +160,6 @@
 		63036B311C4CB55C00193A78 /* Historical */ = {
 			isa = PBXGroup;
 			children = (
-				63036B321C4CB5A200193A78 /* Historical.storyboard */,
 				6A30943F1BD9CD4600A16342 /* Landmark.swift */,
 				7173509D1CD6FF6F00B9DA7A /* Event.swift */,
 				71B379B81C7928F40057B5B8 /* TutorialViewController.swift */,
@@ -187,7 +178,6 @@
 		63036B351C4CB6CD00193A78 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				7160F69F1CE19D0300A8D41F /* Calendar.storyboard */,
 				7139104F1CE26FCB008089DF /* CalendarDetailViewController.swift */,
 				71F4E1D41CE3DFE600A69728 /* UpdateFailureViewController.swift */,
 				71340E5B1C5217C3007F9E2F /* CalendarDataService.swift */,
@@ -200,7 +190,6 @@
 		63036B361C4CB72800193A78 /* Quest */ = {
 			isa = PBXGroup;
 			children = (
-				6368A5941C5050E900D6B5B2 /* Quest.storyboard */,
 				715AE47F1C4EB08D00C8F0C9 /* Quest.swift */,
 				715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */,
 				71340E571C5214A2007F9E2F /* QuestDataService.swift */,
@@ -294,7 +283,6 @@
 			isa = PBXGroup;
 			children = (
 				71F4E1D01CE39D5B00A69728 /* no-connection.html */,
-				71ABAA611CD0183700D6BFFE /* Info.storyboard */,
 				71ABAA651CD01A9B00D6BFFE /* InfoViewController.swift */,
 			);
 			name = Info;
@@ -439,15 +427,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7160F6A01CE19D0300A8D41F /* Calendar.storyboard in Resources */,
 				717FE3E61BC7001D009CA507 /* Keys.plist in Resources */,
-				71ABAA621CD0183700D6BFFE /* Info.storyboard in Resources */,
 				71ABAA641CD0189700D6BFFE /* Main.storyboard in Resources */,
 				71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */,
 				634AD3A31C780D26005EBE9C /* Assets.xcassets in Resources */,
 				71F4E1D11CE39D5B00A69728 /* no-connection.html in Resources */,
-				6368A5961C5050E900D6B5B2 /* Quest.storyboard in Resources */,
-				63036B341C4CB5A200193A78 /* Historical.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,22 +569,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		63036B321C4CB5A200193A78 /* Historical.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				63036B331C4CB5A200193A78 /* Base */,
-			);
-			name = Historical.storyboard;
-			sourceTree = "<group>";
-		};
-		6368A5941C5050E900D6B5B2 /* Quest.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6368A5951C5050E900D6B5B2 /* Base */,
-			);
-			name = Quest.storyboard;
-			sourceTree = "<group>";
-		};
 		71294DB61BC6FC1500B9F81B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -650,7 +618,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -691,7 +659,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

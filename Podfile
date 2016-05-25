@@ -2,7 +2,7 @@
 # platform :ios, '6.0'
 
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.0'
+platform :ios, '8.2'
 use_frameworks!
 
 pod 'GoogleMaps'
