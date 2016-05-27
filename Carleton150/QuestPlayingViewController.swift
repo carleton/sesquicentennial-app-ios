@@ -139,23 +139,6 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		}
 	}
 	
-	
-	/**
-        Performs geofence checking upon an update to the current location.
-     
-        Parameters:
-            - manager:   The location manager that was started
-                         within this module.
-                        
-            - locations: The past few locations that were detected by
-                         the location manager.
-	 */
-	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let curLocation = locationManager.location {
-            questMapView.animateToLocation(curLocation.coordinate)
-        }
-	}
-	
 	/**
 		Upon clicking the attemptCompButton, the quest will either restart
 		or perform a segue to the attempt modal
