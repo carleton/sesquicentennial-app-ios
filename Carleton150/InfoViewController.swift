@@ -4,7 +4,7 @@
 
 import Reachability
 
-class InfoViewController: UIViewController {
+class InfoViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var webView: UIWebView!
 	var reach: Reachability?
@@ -15,14 +15,20 @@ class InfoViewController: UIViewController {
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		self.networkMonitor = appDelegate.networkMonitor
         
+        webView.delegate = self
+        
         Utils.setUpNavigationBar(self)
         self.loadInfo()
     }
    
-    @IBAction func reloadHomePage(sender: UIBarButtonItem) {
-       self.loadInfo()
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if navigationType == UIWebViewNavigationType.LinkClicked {
+            UIApplication.sharedApplication().openURL(request.URL!)
+            return false
+        }
+        return true
     }
-    
+
     func loadInfo() {
         if self.networkMonitor!.isReachableViaWiFi() || self.networkMonitor!.isReachableViaWWAN() {
             let url = NSURL(string: "https://go.carleton.edu/appinfo")
