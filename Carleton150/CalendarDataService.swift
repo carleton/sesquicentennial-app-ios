@@ -15,7 +15,7 @@ final class CalendarDataService {
         (in this case, just the calendar view). Currently this is not updated
         periodically, but on app launch.
      */
-    private(set) static var schedule: [Dictionary<String, AnyObject?>]? {
+    private(set) static var schedule: [NSDate : [CalendarEvent]]? {
         didSet {
             NSNotificationCenter
                 .defaultCenter()
@@ -23,19 +23,31 @@ final class CalendarDataService {
         }
     }
     
+    private class func convertDateToString(date: NSDate) -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.stringFromDate(date)
+    }
+    
     class func getEvents() {
         let manager = MXLCalendarManager()
         Alamofire.request(.GET, Endpoints.events, parameters: nil).responseString { response in
             if let icsString = response.result.value {
                 manager.parseICSString(icsString) { calendar, error in
-                    var result: [Dictionary<String, AnyObject?>] = []
+                    var result: [NSDate : [CalendarEvent]] = [:]
                     for event in calendar.events {
-                        var newEvent: [String : AnyObject] = [:]
-                        newEvent["title"] = event.eventSummary ?? "No Title"
-                        newEvent["location"] = event.eventLocation ?? "No location"
-                        newEvent["startTime"] = event.eventStartDate ?? "No start time"
-                        newEvent["description"] = event.eventDescription ?? "No event description"
-                        result.append(newEvent)
+                        let location = event.eventLocation ?? "No Location"
+                        let calendarEvent: CalendarEvent = CalendarEvent(
+                            title: event.eventSummary ?? "No Title",
+                            description: event.eventDescription ?? "No Event Description",
+                            startDate: event.eventStartDate,
+                            location: location
+                        )
+                        if result[NSDate.roundDownToNearestDay(calendarEvent.startDate)] == nil {
+                            result[NSDate.roundDownToNearestDay(calendarEvent.startDate)] = [calendarEvent]
+                        } else {
+                            result[NSDate.roundDownToNearestDay(calendarEvent.startDate)]?.append(calendarEvent)
+                        }
                     }
                     self.schedule = result
                 }

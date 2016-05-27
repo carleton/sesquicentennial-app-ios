@@ -34,7 +34,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         if !defaults.boolForKey("hasSeenTutorial") {
             defaults.setBool(true, forKey: "hasSeenTutorial")
             // show the tutorial
-            self.performSegueWithIdentifier("showTutorial", sender: nil)
+            self.performSegueWithIdentifier("tutorial", sender: nil)
         }
         defaults.synchronize()
 		

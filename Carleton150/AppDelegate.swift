@@ -193,4 +193,22 @@ extension NSDate {
     func equalToDate(dateToCompare: NSDate) -> Bool {
         return self.compare(dateToCompare) == NSComparisonResult.OrderedSame
     }
+    
+    class func areDatesSameDay(dateOne: NSDate, dateTwo: NSDate) -> Bool {
+        let calender = NSCalendar.currentCalendar()
+        let flags: NSCalendarUnit = [.Day, .Month, .Year]
+        let compOne: NSDateComponents = calender.components(flags, fromDate: dateOne)
+        let compTwo: NSDateComponents = calender.components(flags, fromDate: dateTwo)
+        return (compOne.day == compTwo.day && compOne.month == compTwo.month && compOne.year == compTwo.year)
+    }
+    
+    class func roundDownToNearestDay(date: NSDate) -> NSDate {
+        let calendar = NSCalendar.currentCalendar()
+        let components = NSDateComponents()
+        components.second = -calendar.components(NSCalendarUnit.Second, fromDate: date).second
+        components.minute = -calendar.components(NSCalendarUnit.Minute, fromDate: date).minute
+        components.hour = -calendar.components(NSCalendarUnit.Hour, fromDate: date).hour
+        return calendar.dateByAddingComponents(
+            components, toDate: date, options: NSCalendarOptions(rawValue: 0))!
+    }
 }
