@@ -7,30 +7,22 @@ import Foundation
 class CalendarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var calendarTableView: UITableView!
-    @IBOutlet weak var currentDateLabel: UILabel!
     var calendar: [NSDate : [CalendarEvent]]? {
         didSet {
-            let eventsList: [CalendarEvent] = (calendar?.flatMap() {$0.1})!
-            self.sortedFlatCalendar = eventsList.sort() { $0.startDate.isLessThanDate($1.startDate) }
+            self.dateSectionHeaders = (calendar?.map() {$0.0})!
+            self.nestedCalendar = calendar?.map() {$0.1}
         }
     }
     
-    var sortedFlatCalendar: [CalendarEvent]!
+    var dateSectionHeaders: [NSDate]?
+    var nestedCalendar: [[CalendarEvent]]?
     
-    var currentDate: NSDate? {
-        didSet {
-            if let date = currentDate {
-                currentDateLabel.text = chosenDate(date)
-            }
-        }
-    }
 
     @IBOutlet weak var noDataView: UIView!
     
     override func viewDidLoad() {
         // set and go to the current date
         self.goToDate(NSDate())
-        self.currentDate = NSDate()
         
         // set the dataSource and delegate for the calendar table view
 		calendarTableView.dataSource = self
@@ -49,54 +41,49 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func goToToday(sender: UIBarButtonItem) {
         self.goToDate(NSDate.roundDownToNearestDay(NSDate()))
-        self.currentDate = NSDate()
         self.testDate(NSDate.roundDownToNearestDay(NSDate()), message: "Looks like there aren't any events today. We will show you the events that are available instead. Feel free to scroll to see more!")
     }
     
     
     @IBAction func goToYesterday(sender: UIBarButtonItem) {
-        if let date = self.currentDate {
+        let visibleRows: [NSIndexPath]? = calendarTableView.indexPathsForVisibleRows
+        
+        if let date = self.dateSectionHeaders?[(visibleRows?[0].section)!] {
             let newDate = NSCalendar.currentCalendar().dateByAddingUnit(
                 NSCalendarUnit.Day, value: -1, toDate: date, options: NSCalendarOptions(rawValue: 0))
-            self.currentDate = newDate
             let roundedDate = NSDate.roundDownToNearestDay(newDate!)
-            self.goToDate(roundedDate)
-            self.testDate(roundedDate, message: nil)
+            if (dateSectionHeaders?.contains(newDate!))! {
+                self.goToDate(roundedDate)
+            }
         }
     }
     
     
     @IBAction func goToTomorrow(sender: UIBarButtonItem) {
-        if let date = self.currentDate {
+        let visibleRows: [NSIndexPath]? = calendarTableView.indexPathsForVisibleRows
+        if let date = self.dateSectionHeaders?[(visibleRows?[0].section)!] {
             let newDate = NSCalendar.currentCalendar().dateByAddingUnit(
                 NSCalendarUnit.Day, value: 1, toDate: date, options: NSCalendarOptions(rawValue: 0))
-            self.currentDate = newDate
             let roundedDate = NSDate.roundDownToNearestDay(newDate!)
-            self.goToDate(roundedDate)
-            self.testDate(roundedDate, message: nil)
+            if (dateSectionHeaders?.contains(newDate!))! {
+                self.goToDate(roundedDate)
+            }
         }
     }
     
     func testDate(date: NSDate, message: String?) {
-        let nextDay = NSCalendar.currentCalendar().dateByAddingUnit(
-            NSCalendarUnit.Day, value: 1, toDate: date, options: NSCalendarOptions(rawValue: 0))
-        if let events = sortedFlatCalendar {
-            let firstEventDate = events[0].startDate
-            let lastEventDate = events[events.count - 1].startDate
-            if firstEventDate.isGreaterThanDate(nextDay!) ||
-               lastEventDate.isLessThanDate(date) {
-                var alertMessage = "Looks like there aren't any events on the chosen day. We will show you the events that are available instead. Feel free to scroll to see more!"
-                if let passedMessage = message {
-                    alertMessage = passedMessage
-                }
-                let alert = UIAlertController(title: "",
-                    message: alertMessage,
-                    preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title:"OK", style: UIAlertActionStyle.Default, handler: nil))
-                calendarTableView.setContentOffset(CGPointZero, animated: false)
-                self.presentViewController(alert, animated: true, completion: nil)
-                
+        if !(dateSectionHeaders?.contains(date))! {
+            var alertMessage = "Looks like there aren't any events on the chosen day. We will show you the events that are available instead. Feel free to scroll to see more!"
+            if let passedMessage = message {
+                alertMessage = passedMessage
             }
+            let alert = UIAlertController(title: "",
+                message: alertMessage,
+                preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title:"OK", style: UIAlertActionStyle.Default, handler: nil))
+            calendarTableView.setContentOffset(CGPointZero, animated: false)
+            self.presentViewController(alert, animated: true, completion: nil)
+            
         }
     }
    
@@ -107,15 +94,9 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
             - date: The date to go to (rounds down on time)
      */
     func goToDate(inputDate: NSDate?) {
-        if let calendarLength = sortedFlatCalendar?.count, date = inputDate {
-            for i in 0 ..< calendarLength {
-                if let eventDate: NSDate = sortedFlatCalendar?[i].startDate {
-                    if eventDate.isGreaterThanDate(date) {
-                        calendarTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
-                        break
-                    }
-                }
-            }
+        dateSectionHeaders?.indexOf(inputDate!)
+        if let section = dateSectionHeaders?.indexOf(inputDate!) {
+            calendarTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: section), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
         }
     }
     
@@ -147,18 +128,16 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        let visibleCellIndex = calendarTableView.indexPathsForVisibleRows![0].row
-        if let topDate = sortedFlatCalendar?[visibleCellIndex].startDate {
-            self.currentDate = topDate
-        }
-    }
-    
     /**
         Returns the number of sections (different dates) in the table view.
      */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.calendar?.count ?? 0
+        return self.dateSectionHeaders?.count ?? 0
+    }
+    
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.chosenDate((self.dateSectionHeaders?[section])!)
     }
     
     /**
@@ -171,10 +150,9 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
      
         - Returns: The number of calendar events.
      */
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.sortedFlatCalendar?.count ?? 0
-	}
-    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.nestedCalendar?[section].count ?? 0
+    }
     
     /**
         Adds data to each of the cells in the calendar table view.
@@ -187,8 +165,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         - Returns: The modified table view cell.
      */
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        if let calendarEntry = sortedFlatCalendar?[indexPath.row] {
+        if let calendarEntry = nestedCalendar?[indexPath.section][indexPath.row] {
             let cell: CalendarTableCell =
                 tableView.dequeueReusableCellWithIdentifier("CalendarTableCell",
                 forIndexPath: indexPath) as! CalendarTableCell

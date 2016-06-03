@@ -582,7 +582,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="bGC-RO-z1k">
-                                        <rect key="frame" x="24" y="22.5" width="448" height="28"/>
+                                        <rect key="frame" x="24" y="24" width="448" height="25"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="21"/>
                                         <color key="textColor" red="0.90216385690000001" green="0.62171052630000001" blue="0.073054933399999994" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -657,7 +657,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGh-qz-R8m">
-                                        <rect key="frame" x="24" y="22.5" width="476" height="28"/>
+                                        <rect key="frame" x="24" y="24" width="476" height="25"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="21"/>
                                         <color key="textColor" red="0.90216385690000001" green="0.62171052630000001" blue="0.073054933399999994" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -772,12 +772,6 @@
                                 </items>
                                 <color key="barTintColor" red="0.039215686270000001" green="0.1137254902" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpo-Ue-iMr">
-                                <rect key="frame" x="251" y="11" width="99" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="131" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wQ1-JJ-r39">
                                 <rect key="frame" x="0.0" y="44" width="600" height="443"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -847,8 +841,6 @@
                             <constraint firstItem="8OL-Ug-JKb" firstAttribute="top" secondItem="jAD-aO-yBc" secondAttribute="bottom" id="b3Q-fm-g9m"/>
                             <constraint firstItem="wQK-6R-nku" firstAttribute="top" secondItem="jAD-aO-yBc" secondAttribute="bottom" id="c7l-HC-D3a"/>
                             <constraint firstItem="8OL-Ug-JKb" firstAttribute="leading" secondItem="ImC-AS-H1e" secondAttribute="leadingMargin" constant="-20" id="h7c-7m-9Za"/>
-                            <constraint firstItem="Hpo-Ue-iMr" firstAttribute="centerX" secondItem="ImC-AS-H1e" secondAttribute="centerX" id="kU6-h8-dse"/>
-                            <constraint firstItem="Hpo-Ue-iMr" firstAttribute="top" secondItem="jAD-aO-yBc" secondAttribute="bottom" constant="11" id="rry-6F-enI"/>
                             <constraint firstItem="wQ1-JJ-r39" firstAttribute="top" secondItem="8OL-Ug-JKb" secondAttribute="bottom" id="tH9-3c-TO6"/>
                         </constraints>
                     </view>
@@ -862,7 +854,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="calendarTableView" destination="wQ1-JJ-r39" id="LCI-Gh-262"/>
-                        <outlet property="currentDateLabel" destination="Hpo-Ue-iMr" id="Iv2-cy-AUT"/>
                         <outlet property="noDataView" destination="wQK-6R-nku" id="Lw7-X5-raB"/>
                     </connections>
                 </viewController>
