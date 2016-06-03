@@ -1094,7 +1094,20 @@
                             <constraint firstItem="2E9-qJ-zlc" firstAttribute="centerX" secondItem="BsW-wH-2hZ" secondAttribute="centerX" id="Jle-GD-r9b"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="IE2-xb-CAY"/>
+                    <navigationItem key="navigationItem" id="IE2-xb-CAY">
+                        <barButtonItem key="leftBarButtonItem" image="left-arrow" id="A2d-XT-gzb">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="goBackOnePage:" destination="Hoy-eS-gFb" id="5Ep-zJ-plq"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="right-arrow" id="Ldp-9Q-b9V">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="goForwardOnePage:" destination="Hoy-eS-gFb" id="Pbs-aA-nbz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="noDataButton" destination="w2Y-LC-nAB" id="CR2-bs-x0t"/>
                         <outlet property="warningSign" destination="2E9-qJ-zlc" id="kdt-yO-jHh"/>

@@ -12,9 +12,27 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
     var quests: [Quest] = []
 	let locationManager: CLLocationManager = CLLocationManager()
     
+    @IBAction func goBackOnePage(sender: AnyObject) {
+        let currentController = pageViewController.viewControllers![0] as! QuestContentViewController
+        let previousIndex = currentController.pageIndex - 1
+        if previousIndex >= 0 {
+            pageViewController.setViewControllers([self.getViewControllerAtIndex(previousIndex)], direction: .Reverse, animated: true, completion: nil)
+        }
+    }
+    
+    
+    @IBAction func goForwardOnePage(sender: AnyObject) {
+        let currentController = pageViewController.viewControllers![0] as! QuestContentViewController
+        let nextIndex = currentController.pageIndex + 1
+        if nextIndex < quests.count {
+            pageViewController.setViewControllers([self.getViewControllerAtIndex(nextIndex)], direction: .Forward, animated: true, completion: nil)
+        }
+    }
+    
     @IBOutlet weak var noDataButton: UIButton!
     @IBOutlet weak var warningSign: UIImageView!
     
+
 	/**
 		Upon load setup the persistent storage if it has not been setup already, request data for
 		 quests. Once the data has been loaded, create the first page of the paged layout
