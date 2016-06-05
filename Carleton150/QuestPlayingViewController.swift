@@ -22,10 +22,8 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	@IBOutlet weak var questMapView: GMSMapView!
 	@IBOutlet weak var clueHintView: UIView!
 	@IBOutlet weak var questName: UILabel!
-	@IBOutlet weak var clueHintImage: UIImageView!
 	@IBOutlet weak var clueHintText: UITextView!
 	@IBOutlet weak var clueHintToggle: UIButton!
-	@IBOutlet weak var clueHintImgWidthConst: NSLayoutConstraint!
 	@IBOutlet weak var attemptCompButton: UIButton!
 	@IBOutlet weak var waypointsButton: UIButton!
 	@IBOutlet weak var connectionIndicator: UIActivityIndicatorView!
@@ -172,7 +170,6 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 			self.clueHintToggle.setTitleColor(UIColor.grayColor(), forState: .Disabled)
 			self.attemptCompButton.backgroundColor = UIColor(red: 230/255, green: 159/255, blue: 19/255, alpha: 1)
 			self.attemptCompButton.setTitle("Quest Completed: Restart?", forState: UIControlState.Normal)
-			self.clueHintImage.image = UIImage(named: "quest_modal_completion_default")
 			self.clueHintText.text = "Quest Has been completed!"
 		} else if (self.currentWayPointIndex < quest.wayPoints.count) {
 			showClueHint()
@@ -182,41 +179,15 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	
 	/**
 		Creates part of the UI for the ClueHintView. Chooses between the hint and clue based on
-		the clueShown bool. If the item on display does not have an image associated
-		with it, it sets the width of the imageview to zero by manipulating its width 
-		constraint
+		the clueShown bool.
 	 */
 	func showClueHint() {
 		if (clueShown) {
 			clueHintText.text = quest.wayPoints[currentWayPointIndex].clue["text"] as? String
 			clueHintToggle.setTitle("Show Hint", forState: UIControlState.Normal)
-			if let imageURL = quest.wayPoints[currentWayPointIndex].clue["image"] as? String {
-                Alamofire.request(.GET, imageURL).responseImage { response in
-                    if let image = response.result.value {
-                        self.clueHintImage.image = image
-                    }
-                }
-				clueHintImage.hidden = false
-				clueHintImgWidthConst.constant = 0
-			} else {
-				clueHintImgWidthConst.constant = -clueHintView.frame.width * clueHintImgWidthConst.multiplier
-				clueHintImage.hidden = true
-			}
 		} else {
 			clueHintText.text = quest.wayPoints[currentWayPointIndex].hint["text"] as? String
 			clueHintToggle.setTitle("Show Clue", forState: UIControlState.Normal)
-			if let imageURL = quest.wayPoints[currentWayPointIndex].hint["image"] as? String {
-                Alamofire.request(.GET, imageURL).responseImage { response in
-                    if let image = response.result.value {
-                        self.clueHintImage.image = image
-                    }
-                }
-				clueHintImage.hidden = false
-				clueHintImgWidthConst.constant = 0
-			} else {
-				clueHintImgWidthConst.constant = -clueHintView.frame.width * clueHintImgWidthConst.multiplier
-				clueHintImage.hidden = true
-			}
 		}
 	}
 	

@@ -113,60 +113,24 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 		let waypoint = waypoints[indexPath.section]
 		// clue
 		if (indexPath.row == 0) {
-			if let clueImageURL = waypoint.clue["image"] as! String! {
-				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableImageCell", forIndexPath: indexPath) as! WaypointTableImageCell
-                Alamofire.request(.GET, clueImageURL).responseImage { response in
-                    if let image = response.result.value {
-                        cell.cellImage = image
-                    }
-                }
-				cell.titleText = "Clue"
-				cell.descText = waypoint.clue["text"] as? String
-				return cell
-			} else {
-				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
-				cell.titleText = "Clue"
-				cell.descText = waypoint.clue["text"] as? String
-				cell.setCellViewTraits()
-				return cell
-			}
+            let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
+            cell.titleText = "Clue"
+            cell.descText = waypoint.clue["text"] as? String
+            cell.setCellViewTraits()
+            return cell
 		// hint
 		} else if (indexPath.row == 1) {
-			if let hintImageURL = waypoint.hint["image"] as! String! {
-				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableImageCell", forIndexPath: indexPath) as! WaypointTableImageCell
-                Alamofire.request(.GET, hintImageURL).responseImage { response in
-                    if let image = response.result.value {
-                        cell.cellImage = image
-                    }
-                }
-				cell.titleText = "Hint"
-				cell.descText = waypoint.hint["text"] as? String
+            let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
+            cell.titleText = "Hint"
+            cell.descText = waypoint.hint["text"] as? String
+            cell.setCellViewTraits()
 				return cell
-			} else {
-				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
-				cell.titleText = "Hint"
-				cell.descText = waypoint.hint["text"] as? String
-				cell.setCellViewTraits()
-				return cell
-			}
 		} else if (indexPath.row == 2) {
-			if let completionImageURL = waypoint.completion["image"] as! String! {
-				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableImageCell", forIndexPath: indexPath) as! WaypointTableImageCell
-                Alamofire.request(.GET, completionImageURL).responseImage { response in
-                    if let image = response.result.value {
-                        cell.cellImage = image
-                    }
-                }
-				cell.titleText = "Completion"
-				cell.descText = waypoint.completion["text"] as? String
-				return cell
-			} else {
-				let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
-				cell.titleText = "Completion"
-				cell.descText = waypoint.completion["text"] as? String
-				cell.setCellViewTraits()
-				return cell
-			}
+            let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
+            cell.titleText = "Completion"
+            cell.descText = waypoint.completion["text"] as? String
+            cell.setCellViewTraits()
+            return cell
 		}
 		
 		let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
