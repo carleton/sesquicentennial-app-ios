@@ -26,8 +26,8 @@ class InfoViewController: UIViewController, UIWebViewDelegate {
         Utils.setUpNavigationBar(self)
         self.loadInfo()
    
-        // triggers page to reload every 30 minutes
-        timer = NSTimer.scheduledTimerWithTimeInterval(1800, target: self, selector: #selector(InfoViewController.setReload), userInfo: nil, repeats: true)
+        // triggers page to reload every 5 minutes
+        timer = NSTimer.scheduledTimerWithTimeInterval(300, target: self, selector: #selector(InfoViewController.setReload), userInfo: nil, repeats: true)
     }
     
     override func viewWillAppear(animated: Bool) {

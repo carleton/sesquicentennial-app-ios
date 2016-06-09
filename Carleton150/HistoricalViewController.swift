@@ -70,8 +70,8 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         // set up the tiling for the map
         Utils.setUpTiling(mapView)
         
-        // triggers page to reload geofences every week
-        timer = NSTimer.scheduledTimerWithTimeInterval(604800, target: self, selector: #selector(self.setReload), userInfo: nil, repeats: true)
+        // triggers page to reload geofences every 30 minutes
+        timer = NSTimer.scheduledTimerWithTimeInterval(1800, target: self, selector: #selector(self.setReload), userInfo: nil, repeats: true)
 	}
     
     override func viewDidAppear(animated: Bool) {
