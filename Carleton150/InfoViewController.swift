@@ -9,6 +9,8 @@ class InfoViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var webView: UIWebView!
 	var reach: Reachability?
 	var networkMonitor: Reachability!
+    var timer: NSTimer!
+    var shouldReload: Bool = false
     
     @IBAction func reload(sender: AnyObject) {
         loadInfo()
@@ -23,6 +25,19 @@ class InfoViewController: UIViewController, UIWebViewDelegate {
         
         Utils.setUpNavigationBar(self)
         self.loadInfo()
+   
+        // triggers page to reload every 30 minutes
+        timer = NSTimer.scheduledTimerWithTimeInterval(1800, target: self, selector: #selector(InfoViewController.setReload), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        if shouldReload {
+            loadInfo()
+        }
+    }
+    
+    func setReload() {
+        shouldReload = true
     }
    
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
