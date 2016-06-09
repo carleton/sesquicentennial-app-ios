@@ -16,6 +16,8 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     
     var dateSectionHeaders: [NSDate]?
     var nestedCalendar: [[CalendarEvent]]?
+    var timer: NSTimer!
+    var shouldReload: Bool = false
     
 
     @IBOutlet weak var noDataView: UIView!
@@ -36,6 +38,15 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
              selector: #selector(self.actOnCalendarUpdateFailure(_:)),
              name: "carleton150.calendarUpdateFailure", object: nil)
         CalendarDataService.getEvents()
+        
+        // triggers page to reload every 30 minutes on page appearance
+        timer = NSTimer.scheduledTimerWithTimeInterval(1800, target: self, selector: #selector(self.setReload), userInfo: nil, repeats: true)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if shouldReload {
+            CalendarDataService.getEvents()
+        }
     }
     
     
@@ -70,6 +81,12 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
+    
+    
+    func setReload() {
+       shouldReload = true
+    }
+    
     
     func testDate(date: NSDate, message: String?) {
         if !(dateSectionHeaders?.contains(date))! {
