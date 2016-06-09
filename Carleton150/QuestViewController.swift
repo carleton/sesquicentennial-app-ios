@@ -11,6 +11,8 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 	var pageViewController: UIPageViewController!
     var quests: [Quest] = []
 	let locationManager: CLLocationManager = CLLocationManager()
+    var timer: NSTimer!
+    var shouldReload: Bool = false
     
     @IBAction func goBackOnePage(sender: AnyObject) {
         let currentController = pageViewController.viewControllers![0] as! QuestContentViewController
@@ -51,9 +53,17 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 		Utils.setUpNavigationBar(self)
         
         self.getQuests()
+        
+        // triggers page to reload every 30 minutes
+        timer = NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: #selector(self.setReload), userInfo: nil, repeats: true)
 	}
     
     override func viewDidAppear(animated: Bool) {
+        
+        if shouldReload {
+           self.getQuests()
+        }
+        
         if let coordinates = locationManager.location?.coordinate {
             if Utils.userOffCampus(coordinates) {
                 let alert = UIAlertController(title: "",
@@ -64,6 +74,10 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
             }
         }
     }
+    
+    func setReload() {
+        shouldReload = true
+    }
    
     /**
         If the data is not available, give the user the option
@@ -73,7 +87,6 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
         self.noDataButton.hidden = true
         self.warningSign.hidden = true
         self.showWaitOverlay()
-        
         self.getQuests()
     }
     
