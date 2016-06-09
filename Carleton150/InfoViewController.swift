@@ -10,6 +10,10 @@ class InfoViewController: UIViewController, UIWebViewDelegate {
 	var reach: Reachability?
 	var networkMonitor: Reachability!
     
+    @IBAction func reload(sender: AnyObject) {
+        loadInfo()
+    }
+    
     override func viewDidLoad() {
         // set up network monitoring
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

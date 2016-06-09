@@ -580,7 +580,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="bGC-RO-z1k">
-                                        <rect key="frame" x="24" y="24" width="448" height="25"/>
+                                        <rect key="frame" x="24" y="22.5" width="448" height="28"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="21"/>
                                         <color key="textColor" red="0.90216385690000001" green="0.62171052630000001" blue="0.073054933399999994" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -655,7 +655,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGh-qz-R8m">
-                                        <rect key="frame" x="24" y="24" width="476" height="25"/>
+                                        <rect key="frame" x="24" y="22.5" width="476" height="28"/>
                                         <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="21"/>
                                         <color key="textColor" red="0.90216385690000001" green="0.62171052630000001" blue="0.073054933399999994" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1021,7 +1021,14 @@
                             <constraint firstItem="XF1-8K-ckb" firstAttribute="top" secondItem="pu1-mS-XU2" secondAttribute="bottom" id="PrT-oU-Sqm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="KoL-g5-zy2"/>
+                    <navigationItem key="navigationItem" id="KoL-g5-zy2">
+                        <barButtonItem key="leftBarButtonItem" image="reload" id="jpP-yD-2s0">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="reload:" destination="Uqg-sr-uAH" id="AiG-7L-z0C"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="webView" destination="pu1-mS-XU2" id="9Fe-sa-X3x"/>
                     </connections>
@@ -1813,6 +1820,7 @@
         <image name="marker" width="40" height="65"/>
         <image name="quest" width="24" height="24"/>
         <image name="recenter" width="60" height="60"/>
+        <image name="reload" width="24" height="24"/>
         <image name="right-arrow" width="24" height="24"/>
         <image name="round-help-button" width="24" height="24"/>
         <image name="show-waypoints-icon" width="128" height="127"/>
