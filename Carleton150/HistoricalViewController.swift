@@ -20,6 +20,8 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	var reach: Reachability?
 	var networkMonitor: Reachability!
     var landmarks: [String : Landmark]!
+    var timer: NSTimer!
+    var shouldReload: Bool = false
 	
 	
     /**
@@ -67,7 +69,16 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		
         // set up the tiling for the map
         Utils.setUpTiling(mapView)
+        
+        // triggers page to reload geofences every week
+        timer = NSTimer.scheduledTimerWithTimeInterval(604800, target: self, selector: #selector(self.setReload), userInfo: nil, repeats: true)
 	}
+    
+    override func viewDidAppear(animated: Bool) {
+        if shouldReload {
+            reloadLandmarks()
+        }
+    }
     
     
     @IBAction func showHelp(sender: UIBarButtonItem) {
@@ -83,6 +94,22 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         if let coordinates = self.locationManager.location?.coordinate {
             mapView.camera = GMSCameraPosition.cameraWithLatitude(coordinates.latitude, longitude: coordinates.longitude, zoom: 16)
         }
+    }
+    
+    func clearLandmarks() {
+        for landmark in self.landmarks {
+            landmark.1.marker.map = nil
+        }
+        self.landmarks = [:]
+    }
+    
+    func setReload() {
+        shouldReload = true
+    }
+    
+    func reloadLandmarks() {
+        clearLandmarks()
+        loadLandmarks()
     }
     
     /**
