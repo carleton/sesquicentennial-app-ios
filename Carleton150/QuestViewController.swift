@@ -56,8 +56,9 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
         
         // triggers page to reload every 30 minutes
         timer = NSTimer.scheduledTimerWithTimeInterval(1800, target: self, selector: #selector(self.setReload), userInfo: nil, repeats: true)
-	}
-    
+
+    }
+
     override func viewDidAppear(animated: Bool) {
         
         if shouldReload {
@@ -100,7 +101,7 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 				self.quests = quests
 				self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
 				self.pageViewController.dataSource = self
-				
+
 				let startVC = self.getViewControllerAtIndex(0) as QuestContentViewController
 				let viewControllers = NSArray(object: startVC)
 				
@@ -108,8 +109,8 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 				self.addChildViewController(self.pageViewController)
 				self.view.addSubview(self.pageViewController.view)
 				self.pageViewController.didMoveToParentViewController(self)
-				
-			} else {
+
+            } else {
                 self.noDataButton.hidden = false
                 self.warningSign.hidden = false
                 self.removeAllOverlays()

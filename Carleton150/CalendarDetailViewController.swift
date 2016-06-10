@@ -28,7 +28,7 @@ class CalendarDetailViewController: UIViewController {
             let link = NSAttributedString(string: "More details on Carleton's website...", attributes: [NSLinkAttributeName: self.eventURL])
             attributedText.appendAttributedString(link)
         }
-        attributedText.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(16.0)], range: NSRange(location: 0, length: attributedText.length))
+        attributedText.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20.0)], range: NSRange(location: 0, length: attributedText.length))
         self.eventSummaryText.attributedText = attributedText
 
         // stops the text view from being edited

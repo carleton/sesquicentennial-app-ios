@@ -201,7 +201,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			destinationController.parentVC = self
 			
 			if let landmarkName = (sender?.title)! as String! {
-				destinationController.selectedGeofence = landmarkName
+				destinationController.selectedGeofence = landmarkName.stringByReplacingOccurrencesOfString("&amp;", withString: "&")
 				if let landmark = landmarks[landmarkName] {
 					destinationController.timeline = landmark.events
 				}

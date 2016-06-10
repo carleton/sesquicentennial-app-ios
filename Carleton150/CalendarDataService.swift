@@ -5,7 +5,6 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
-import MXLCalendarManager
 
 /// Data Service that contains relevant endpoints for the Calendar module.
 final class CalendarDataService {
@@ -57,7 +56,6 @@ final class CalendarDataService {
         let cleanedICSString = icsString.stringByReplacingOccurrencesOfString("\r", withString: "")
         var eventStrings = cleanedICSString.componentsSeparatedByString("BEGIN:VEVENT")
         eventStrings.removeFirst()
-        print("# events: \(eventStrings.count)")
         for eventString:String in eventStrings {
             let scanner = NSScanner(string: eventString)
 
