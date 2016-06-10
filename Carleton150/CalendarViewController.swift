@@ -52,7 +52,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func goToToday(sender: UIBarButtonItem) {
         self.goToDate(NSDate.roundDownToNearestDay(NSDate()))
-        self.testDate(NSDate.roundDownToNearestDay(NSDate()), message: "Looks like there aren't any events today. We will show you the events that are available instead. Feel free to scroll to see more!")
+        self.testDate(NSDate.roundDownToNearestDay(NSDate()), message: "There are no events today. We will show you the events that are available instead. Scroll to see more!")
     }
     
     
@@ -90,7 +90,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     
     func testDate(date: NSDate, message: String?) {
         if !(dateSectionHeaders?.contains(date))! {
-            var alertMessage = "Looks like there aren't any events on the chosen day. We will show you the events that are available instead. Feel free to scroll to see more!"
+            var alertMessage = "There are no events on the chosen day. We will show you the events that are available instead. Scroll to see more!"
             if let passedMessage = message {
                 alertMessage = passedMessage
             }
@@ -187,14 +187,11 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
                 tableView.dequeueReusableCellWithIdentifier("CalendarTableCell",
                 forIndexPath: indexPath) as! CalendarTableCell
             
-            cell.title = calendarEntry.title ?? "No title"
-            cell.location = calendarEntry.location ?? "No location"
-            cell.summary = calendarEntry.description ?? "No description"
-            if let startTime = calendarEntry.startDate {
-                cell.time = parseDate(startTime)
-            } else {
-                cell.time = "No time available"
-            }
+            cell.title = calendarEntry.title
+            cell.location = calendarEntry.location
+            cell.summary = calendarEntry.description
+            cell.time = parseDate(calendarEntry.startDate)
+            cell.url = calendarEntry.url.URLString
             return cell
         } else {
             let cell: CalendarTableCell =

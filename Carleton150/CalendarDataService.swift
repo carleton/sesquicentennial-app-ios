@@ -30,24 +30,15 @@ final class CalendarDataService {
     }
     
     class func getEvents() {
-        let manager = MXLCalendarManager()
         Alamofire.request(.GET, Endpoints.events, parameters: nil).responseString { response in
             if let icsString = response.result.value {
-                manager.parseICSString(icsString) { calendar, error in
-                    var result: [NSDate : [CalendarEvent]] = [:]
-                    for event in calendar.events {
-                        let location = event.eventLocation ?? "No Location"
-                        let calendarEvent: CalendarEvent = CalendarEvent(
-                            title: event.eventSummary ?? "No Title",
-                            description: event.eventDescription ?? "No Event Description",
-                            startDate: event.eventStartDate,
-                            location: location
-                        )
-                        if result[NSDate.roundDownToNearestDay(calendarEvent.startDate)] == nil {
-                            result[NSDate.roundDownToNearestDay(calendarEvent.startDate)] = [calendarEvent]
-                        } else {
-                            result[NSDate.roundDownToNearestDay(calendarEvent.startDate)]?.append(calendarEvent)
-                        }
+                let events = parseICSString(icsString)
+                var result: [NSDate : [CalendarEvent]] = [:]
+                for event in events {
+                    if result[NSDate.roundDownToNearestDay(event.startDate)] == nil {
+                        result[NSDate.roundDownToNearestDay(event.startDate)] = [event]
+                    } else {
+                        result[NSDate.roundDownToNearestDay(event.startDate)]?.append(event)
                     }
                     self.schedule = result
                 }
@@ -57,5 +48,76 @@ final class CalendarDataService {
                     .postNotificationName("carleton150.calendarUpdateFailure", object: self)
             }
         }
+    }
+
+    class func parseICSString(icsString: String) -> [CalendarEvent] {
+        var calendarEvents: [CalendarEvent] = []
+        let cleanedICSString = icsString.stringByReplacingOccurrencesOfString("\r", withString: "")
+        var eventStrings = cleanedICSString.componentsSeparatedByString("BEGIN:VEVENT")
+        eventStrings.removeFirst()
+        for eventString:String in eventStrings {
+            let scanner = NSScanner(string: eventString)
+
+            var s: NSString? = ""
+            scanner.scanUpToString("LOCATION:", intoString: nil)
+            scanner.scanString("LOCATION:", intoString: nil)
+            scanner.scanUpToString("\n", intoString: &s)
+            let location: String? = (s as? String)
+
+            s = ""
+            scanner.scanLocation = 0
+            scanner.scanUpToString("SUMMARY:", intoString: nil)
+            scanner.scanString("SUMMARY:", intoString: nil)
+            scanner.scanUpToString("\n", intoString: &s)
+            let title: String? = (s as? String)
+
+            s = ""
+            scanner.scanLocation = 0
+            scanner.scanUpToString("DESCRIPTION:", intoString: nil)
+            scanner.scanString("DESCRIPTION:", intoString: nil)
+            scanner.scanUpToString("\n", intoString: &s)
+            let description: String? = (s as? String)
+
+            s = ""
+            scanner.scanLocation = 0
+            scanner.scanUpToString("URL:", intoString: nil)
+            scanner.scanString("URL:", intoString: nil)
+            scanner.scanUpToString("\n", intoString: &s)
+            var url: NSURL?
+            if let urlString = (s as? String) {
+                url = NSURL(string: urlString)
+            }
+
+            s = ""
+            scanner.scanLocation = 0
+            scanner.scanUpToString("DTSTART:", intoString: nil)
+            scanner.scanString("DTSTART:", intoString: nil)
+            scanner.scanUpToString("\n", intoString: &s)
+            var startDate: NSDate?
+            if let startDateString = (s as? String) {
+                startDate = dateFromDTString(startDateString)
+            }
+
+            let calendarEvent: CalendarEvent = CalendarEvent(
+                title: title ?? "No Title",
+                description: description ?? "No Event Description",
+                startDate: startDate ?? NSDate(),
+                location: location ?? "No Location",
+                url: url ?? NSURL()
+            )
+            calendarEvents.append(calendarEvent)
+        }
+
+        return calendarEvents
+    }
+
+    class func dateFromDTString(dtString: String) -> NSDate {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd HHmmss";
+        let dateTimeString = dtString.stringByReplacingOccurrencesOfString("T", withString: " ")
+        if let date = dateFormatter.dateFromString(dateTimeString) {
+            return date
+        }
+        return NSDate()
     }
 }

@@ -15,15 +15,22 @@ class CalendarDetailViewController: UIViewController {
     var eventTime: String!
     var eventLocation: String!
     var eventSummary: String!
+    var eventURL: String!
     
     override func viewDidLoad() {
-        
         // set the text fields for the event
         self.titleLabel.text = self.eventTitle
         self.timeLabel.text = self.eventTime
         self.locationLabel.text = self.eventLocation
-        self.eventSummaryText.text = self.eventSummary
-        
+
+        let attributedText = NSMutableAttributedString(string: self.eventSummary + "\n\n")
+        if self.eventURL.characters.count > 0 {
+            let link = NSAttributedString(string: "More details on Carleton's website...", attributes: [NSLinkAttributeName: self.eventURL])
+            attributedText.appendAttributedString(link)
+        }
+        attributedText.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(16.0)], range: NSRange(location: 0, length: attributedText.length))
+        self.eventSummaryText.attributedText = attributedText
+
         // stops the text view from being edited
         self.eventSummaryText.editable = false
 
@@ -34,5 +41,6 @@ class CalendarDetailViewController: UIViewController {
         self.eventTime = calendarCell.time
         self.eventLocation = calendarCell.location
         self.eventSummary = calendarCell.summary
+        self.eventURL = calendarCell.url
     }
 }
