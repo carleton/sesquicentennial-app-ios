@@ -852,7 +852,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="calendarTableView" destination="wQ1-JJ-r39" id="LCI-Gh-262"/>
+                        <outlet property="leftArrowBarButtonItem" destination="aPK-4I-gsp" id="o7h-GO-myV"/>
                         <outlet property="noDataView" destination="wQK-6R-nku" id="Lw7-X5-raB"/>
+                        <outlet property="rightArrowBarButtonItem" destination="p95-b7-C9T" id="j7k-HI-pgT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vwy-bk-U61" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -35,13 +35,14 @@ final class CalendarDataService {
                 let events = parseICSString(icsString)
                 var result: [NSDate : [CalendarEvent]] = [:]
                 for event in events {
-                    if result[NSDate.roundDownToNearestDay(event.startDate)] == nil {
-                        result[NSDate.roundDownToNearestDay(event.startDate)] = [event]
+                    let roundedDate = NSDate.roundDownToNearestDay(event.startDate)
+                    if result[roundedDate] == nil {
+                        result[roundedDate] = [event]
                     } else {
-                        result[NSDate.roundDownToNearestDay(event.startDate)]?.append(event)
+                        result[roundedDate]?.append(event)
                     }
-                    self.schedule = result
                 }
+                self.schedule = result
             } else {
                 NSNotificationCenter
                     .defaultCenter()
@@ -52,9 +53,11 @@ final class CalendarDataService {
 
     class func parseICSString(icsString: String) -> [CalendarEvent] {
         var calendarEvents: [CalendarEvent] = []
+//        print(icsString)
         let cleanedICSString = icsString.stringByReplacingOccurrencesOfString("\r", withString: "")
         var eventStrings = cleanedICSString.componentsSeparatedByString("BEGIN:VEVENT")
         eventStrings.removeFirst()
+        print("# events: \(eventStrings.count)")
         for eventString:String in eventStrings {
             let scanner = NSScanner(string: eventString)
 

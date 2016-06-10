@@ -9,11 +9,20 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var calendarTableView: UITableView!
     var calendar: [NSDate : [CalendarEvent]]? {
         didSet {
-            self.dateSectionHeaders = (calendar?.map() {$0.0})!
-            self.nestedCalendar = calendar?.map() {$0.1}
+            if let calendar = calendar {
+                // Not using map or $0, $1 notation since I'm not sure it's available in iOS 8.2
+                self.dateSectionHeaders = Array(calendar.keys).sort { (date1, date2) -> Bool in
+                    return date1.compare(date2) == NSComparisonResult.OrderedAscending
+                }
+
+                self.nestedCalendar = []
+                for date in self.dateSectionHeaders! {
+                    self.nestedCalendar?.append(calendar[date]!)
+                }
+            }
         }
     }
-    
+
     var dateSectionHeaders: [NSDate]?
     var nestedCalendar: [[CalendarEvent]]?
     var timer: NSTimer!
@@ -21,6 +30,8 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     
 
     @IBOutlet weak var noDataView: UIView!
+    @IBOutlet weak var leftArrowBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var rightArrowBarButtonItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         // set and go to the current date
@@ -76,13 +87,13 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
             let newDate = NSCalendar.currentCalendar().dateByAddingUnit(
                 NSCalendarUnit.Day, value: 1, toDate: date, options: NSCalendarOptions(rawValue: 0))
             let roundedDate = NSDate.roundDownToNearestDay(newDate!)
-            if (dateSectionHeaders?.contains(newDate!))! {
+            if (self.dateSectionHeaders?.contains(newDate!))! {
                 self.goToDate(roundedDate)
             }
         }
     }
-    
-    
+
+
     func setReload() {
        shouldReload = true
     }
@@ -90,7 +101,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     
     func testDate(date: NSDate, message: String?) {
         if !(dateSectionHeaders?.contains(date))! {
-            var alertMessage = "There are no events on the chosen day. We will show you the events that are available instead. Scroll to see more!"
+            var alertMessage = "There are no events on the chosen day. We will show you the earliest events available instead. Scroll to see more!"
             if let passedMessage = message {
                 alertMessage = passedMessage
             }
@@ -99,8 +110,9 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
                 preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title:"OK", style: UIAlertActionStyle.Default, handler: nil))
             calendarTableView.setContentOffset(CGPointZero, animated: false)
+            self.leftArrowBarButtonItem.enabled = false
+            self.rightArrowBarButtonItem.enabled = true
             self.presentViewController(alert, animated: true, completion: nil)
-            
         }
     }
    
@@ -111,19 +123,21 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
             - date: The date to go to (rounds down on time)
      */
     func goToDate(inputDate: NSDate?) {
-        dateSectionHeaders?.indexOf(inputDate!)
         if let section = dateSectionHeaders?.indexOf(inputDate!) {
             calendarTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: section), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+            self.leftArrowBarButtonItem.enabled = (section != 0)
+            self.rightArrowBarButtonItem.enabled = (section >= 0 && section + 1 < self.dateSectionHeaders?.count)
         }
     }
-    
-    
+
     func actOnCalendarUpdate(notification: NSNotification) {
         self.calendar = CalendarDataService.schedule
         calendarTableView.reloadData()
         self.view.sendSubviewToBack(noDataView)
+        self.leftArrowBarButtonItem.enabled = false
+        self.rightArrowBarButtonItem.enabled = true
     }
-    
+
     func actOnCalendarUpdateFailure(notification: NSNotification) {
         self.view.bringSubviewToFront(noDataView)
     }
