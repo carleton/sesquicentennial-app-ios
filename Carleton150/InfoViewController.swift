@@ -50,7 +50,7 @@ class InfoViewController: UIViewController, UIWebViewDelegate {
 
     func loadInfo() {
         if self.networkMonitor!.isReachableViaWiFi() || self.networkMonitor!.isReachableViaWWAN() {
-            let url = NSURL(string: "https://go.carleton.edu/appinfo")
+            let url = NSURL(string: "https://go.carleton.edu/apphome")
             let request = NSMutableURLRequest(URL: url!)
             request.setValue("CarletonSesquicentennialApp 1.0", forHTTPHeaderField: "UserAgent")
             webView.loadRequest(request)
