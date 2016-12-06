@@ -239,50 +239,53 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 			// get next controller
 			let nextCtrl = segue.destinationViewController as! QuestModalViewController
 			nextCtrl.parentVC = self
+            
 			// check to see quest status
-			if quest.wayPoints[currentWayPointIndex].checkIfTriggered(locationManager.location!.coordinate) {
-				nextCtrl.isCorrect = true
-				// increment waypointIndex and store it
-				currentWayPointIndex! += 1
-				// store the waypoint 
-				if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
-					startedQuests[quest.name] = currentWayPointIndex
-					NSUserDefaults.standardUserDefaults().setObject(startedQuests,forKey: "startedQuests")
-				}
-				// check to see if quest has been completed
-				if (self.currentWayPointIndex >= self.quest.wayPoints.count) {
-					self.questCompleted = true
-				}
-				if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
-					startedQuests[quest.name] = self.currentWayPointIndex
-					NSUserDefaults.standardUserDefaults().setObject(startedQuests,forKey: "startedQuests")
-				}
-				// quest has been complete
-				if (currentWayPointIndex == quest.wayPoints.count) {
-					nextCtrl.isComplete = true
-					if let compText = quest.completionMessage as String! {
-						nextCtrl.descText = compText
-					}
-				// not completed
-				} else if (currentWayPointIndex - 1 < quest.wayPoints.count) {
-					nextCtrl.isComplete = false
-					if let compText = quest.wayPoints[currentWayPointIndex - 1].completion["text"] as? String {
-						nextCtrl.descText = compText
-					}
-					if let imageURL = quest.wayPoints[currentWayPointIndex - 1].completion["image"] as? String {
-                        Alamofire.request(.GET, imageURL).responseImage { response in
-                            if let image = response.result.value {
-                                nextCtrl.image = image
+            if let loc = locationManager.location {
+                if quest.wayPoints[currentWayPointIndex].checkIfTriggered(loc.coordinate) {
+                    nextCtrl.isCorrect = true
+                    // increment waypointIndex and store it
+                    currentWayPointIndex! += 1
+                    // store the waypoint 
+                    if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
+                        startedQuests[quest.name] = currentWayPointIndex
+                        NSUserDefaults.standardUserDefaults().setObject(startedQuests,forKey: "startedQuests")
+                    }
+                    // check to see if quest has been completed
+                    if (self.currentWayPointIndex >= self.quest.wayPoints.count) {
+                        self.questCompleted = true
+                    }
+                    if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
+                        startedQuests[quest.name] = self.currentWayPointIndex
+                        NSUserDefaults.standardUserDefaults().setObject(startedQuests,forKey: "startedQuests")
+                    }
+                    // quest has been complete
+                    if (currentWayPointIndex == quest.wayPoints.count) {
+                        nextCtrl.isComplete = true
+                        if let compText = quest.completionMessage as String! {
+                            nextCtrl.descText = compText
+                        }
+                    // not completed
+                    } else if (currentWayPointIndex - 1 < quest.wayPoints.count) {
+                        nextCtrl.isComplete = false
+                        if let compText = quest.wayPoints[currentWayPointIndex - 1].completion["text"] as? String {
+                            nextCtrl.descText = compText
+                        }
+                        if let imageURL = quest.wayPoints[currentWayPointIndex - 1].completion["image"] as? String {
+                            Alamofire.request(.GET, imageURL).responseImage { response in
+                                if let image = response.result.value {
+                                    nextCtrl.image = image
+                                }
                             }
                         }
-					}
-					showClueHint()
-				}
-			} else {
-				// this should be taken care of by the default settings in the QuestModalViewController
-				nextCtrl.isComplete = false
-				nextCtrl.isCorrect = false
-			}
+                        showClueHint()
+                    }
+                } else {
+                    // this should be taken care of by the default settings in the QuestModalViewController
+                    nextCtrl.isComplete = false
+                    nextCtrl.isCorrect = false
+                }
+            }
 		/**
 		 * Completed waypoints modal
 		 */

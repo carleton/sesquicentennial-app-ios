@@ -91,12 +91,15 @@ final class CalendarDataService {
 
             s = ""
             scanner.scanLocation = 0
-            scanner.scanUpToString("DTSTART:", intoString: nil)
-            scanner.scanString("DTSTART:", intoString: nil)
+            scanner.scanUpToString("DTSTART", intoString: nil)
+            scanner.scanString("DTSTART", intoString: nil)
+
             scanner.scanUpToString("\n", intoString: &s)
             var startDate: NSDate?
+            
             if let startDateString = (s as? String) {
                 startDate = dateFromDTString(startDateString)
+                
             }
 
             let calendarEvent: CalendarEvent = CalendarEvent(
@@ -114,10 +117,25 @@ final class CalendarDataService {
 
     class func dateFromDTString(dtString: String) -> NSDate {
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyyMMdd HHmmss";
-        let dateTimeString = dtString.stringByReplacingOccurrencesOfString("T", withString: " ")
-        if let date = dateFormatter.dateFromString(dateTimeString) {
-            return date
+        
+        if (dtString.rangeOfString("VALUE") != nil) {
+            dateFormatter.dateFormat = "yyyyMMdd";
+            let dateTimeString = dtString.stringByReplacingOccurrencesOfString(";VALUE=DATE:", withString: "")
+            if let date = dateFormatter.dateFromString(dateTimeString) {
+                return date
+            }
+        }
+        
+        else if (dtString.rangeOfString(":") != nil) {
+            dateFormatter.dateFormat = "yyyyMMdd HHmmss";
+            
+            var dateTimeString = dtString.stringByReplacingOccurrencesOfString(":", withString: " ")
+            dateTimeString = dateTimeString.stringByReplacingOccurrencesOfString("T", withString: " ")
+            let date = dateFormatter.dateFromString(dateTimeString)
+            
+            if let date = dateFormatter.dateFromString(dateTimeString) {
+                return date
+            }
         }
         return NSDate()
     }
