@@ -6,7 +6,7 @@ import UIKit
 import GoogleMaps
 import CoreLocation
 import MapKit
-import Reachability
+import ReachabilitySwift
 
 class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
@@ -20,7 +20,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	var reach: Reachability?
 	var networkMonitor: Reachability!
     var landmarks: [String : Landmark]!
-    var timer: NSTimer!
+    var timer: Timer!
     var shouldReload: Bool = false
 	
 	
@@ -30,20 +30,20 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
      */
     override func viewDidLoad() {
         
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
        
         // if the user is opening the app for the first time,
-        if !defaults.boolForKey("hasSeenTutorial") {
-            defaults.setBool(true, forKey: "hasSeenTutorial")
+        if !defaults.bool(forKey: "hasSeenTutorial") {
+            defaults.set(true, forKey: "hasSeenTutorial")
             // show the tutorial
-            self.performSegueWithIdentifier("tutorial", sender: nil)
+            self.performSegue(withIdentifier: "tutorial", sender: nil)
         }
         defaults.synchronize()
 		
 		// initialize geofences dictionary
 		self.landmarks = Dictionary<String,Landmark>()
         
-        mapView.bringSubviewToFront(self.recenterButton)
+        mapView.bringSubview(toFront: self.recenterButton)
 		
         // set properties for the navigation bar
         Utils.setUpNavigationBar(self)
@@ -55,44 +55,44 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 	
         // set up current map location based on the user's location, if possible.
 		if let curLocation = self.locationManager.location {
-			self.mapView.camera = GMSCameraPosition.cameraWithTarget(curLocation.coordinate, zoom: 16)
+			self.mapView.camera = GMSCameraPosition.camera(withTarget: curLocation.coordinate, zoom: 16)
 		} else {
-			mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
+			mapView.camera = GMSCameraPosition.camera(withLatitude: 44.4619, longitude: -93.1538, zoom: 16)
 		}
 		
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate
 		self.networkMonitor = appDelegate.networkMonitor
 		
 		// set up the map view
 		mapView.delegate = self
-        mapView.myLocationEnabled = true
+        mapView.isMyLocationEnabled = true
 		
         // set up the tiling for the map
         Utils.setUpTiling(mapView)
         
         // triggers page to reload geofences every 30 minutes
-        timer = NSTimer.scheduledTimerWithTimeInterval(1800, target: self, selector: #selector(self.setReload), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1800, target: self, selector: #selector(self.setReload), userInfo: nil, repeats: true)
 	}
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if shouldReload {
             reloadLandmarks()
         }
     }
     
     
-    @IBAction func showHelp(sender: UIBarButtonItem) {
-        self.performSegueWithIdentifier("tutorial", sender: nil)
+    @IBAction func showHelp(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "tutorial", sender: nil)
     }
     
     
-    @IBAction func recenterOnCarleton(sender: AnyObject) {
-		mapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
+    @IBAction func recenterOnCarleton(_ sender: AnyObject) {
+		mapView.camera = GMSCameraPosition.camera(withLatitude: 44.4619, longitude: -93.1538, zoom: 16)
     }
     
-    @IBAction func recenterOnLocation(sender: UIBarButtonItem) {
+    @IBAction func recenterOnLocation(_ sender: UIBarButtonItem) {
         if let coordinates = self.locationManager.location?.coordinate {
-            mapView.camera = GMSCameraPosition.cameraWithLatitude(coordinates.latitude, longitude: coordinates.longitude, zoom: 16)
+            mapView.camera = GMSCameraPosition.camera(withLatitude: coordinates.latitude, longitude: coordinates.longitude, zoom: 16)
         }
     }
     
@@ -122,7 +122,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
                     let identifier = eventGroup.0
                     let events = eventGroup.1
                     let coordinate = events[0].location
-                    let landmark = Landmark(coordinate: coordinate, identifier: identifier, events: events)
+                    let landmark = Landmark(coordinate: coordinate!, identifier: identifier, events: events)
                     if self.landmarks[identifier] == nil {
                         self.landmarks[identifier] = landmark
                     }
@@ -140,20 +140,20 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		Parameters
 			- notification: notification sent by observer
 	*/
-	func connectionStatusChanged(notification: NSNotification) {
-		if self.networkMonitor!.isReachableViaWiFi() || self.networkMonitor!.isReachableViaWWAN() {
-            self.connectionLabel.hidden = true
+	func connectionStatusChanged(_ notification: Notification) {
+		if self.networkMonitor!.isReachableViaWiFi || self.networkMonitor!.isReachableViaWWAN {
+            self.connectionLabel.isHidden = true
             self.connectionIndicator.stopAnimating()
-            self.connectionIndicator.hidden = true
-            self.connectionView.hidden = true
-            self.mapView.sendSubviewToBack(self.connectionView)
+            self.connectionIndicator.isHidden = true
+            self.connectionView.isHidden = true
+            self.mapView.sendSubview(toBack: self.connectionView)
             self.loadLandmarks()
 		} else {
-			self.connectionLabel.hidden = false
+			self.connectionLabel.isHidden = false
 			self.connectionIndicator.startAnimating()
-			self.connectionIndicator.hidden = false
-			self.connectionView.hidden = false
-            self.mapView.bringSubviewToFront(self.connectionView)
+			self.connectionIndicator.isHidden = false
+			self.connectionView.isHidden = false
+            self.mapView.bringSubview(toFront: self.connectionView)
 		}
 	}
 	
@@ -164,18 +164,18 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         cause a request to be triggered, and then update the 
         geofences based on the curent location.
      */
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		// Setup networking monitoring
-		NSNotificationCenter.defaultCenter().addObserver(
+		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(HistoricalViewController.connectionStatusChanged(_:)),
-			name: kReachabilityChangedNotification,
+			name: ReachabilityChangedNotification,
 			object: nil
 		)
 		// check to see if connected
 		self.connectionStatusChanged(
-			NSNotification(
-				name: "Initial Connection Check",
+			Notification(
+				name: Notification.Name(rawValue: "Initial Connection Check"),
 				object: nil
 			)
 		)
@@ -195,13 +195,13 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
                       that was pressed, which will in turn have data associated with 
                       it that will given to the landmark detail view.
      */
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "showTimeline" {
-			let destinationController = (segue.destinationViewController as! TimelineViewController)
+			let destinationController = (segue.destination as! TimelineViewController)
 			destinationController.parentVC = self
 			
-			if let landmarkName = (sender?.title)! as String! {
-				destinationController.selectedGeofence = landmarkName.stringByReplacingOccurrencesOfString("&amp;", withString: "&")
+			if let landmarkName = ((sender as AnyObject).title)! as String! {
+				destinationController.selectedGeofence = landmarkName.replacingOccurrences(of: "&amp;", with: "&")
 				if let landmark = landmarks[landmarkName] {
 					destinationController.timeline = landmark.events
 				}
@@ -222,10 +222,10 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
             - didChangeAuthorizationStatus: The current authorization status for the user
                                             determining whether we can use location.
      */
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedAlways {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways {
             locationManager.startUpdatingLocation()
-            mapView.myLocationEnabled = true
+            mapView.isMyLocationEnabled = true
         }
     }
     
@@ -238,8 +238,8 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
      
             - didTapMarker: The marker that was tapped by the user.
      */
-	func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
-        self.performSegueWithIdentifier("showTimeline", sender: marker)
+	func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        self.performSegue(withIdentifier: "showTimeline", sender: marker)
 		return true
 	}
 }

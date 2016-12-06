@@ -2,23 +2,23 @@
 //  InfoViewController.swift
 //  Carleton150
 
-import Reachability
+import ReachabilitySwift
 
 class InfoViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var webView: UIWebView!
 	var reach: Reachability?
 	var networkMonitor: Reachability!
-    var timer: NSTimer!
+    var timer: Timer!
     var shouldReload: Bool = false
     
-    @IBAction func reload(sender: AnyObject) {
+    @IBAction func reload(_ sender: AnyObject) {
         loadInfo()
     }
     
     override func viewDidLoad() {
         // set up network monitoring
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate
 		self.networkMonitor = appDelegate.networkMonitor
         
         webView.delegate = self
@@ -27,10 +27,10 @@ class InfoViewController: UIViewController, UIWebViewDelegate {
         self.loadInfo()
    
         // triggers page to reload every 5 minutes
-        timer = NSTimer.scheduledTimerWithTimeInterval(300, target: self, selector: #selector(InfoViewController.setReload), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 300, target: self, selector: #selector(InfoViewController.setReload), userInfo: nil, repeats: true)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if shouldReload {
             loadInfo()
         }
@@ -40,25 +40,25 @@ class InfoViewController: UIViewController, UIWebViewDelegate {
         shouldReload = true
     }
    
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if navigationType == UIWebViewNavigationType.LinkClicked {
-            UIApplication.sharedApplication().openURL(request.URL!)
+    private func webView(_ webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if navigationType == UIWebViewNavigationType.linkClicked {
+            UIApplication.shared.openURL(request.url!)
             return false
         }
         return true
     }
 
     func loadInfo() {
-        if self.networkMonitor!.isReachableViaWiFi() || self.networkMonitor!.isReachableViaWWAN() {
+        if self.networkMonitor!.isReachableViaWiFi || self.networkMonitor!.isReachableViaWWAN {
             let url = NSURL(string: "https://go.carleton.edu/apphome")
-            let request = NSMutableURLRequest(URL: url!)
+            let request = NSMutableURLRequest(url: url! as URL)
             request.setValue("CarletonSesquicentennialApp 1.0", forHTTPHeaderField: "UserAgent")
-            webView.loadRequest(request)
+            webView.loadRequest(request as URLRequest)
         } else {
-            let url = NSBundle.mainBundle().pathForResource("no-connection", ofType: "html")
+            let url = Bundle.main.path(forResource: "no-connection", ofType: "html")
             let requesturl = NSURL(string: url!)
-            let request = NSURLRequest(URL: requesturl!)
-            webView.loadRequest(request)
+            let request = NSURLRequest(url: requesturl! as URL)
+            webView.loadRequest(request as URLRequest)
         }
     }
 }

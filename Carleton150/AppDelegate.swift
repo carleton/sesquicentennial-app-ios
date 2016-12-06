@@ -3,7 +3,7 @@
 //  Carleton150
 
 import GoogleMaps
-import Reachability
+import ReachabilitySwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate  {
@@ -14,16 +14,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	let locationManager = CLLocationManager()
 
     var schedule: [Dictionary<String, String>] = []
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-       
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        let defaults: UserDefaults = UserDefaults.standard
         // if the user doesn't have this boolean, 
         // that means they've opened the app for the 
         // first time, and we should show the tutorial.
-        if !defaults.boolForKey("hasSeenTutorial") {
-            defaults.setBool(false, forKey: "hasSeenTutorial")
+        if !defaults.bool(forKey: "hasSeenTutorial") {
+            defaults.set(false, forKey: "hasSeenTutorial")
         }
         
         defaults.synchronize()
@@ -32,13 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		
         customizeTabBar()
 		
-        if let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist") {
+        if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
             keys = NSDictionary(contentsOfFile: path)
         }
         
         if let _ = keys {
             let googleMapsApiKey = keys?["GoogleMaps"] as? String
-            GMSServices.provideAPIKey(googleMapsApiKey)
+            GMSServices.provideAPIKey(googleMapsApiKey!)
         }
        
         locationManager.delegate = self
@@ -57,11 +55,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		Setup instance of Reachability for Network Monitoring
 	 */
 	func startNetworkMonitoring() {
-		// Allocate a reachability object
-		self.networkMonitor = Reachability.reachabilityForInternetConnection()
+        // Allocate a reachability object
+		self.networkMonitor = Reachability()
 		// Tell the reachability that we DON'T want to be reachable on 3G/EDGE/CDMA
 		self.networkMonitor!.reachableOnWWAN = false
-		self.networkMonitor!.startNotifier()
+        do {
+            try self.networkMonitor!.startNotifier()
+        }catch{
+            print("An Error occurred while trying to start the notifier")
+        }
 	}
 	
 	/**
@@ -69,9 +71,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	 */
 	func customizePageViews() {
 		let pageController = UIPageControl.appearance()
-		pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
-		pageController.currentPageIndicatorTintColor = UIColor.blackColor()
-		pageController.backgroundColor = UIColor.whiteColor()
+		pageController.pageIndicatorTintColor = UIColor.lightGray
+		pageController.currentPageIndicatorTintColor = UIColor.black
+		pageController.backgroundColor = UIColor.white
 	}
 
 	/**
@@ -79,11 +81,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
      */
 	func customizeTabBar() {
 
-		UITabBar.appearance().barStyle = UIBarStyle.Black
+		UITabBar.appearance().barStyle = UIBarStyle.black
 
-		let tabIndicator = UIImage(named: "tabBarSelectionIndicator")?.imageWithRenderingMode(.AlwaysTemplate)
-		let tabResizableIndicator = tabIndicator?.resizableImageWithCapInsets(
-			UIEdgeInsets(top: 0, left: 2.0, bottom: 0, right: 2.0))
+		let tabIndicator = UIImage(named: "tabBarSelectionIndicator")?.withRenderingMode(.alwaysTemplate)
+        let tabResizableIndicator = tabIndicator?.resizableImage(
+            withCapInsets: UIEdgeInsets(top: 0, left: 2.0, bottom: 0, right: 2.0))
 		UITabBar.appearance().selectionIndicatorImage = tabResizableIndicator
 
 		UITabBar.appearance().barTintColor = UIColor(
@@ -121,32 +123,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         UINavigationBar.appearance().tintColor = UIColor(red: 255.0/255.0,
             green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
 		
-		UINavigationBar.appearance().barStyle = UIBarStyle.Black
+		UINavigationBar.appearance().barStyle = UIBarStyle.black
 		
     }
     
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-		NSUserDefaults.standardUserDefaults().synchronize()
+		UserDefaults.standard.synchronize()
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-		NSUserDefaults.standardUserDefaults().synchronize()
+		UserDefaults.standard.synchronize()
     }
     
     
@@ -162,8 +164,8 @@ extension String {
      
         - Returns: True if found inside the string, False otherwise.
      */
-    func contains(find: String) -> Bool{
-        return self.rangeOfString(find) != nil
+    func contains(_ find: String) -> Bool{
+        return self.range(of: find) != nil
     }
 }
 
@@ -174,41 +176,40 @@ extension NSDate {
         If the current date object is later in time than 
         the other date return true, otherwise return false.
      */
-    func isGreaterThanDate(dateToCompare: NSDate) -> Bool {
-        return self.compare(dateToCompare) == NSComparisonResult.OrderedDescending
+    func isGreaterThanDate(_ dateToCompare: NSDate) -> Bool {
+        return self.compare(dateToCompare as Date) == ComparisonResult.orderedDescending
     }
     
     /**
         If the current date object is earlier in time than
         the other date return true, otherwise return false.
      */
-    func isLessThanDate(dateToCompare: NSDate) -> Bool {
-        return self.compare(dateToCompare) == NSComparisonResult.OrderedAscending
+    func isLessThanDate(_ dateToCompare: NSDate) -> Bool {
+        return self.compare(dateToCompare as Date) == ComparisonResult.orderedAscending
     }
     
     /**
         If the current date object is at the same time as
         the other date return true, otherwise return false.
      */
-    func equalToDate(dateToCompare: NSDate) -> Bool {
-        return self.compare(dateToCompare) == NSComparisonResult.OrderedSame
+    func equalToDate(_ dateToCompare: NSDate) -> Bool {
+        return self.compare(dateToCompare as Date) == ComparisonResult.orderedSame
     }
     
-    class func areDatesSameDay(dateOne: NSDate, dateTwo: NSDate) -> Bool {
-        let calender = NSCalendar.currentCalendar()
-        let flags: NSCalendarUnit = [.Day, .Month, .Year]
-        let compOne: NSDateComponents = calender.components(flags, fromDate: dateOne)
-        let compTwo: NSDateComponents = calender.components(flags, fromDate: dateTwo)
+    class func areDatesSameDay(_ dateOne: Date, dateTwo: Date) -> Bool {
+        let calender = Calendar.current
+        let flags: Set<Calendar.Component> = [.day, .month, .year]
+        let compOne: DateComponents = calender.dateComponents(flags, from: dateOne)
+        let compTwo: DateComponents = calender.dateComponents(flags, from: dateTwo)
         return (compOne.day == compTwo.day && compOne.month == compTwo.month && compOne.year == compTwo.year)
     }
     
-    class func roundDownToNearestDay(date: NSDate) -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
-        let components = NSDateComponents()
-        components.second = -calendar.components(NSCalendarUnit.Second, fromDate: date).second
-        components.minute = -calendar.components(NSCalendarUnit.Minute, fromDate: date).minute
-        components.hour = -calendar.components(NSCalendarUnit.Hour, fromDate: date).hour
-        return calendar.dateByAddingComponents(
-            components, toDate: date, options: NSCalendarOptions(rawValue: 0))!
+    class func roundDownToNearestDay(_ date: Date) -> Date {
+        let calendar = Calendar.current
+        var components = DateComponents()
+        components.second = -calendar.component(Calendar.Component.second, from: date)
+        components.minute = -calendar.component(Calendar.Component.minute, from: date)
+        components.hour = -calendar.component(Calendar.Component.hour, from: date)
+        return calendar.date(byAdding: components, to: date)!
     }
 }

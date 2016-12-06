@@ -34,7 +34,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.estimatedRowHeight = 160.0
        
         if let timeline = self.timeline {
-            self.timeline = timeline.sort()
+            self.timeline = timeline.sorted()
         }
 	}
 	
@@ -46,9 +46,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 		Parameters
 			- sender: this will be either an image view or a button
 	 */
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if (segue.identifier == "showTimelineDetail") {
-			let detailViewController = (segue.destinationViewController as! TimelineDetailView)
+			let detailViewController = (segue.destination as! TimelineDetailView)
 			detailViewController.parentView = self
             detailViewController.setData(sender as! TimelineTableCell)
         }
@@ -62,8 +62,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         - Parameters: 
             - sender: The UI element that triggered the action.
      */
-	@IBAction func exitTimeline(sender: AnyObject) {
-        parentVC.dismissViewControllerAnimated(true, completion: nil)
+	@IBAction func exitTimeline(_ sender: AnyObject) {
+        parentVC.dismiss(animated: true, completion: nil)
 	}
 
     /**
@@ -74,7 +74,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
      
         - Returns: 1. Nothing exciting here.
      */
-	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
 	
@@ -88,7 +88,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
      
         - Returns: The number of historical events for the triggered geofence.
      */
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return timeline.count
 	}
     
@@ -103,7 +103,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
         - Returns: The calculated height of the table view cell.
      */
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
 	
@@ -117,24 +117,24 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
      
         - Returns: The modified table view cell.
      */
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let image = timeline[indexPath.row].image {
-            let cell: TimelineTableCellImageOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellImageOnly", forIndexPath: indexPath) as! TimelineTableCellImageOnly
+            let cell: TimelineTableCellImageOnly = tableView.dequeueReusableCell(withIdentifier: "timelineTableCellImageOnly", for: indexPath) as! TimelineTableCellImageOnly
             cell.setCellViewTraits()
             cell.cellImage = image
             cell.cellSummary = timeline[indexPath.row].headline
             cell.cellTimestamp = timeline[indexPath.row].displayDate
             cell.cellDescription = timeline[indexPath.row].text
             cell.caption.text = timeline[indexPath.row].caption ?? nil
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
         } else {
-            let cell: TimelineTableCellTextOnly = tableView.dequeueReusableCellWithIdentifier("timelineTableCellTextOnly", forIndexPath: indexPath) as! TimelineTableCellTextOnly
+            let cell: TimelineTableCellTextOnly = tableView.dequeueReusableCell(withIdentifier: "timelineTableCellTextOnly", for: indexPath) as! TimelineTableCellTextOnly
             cell.setCellViewTraits()
             cell.cellSummary = timeline[indexPath.row].headline
             cell.cellDescription = timeline[indexPath.row].text
             cell.cellTimestamp = timeline[indexPath.row].displayDate
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
         }
     }

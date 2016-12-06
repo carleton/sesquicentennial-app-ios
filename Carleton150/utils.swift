@@ -19,7 +19,7 @@ final class Utils {
 
         - Returns: The distance (in meters) between the two points.
      */
-    class func getDistance(point1: CLLocationCoordinate2D, point2: CLLocationCoordinate2D) -> Double {
+    class func getDistance(_ point1: CLLocationCoordinate2D, point2: CLLocationCoordinate2D) -> Double {
         let radius: Double = 6378137
         let Φ_1 = degreesToRadians(point1.latitude)
         let Φ_2 = degreesToRadians(point2.latitude)
@@ -39,7 +39,7 @@ final class Utils {
 
         - Returns: The equivalent radian quantity for a given number of degrees.
      */
-    private class func degreesToRadians(degrees: Double) -> Double {
+    fileprivate class func degreesToRadians(_ degrees: Double) -> Double {
         return degrees * M_PI / 180
     }
     
@@ -51,7 +51,7 @@ final class Utils {
      
         - Returns: Whether the user is off campus as a boolean.
      */
-    class func userOffCampus(location : CLLocationCoordinate2D) -> Bool {
+    class func userOffCampus(_ location : CLLocationCoordinate2D) -> Bool {
         let centerPoint = CLLocationCoordinate2D(latitude: 44.460421, longitude: -93.152749)
         let distance = Utils.getDistance(centerPoint, point2: location)
         return distance > 7000
@@ -63,23 +63,23 @@ final class Utils {
         - Parameters: 
             - currentMap: the map view that we want to tile.
      */
-    class func setUpTiling(currentMap: GMSMapView) {
+    class func setUpTiling(_ currentMap: GMSMapView) {
         // Implement GMSTileURLConstructor
         // Returns a Tile based on the x, y, zoom coordinates
-        let urlsBase = { (x: UInt, y: UInt, zoom: UInt) -> NSURL in
+        let urlsBase = { (x: UInt, y: UInt, zoom: UInt) -> URL in
             let url = "https://www.carleton.edu/global_stock/images/campus_map/tiles/base/\(zoom)_\(x)_\(y).png"
             
-            return NSURL(string: url)!
+            return URL(string: url)!
         }
-        let urlsLabel = { (x: UInt, y: UInt, zoom: UInt) -> NSURL in
+        let urlsLabel = { (x: UInt, y: UInt, zoom: UInt) -> URL in
             let url = "https://www.carleton.edu/global_stock/images/campus_map/tiles/labels/\(zoom)_\(x)_\(y).png"
             
-            return NSURL(string: url)!
+            return URL(string: url)!
         }
         
         // Create the GMSTileLayer
-        let layerBase = GMSURLTileLayer(URLConstructor: urlsBase)
-        let layerLabel = GMSURLTileLayer(URLConstructor: urlsLabel)
+        let layerBase = GMSURLTileLayer(urlConstructor: urlsBase)
+        let layerLabel = GMSURLTileLayer(urlConstructor: urlsLabel)
         
         // Display on the map at a specific zIndex
         layerBase.zIndex = 0
@@ -93,10 +93,10 @@ final class Utils {
     /**
         Sets the translucency of the top navigation bar in the designated view.
      */
-    class func setUpNavigationBar(currentController: UIViewController) {
+    class func setUpNavigationBar(_ currentController: UIViewController) {
         // stop the navigation bar from covering the calendar content
         if let navigator = currentController.navigationController {
-            navigator.navigationBar.translucent = false;
+            navigator.navigationBar.isTranslucent = false;
         }
     }
     

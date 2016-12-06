@@ -7,12 +7,12 @@ import Foundation
 class CalendarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var calendarTableView: UITableView!
-    var calendar: [NSDate : [CalendarEvent]]? {
+    var calendar: [Date : [CalendarEvent]]? {
         didSet {
             if let calendar = calendar {
                 // Not using map or $0, $1 notation since I'm not sure it's available in iOS 8.2
-                self.dateSectionHeaders = Array(calendar.keys).sort { (date1, date2) -> Bool in
-                    return date1.compare(date2) == NSComparisonResult.OrderedAscending
+                self.dateSectionHeaders = Array(calendar.keys).sorted { (date1, date2) -> Bool in
+                    return date1.compare(date2) == ComparisonResult.orderedAscending
                 }
 
                 self.nestedCalendar = []
@@ -23,9 +23,9 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
 
-    var dateSectionHeaders: [NSDate]?
+    var dateSectionHeaders: [Date]?
     var nestedCalendar: [[CalendarEvent]]?
-    var timer: NSTimer!
+    var timer: Timer!
     var shouldReload: Bool = false
     
 
@@ -35,44 +35,44 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         // set and go to the current date
-        self.goToDate(NSDate())
+        self.goToDate(Date())
         
         // set the dataSource and delegate for the calendar table view
 		calendarTableView.dataSource = self
 		calendarTableView.delegate = self
        
         // set the observer and pull events
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
              selector: #selector(self.actOnCalendarUpdate(_:)),
-             name: "carleton150.calendarUpdate", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self,
+             name: NSNotification.Name(rawValue: "carleton150.calendarUpdate"), object: nil)
+        NotificationCenter.default.addObserver(self,
              selector: #selector(self.actOnCalendarUpdateFailure(_:)),
-             name: "carleton150.calendarUpdateFailure", object: nil)
+             name: NSNotification.Name(rawValue: "carleton150.calendarUpdateFailure"), object: nil)
         CalendarDataService.getEvents()
         
         // triggers page to reload every 30 minutes on page appearance
-        timer = NSTimer.scheduledTimerWithTimeInterval(1800, target: self, selector: #selector(self.setReload), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1800, target: self, selector: #selector(self.setReload), userInfo: nil, repeats: true)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if shouldReload {
             CalendarDataService.getEvents()
         }
     }
     
     
-    @IBAction func goToToday(sender: UIBarButtonItem) {
-        self.goToDate(NSDate.roundDownToNearestDay(NSDate()))
-        self.testDate(NSDate.roundDownToNearestDay(NSDate()), message: "There are no events today. We will show you the events that are available instead. Scroll to see more!")
+    @IBAction func goToToday(_ sender: UIBarButtonItem) {
+        self.goToDate(NSDate.roundDownToNearestDay(Date()))
+        self.testDate(NSDate.roundDownToNearestDay(Date()), message: "There are no events today. We will show you the events that are available instead. Scroll to see more!")
     }
     
     
-    @IBAction func goToYesterday(sender: UIBarButtonItem) {
-        let visibleRows: [NSIndexPath]? = calendarTableView.indexPathsForVisibleRows
+    @IBAction func goToYesterday(_ sender: UIBarButtonItem) {
+        let visibleRows: [IndexPath]? = calendarTableView.indexPathsForVisibleRows
         
         if let date = self.dateSectionHeaders?[(visibleRows?[0].section)!] {
-            let newDate = NSCalendar.currentCalendar().dateByAddingUnit(
-                NSCalendarUnit.Day, value: -1, toDate: date, options: NSCalendarOptions(rawValue: 0))
+            let newDate = (Calendar.current as NSCalendar).date(
+                byAdding: NSCalendar.Unit.day, value: -1, to: date, options: NSCalendar.Options(rawValue: 0))
             let roundedDate = NSDate.roundDownToNearestDay(newDate!)
             if (dateSectionHeaders?.contains(newDate!))! {
                 self.goToDate(roundedDate)
@@ -81,11 +81,11 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    @IBAction func goToTomorrow(sender: UIBarButtonItem) {
-        let visibleRows: [NSIndexPath]? = calendarTableView.indexPathsForVisibleRows
+    @IBAction func goToTomorrow(_ sender: UIBarButtonItem) {
+        let visibleRows: [IndexPath]? = calendarTableView.indexPathsForVisibleRows
         if let date = self.dateSectionHeaders?[(visibleRows?[0].section)!] {
-            let newDate = NSCalendar.currentCalendar().dateByAddingUnit(
-                NSCalendarUnit.Day, value: 1, toDate: date, options: NSCalendarOptions(rawValue: 0))
+            let newDate = (Calendar.current as NSCalendar).date(
+                byAdding: NSCalendar.Unit.day, value: 1, to: date, options: NSCalendar.Options(rawValue: 0))
             let roundedDate = NSDate.roundDownToNearestDay(newDate!)
             if (self.dateSectionHeaders?.contains(newDate!))! {
                 self.goToDate(roundedDate)
@@ -99,7 +99,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    func testDate(date: NSDate, message: String?) {
+    func testDate(_ date: Date, message: String?) {
         if !(dateSectionHeaders?.contains(date))! {
             var alertMessage = "There are no events on the chosen day. We will show you the earliest events available instead. Scroll to see more!"
             if let passedMessage = message {
@@ -107,12 +107,12 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
             }
             let alert = UIAlertController(title: "",
                 message: alertMessage,
-                preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title:"OK", style: UIAlertActionStyle.Default, handler: nil))
-            calendarTableView.setContentOffset(CGPointZero, animated: false)
-            self.leftArrowBarButtonItem.enabled = false
-            self.rightArrowBarButtonItem.enabled = true
-            self.presentViewController(alert, animated: true, completion: nil)
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title:"OK", style: UIAlertActionStyle.default, handler: nil))
+            calendarTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+            self.leftArrowBarButtonItem.isEnabled = false
+            self.rightArrowBarButtonItem.isEnabled = true
+            self.present(alert, animated: true, completion: nil)
         }
     }
    
@@ -122,24 +122,24 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         - Parameters:
             - date: The date to go to (rounds down on time)
      */
-    func goToDate(inputDate: NSDate?) {
-        if let section = dateSectionHeaders?.indexOf(inputDate!) {
-            calendarTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: section), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
-            self.leftArrowBarButtonItem.enabled = (section != 0)
-            self.rightArrowBarButtonItem.enabled = (section >= 0 && section + 1 < self.dateSectionHeaders?.count)
+    func goToDate(_ inputDate: Date?) {
+        if let section = dateSectionHeaders?.index(of: inputDate!) {
+            calendarTableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .top, animated: false)
+            self.leftArrowBarButtonItem.isEnabled = (section != 0)
+            self.rightArrowBarButtonItem.isEnabled = (section >= 0 && section + 1 < (self.dateSectionHeaders?.count)!)
         }
     }
 
-    func actOnCalendarUpdate(notification: NSNotification) {
-        self.calendar = CalendarDataService.schedule
+    func actOnCalendarUpdate(_ notification: Notification) {
+        self.calendar = CalendarDataService.schedule as [Date : [CalendarEvent]]?
         calendarTableView.reloadData()
-        self.view.sendSubviewToBack(noDataView)
-        self.leftArrowBarButtonItem.enabled = false
-        self.rightArrowBarButtonItem.enabled = true
+        self.view.sendSubview(toBack: noDataView)
+        self.leftArrowBarButtonItem.isEnabled = false
+        self.rightArrowBarButtonItem.isEnabled = true
     }
 
-    func actOnCalendarUpdateFailure(notification: NSNotification) {
-        self.view.bringSubviewToFront(noDataView)
+    func actOnCalendarUpdateFailure(_ notification: Notification) {
+        self.view.bringSubview(toFront: noDataView)
     }
 
     /**
@@ -151,9 +151,9 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
              
              - sender: The collecton view cell that triggered the segue.
      */
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showCalendarDetail") {
-            let detailViewController = (segue.destinationViewController as! CalendarDetailViewController)
+            let detailViewController = (segue.destination as! CalendarDetailViewController)
             detailViewController.setData(sender as! CalendarTableCell)
         }
     }
@@ -162,12 +162,12 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     /**
         Returns the number of sections (different dates) in the table view.
      */
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return self.dateSectionHeaders?.count ?? 0
     }
     
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.chosenDate((self.dateSectionHeaders?[section])!)
     }
     
@@ -181,7 +181,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
      
         - Returns: The number of calendar events.
      */
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.nestedCalendar?[section].count ?? 0
     }
     
@@ -195,31 +195,31 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
      
         - Returns: The modified table view cell.
      */
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let calendarEntry = nestedCalendar?[indexPath.section][indexPath.row] {
             let cell: CalendarTableCell =
-                tableView.dequeueReusableCellWithIdentifier("CalendarTableCell",
-                forIndexPath: indexPath) as! CalendarTableCell
+                tableView.dequeueReusableCell(withIdentifier: "CalendarTableCell",
+                                              for: indexPath as IndexPath) as! CalendarTableCell
             
             cell.title = calendarEntry.title
             cell.location = calendarEntry.location
             cell.summary = calendarEntry.description
             cell.time = parseDate(calendarEntry.startDate)
-            cell.url = calendarEntry.url.URLString
+            cell.url = calendarEntry.url.absoluteString
             return cell
         } else {
             let cell: CalendarTableCell =
-                tableView.dequeueReusableCellWithIdentifier("CalendarTableCell",
-                forIndexPath: indexPath) as! CalendarTableCell
+                tableView.dequeueReusableCell(withIdentifier: "CalendarTableCell",
+                                              for: indexPath as IndexPath) as! CalendarTableCell
             return cell
         }
     }
     
-    private func chosenDate(date: NSDate) -> String {
-        let outFormatter = NSDateFormatter()
-        outFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        outFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-        return outFormatter.stringFromDate(date)
+    fileprivate func chosenDate(_ date: Date) -> String {
+        let outFormatter = DateFormatter()
+        outFormatter.dateStyle = DateFormatter.Style.medium
+        outFormatter.timeStyle = DateFormatter.Style.none
+        return outFormatter.string(from: date)
     }
     
     /**
@@ -229,11 +229,11 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
          - Parameters:
             - date: A date to be turned into a nice stringified version of itself.
      */
-    private func parseDate(date: NSDate) -> String {
-        let outFormatter = NSDateFormatter()
-        outFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        outFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        return outFormatter.stringFromDate(date)
+    fileprivate func parseDate(_ date: Date) -> String {
+        let outFormatter = DateFormatter()
+        outFormatter.dateStyle = DateFormatter.Style.medium
+        outFormatter.timeStyle = DateFormatter.Style.short
+        return outFormatter.string(from: date)
     }
 }
 

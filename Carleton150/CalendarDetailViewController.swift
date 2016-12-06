@@ -26,17 +26,17 @@ class CalendarDetailViewController: UIViewController {
         let attributedText = NSMutableAttributedString(string: self.eventSummary + "\n\n")
         if self.eventURL.characters.count > 0 {
             let link = NSAttributedString(string: "More details on Carleton's website...", attributes: [NSLinkAttributeName: self.eventURL])
-            attributedText.appendAttributedString(link)
+            attributedText.append(link)
         }
-        attributedText.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20.0)], range: NSRange(location: 0, length: attributedText.length))
+        attributedText.addAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 20.0)], range: NSRange(location: 0, length: attributedText.length))
         self.eventSummaryText.attributedText = attributedText
 
         // stops the text view from being edited
-        self.eventSummaryText.editable = false
+        self.eventSummaryText.isEditable = false
 
     }
     
-    func setData(calendarCell: CalendarTableCell) {
+    func setData(_ calendarCell: CalendarTableCell) {
         self.eventTitle = calendarCell.title
         self.eventTime = calendarCell.time
         self.eventLocation = calendarCell.location

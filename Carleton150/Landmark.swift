@@ -28,11 +28,11 @@ class Landmark: NSObject, MKAnnotation {
         - Parameters:
             - mapView:  The Google Maps view to which we attach the marker.
 	*/
-	func displayLandmark(mapView: GMSMapView) {
+	func displayLandmark(_ mapView: GMSMapView) {
         if let _ = self.events {
             if self.marker.map == nil {
                 self.marker.title = self.identifier
-                self.marker.infoWindowAnchor = CGPointMake(0.5, 0.5)
+                self.marker.infoWindowAnchor = CGPoint(x: 0.5, y: 0.5)
                 self.marker.map = mapView
                 self.marker.icon = UIImage(named: "marker.png")
             }

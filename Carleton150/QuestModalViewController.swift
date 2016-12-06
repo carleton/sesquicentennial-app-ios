@@ -102,8 +102,8 @@ class QuestModalViewController: UIViewController {
 		- Parameters:
 			- sender: The UI element that triggered the action.
 	*/
-	@IBAction func dismissModal(sender: AnyObject) {
+	@IBAction func dismissModal(_ sender: AnyObject) {
 		parentVC.setupUI()
-		parentVC.dismissViewControllerAnimated(true) {}
+		parentVC.dismiss(animated: true) {}
 	}
 }

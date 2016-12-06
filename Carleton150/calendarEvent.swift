@@ -8,11 +8,11 @@ class CalendarEvent {
 
     let title: String
     let description: String
-    let startDate: NSDate
+    let startDate: Date
     let location: String
-    let url: NSURL
+    let url: URL
     
-    init(title: String, description: String, startDate: NSDate, location: String, url: NSURL) {
+    init(title: String, description: String, startDate: Date, location: String, url: URL) {
         self.title = title
         self.description = description
         self.startDate = startDate
@@ -23,10 +23,10 @@ class CalendarEvent {
 
 // MARK: Equatable
 func ==(lhs: CalendarEvent, rhs: CalendarEvent) -> Bool {
-    return lhs.startDate.equalToDate(rhs.startDate)
+    return lhs.startDate.timeIntervalSince(rhs.startDate) == 0
 }
 
 // MARK: Comparable
 func <(lhs: CalendarEvent, rhs: CalendarEvent) -> Bool {
-    return lhs.startDate.isLessThanDate(rhs.startDate)
+    return lhs.startDate.timeIntervalSince(rhs.startDate) < 0
 }

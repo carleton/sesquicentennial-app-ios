@@ -17,8 +17,8 @@ final class QuestDataService {
                           that you want given a list with all the quests
                           from the server.
      */
-    class func getQuests(completion: (success: Bool, result: [Quest]?) -> Void) {
-        Alamofire.request(.POST, Endpoints.quests, parameters: nil, encoding: .JSON).responseJSON() {
+    class func getQuests(_ completion: @escaping (_ success: Bool, _ result: [Quest]?) -> Void) {
+        Alamofire.request(Endpoints.quests, method: .post, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON{
             response in
             
             var quests: [Quest] = []
@@ -45,11 +45,11 @@ final class QuestDataService {
 							var hint = [String: AnyObject]()
 							var completion = [String: AnyObject]()
 							
-							clue["text"] = points[i]["clue"]["text"].string!
-							hint["text"] = points[i]["hint"]["text"].string!
+							clue["text"] = points[i]["clue"]["text"].string! as AnyObject?
+							hint["text"] = points[i]["hint"]["text"].string! as AnyObject?
 							
 							if let compText = points[i]["completion"]["text"].string {
-								completion["text"] = compText
+								completion["text"] = compText as AnyObject?
 							}
 							
 							wayPoints.append(
@@ -76,15 +76,15 @@ final class QuestDataService {
 						)
 						
 					}
-					completion(success: true, result: quests)
+					completion(true, quests)
 					
 				} else {
 					print("No results were found.")
-					completion(success: false, result: nil)
+					completion(false, nil)
 				}
 			} else {
 				print("Connection to server failed.")
-				completion(success: false, result: nil)
+				completion(false, nil)
 			}
 		}
     }

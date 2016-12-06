@@ -18,8 +18,8 @@ final class HistoricalDataService {
                           that you want given a dictionary with all content
                           from the server.
      */
-    class func getLandmarks(completion: (success: Bool, result: [String : [Event]]) -> Void) {
-        Alamofire.request(.GET, Endpoints.landmarks, parameters: nil).responseJSON { response in
+    class func getLandmarks(_ completion: @escaping (_ success: Bool, _ result: [String : [Event]]) -> Void) {
+        Alamofire.request(Endpoints.landmarks).responseJSON { response in
             if let result = response.result.value {
                 let json = JSON(result)
                 let events = json["events"]
@@ -28,14 +28,14 @@ final class HistoricalDataService {
                     for i in 0 ..< events.count {
                         let event = events[i]
                         if let displayDate = event["display_date"].string,
-                               startYear = event["start_date"]["year"].int,
-                               startMonth = event["start_date"]["month"].int,
-                               startDay = event["start_date"]["day"].int,
-                               headline = event["text"]["headline"].string,
-                               text = event["text"]["text"].string,
-                               lat = event["geo"]["lat"].double,
-                               lon = event["geo"]["lon"].double,
-                               name = event["geo"]["name"].string {
+                               let startYear = event["start_date"]["year"].int,
+                               let startMonth = event["start_date"]["month"].int,
+                               let startDay = event["start_date"]["day"].int,
+                               let headline = event["text"]["headline"].string,
+                               let text = event["text"]["text"].string,
+                               let lat = event["geo"]["lat"].double,
+                               let lon = event["geo"]["lon"].double,
+                               let name = event["geo"]["name"].string {
                             
                             let imageURL = event["media"]["url"].string ?? nil
                             let caption = event["media"]["caption"].string ?? nil
@@ -46,12 +46,12 @@ final class HistoricalDataService {
                             c.day = startDay
                             
                             // Get NSDate given the above date components
-                            let startDate = NSCalendar(identifier: NSCalendarIdentifierGregorian)?.dateFromComponents(c)
+                            let startDate = NSCalendar(identifier: NSCalendar.Identifier.gregorian)?.date(from: c as DateComponents)
 
                             if let _ = result[name] {
                                 result[name]?.append(Event(
                                     displayDate: displayDate,
-                                    startDate: startDate!,
+                                    startDate: startDate! as NSDate,
                                     headline: headline,
                                     text: text,
                                     location: CLLocationCoordinate2D(latitude: lat, longitude: lon),
@@ -63,7 +63,7 @@ final class HistoricalDataService {
                                 result[name] = []
                                 result[name]?.append(Event(
                                     displayDate: displayDate,
-                                    startDate: startDate!,
+                                    startDate: startDate! as NSDate,
                                     headline: headline,
                                     text: text,
                                     location: CLLocationCoordinate2D(latitude: lat, longitude: lon),
@@ -75,14 +75,14 @@ final class HistoricalDataService {
                         }
                     }
                     // finished getting events, send to completion handler
-                    completion(success: true, result: result)
+                    completion(true, result)
                 } else {
                     print("No events found.")
-                    completion(success: false, result: [:])
+                    completion(false, [:])
                 }
             } else {
                 print("Connection to server failed.")
-                completion(success: false, result: [:])
+                completion(false, [:])
             }
         }
     }

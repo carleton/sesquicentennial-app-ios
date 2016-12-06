@@ -14,7 +14,7 @@ class TimelineDetailView: UIViewController {
         A convenience method for setting the data as a segue
         is initiated.
      */
-    func setData(timelineCell: TimelineTableCell) {
+    func setData(_ timelineCell: TimelineTableCell) {
         self.summary = timelineCell.cellSummary
         self.eventDescription = timelineCell.cellDescription
                                 ?? "No description available for this one..."

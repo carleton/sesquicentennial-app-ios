@@ -26,7 +26,7 @@ class Event: Comparable {
         self.name = name
         self.caption = caption
         if let imageURL = imageURL {
-            Alamofire.request(.GET, imageURL).responseImage { response in
+            Alamofire.request(imageURL).responseImage { response in
                 if let image = response.result.value {
                     self.image = image
                 }

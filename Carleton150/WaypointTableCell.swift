@@ -25,7 +25,7 @@ class WaypointTableTextCell : WaypointTableCell {
 	
 	
 	func setCellViewTraits() {
-		self.cellView.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
+		self.cellView.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).cgColor
 		self.cellView.layer.borderWidth = 0.5
 		self.cellView.layer.cornerRadius = 10;
 	}

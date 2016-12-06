@@ -5,7 +5,7 @@
 import UIKit
 import CoreLocation
 import GoogleMaps
-import Reachability
+import ReachabilitySwift
 import AlamofireImage
 import Alamofire
 
@@ -32,7 +32,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	
     override func viewDidLoad() {
 		// Loads stored waypoint for the quest from NSUserDefaults
-		if let startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
+		if let startedQuests = UserDefaults.standard.object(forKey: "startedQuests") as! Dictionary<String,Int>! {
 			if let curSavedIndex = startedQuests[self.quest.name] as Int! {
 				self.currentWayPointIndex = curSavedIndex
 			} else {
@@ -55,19 +55,19 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		
 		// center the camera and set the controller delegate for the map
 		if let curLocation = self.locationManager.location {
-			self.questMapView.camera = GMSCameraPosition.cameraWithTarget(curLocation.coordinate, zoom: 16)
+			self.questMapView.camera = GMSCameraPosition.camera(withTarget: curLocation.coordinate, zoom: 16)
 		} else {
-			questMapView.camera = GMSCameraPosition.cameraWithLatitude(44.4619, longitude: -93.1538, zoom: 16)
+			questMapView.camera = GMSCameraPosition.camera(withLatitude: 44.4619, longitude: -93.1538, zoom: 16)
 		}
 		
 		questMapView.delegate = self;
 	
 		// setup network monitoring
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate
 		self.networkMonitor = appDelegate.networkMonitor
 		
 		// show waypoints button
-		questMapView.bringSubviewToFront(waypointsButton)
+		questMapView.bringSubview(toFront: waypointsButton)
 
 		
 		// set up tiling
@@ -82,19 +82,19 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		cause a request to be triggered, and then update the
 		geofences based on the curent location.
 	 */
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		// Setup networking monitoring
-		NSNotificationCenter.defaultCenter().addObserver(self,
+		NotificationCenter.default.addObserver(self,
 			selector: #selector(QuestPlayingViewController.connectionStatusChanged(_:)),
-			name: kReachabilityChangedNotification,
+			name: ReachabilityChangedNotification,
 			object: nil)
         if let coordinates = locationManager.location?.coordinate {
             if Utils.userOffCampus(coordinates) {
                 let alert = UIAlertController(title: "",
                                               message: "It looks like you're off campus! Return to campus soon to finish your quest.",
-                                              preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title:"OK", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title:"OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         }
 	}
@@ -104,11 +104,11 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		so high as to stop requests from being sent to the
 		server altogether.
 	 */
-	override func viewWillDisappear(animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool) {
 		// Stop networking monitoring
-		NSNotificationCenter.defaultCenter().removeObserver(
+		NotificationCenter.default.removeObserver(
 			self,
-			name: kReachabilityChangedNotification,
+			name: ReachabilityChangedNotification,
 			object: nil
 		)
 	}
@@ -121,19 +121,19 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		Parameters
 			- notification: notification sent by observer
 	 */
-	func connectionStatusChanged(notification: NSNotification) {
-		if self.networkMonitor!.isReachableViaWiFi() || self.networkMonitor!.isReachableViaWWAN()
+	func connectionStatusChanged(_ notification: Notification) {
+		if self.networkMonitor!.isReachableViaWiFi || self.networkMonitor!.isReachableViaWWAN
 		{
-			self.connectionLabel.hidden = true
+			self.connectionLabel.isHidden = true
 			self.connectionIndicator.stopAnimating()
-			self.connectionIndicator.hidden = true
-			self.connectionView.hidden = true
+			self.connectionIndicator.isHidden = true
+			self.connectionView.isHidden = true
 			// reload data from the server
 		} else {
-			self.connectionLabel.hidden = false
+			self.connectionLabel.isHidden = false
 			self.connectionIndicator.startAnimating()
-			self.connectionIndicator.hidden = false
-			self.connectionView.hidden = false
+			self.connectionIndicator.isHidden = false
+			self.connectionView.isHidden = false
 		}
 	}
 	
@@ -144,7 +144,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		- Parameters:
 			- sender: The UI button attemptCompButton
 	 */
-	@IBAction func attemptCompletion(sender: AnyObject) {}
+	@IBAction func attemptCompletion(_ sender: AnyObject) {}
 	
 	/**
 		Upon clicking the show hint / show clue button, the UI shows a clue or a hint
@@ -152,7 +152,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		- Parameters:
 			- sender: The UI button clueHintToggle
 	 */
-	@IBAction func toggleClueHint(sender: AnyObject) {
+	@IBAction func toggleClueHint(_ sender: AnyObject) {
 		clueShown = !clueShown
 		showClueHint()
 	}
@@ -166,10 +166,10 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		// setting up UI
 		self.questName.text = quest.name
 		if (self.currentWayPointIndex >= quest.wayPoints.count) {
-			self.clueHintToggle.enabled = false
-			self.clueHintToggle.setTitleColor(UIColor.grayColor(), forState: .Disabled)
+			self.clueHintToggle.isEnabled = false
+			self.clueHintToggle.setTitleColor(UIColor.gray, for: .disabled)
 			self.attemptCompButton.backgroundColor = UIColor(red: 230/255, green: 159/255, blue: 19/255, alpha: 1)
-			self.attemptCompButton.setTitle("Quest Completed: Restart?", forState: UIControlState.Normal)
+			self.attemptCompButton.setTitle("Quest Completed: Restart?", for: UIControlState())
 			self.clueHintText.text = "Quest Has been completed!"
 		} else if (self.currentWayPointIndex < quest.wayPoints.count) {
 			showClueHint()
@@ -184,10 +184,10 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 	func showClueHint() {
 		if (clueShown) {
 			clueHintText.text = quest.wayPoints[currentWayPointIndex].clue["text"] as? String
-			clueHintToggle.setTitle("Show Hint", forState: UIControlState.Normal)
+			clueHintToggle.setTitle("Show Hint", for: UIControlState())
 		} else {
 			clueHintText.text = quest.wayPoints[currentWayPointIndex].hint["text"] as? String
-			clueHintToggle.setTitle("Show Clue", forState: UIControlState.Normal)
+			clueHintToggle.setTitle("Show Clue", for: UIControlState())
 		}
 	}
 	
@@ -202,15 +202,15 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 		- Returns: true if questAttemptModal segue and quest has been completed
 	
 	 */
-	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+	override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
 		// restart quest
 		if (identifier == "questAttemptModal") {
 			// if quest has been completing suppress this segue
 			if (questCompleted) {
 				self.currentWayPointIndex = 0
-				self.attemptCompButton.setTitle("Am I There?", forState: .Normal)
+				self.attemptCompButton.setTitle("Am I There?", for: UIControlState())
 				self.attemptCompButton.backgroundColor = UIColor(red: 254/255, green: 214/255, blue: 70/255, alpha: 1)
-				self.clueHintToggle.enabled = true
+				self.clueHintToggle.isEnabled = true
 				showClueHint()
 				questCompleted = false
 				return false
@@ -231,67 +231,64 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
 			- sender: The sender, in our case, will be either the attemptCompButton
 					  or waypointsButton
 	 */
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		/**
 		 * Attempt Modal
 		 */
 		if segue.identifier == "questAttemptModal" {
 			// get next controller
-			let nextCtrl = segue.destinationViewController as! QuestModalViewController
+			let nextCtrl = segue.destination as! QuestModalViewController
 			nextCtrl.parentVC = self
-            
 			// check to see quest status
-            if let loc = locationManager.location {
-                if quest.wayPoints[currentWayPointIndex].checkIfTriggered(loc.coordinate) {
-                    nextCtrl.isCorrect = true
-                    // increment waypointIndex and store it
-                    currentWayPointIndex! += 1
-                    // store the waypoint 
-                    if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
-                        startedQuests[quest.name] = currentWayPointIndex
-                        NSUserDefaults.standardUserDefaults().setObject(startedQuests,forKey: "startedQuests")
-                    }
-                    // check to see if quest has been completed
-                    if (self.currentWayPointIndex >= self.quest.wayPoints.count) {
-                        self.questCompleted = true
-                    }
-                    if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
-                        startedQuests[quest.name] = self.currentWayPointIndex
-                        NSUserDefaults.standardUserDefaults().setObject(startedQuests,forKey: "startedQuests")
-                    }
-                    // quest has been complete
-                    if (currentWayPointIndex == quest.wayPoints.count) {
-                        nextCtrl.isComplete = true
-                        if let compText = quest.completionMessage as String! {
-                            nextCtrl.descText = compText
-                        }
-                    // not completed
-                    } else if (currentWayPointIndex - 1 < quest.wayPoints.count) {
-                        nextCtrl.isComplete = false
-                        if let compText = quest.wayPoints[currentWayPointIndex - 1].completion["text"] as? String {
-                            nextCtrl.descText = compText
-                        }
-                        if let imageURL = quest.wayPoints[currentWayPointIndex - 1].completion["image"] as? String {
-                            Alamofire.request(.GET, imageURL).responseImage { response in
-                                if let image = response.result.value {
-                                    nextCtrl.image = image
-                                }
+			if quest.wayPoints[currentWayPointIndex].checkIfTriggered(locationManager.location!.coordinate) {
+				nextCtrl.isCorrect = true
+				// increment waypointIndex and store it
+				currentWayPointIndex! += 1
+				// store the waypoint 
+				if var startedQuests = UserDefaults.standard.object(forKey: "startedQuests") as! Dictionary<String,Int>! {
+					startedQuests[quest.name] = currentWayPointIndex
+					UserDefaults.standard.set(startedQuests,forKey: "startedQuests")
+				}
+				// check to see if quest has been completed
+				if (self.currentWayPointIndex >= self.quest.wayPoints.count) {
+					self.questCompleted = true
+				}
+				if var startedQuests = UserDefaults.standard.object(forKey: "startedQuests") as! Dictionary<String,Int>! {
+					startedQuests[quest.name] = self.currentWayPointIndex
+					UserDefaults.standard.set(startedQuests,forKey: "startedQuests")
+				}
+				// quest has been complete
+				if (currentWayPointIndex == quest.wayPoints.count) {
+					nextCtrl.isComplete = true
+					if let compText = quest.completionMessage as String! {
+						nextCtrl.descText = compText
+					}
+				// not completed
+				} else if (currentWayPointIndex - 1 < quest.wayPoints.count) {
+					nextCtrl.isComplete = false
+					if let compText = quest.wayPoints[currentWayPointIndex - 1].completion["text"] as? String {
+						nextCtrl.descText = compText
+					}
+					if let imageURL = quest.wayPoints[currentWayPointIndex - 1].completion["image"] as? String {
+                        Alamofire.request(imageURL).responseImage { response in
+                            if let image = response.result.value {
+                                nextCtrl.image = image
                             }
                         }
-                        showClueHint()
-                    }
-                } else {
-                    // this should be taken care of by the default settings in the QuestModalViewController
-                    nextCtrl.isComplete = false
-                    nextCtrl.isCorrect = false
-                }
-            }
+					}
+					showClueHint()
+				}
+			} else {
+				// this should be taken care of by the default settings in the QuestModalViewController
+				nextCtrl.isComplete = false
+				nextCtrl.isCorrect = false
+			}
 		/**
 		 * Completed waypoints modal
 		 */
 		} else if (segue.identifier == "showWaypoints") {
 			// get next controller
-			let nextCtrl = segue.destinationViewController as! WaypointsModalViewController
+			let nextCtrl = segue.destination as! WaypointsModalViewController
 			nextCtrl.parentVC = self
 			var waypoints = [WayPoint]()
 			for i in 0 ..< currentWayPointIndex {
@@ -312,10 +309,10 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
             - didChangeAuthorizationStatus: The current authorization status for the user
                                             determining whether we can use location.
 	 */
-	func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-		if status == .AuthorizedAlways {
+	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+		if status == .authorizedAlways {
 			locationManager.startUpdatingLocation()
-			questMapView.myLocationEnabled = true
+			questMapView.isMyLocationEnabled = true
 			questMapView.settings.myLocationButton = true
 		}
 	}

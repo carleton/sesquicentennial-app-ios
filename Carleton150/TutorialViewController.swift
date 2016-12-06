@@ -8,7 +8,7 @@ class TutorialViewController: UIViewController {
         Dismisses the tutorial from view on tap. 
      */
     @IBAction func exit() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
    
     override func viewDidLoad() {
