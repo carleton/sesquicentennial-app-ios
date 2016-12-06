@@ -14,10 +14,10 @@ extension UIView {
             
             - width: The stroke width of the bottom border.
      */
-    func addBottomBorderWithColor(color: UIColor, width: CGFloat) {
+    func addBottomBorderWithColor(_ color: UIColor, width: CGFloat) {
         let border = CALayer()
-        border.backgroundColor = color.CGColor
-        border.frame = CGRectMake(0, self.frame.size.height - width, self.frame.size.width, width)
+        border.backgroundColor = color.cgColor
+        border.frame = CGRect(x: 0, y: Int(self.frame.size.height - width), width: Int(self.frame.size.height), height: Int(width))
         self.layer.addSublayer(border)
     }
 }

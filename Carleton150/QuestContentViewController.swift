@@ -35,9 +35,9 @@ class QuestContentViewController: UIViewController {
                       that was pressed, which will in turn have data associated with
                       it that will given to the landmark detail view.
 	*/
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "questStartSegue" {
-			let nextCtrl = (segue.destinationViewController as! QuestPlayingViewController)
+			let nextCtrl = (segue.destination as! QuestPlayingViewController)
 			nextCtrl.quest = self.quest
 		}
 	}
@@ -84,10 +84,10 @@ class QuestContentViewController: UIViewController {
 		} else {
 			self.descTextView.text = ""
 		}
-		self.descTextView.editable = false
+		self.descTextView.isEditable = false
 		// Quest Image
 		if let imageURL = self.imageURL {
-            Alamofire.request(.GET, imageURL).responseImage { response in
+            Alamofire.request(imageURL).responseImage { response in
                 if let image = response.result.value {
                     self.imageView.image = image
                 }
@@ -96,15 +96,15 @@ class QuestContentViewController: UIViewController {
     }
 
     
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		// Data Persistance
-		if let startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! NSDictionary! {
+		if let startedQuests = UserDefaults.standard.object(forKey: "startedQuests") as! NSDictionary! {
 			if let curQuestWaypoint = startedQuests[titleText] as! Int! {
 				let percentageCompleted = Int((Float(curQuestWaypoint) / Float(quest.wayPoints.count))*100)
 				if (percentageCompleted == 100) {
-					self.startButton.setTitle("Quest Completed", forState: .Normal)
+					self.startButton.setTitle("Quest Completed", for: UIControlState())
 				} else {
-					self.startButton.setTitle("Continue: \(percentageCompleted)% Completed", forState: .Normal)
+					self.startButton.setTitle("Continue: \(percentageCompleted)% Completed", for: UIControlState())
 				}
 				self.startButton.backgroundColor = UIColor(red: 230/255, green: 159/255, blue: 19/255, alpha: 1)
 			}
@@ -125,11 +125,11 @@ class QuestContentViewController: UIViewController {
                       that was pressed, which will in turn have data associated with
                       it that will given to the landmark detail view.
 	*/
-	@IBAction func startAction(sender: AnyObject) {
-		if var startedQuests = NSUserDefaults.standardUserDefaults().objectForKey("startedQuests") as! Dictionary<String,Int>! {
+	@IBAction func startAction(_ sender: AnyObject) {
+		if var startedQuests = UserDefaults.standard.object(forKey: "startedQuests") as! Dictionary<String,Int>! {
 			if (startedQuests[quest.name] == nil) {
 				startedQuests[quest.name] = 0
-				NSUserDefaults.standardUserDefaults().setObject(startedQuests,forKey: "startedQuests")
+				UserDefaults.standard.set(startedQuests,forKey: "startedQuests")
 			}
 		}
 	}

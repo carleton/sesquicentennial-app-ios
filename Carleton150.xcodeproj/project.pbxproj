@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		606E4BB81DEE3EFC00A64876 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 606E4BB21DEE3EFC00A64876 /* Alamofire.framework */; };
+		606E4BB91DEE3EFC00A64876 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 606E4BB31DEE3EFC00A64876 /* AlamofireImage.framework */; };
+		606E4BBC1DEE3EFC00A64876 /* ReachabilitySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 606E4BB61DEE3EFC00A64876 /* ReachabilitySwift.framework */; };
+		606E4BBD1DEE3EFC00A64876 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 606E4BB71DEE3EFC00A64876 /* SwiftyJSON.framework */; };
 		630B0B4F1C7446D000876031 /* QuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630B0B4E1C7446D000876031 /* QuestViewController.swift */; };
 		630B0B511C744A8700876031 /* QuestContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630B0B501C744A8700876031 /* QuestContentViewController.swift */; };
 		63291F361C5971A30064C296 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63291F351C5971A30064C296 /* TimelineViewController.swift */; };
@@ -20,7 +24,6 @@
 		63A99A6F1C763D97007E6F25 /* WaypointTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99A6E1C763D97007E6F25 /* WaypointTableCell.swift */; };
 		63F5E9A01C72B60D00CFCB38 /* QuestPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F5E99F1C72B60D00CFCB38 /* QuestPlayingViewController.swift */; };
 		6A3094401BD9CD4600A16342 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A30943F1BD9CD4600A16342 /* Landmark.swift */; };
-		6FB56833F9B1A3716D8611F5 /* Pods_Carleton150Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A13CC239397AF337560B490E /* Pods_Carleton150Tests.framework */; };
 		711704131BF3EB9E00566464 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711704121BF3EB9E00566464 /* utils.swift */; };
 		71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */; };
 		71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71294DB61BC6FC1500B9F81B /* LaunchScreen.storyboard */; };
@@ -33,10 +36,8 @@
 		71573EB41C707E5400B3E265 /* TimelineTextDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71573EB31C707E5400B3E265 /* TimelineTextDetailView.swift */; };
 		715AE47E1C4EADF200C8F0C9 /* WayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */; };
 		715AE4801C4EB08D00C8F0C9 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47F1C4EB08D00C8F0C9 /* Quest.swift */; };
-		715CBD24EC15ABD167E36334 /* Pods_Carleton150UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359144AED8FA1256F4A21DB6 /* Pods_Carleton150UITests.framework */; };
 		7160F69E1CE19BFD00A8D41F /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7160F69D1CE19BFD00A8D41F /* CalendarViewController.swift */; };
 		7173509E1CD6FF6F00B9DA7A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7173509D1CD6FF6F00B9DA7A /* Event.swift */; };
-		717FE3E61BC7001D009CA507 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 717FE3E51BC7001D009CA507 /* Keys.plist */; };
 		7180A72E1C685DAA0080F121 /* TimelineTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7180A72D1C685DAA0080F121 /* TimelineTitleView.swift */; };
 		71A08C201CE233D30071DADA /* CalendarTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A08C1F1CE233D30071DADA /* CalendarTableCell.swift */; };
 		71ABAA641CD0189700D6BFFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71ABAA631CD0189700D6BFFE /* Main.storyboard */; };
@@ -48,7 +49,9 @@
 		71F4E1D11CE39D5B00A69728 /* no-connection.html in Resources */ = {isa = PBXBuildFile; fileRef = 71F4E1D01CE39D5B00A69728 /* no-connection.html */; };
 		71F4E1D51CE3DFE600A69728 /* UpdateFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F4E1D41CE3DFE600A69728 /* UpdateFailureViewController.swift */; };
 		71FF6D371C72B2CD004A2B3D /* TimelineImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF6D361C72B2CD004A2B3D /* TimelineImageDetailView.swift */; };
-		9759E2DFE9B4A2B7EEB139A6 /* Pods_Carleton150.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8704881A996C0210A051AB13 /* Pods_Carleton150.framework */; };
+		759B833C9BB2D04F9C3B8007 /* Pods_Carleton150Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A13C89B298A898D72EE69AED /* Pods_Carleton150Tests.framework */; };
+		B8A477EBB06827A446374958 /* Pods_Carleton150UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F65248D80B70D6D71A167020 /* Pods_Carleton150UITests.framework */; };
+		F6420F8A4677C8E44D9405F0 /* Pods_Carleton150.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39FEB0FEB30D513E7B3C1CDA /* Pods_Carleton150.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,9 +72,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		23380F9C26249EC216731E09 /* Pods-Carleton150.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150.release.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150/Pods-Carleton150.release.xcconfig"; sourceTree = "<group>"; };
-		359144AED8FA1256F4A21DB6 /* Pods_Carleton150UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carleton150UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		373CF3FC107FAFD644843891 /* Pods-Carleton150UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150UITests/Pods-Carleton150UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		23ACFDFCAF8550F3474FA75C /* Pods-Carleton150UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150UITests/Pods-Carleton150UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2B00B4B5F93333B026F60250 /* Pods-Carleton150.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150/Pods-Carleton150.debug.xcconfig"; sourceTree = "<group>"; };
+		39FEB0FEB30D513E7B3C1CDA /* Pods_Carleton150.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carleton150.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FBAB4B9CF8E6ECBB08983E6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		44F4A8948584594D31E6D696 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		4EF7FF35B1F532FC92A7B8A3 /* Pods-Carleton150Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150Tests/Pods-Carleton150Tests.release.xcconfig"; sourceTree = "<group>"; };
+		606E4BB21DEE3EFC00A64876 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/Carleton150-ahrtisziefccxcghzkyhbcuhvtsm/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		606E4BB31DEE3EFC00A64876 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = "../../Library/Developer/Xcode/DerivedData/Carleton150-ahrtisziefccxcghzkyhbcuhvtsm/Build/Products/Debug-iphonesimulator/AlamofireImage/AlamofireImage.framework"; sourceTree = "<group>"; };
+		606E4BB41DEE3EFC00A64876 /* Pods_Carleton150Tests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Carleton150Tests.framework; path = "Pods/../build/Debug-iphoneos/Pods_Carleton150Tests.framework"; sourceTree = "<group>"; };
+		606E4BB51DEE3EFC00A64876 /* Pods_Carleton150UITests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Carleton150UITests.framework; path = "Pods/../build/Debug-iphoneos/Pods_Carleton150UITests.framework"; sourceTree = "<group>"; };
+		606E4BB61DEE3EFC00A64876 /* ReachabilitySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReachabilitySwift.framework; path = "../../Library/Developer/Xcode/DerivedData/Carleton150-ahrtisziefccxcghzkyhbcuhvtsm/Build/Products/Debug-iphonesimulator/ReachabilitySwift/ReachabilitySwift.framework"; sourceTree = "<group>"; };
+		606E4BB71DEE3EFC00A64876 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/Carleton150-ahrtisziefccxcghzkyhbcuhvtsm/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		630B0B4E1C7446D000876031 /* QuestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestViewController.swift; sourceTree = "<group>"; };
 		630B0B501C744A8700876031 /* QuestContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestContentViewController.swift; sourceTree = "<group>"; };
 		63291F351C5971A30064C296 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -103,7 +115,6 @@
 		7160F69D1CE19BFD00A8D41F /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		71676CC11BDED61700F1183D /* Carleton150-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Carleton150-Bridging-Header.h"; sourceTree = "<group>"; };
 		7173509D1CD6FF6F00B9DA7A /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		717FE3E51BC7001D009CA507 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		7180A72D1C685DAA0080F121 /* TimelineTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTitleView.swift; sourceTree = "<group>"; };
 		7194ED581C715066007F55D4 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		7194ED591C715066007F55D4 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
@@ -126,13 +137,12 @@
 		71F4E1D01CE39D5B00A69728 /* no-connection.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "no-connection.html"; sourceTree = "<group>"; };
 		71F4E1D41CE3DFE600A69728 /* UpdateFailureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateFailureViewController.swift; sourceTree = "<group>"; };
 		71FF6D361C72B2CD004A2B3D /* TimelineImageDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineImageDetailView.swift; sourceTree = "<group>"; };
-		8704881A996C0210A051AB13 /* Pods_Carleton150.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carleton150.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A13CC239397AF337560B490E /* Pods_Carleton150Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carleton150Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA61AE72C370DB34E19C7EFC /* Pods-Carleton150UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150UITests/Pods-Carleton150UITests.release.xcconfig"; sourceTree = "<group>"; };
-		B7174EE15CD03FCEC9E87D57 /* Pods-Carleton150.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150/Pods-Carleton150.debug.xcconfig"; sourceTree = "<group>"; };
+		8E3788AB0E9EBAD01594E812 /* Pods-Carleton150UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150UITests/Pods-Carleton150UITests.release.xcconfig"; sourceTree = "<group>"; };
+		A13C89B298A898D72EE69AED /* Pods_Carleton150Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carleton150Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B806A61E13CBDF524607BD9E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C15441F1F5667DB8AED5E034 /* Pods-Carleton150Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150Tests/Pods-Carleton150Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		CAC588BBBD16601274FD5967 /* Pods-Carleton150Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150Tests/Pods-Carleton150Tests.release.xcconfig"; sourceTree = "<group>"; };
+		D510DD6D1D9B3B955D223FB4 /* Pods-Carleton150Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150Tests/Pods-Carleton150Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		DBAB998A1E4F655CC1630361 /* Pods-Carleton150.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150.release.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150/Pods-Carleton150.release.xcconfig"; sourceTree = "<group>"; };
+		F65248D80B70D6D71A167020 /* Pods_Carleton150UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carleton150UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,8 +150,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				606E4BB81DEE3EFC00A64876 /* Alamofire.framework in Frameworks */,
+				606E4BB91DEE3EFC00A64876 /* AlamofireImage.framework in Frameworks */,
+				606E4BBC1DEE3EFC00A64876 /* ReachabilitySwift.framework in Frameworks */,
+				606E4BBD1DEE3EFC00A64876 /* SwiftyJSON.framework in Frameworks */,
 				6353259E1C7A44700027F6E3 /* SystemConfiguration.framework in Frameworks */,
-				9759E2DFE9B4A2B7EEB139A6 /* Pods_Carleton150.framework in Frameworks */,
+				F6420F8A4677C8E44D9405F0 /* Pods_Carleton150.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,7 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				715CBD24EC15ABD167E36334 /* Pods_Carleton150UITests.framework in Frameworks */,
+				B8A477EBB06827A446374958 /* Pods_Carleton150UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,26 +171,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FB56833F9B1A3716D8611F5 /* Pods_Carleton150Tests.framework in Frameworks */,
+				759B833C9BB2D04F9C3B8007 /* Pods_Carleton150Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3B371D779FA6A54AAA4A320C /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B7174EE15CD03FCEC9E87D57 /* Pods-Carleton150.debug.xcconfig */,
-				23380F9C26249EC216731E09 /* Pods-Carleton150.release.xcconfig */,
-				C15441F1F5667DB8AED5E034 /* Pods-Carleton150Tests.debug.xcconfig */,
-				CAC588BBBD16601274FD5967 /* Pods-Carleton150Tests.release.xcconfig */,
-				373CF3FC107FAFD644843891 /* Pods-Carleton150UITests.debug.xcconfig */,
-				AA61AE72C370DB34E19C7EFC /* Pods-Carleton150UITests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		63036B311C4CB55C00193A78 /* Historical */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,8 +244,8 @@
 				71294DCC1BC6FC1500B9F81B /* Carleton150UITests */,
 				71CC5F6F1BE942CF0065AA4C /* Carleton150Tests */,
 				71294DAB1BC6FC1500B9F81B /* Products */,
+				B942DC4C5343322BBFFA7EAC /* Pods */,
 				93AFF1052C40EADBED9AA042 /* Frameworks */,
-				3B371D779FA6A54AAA4A320C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -267,7 +268,6 @@
 				63036B351C4CB6CD00193A78 /* Calendar */,
 				63036B311C4CB55C00193A78 /* Historical */,
 				63036B361C4CB72800193A78 /* Quest */,
-				717FE3E51BC7001D009CA507 /* Keys.plist */,
 				634AD3A21C780D26005EBE9C /* Assets.xcassets */,
 				71294DB91BC6FC1500B9F81B /* Info.plist */,
 				71676CC11BDED61700F1183D /* Carleton150-Bridging-Header.h */,
@@ -321,13 +321,34 @@
 		93AFF1052C40EADBED9AA042 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				606E4BB21DEE3EFC00A64876 /* Alamofire.framework */,
+				606E4BB31DEE3EFC00A64876 /* AlamofireImage.framework */,
+				606E4BB41DEE3EFC00A64876 /* Pods_Carleton150Tests.framework */,
+				606E4BB51DEE3EFC00A64876 /* Pods_Carleton150UITests.framework */,
+				606E4BB61DEE3EFC00A64876 /* ReachabilitySwift.framework */,
+				606E4BB71DEE3EFC00A64876 /* SwiftyJSON.framework */,
 				6353259D1C7A44700027F6E3 /* SystemConfiguration.framework */,
 				B806A61E13CBDF524607BD9E /* Pods.framework */,
-				8704881A996C0210A051AB13 /* Pods_Carleton150.framework */,
-				A13CC239397AF337560B490E /* Pods_Carleton150Tests.framework */,
-				359144AED8FA1256F4A21DB6 /* Pods_Carleton150UITests.framework */,
+				39FEB0FEB30D513E7B3C1CDA /* Pods_Carleton150.framework */,
+				A13C89B298A898D72EE69AED /* Pods_Carleton150Tests.framework */,
+				F65248D80B70D6D71A167020 /* Pods_Carleton150UITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B942DC4C5343322BBFFA7EAC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3FBAB4B9CF8E6ECBB08983E6 /* Pods.debug.xcconfig */,
+				44F4A8948584594D31E6D696 /* Pods.release.xcconfig */,
+				D510DD6D1D9B3B955D223FB4 /* Pods-Carleton150Tests.debug.xcconfig */,
+				4EF7FF35B1F532FC92A7B8A3 /* Pods-Carleton150Tests.release.xcconfig */,
+				2B00B4B5F93333B026F60250 /* Pods-Carleton150.debug.xcconfig */,
+				DBAB998A1E4F655CC1630361 /* Pods-Carleton150.release.xcconfig */,
+				23ACFDFCAF8550F3474FA75C /* Pods-Carleton150UITests.debug.xcconfig */,
+				8E3788AB0E9EBAD01594E812 /* Pods-Carleton150UITests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,12 +358,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 71294DD21BC6FC1500B9F81B /* Build configuration list for PBXNativeTarget "Carleton150" */;
 			buildPhases = (
-				459362292D4F645BEDDE8F8D /* [CP] Check Pods Manifest.lock */,
+				AFBD7EF8528EAAC4B5551C14 /* [CP] Check Pods Manifest.lock */,
 				71294DA61BC6FC1500B9F81B /* Sources */,
 				71294DA71BC6FC1500B9F81B /* Frameworks */,
 				71294DA81BC6FC1500B9F81B /* Resources */,
-				1037773A6A6604DB372EADA4 /* [CP] Embed Pods Frameworks */,
-				582AB2811C001B1B3291994D /* [CP] Copy Pods Resources */,
+				FA9517F0299527F650386F7C /* [CP] Copy Pods Resources */,
+				98BC9B80DBDBF3CC857B8618 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -357,12 +378,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 71294DD81BC6FC1500B9F81B /* Build configuration list for PBXNativeTarget "Carleton150UITests" */;
 			buildPhases = (
-				541199048C16D3E066DB5A3C /* [CP] Check Pods Manifest.lock */,
+				4B02D99738365BEE750F57B5 /* [CP] Check Pods Manifest.lock */,
 				71294DC51BC6FC1500B9F81B /* Sources */,
 				71294DC61BC6FC1500B9F81B /* Frameworks */,
 				71294DC71BC6FC1500B9F81B /* Resources */,
-				7CACDD6766A54C4E92B5F95B /* [CP] Copy Pods Resources */,
-				97FED142FB9DDC76EE18BC64 /* [CP] Embed Pods Frameworks */,
+				C58745197E4BE721A6814D25 /* [CP] Embed Pods Frameworks */,
+				E361CBE4F20E17AC37FFC50F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -378,12 +399,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 71CC5F751BE942CF0065AA4C /* Build configuration list for PBXNativeTarget "Carleton150Tests" */;
 			buildPhases = (
-				91EC64956F3DAFB33462C865 /* [CP] Check Pods Manifest.lock */,
+				55DAA75330F61F04B9B42281 /* [CP] Check Pods Manifest.lock */,
 				71CC5F6A1BE942CF0065AA4C /* Sources */,
 				71CC5F6B1BE942CF0065AA4C /* Frameworks */,
 				71CC5F6C1BE942CF0065AA4C /* Resources */,
-				BBE91311387C41557AC090B5 /* [CP] Embed Pods Frameworks */,
-				B45E2A522B74C57B94822586 /* [CP] Copy Pods Resources */,
+				B141996FBB64BD83AE3E7222 /* [CP] Embed Pods Frameworks */,
+				9939AB661737B0F3BC1EE04E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -402,18 +423,22 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = edu.carleton.carleton150;
 				TargetAttributes = {
 					71294DA91BC6FC1500B9F81B = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 92GT3GU396;
+						LastSwiftMigration = 0810;
 					};
 					71294DC81BC6FC1500B9F81B = {
 						CreatedOnToolsVersion = 7.0.1;
+						LastSwiftMigration = 0810;
 						TestTargetID = 71294DA91BC6FC1500B9F81B;
 					};
 					71CC5F6D1BE942CF0065AA4C = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0810;
 						TestTargetID = 71294DA91BC6FC1500B9F81B;
 					};
 				};
@@ -443,7 +468,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				717FE3E61BC7001D009CA507 /* Keys.plist in Resources */,
 				71ABAA641CD0189700D6BFFE /* Main.storyboard in Resources */,
 				71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */,
 				634AD3A31C780D26005EBE9C /* Assets.xcassets in Resources */,
@@ -468,7 +492,37 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1037773A6A6604DB372EADA4 /* [CP] Embed Pods Frameworks */ = {
+		4B02D99738365BEE750F57B5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		55DAA75330F61F04B9B42281 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		98BC9B80DBDBF3CC857B8618 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -483,97 +537,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Carleton150/Pods-Carleton150-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		459362292D4F645BEDDE8F8D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		541199048C16D3E066DB5A3C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		582AB2811C001B1B3291994D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Carleton150/Pods-Carleton150-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7CACDD6766A54C4E92B5F95B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Carleton150UITests/Pods-Carleton150UITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		91EC64956F3DAFB33462C865 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		97FED142FB9DDC76EE18BC64 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Carleton150UITests/Pods-Carleton150UITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B45E2A522B74C57B94822586 /* [CP] Copy Pods Resources */ = {
+		9939AB661737B0F3BC1EE04E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -588,7 +552,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Carleton150Tests/Pods-Carleton150Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BBE91311387C41557AC090B5 /* [CP] Embed Pods Frameworks */ = {
+		AFBD7EF8528EAAC4B5551C14 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B141996FBB64BD83AE3E7222 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -601,6 +580,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Carleton150Tests/Pods-Carleton150Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C58745197E4BE721A6814D25 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Carleton150UITests/Pods-Carleton150UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E361CBE4F20E17AC37FFC50F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Carleton150UITests/Pods-Carleton150UITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA9517F0299527F650386F7C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Carleton150/Pods-Carleton150-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -692,7 +716,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -700,18 +723,17 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Carleton College (92GT3GU396)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Carleton College (92GT3GU396)";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
-				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -740,7 +762,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -748,16 +769,16 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Carleton College (92GT3GU396)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Carleton College (92GT3GU396)";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
-				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -771,58 +792,62 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		71294DD31BC6FC1500B9F81B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7174EE15CD03FCEC9E87D57 /* Pods-Carleton150.debug.xcconfig */;
+			baseConfigurationReference = 2B00B4B5F93333B026F60250 /* Pods-Carleton150.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Carleton College (92GT3GU396)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Carleton College (92GT3GU396)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = NO;
 				INFOPLIST_FILE = Carleton150/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Carleton150/Carleton150-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		71294DD41BC6FC1500B9F81B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 23380F9C26249EC216731E09 /* Pods-Carleton150.release.xcconfig */;
+			baseConfigurationReference = DBAB998A1E4F655CC1630361 /* Pods-Carleton150.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Carleton College (92GT3GU396)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Carleton College (92GT3GU396)";
 				DEFINES_MODULE = NO;
 				INFOPLIST_FILE = Carleton150/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Carleton150/Carleton150-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		71294DD91BC6FC1500B9F81B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 373CF3FC107FAFD644843891 /* Pods-Carleton150UITests.debug.xcconfig */;
+			baseConfigurationReference = 23ACFDFCAF8550F3474FA75C /* Pods-Carleton150UITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = Carleton150UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150.Carleton150UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Carleton150;
 				USES_XCTRUNNER = YES;
 			};
@@ -830,12 +855,14 @@
 		};
 		71294DDA1BC6FC1500B9F81B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA61AE72C370DB34E19C7EFC /* Pods-Carleton150UITests.release.xcconfig */;
+			baseConfigurationReference = 8E3788AB0E9EBAD01594E812 /* Pods-Carleton150UITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = Carleton150UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150.Carleton150UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Carleton150;
 				USES_XCTRUNNER = YES;
 			};
@@ -843,26 +870,30 @@
 		};
 		71CC5F761BE942CF0065AA4C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C15441F1F5667DB8AED5E034 /* Pods-Carleton150Tests.debug.xcconfig */;
+			baseConfigurationReference = D510DD6D1D9B3B955D223FB4 /* Pods-Carleton150Tests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = Carleton150Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150.Carleton150Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Carleton150.app/Carleton150";
 			};
 			name = Debug;
 		};
 		71CC5F771BE942CF0065AA4C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CAC588BBBD16601274FD5967 /* Pods-Carleton150Tests.release.xcconfig */;
+			baseConfigurationReference = 4EF7FF35B1F532FC92A7B8A3 /* Pods-Carleton150Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = Carleton150Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150.Carleton150Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Carleton150.app/Carleton150";
 			};
 			name = Release;

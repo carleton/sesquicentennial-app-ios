@@ -40,8 +40,8 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 		- Parameters:
 			- sender: The UI element that triggered the action.
 	*/
-	@IBAction func dismissAction(sender: AnyObject) {
-		parentVC.dismissViewControllerAnimated(true)  {() -> Void in }
+	@IBAction func dismissAction(_ sender: AnyObject) {
+		parentVC.dismiss(animated: true)  {() -> Void in }
 	}
 	
 	/**
@@ -58,7 +58,7 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 		
 		- Returns: the total number of waypoints
 	*/
-	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	func numberOfSections(in tableView: UITableView) -> Int {
 		return waypoints.count
 	}
 	
@@ -73,7 +73,7 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 			
 		- Returns: The number of cells for the waypoint in question
 	*/
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		// if custom completion message
 		if let _ = waypoints[section].completion["text"] as! String! {
 			return 3
@@ -92,7 +92,7 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 		
 		- Returns: The calculated height of the table view cell.
 	*/
-	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return UITableViewAutomaticDimension
 	}
 
@@ -109,31 +109,31 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 		
 		- Returns: The modified table view cell.
 	*/
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let waypoint = waypoints[indexPath.section]
 		// clue
 		if (indexPath.row == 0) {
-            let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WaypointTableTextCell", for: indexPath) as! WaypointTableTextCell
             cell.titleText = "Clue"
             cell.descText = waypoint.clue["text"] as? String
             cell.setCellViewTraits()
             return cell
 		// hint
 		} else if (indexPath.row == 1) {
-            let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WaypointTableTextCell", for: indexPath) as! WaypointTableTextCell
             cell.titleText = "Hint"
             cell.descText = waypoint.hint["text"] as? String
             cell.setCellViewTraits()
 				return cell
 		} else if (indexPath.row == 2) {
-            let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WaypointTableTextCell", for: indexPath) as! WaypointTableTextCell
             cell.titleText = "Completion"
             cell.descText = waypoint.completion["text"] as? String
             cell.setCellViewTraits()
             return cell
 		}
 		
-		let cell = tableView.dequeueReusableCellWithIdentifier("WaypointTableTextCell", forIndexPath: indexPath) as! WaypointTableTextCell
+		let cell = tableView.dequeueReusableCell(withIdentifier: "WaypointTableTextCell", for: indexPath) as! WaypointTableTextCell
 		cell.titleText = ""
 		cell.descText = "Couldn't find data for waypoint"
 		cell.setCellViewTraits()

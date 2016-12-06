@@ -22,7 +22,7 @@ class TimelineImageDetailView: TimelineDetailView {
         self.detailImage.image = self.image
         
         // stops the text view from being edited
-        self.descriptionText.editable = false
+        self.descriptionText.isEditable = false
     }
    
     /**
@@ -31,7 +31,7 @@ class TimelineImageDetailView: TimelineDetailView {
      */
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.descriptionText.setContentOffset(CGPointZero, animated: false)
+        self.descriptionText.setContentOffset(CGPoint(x:0,y:0), animated: false)
     }
     
     
@@ -39,7 +39,7 @@ class TimelineImageDetailView: TimelineDetailView {
         When the X is pressed on the detail view, the 
         view is dismissed.
      */
-    @IBAction func dismissDetailView(sender: AnyObject) {
-        parentView.dismissViewControllerAnimated(true) {}
+    @IBAction func dismissDetailView(_ sender: AnyObject) {
+        parentView.dismiss(animated: true) {}
     }
 }
