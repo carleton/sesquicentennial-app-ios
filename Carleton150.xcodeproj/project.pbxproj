@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B891F951EE1EA2400BAEC49 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B891F941EE1EA2400BAEC49 /* Keys.plist */; };
 		606E4BB81DEE3EFC00A64876 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 606E4BB21DEE3EFC00A64876 /* Alamofire.framework */; };
 		606E4BB91DEE3EFC00A64876 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 606E4BB31DEE3EFC00A64876 /* AlamofireImage.framework */; };
 		606E4BBC1DEE3EFC00A64876 /* ReachabilitySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 606E4BB61DEE3EFC00A64876 /* ReachabilitySwift.framework */; };
@@ -78,6 +79,7 @@
 		3FBAB4B9CF8E6ECBB08983E6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		44F4A8948584594D31E6D696 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4EF7FF35B1F532FC92A7B8A3 /* Pods-Carleton150Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Carleton150Tests/Pods-Carleton150Tests.release.xcconfig"; sourceTree = "<group>"; };
+		5B891F941EE1EA2400BAEC49 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		606E4BB21DEE3EFC00A64876 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/Carleton150-ahrtisziefccxcghzkyhbcuhvtsm/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		606E4BB31DEE3EFC00A64876 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = "../../Library/Developer/Xcode/DerivedData/Carleton150-ahrtisziefccxcghzkyhbcuhvtsm/Build/Products/Debug-iphonesimulator/AlamofireImage/AlamofireImage.framework"; sourceTree = "<group>"; };
 		606E4BB41DEE3EFC00A64876 /* Pods_Carleton150Tests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Carleton150Tests.framework; path = "Pods/../build/Debug-iphoneos/Pods_Carleton150Tests.framework"; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 		71294DAC1BC6FC1500B9F81B /* Carleton150 */ = {
 			isa = PBXGroup;
 			children = (
+				5B891F941EE1EA2400BAEC49 /* Keys.plist */,
 				71ABAA601CD0181D00D6BFFE /* Info */,
 				7194ED561C715059007F55D4 /* Fonts */,
 				63036B391C4CB86F00193A78 /* Common */,
@@ -423,13 +426,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = edu.carleton.carleton150;
 				TargetAttributes = {
 					71294DA91BC6FC1500B9F81B = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = 92GT3GU396;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
 					};
 					71294DC81BC6FC1500B9F81B = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -472,6 +476,7 @@
 				71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */,
 				634AD3A31C780D26005EBE9C /* Assets.xcassets in Resources */,
 				71F4E1D11CE39D5B00A69728 /* no-connection.html in Resources */,
+				5B891F951EE1EA2400BAEC49 /* Keys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,7 +509,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		55DAA75330F61F04B9B42281 /* [CP] Check Pods Manifest.lock */ = {
@@ -519,7 +524,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		98BC9B80DBDBF3CC857B8618 /* [CP] Embed Pods Frameworks */ = {
@@ -564,7 +569,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		B141996FBB64BD83AE3E7222 /* [CP] Embed Pods Frameworks */ = {
@@ -734,6 +739,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -806,10 +812,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = NO;
+				DEVELOPMENT_TEAM = 92GT3GU396;
 				INFOPLIST_FILE = Carleton150/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Carleton150/Carleton150-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -824,12 +832,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Carleton College (92GT3GU396)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Carleton College (92GT3GU396)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = NO;
+				DEVELOPMENT_TEAM = 92GT3GU396;
 				INFOPLIST_FILE = Carleton150/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.carleton.carleton150;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Carleton150/Carleton150-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
