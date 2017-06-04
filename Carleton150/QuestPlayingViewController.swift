@@ -51,7 +51,7 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
         // start the location manager
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
         
         // center the camera and set the controller delegate for the map
         if let curLocation = self.locationManager.location {
@@ -158,14 +158,39 @@ class QuestPlayingViewController: UIViewController, CLLocationManagerDelegate, G
     }
     
     @IBAction func didPressAttemptCompButton(sender: UIButton) {
-        guard locationManager.location != nil else {
-            let alert = UIAlertController(title: "Error: Location Services Disabled", message: "You can't use this feature of the app without Location Services enabled.  To enable Location Services, go to Settings/Privacy/Location Services.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+        let errorTitle = "Error: Location Services Issue"
+        var errorMessage = "You can't use this feature of the app without Location Services enabled.  To enable Location Services, go to Settings/Privacy/Location Services and allow this app to use them."
+        var showAlert = false
+        
+        if CLLocationManager.locationServicesEnabled() {
+            switch(CLLocationManager.authorizationStatus()) {
+            case .notDetermined, .restricted, .denied:
+                print("User has denied access to location services")
+                showAlert = true
+                break
+            case .authorizedAlways, .authorizedWhenInUse:
+                print("User has granted access to location services")
+                if locationManager.location != nil {
+                    performSegue(withIdentifier: "questAttemptModal", sender: sender)
+                } else {
+                    print("a location was not found, this likely means that the GPS has not initialized and returned a coordinate.")
+                    errorMessage = "There was a problem getting your location from the phone. Please try again later."
+                    showAlert = true
+                }
+                break
+            }
+        } else {
+            print("Location services are not enabled")
+            showAlert = true
+        }
+        
+        if showAlert {
+            let alertNoLoactionServices = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
+            alertNoLoactionServices.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertNoLoactionServices, animated: true, completion: nil)
             
             return
         }
-        performSegue(withIdentifier: "questAttemptModal", sender: sender)
     }
     
     /**

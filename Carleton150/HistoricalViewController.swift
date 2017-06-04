@@ -51,7 +51,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         // set up the location manager
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
 	
         // set up current map location based on the user's location, if possible.
 		if let curLocation = self.locationManager.location {
