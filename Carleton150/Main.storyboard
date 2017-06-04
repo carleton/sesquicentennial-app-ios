@@ -1328,7 +1328,6 @@
                                         <connections>
                                             <action selector="attemptCompletion:" destination="Rii-GU-7J4" eventType="touchUpInside" id="5pm-h5-elv"/>
                                             <action selector="didPressAttemptCompButtonWithSender:" destination="Rii-GU-7J4" eventType="touchUpInside" id="UsI-pI-K73"/>
-                                            <segue destination="DRT-In-SUr" kind="presentation" identifier="questAttemptModal" modalPresentationStyle="overFullScreen" id="RPE-ui-Rp4"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Walk to the location, and click the button below if you think you're there!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJc-FZ-mzs">
@@ -1457,6 +1456,7 @@
                         <outlet property="questMapView" destination="av9-eO-Tt0" id="Ews-AB-o7B"/>
                         <outlet property="questName" destination="D36-6i-J6C" id="Ffc-A8-74v"/>
                         <outlet property="waypointsButton" destination="S08-6X-9mf" id="3aU-Bp-0qD"/>
+                        <segue destination="DRT-In-SUr" kind="presentation" identifier="questAttemptModal" modalPresentationStyle="overFullScreen" id="QtD-pD-JZD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dKv-Cq-wvf" userLabel="First Responder" sceneMemberID="firstResponder"/>
