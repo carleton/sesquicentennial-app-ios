@@ -40,7 +40,7 @@ final class Utils {
         - Returns: The equivalent radian quantity for a given number of degrees.
      */
     fileprivate class func degreesToRadians(_ degrees: Double) -> Double {
-        return degrees * M_PI / 180
+        return degrees * Double.pi / 180
     }
     
     /**
@@ -56,7 +56,7 @@ final class Utils {
         let distance = Utils.getDistance(centerPoint, point2: location)
         return distance > 7000
     }
-    
+
     /**
         Builds the Carleton tiling on top of Google Maps.
      
@@ -66,13 +66,13 @@ final class Utils {
     class func setUpTiling(_ currentMap: GMSMapView) {
         // Implement GMSTileURLConstructor
         // Returns a Tile based on the x, y, zoom coordinates
-        let urlsBase = { (x: UInt, y: UInt, zoom: UInt) -> URL in
-            let url = "https://www.carleton.edu/global_stock/images/campus_map/tiles/base/\(zoom)_\(x)_\(y).png"
+        let urlsBase: GMSTileURLConstructor = { (x: UInt, y: UInt, zoom: UInt) -> URL in
+            let url = "https://apps.carleton.edu/global_stock/images/campus_map/tiles/base/\(zoom)_\(x)_\(y).png"
             
             return URL(string: url)!
         }
-        let urlsLabel = { (x: UInt, y: UInt, zoom: UInt) -> URL in
-            let url = "https://www.carleton.edu/global_stock/images/campus_map/tiles/labels/\(zoom)_\(x)_\(y).png"
+        let urlsLabel: GMSTileURLConstructor = { (x: UInt, y: UInt, zoom: UInt) -> URL in
+            let url = "https://apps.carleton.edu/global_stock/images/campus_map/tiles/labels/\(zoom)_\(x)_\(y).png"
             
             return URL(string: url)!
         }
