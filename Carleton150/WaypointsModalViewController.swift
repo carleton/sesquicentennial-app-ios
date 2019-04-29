@@ -75,7 +75,7 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 	*/
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		// if custom completion message
-		if let _ = waypoints[section].completion["text"] as! String! {
+        if let _ = waypoints[section].completion["text"] as! String? {
 			return 3
 		}
 		// else just hint and clue
@@ -93,7 +93,7 @@ class WaypointsModalViewController: UIViewController, UITableViewDelegate, UITab
 		- Returns: The calculated height of the table view cell.
 	*/
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
 	}
 
 	/**

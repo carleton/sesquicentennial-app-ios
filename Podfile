@@ -2,15 +2,15 @@
 # platform :ios, '6.0'
 
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.2'
+platform :ios, '10.0'
 use_frameworks!
 
 pod 'GoogleMaps'
-pod 'Alamofire', '~> 4.2.0'
-pod 'AlamofireImage', '~> 3.2.0'
-pod 'SwiftyJSON', '~> 3.1.3'
+pod 'Alamofire', '~> 4.8'
+pod 'AlamofireImage', '~> 3.5'
+pod 'SwiftyJSON', '~> 4.0'
 pod 'ReachabilitySwift'
-pod 'SwiftOverlays', '~> 3.0.0'
+pod 'SwiftOverlays', '~> 5.0.1'
 target 'Carleton150' do
 
 end

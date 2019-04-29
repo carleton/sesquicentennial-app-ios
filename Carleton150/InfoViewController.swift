@@ -2,7 +2,7 @@
 //  InfoViewController.swift
 //  Carleton150
 
-import ReachabilitySwift
+import Reachability
 
 class InfoViewController: UIViewController, UIWebViewDelegate {
     
@@ -36,12 +36,12 @@ class InfoViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
-    func setReload() {
+    @objc func setReload() {
         shouldReload = true
     }
    
-    private func webView(_ webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if navigationType == UIWebViewNavigationType.linkClicked {
+    private func webView(_ webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebView.NavigationType) -> Bool {
+        if navigationType == UIWebView.NavigationType.linkClicked {
             UIApplication.shared.openURL(request.url!)
             return false
         }

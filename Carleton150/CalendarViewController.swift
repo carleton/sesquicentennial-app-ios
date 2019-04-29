@@ -94,7 +94,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
 
-    func setReload() {
+    @objc func setReload() {
        shouldReload = true
     }
     
@@ -108,7 +108,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
             let alert = UIAlertController(title: "",
                 message: alertMessage,
                 preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title:"OK", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler: nil))
             calendarTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
             self.leftArrowBarButtonItem.isEnabled = false
             self.rightArrowBarButtonItem.isEnabled = true
@@ -130,16 +130,16 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
 
-    func actOnCalendarUpdate(_ notification: Notification) {
+    @objc func actOnCalendarUpdate(_ notification: Notification) {
         self.calendar = CalendarDataService.schedule as [Date : [CalendarEvent]]?
         calendarTableView.reloadData()
-        self.view.sendSubview(toBack: noDataView)
+        self.view.sendSubviewToBack(noDataView)
         self.leftArrowBarButtonItem.isEnabled = false
         self.rightArrowBarButtonItem.isEnabled = true
     }
 
-    func actOnCalendarUpdateFailure(_ notification: Notification) {
-        self.view.bringSubview(toFront: noDataView)
+    @objc func actOnCalendarUpdateFailure(_ notification: Notification) {
+        self.view.bringSubviewToFront(noDataView)
     }
 
     /**

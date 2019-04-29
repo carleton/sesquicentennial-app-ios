@@ -104,7 +104,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         - Returns: The calculated height of the table view cell.
      */
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 	
     /**
@@ -126,7 +126,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             cell.cellTimestamp = timeline[indexPath.row].displayDate
             cell.cellDescription = timeline[indexPath.row].text
             cell.caption.text = timeline[indexPath.row].caption ?? nil
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         } else {
             let cell: TimelineTableCellTextOnly = tableView.dequeueReusableCell(withIdentifier: "timelineTableCellTextOnly", for: indexPath) as! TimelineTableCellTextOnly
@@ -134,7 +134,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             cell.cellSummary = timeline[indexPath.row].headline
             cell.cellDescription = timeline[indexPath.row].text
             cell.cellTimestamp = timeline[indexPath.row].displayDate
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         }
     }
