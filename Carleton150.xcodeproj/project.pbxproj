@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		452EDC9E227B8C7500DE8B34 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452EDC9D227B8C7500DE8B34 /* MapViewController.swift */; };
 		457B69B22277A0F900114DA3 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457B69B12277A0F900114DA3 /* Reachability.framework */; };
 		606E4BB81DEE3EFC00A64876 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 606E4BB21DEE3EFC00A64876 /* Alamofire.framework */; };
 		606E4BB91DEE3EFC00A64876 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 606E4BB31DEE3EFC00A64876 /* AlamofireImage.framework */; };
@@ -70,6 +71,7 @@
 
 /* Begin PBXFileReference section */
 		108BA60D5BA197D8D472C262 /* Pods-Carleton150.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150.debug.xcconfig"; path = "Target Support Files/Pods-Carleton150/Pods-Carleton150.debug.xcconfig"; sourceTree = "<group>"; };
+		452EDC9D227B8C7500DE8B34 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		457B69B12277A0F900114DA3 /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B891F941EE1EA2400BAEC49 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		606E4BB21DEE3EFC00A64876 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/Carleton150-ahrtisziefccxcghzkyhbcuhvtsm/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
@@ -166,6 +168,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		452EDC9A227B8B9E00DE8B34 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				452EDC9D227B8C7500DE8B34 /* MapViewController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		63036B311C4CB55C00193A78 /* Historical */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,8 +210,8 @@
 		63036B361C4CB72800193A78 /* Quest */ = {
 			isa = PBXGroup;
 			children = (
-				715AE47F1C4EB08D00C8F0C9 /* Quest.swift */,
 				715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */,
+				715AE47F1C4EB08D00C8F0C9 /* Quest.swift */,
 				71340E571C5214A2007F9E2F /* QuestDataService.swift */,
 				630B0B4E1C7446D000876031 /* QuestViewController.swift */,
 				630B0B501C744A8700876031 /* QuestContentViewController.swift */,
@@ -250,6 +260,7 @@
 		71294DAC1BC6FC1500B9F81B /* Carleton150 */ = {
 			isa = PBXGroup;
 			children = (
+				452EDC9A227B8B9E00DE8B34 /* Map */,
 				5B891F941EE1EA2400BAEC49 /* Keys.plist */,
 				71ABAA601CD0181D00D6BFFE /* Info */,
 				7194ED561C715059007F55D4 /* Fonts */,
@@ -725,6 +736,7 @@
 				63A99A6F1C763D97007E6F25 /* WaypointTableCell.swift in Sources */,
 				71340E5C1C5217C3007F9E2F /* CalendarDataService.swift in Sources */,
 				7160F69E1CE19BFD00A8D41F /* CalendarViewController.swift in Sources */,
+				452EDC9E227B8C7500DE8B34 /* MapViewController.swift in Sources */,
 				63A99A6B1C75859D007E6F25 /* QuestModalViewController.swift in Sources */,
 				715AE4801C4EB08D00C8F0C9 /* Quest.swift in Sources */,
 				71F4E1D51CE3DFE600A69728 /* UpdateFailureViewController.swift in Sources */,

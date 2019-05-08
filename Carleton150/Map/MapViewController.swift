@@ -1,4 +1,13 @@
 //
+//  MapViewController.swift
+//  Carleton150
+//
+//  Created by beddoww on 5/2/19.
+//  Copyright © 2019 edu.carleton.carleton150. All rights reserved.
+//
+
+import Foundation
+//
 //  InfoViewController.swift
 //  Carleton150
 
@@ -6,11 +15,11 @@ import Reachability
 
 
 
-class InfoViewController: UIViewController, UIWebViewDelegate {
+class MapViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var webView: UIWebView!
-	var reach: Reachability?
-	var networkMonitor: Reachability!
+    var reach: Reachability?
+    var networkMonitor: Reachability!
     var timer: Timer!
     var shouldReload: Bool = false
     
@@ -20,14 +29,14 @@ class InfoViewController: UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         // set up network monitoring
-		let appDelegate = UIApplication.shared.delegate as! AppDelegate
-		self.networkMonitor = appDelegate.networkMonitor
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        self.networkMonitor = appDelegate.networkMonitor
         
         webView.delegate = self
         
         Utils.setUpNavigationBar(self)
         self.loadInfo()
-   
+        
         // triggers page to reload every 5 minutes
         timer = Timer.scheduledTimer(timeInterval: 300, target: self, selector: #selector(InfoViewController.setReload), userInfo: nil, repeats: true)
     }
@@ -41,7 +50,7 @@ class InfoViewController: UIViewController, UIWebViewDelegate {
     @objc func setReload() {
         shouldReload = true
     }
-   
+    
     private func webView(_ webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         if navigationType == UIWebView.NavigationType.linkClicked {
             UIApplication.shared.openURL(request.url!)
@@ -49,11 +58,11 @@ class InfoViewController: UIViewController, UIWebViewDelegate {
         }
         return true
     }
-
+    
     func loadInfo() {
         UserDefaults.standard.register(defaults: ["UserAgent": "ReunionApp"])
         if self.networkMonitor!.isReachableViaWiFi || self.networkMonitor!.isReachableViaWWAN {
-            let url = NSURL(string: "https://go.carleton.edu/apphome2")
+            let url = NSURL(string: "https://apps.carleton.edu/map")
             let request = NSMutableURLRequest(url: url! as URL)
             request.setValue(Utils.getUserAgent(), forHTTPHeaderField: "UserAgent")
             webView.loadRequest(request as URLRequest)

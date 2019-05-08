@@ -56,6 +56,13 @@ final class Utils {
         let distance = Utils.getDistance(centerPoint, point2: location)
         return distance > 7000
     }
+    
+    class func getUserAgent() -> String {
+        let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+        let userAgent = "ReunionApp  \(appVersion)";
+        print("User agent is \(userAgent)")
+        return userAgent
+    }
 
     /**
         Builds the Carleton tiling on top of Google Maps.
