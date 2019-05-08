@@ -98,13 +98,13 @@ class QuestContentViewController: UIViewController {
     
 	override func viewWillAppear(_ animated: Bool) {
 		// Data Persistance
-		if let startedQuests = UserDefaults.standard.object(forKey: "startedQuests") as! NSDictionary! {
-			if let curQuestWaypoint = startedQuests[titleText] as! Int! {
+        if let startedQuests = UserDefaults.standard.object(forKey: "startedQuests") as! NSDictionary? {
+            if let curQuestWaypoint = startedQuests[titleText] as! Int? {
 				let percentageCompleted = Int((Float(curQuestWaypoint) / Float(quest.wayPoints.count))*100)
 				if (percentageCompleted == 100) {
-					self.startButton.setTitle("Quest Completed", for: UIControlState())
+                    self.startButton.setTitle("Quest Completed", for: UIControl.State())
 				} else {
-					self.startButton.setTitle("Continue: \(percentageCompleted)% Completed", for: UIControlState())
+                    self.startButton.setTitle("Continue: \(percentageCompleted)% Completed", for: UIControl.State())
 				}
 				self.startButton.backgroundColor = UIColor(red: 230/255, green: 159/255, blue: 19/255, alpha: 1)
 			}
@@ -126,7 +126,7 @@ class QuestContentViewController: UIViewController {
                       it that will given to the landmark detail view.
 	*/
 	@IBAction func startAction(_ sender: AnyObject) {
-		if var startedQuests = UserDefaults.standard.object(forKey: "startedQuests") as! Dictionary<String,Int>! {
+        if var startedQuests = UserDefaults.standard.object(forKey: "startedQuests") as! Dictionary<String,Int>? {
 			if (startedQuests[quest.name] == nil) {
 				startedQuests[quest.name] = 0
 				UserDefaults.standard.set(startedQuests,forKey: "startedQuests")

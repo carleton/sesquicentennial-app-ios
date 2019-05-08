@@ -6,7 +6,7 @@ import UIKit
 import GoogleMaps
 import CoreLocation
 import MapKit
-import ReachabilitySwift
+import Reachability
 
 class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
@@ -43,7 +43,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		// initialize geofences dictionary
 		self.landmarks = Dictionary<String,Landmark>()
         
-        mapView.bringSubview(toFront: self.recenterButton)
+        mapView.bringSubviewToFront(self.recenterButton)
 		
         // set properties for the navigation bar
         Utils.setUpNavigationBar(self)
@@ -103,7 +103,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
         self.landmarks = [:]
     }
     
-    func setReload() {
+    @objc func setReload() {
         shouldReload = true
     }
     
@@ -140,20 +140,20 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		Parameters
 			- notification: notification sent by observer
 	*/
-	func connectionStatusChanged(_ notification: Notification) {
+    @objc func connectionStatusChanged(_ notification: Notification) {
 		if self.networkMonitor!.isReachableViaWiFi || self.networkMonitor!.isReachableViaWWAN {
             self.connectionLabel.isHidden = true
             self.connectionIndicator.stopAnimating()
             self.connectionIndicator.isHidden = true
             self.connectionView.isHidden = true
-            self.mapView.sendSubview(toBack: self.connectionView)
+            self.mapView.sendSubviewToBack(self.connectionView)
             self.loadLandmarks()
 		} else {
 			self.connectionLabel.isHidden = false
 			self.connectionIndicator.startAnimating()
 			self.connectionIndicator.isHidden = false
 			self.connectionView.isHidden = false
-            self.mapView.bringSubview(toFront: self.connectionView)
+            self.mapView.bringSubviewToFront(self.connectionView)
 		}
 	}
 	
@@ -169,7 +169,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(HistoricalViewController.connectionStatusChanged(_:)),
-			name: ReachabilityChangedNotification,
+            name: Notification.Name.reachabilityChanged,
 			object: nil
 		)
 		// check to see if connected
@@ -200,7 +200,7 @@ class HistoricalViewController: UIViewController, CLLocationManagerDelegate, GMS
 			let destinationController = (segue.destination as! TimelineViewController)
 			destinationController.parentVC = self
 			
-			if let landmarkName = ((sender as AnyObject).title)! as String! {
+            if let landmarkName = ((sender as AnyObject).title)! as String? {
 				destinationController.selectedGeofence = landmarkName.replacingOccurrences(of: "&amp;", with: "&")
 				if let landmark = landmarks[landmarkName] {
 					destinationController.timeline = landmark.events

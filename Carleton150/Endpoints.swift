@@ -1,6 +1,7 @@
 //
 //  Endpoints.swift
-//  Carleton150
+//  Carleton150'
+
 
 /// A class for managing the data service endpoints in the application.
 final class Endpoints {
@@ -10,6 +11,10 @@ final class Endpoints {
      */
     static var hostServerURL: String = "https://go.carleton.edu"
     
+    /**
+        The URL for the campus map webview
+    */
+    static var mapURL: String = "https://apps.carleton.edu/map/#sidebar:in";
    
     /**
         The current events endpoint in the API.

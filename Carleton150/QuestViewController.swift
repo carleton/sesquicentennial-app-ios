@@ -70,13 +70,13 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
                 let alert = UIAlertController(title: "",
                                               message: "The Quests feature is intended to be used on the Carleton College campus. Visit campus soon to embark on a Quest!",
                                               preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title:"OK", style: UIAlertActionStyle.default, handler: nil))
+                alert.addAction(UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
         }
     }
     
-    func setReload() {
+    @objc func setReload() {
         shouldReload = true
     }
    
@@ -106,9 +106,9 @@ class QuestViewController: UIViewController, UIPageViewControllerDataSource{
 				let viewControllers = NSArray(object: startVC)
 				
 				self.pageViewController.setViewControllers(viewControllers as? [UIViewController], direction: .forward, animated: true, completion: nil)
-				self.addChildViewController(self.pageViewController)
+                self.addChild(self.pageViewController)
 				self.view.addSubview(self.pageViewController.view)
-				self.pageViewController.didMove(toParentViewController: self)
+                self.pageViewController.didMove(toParent: self)
 
             } else {
                 self.noDataButton.isHidden = false

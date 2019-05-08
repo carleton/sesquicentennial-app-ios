@@ -3,7 +3,7 @@
 //  Carleton150
 
 import GoogleMaps
-import ReachabilitySwift
+import Reachability
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate  {
@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     var schedule: [Dictionary<String, String>] = []
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         let defaults: UserDefaults = UserDefaults.standard
         // if the user doesn't have this boolean, 
         // that means they've opened the app for the 
@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Allocate a reachability object
 		self.networkMonitor = Reachability()
 		// Tell the reachability that we DON'T want to be reachable on 3G/EDGE/CDMA
-		self.networkMonitor!.reachableOnWWAN = false
+        self.networkMonitor!.allowsCellularConnection = false
         do {
             try self.networkMonitor!.startNotifier()
         }catch{
