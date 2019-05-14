@@ -33,6 +33,11 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var leftArrowBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var rightArrowBarButtonItem: UIBarButtonItem!
     
+    @IBAction func reload(_ sender: AnyObject) {
+        print("Reloading Calendar data");
+        CalendarDataService.getEvents();
+    }
+    
     override func viewDidLoad() {
         // set and go to the current date
         self.goToDate(Date())
