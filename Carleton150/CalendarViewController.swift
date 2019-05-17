@@ -36,6 +36,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func reload(_ sender: AnyObject) {
         print("Reloading Calendar data");
         CalendarDataService.getEvents();
+        self.goToDate(NSDate.roundDownToNearestDay(Date()))
     }
     
     override func viewDidLoad() {

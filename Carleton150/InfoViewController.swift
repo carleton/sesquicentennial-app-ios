@@ -42,13 +42,13 @@ class InfoViewController: UIViewController, UIWebViewDelegate {
         shouldReload = true
     }
    
-    private func webView(_ webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebView.NavigationType) -> Bool {
-        if navigationType == UIWebView.NavigationType.linkClicked {
-            UIApplication.shared.openURL(request.url!)
-            return false
-        }
-        return true
+    
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
+        guard let url = request.url, navigationType == .linkClicked else { return true }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        return false
     }
+
 
     func loadInfo() {
         UserDefaults.standard.register(defaults: ["UserAgent": "ReunionApp"])
