@@ -86,14 +86,22 @@ final class CalendarDataService {
             if let urlString = (s as? String) {
                 url = URL(string: urlString)
             }
-
+            var startMod: String?
+            if (eventString.contains("DTSTART:")){
+                startMod = "DTSTART:"
+            }
+            else{
+                startMod = "DTSTART;VALUE=DATE:"
+            }
+            
             s = ""
             scanner.scanLocation = 0
-            scanner.scanUpTo("DTSTART:", into: nil)
-            scanner.scanString("DTSTART:", into: nil)
+            scanner.scanUpTo(startMod!, into: nil)
+            scanner.scanString(startMod!, into: nil)
             scanner.scanUpTo("\n", into: &s)
             var startDate: Date?
-            if let startDateString = (s as? String) {
+            // TODO: handle DTSTART;VALUE
+            if let startDateString = (s as String?) {
                 startDate = dateFromDTString(startDateString)
             }
 
