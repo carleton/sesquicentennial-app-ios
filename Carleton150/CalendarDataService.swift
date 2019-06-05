@@ -47,6 +47,16 @@ final class CalendarDataService {
             }
         }
     }
+    
+    func stripTime(from originalDate: Date) -> Date {
+        /*
+        Taken from Jonathan Cabrera's answer to https://stackoverflow.com/questions/35771506/is-there-a-date-only-no-time-class-in-swift-or-foundation-classes
+        - Will Beddow, 2019
+        */
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: originalDate)
+        let date = Calendar.current.date(from: components)
+        return date!
+    }
 
     class func parseICSString(_ icsString: String) -> [CalendarEvent] {
         var calendarEvents: [CalendarEvent] = []
@@ -100,11 +110,23 @@ final class CalendarDataService {
             scanner.scanString(startMod!, into: nil)
             scanner.scanUpTo("\n", into: &s)
             var startDate: Date?
-            // TODO: handle DTSTART;VALUE
             if let startDateString = (s as String?) {
-                startDate = dateFromDTString(startDateString)
+                if (startDateString.contains("T")){
+                    startDate = dateFromDTString(startDateString)
+                }
+                else{
+                    // Build a date without a time attached
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "YYYYMMdd"
+                    startDate = dateFormatter.date(from: startDateString)
+                    //startDate = stripTime(date);
+                }
+                let date = Date()
+                let calendar = Calendar.current
+                let todayDay = calendar.component(.day, from: date)
+                let startDay = calendar.component(.day, from: startDate!)
             }
-
+            
             let calendarEvent: CalendarEvent = CalendarEvent(
                 title: title ?? "No Title",
                 description: description ?? "No Event Description",
