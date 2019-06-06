@@ -61,7 +61,21 @@ final class CalendarDataService {
     class func parseICSString(_ icsString: String) -> [CalendarEvent] {
         var calendarEvents: [CalendarEvent] = []
 //        print(icsString)
-        let cleanedICSString = icsString.replacingOccurrences(of: "\r", with: "")
+        // Use a Regex to replace ICS truncated lines with a full line
+        // regexr.com/4fd0a - Contact Will Beddow for questions about this pattern
+        var cleanedICSString = icsString.replacingOccurrences(of: "\r", with: "")
+        guard let lineExpression = try? NSRegularExpression(pattern: "^([A-Z]+:.*)(?:\\n ([a-z].*))+$", options: [.anchorsMatchLines]) else{ return [] }
+        let NSString = cleanedICSString as NSString
+        let matches = lineExpression.matches(in: cleanedICSString, range: NSMakeRange(0, NSString.length))
+        for match in matches{
+            let replaceData = NSString.substring(with: match.range(at: 0))
+            var fullLine = ""
+            for i in 1...match.numberOfRanges-1{
+                fullLine += NSString.substring(with: match.range(at: i))
+            }
+            cleanedICSString = cleanedICSString.replacingOccurrences(of: replaceData, with: fullLine)
+        }
+        
         var eventStrings = cleanedICSString.components(separatedBy: "BEGIN:VEVENT")
         eventStrings.removeFirst()
         for eventString:String in eventStrings {
@@ -86,7 +100,6 @@ final class CalendarDataService {
             scanner.scanString("DESCRIPTION:", into: nil)
             scanner.scanUpTo("\n", into: &s)
             let description: String? = (s as? String)
-
             s = ""
             scanner.scanLocation = 0
             scanner.scanUpTo("URL:", into: nil)

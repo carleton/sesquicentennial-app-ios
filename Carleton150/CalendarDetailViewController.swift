@@ -44,3 +44,4 @@ class CalendarDetailViewController: UIViewController {
         self.eventURL = calendarCell.url
     }
 }
+
