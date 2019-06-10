@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "sesquicentennial.png",
+      "filename" : "marker_small.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "marker_small-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "marker_medium-1.png",
       "scale" : "3x"
     }
   ],

@@ -47,11 +47,35 @@ final class CalendarDataService {
             }
         }
     }
+    
+    func stripTime(from originalDate: Date) -> Date {
+        /*
+        Taken from Jonathan Cabrera's answer to https://stackoverflow.com/questions/35771506/is-there-a-date-only-no-time-class-in-swift-or-foundation-classes
+        - Will Beddow, 2019
+        */
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: originalDate)
+        let date = Calendar.current.date(from: components)
+        return date!
+    }
 
     class func parseICSString(_ icsString: String) -> [CalendarEvent] {
         var calendarEvents: [CalendarEvent] = []
 //        print(icsString)
-        let cleanedICSString = icsString.replacingOccurrences(of: "\r", with: "")
+        // Use a Regex to replace ICS truncated lines with a full line
+        // regexr.com/4fd0a - Contact Will Beddow for questions about this pattern
+        var cleanedICSString = icsString.replacingOccurrences(of: "\r", with: "")
+        guard let lineExpression = try? NSRegularExpression(pattern: "^([A-Z]+:.*)(?:\\n ([a-z].*))+$", options: [.anchorsMatchLines]) else{ return [] }
+        let NSString = cleanedICSString as NSString
+        let matches = lineExpression.matches(in: cleanedICSString, range: NSMakeRange(0, NSString.length))
+        for match in matches{
+            let replaceData = NSString.substring(with: match.range(at: 0))
+            var fullLine = ""
+            for i in 1...match.numberOfRanges-1{
+                fullLine += NSString.substring(with: match.range(at: i))
+            }
+            cleanedICSString = cleanedICSString.replacingOccurrences(of: replaceData, with: fullLine)
+        }
+        
         var eventStrings = cleanedICSString.components(separatedBy: "BEGIN:VEVENT")
         eventStrings.removeFirst()
         for eventString:String in eventStrings {
@@ -76,7 +100,6 @@ final class CalendarDataService {
             scanner.scanString("DESCRIPTION:", into: nil)
             scanner.scanUpTo("\n", into: &s)
             let description: String? = (s as? String)
-
             s = ""
             scanner.scanLocation = 0
             scanner.scanUpTo("URL:", into: nil)
@@ -86,17 +109,37 @@ final class CalendarDataService {
             if let urlString = (s as? String) {
                 url = URL(string: urlString)
             }
-
+            var startMod: String?
+            if (eventString.contains("DTSTART:")){
+                startMod = "DTSTART:"
+            }
+            else{
+                startMod = "DTSTART;VALUE=DATE:"
+            }
+            
             s = ""
             scanner.scanLocation = 0
-            scanner.scanUpTo("DTSTART:", into: nil)
-            scanner.scanString("DTSTART:", into: nil)
+            scanner.scanUpTo(startMod!, into: nil)
+            scanner.scanString(startMod!, into: nil)
             scanner.scanUpTo("\n", into: &s)
             var startDate: Date?
-            if let startDateString = (s as? String) {
-                startDate = dateFromDTString(startDateString)
+            if let startDateString = (s as String?) {
+                if (startDateString.contains("T")){
+                    startDate = dateFromDTString(startDateString)
+                }
+                else{
+                    // Build a date without a time attached
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "YYYYMMdd"
+                    startDate = dateFormatter.date(from: startDateString)
+                    //startDate = stripTime(date);
+                }
+                let date = Date()
+                let calendar = Calendar.current
+                let todayDay = calendar.component(.day, from: date)
+                let startDay = calendar.component(.day, from: startDate!)
             }
-
+            
             let calendarEvent: CalendarEvent = CalendarEvent(
                 title: title ?? "No Title",
                 description: description ?? "No Event Description",
