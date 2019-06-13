@@ -11,7 +11,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     var keys: NSDictionary?
 	var networkMonitor: Reachability?
-	let locationManager = CLLocationManager()
 
     var schedule: [Dictionary<String, String>] = []
     
@@ -33,14 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
             keys = NSDictionary(contentsOfFile: path)
         }
-        
-        if let _ = keys {
-            let googleMapsApiKey = keys?["GoogleMaps"] as? String
-            GMSServices.provideAPIKey(googleMapsApiKey!)
-        }
-       
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
 		
 		customizePageViews()
 
