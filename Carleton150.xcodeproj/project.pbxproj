@@ -20,7 +20,7 @@
 		634AD3A31C780D26005EBE9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 634AD3A21C780D26005EBE9C /* Assets.xcassets */; };
 		6353259E1C7A44700027F6E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6353259D1C7A44700027F6E3 /* SystemConfiguration.framework */; };
 		6357E6F21C4ED3BC00A28D00 /* HistoricalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAF1BC6FC1500B9F81B /* HistoricalViewController.swift */; };
-		6357E6F31C4ED3BC00A28D00 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		6357E6F31C4ED3BC00A28D00 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		63A99A6B1C75859D007E6F25 /* QuestModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99A6A1C75859D007E6F25 /* QuestModalViewController.swift */; };
 		63A99A6D1C763AEA007E6F25 /* WaypointsModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99A6C1C763AEA007E6F25 /* WaypointsModalViewController.swift */; };
 		63A99A6F1C763D97007E6F25 /* WaypointTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99A6E1C763D97007E6F25 /* WaypointTableCell.swift */; };
@@ -718,7 +718,7 @@
 				71CB7A801CF7595C0005171A /* calendarEvent.swift in Sources */,
 				7173509E1CD6FF6F00B9DA7A /* Event.swift in Sources */,
 				630B0B4F1C7446D000876031 /* QuestViewController.swift in Sources */,
-				6357E6F31C4ED3BC00A28D00 /* BuildFile in Sources */,
+				6357E6F31C4ED3BC00A28D00 /* (null) in Sources */,
 				63291F381C5979730064C296 /* TimelineTableCells.swift in Sources */,
 				71FF6D371C72B2CD004A2B3D /* TimelineImageDetailView.swift in Sources */,
 				63A99A6F1C763D97007E6F25 /* WaypointTableCell.swift in Sources */,
