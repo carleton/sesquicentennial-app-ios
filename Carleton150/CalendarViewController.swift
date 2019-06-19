@@ -36,7 +36,13 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func reload(_ sender: AnyObject) {
         print("Reloading Calendar data");
         CalendarDataService.getEvents();
-        self.goToDate(NSDate.roundDownToNearestDay(Date()))
+        let visibleRows: [IndexPath]? = calendarTableView.indexPathsForVisibleRows
+        if let date = self.dateSectionHeaders?[(visibleRows?[0].section)!] {
+            self.goToDate(NSDate.roundDownToNearestDay(date))
+        } else {
+            self.goToDate(NSDate.roundDownToNearestDay(Date()))
+            self.testDate(NSDate.roundDownToNearestDay(Date()), message: "There are no events today. We will show you the events that are available instead. Scroll to see more!")
+        }
     }
     
     override func viewDidLoad() {
@@ -131,7 +137,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     func goToDate(_ inputDate: Date?) {
         if let section = dateSectionHeaders?.index(of: inputDate!) {
             calendarTableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .top, animated: false)
-            self.leftArrowBarButtonItem.isEnabled = (section != 0)
+            self.leftArrowBarButtonItem.isEnabled = (section > 0)
             self.rightArrowBarButtonItem.isEnabled = (section >= 0 && section + 1 < (self.dateSectionHeaders?.count)!)
         }
     }
@@ -140,7 +146,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         self.calendar = CalendarDataService.schedule as [Date : [CalendarEvent]]?
         calendarTableView.reloadData()
         self.view.sendSubviewToBack(noDataView)
-        self.leftArrowBarButtonItem.isEnabled = false
+        self.leftArrowBarButtonItem.isEnabled = true
         self.rightArrowBarButtonItem.isEnabled = true
     }
 
