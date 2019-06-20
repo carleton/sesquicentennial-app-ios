@@ -63,39 +63,6 @@ final class Utils {
         print("User agent is \(userAgent)")
         return userAgent
     }
-
-    /**
-        Builds the Carleton tiling on top of Google Maps.
-     
-        - Parameters: 
-            - currentMap: the map view that we want to tile.
-     */
-    class func setUpTiling(_ currentMap: GMSMapView) {
-        // Implement GMSTileURLConstructor
-        // Returns a Tile based on the x, y, zoom coordinates
-        let urlsBase: GMSTileURLConstructor = { (x: UInt, y: UInt, zoom: UInt) -> URL in
-            let url = "https://apps.carleton.edu/global_stock/images/campus_map/tiles/base/\(zoom)_\(x)_\(y).png"
-            
-            return URL(string: url)!
-        }
-        let urlsLabel: GMSTileURLConstructor = { (x: UInt, y: UInt, zoom: UInt) -> URL in
-            let url = "https://apps.carleton.edu/global_stock/images/campus_map/tiles/labels/\(zoom)_\(x)_\(y).png"
-            
-            return URL(string: url)!
-        }
-        
-        // Create the GMSTileLayer
-        let layerBase = GMSURLTileLayer(urlConstructor: urlsBase)
-        let layerLabel = GMSURLTileLayer(urlConstructor: urlsLabel)
-        
-        // Display on the map at a specific zIndex
-        layerBase.zIndex = 0
-        layerBase.tileSize = 256
-        layerBase.map = currentMap
-        layerLabel.zIndex = 1
-        layerLabel.tileSize = 256
-        layerLabel.map = currentMap
-    }
     
     /**
         Sets the translucency of the top navigation bar in the designated view.
