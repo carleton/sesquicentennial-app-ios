@@ -2,7 +2,6 @@
 //  AppDelegate.swift
 //  Carleton150
 
-import GoogleMaps
 import Reachability
 
 @UIApplicationMain
