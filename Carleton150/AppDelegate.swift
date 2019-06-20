@@ -58,7 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Allocate a reachability object
 		self.networkMonitor = Reachability()
 		// Tell the reachability that we DON'T want to be reachable on 3G/EDGE/CDMA
-        self.networkMonitor!.allowsCellularConnection = false
+        // This makes no sense to me. Removing -- MR
+        //self.networkMonitor!.allowsCellularConnection = false
         do {
             try self.networkMonitor!.startNotifier()
         }catch{
