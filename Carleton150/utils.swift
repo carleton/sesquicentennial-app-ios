@@ -4,7 +4,6 @@
 
 import Foundation
 import Darwin
-import GoogleMaps
 
 /// A class for utility functions that are required for multiple views.
 final class Utils {
