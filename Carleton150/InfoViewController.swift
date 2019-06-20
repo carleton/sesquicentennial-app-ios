@@ -52,16 +52,20 @@ class InfoViewController: UIViewController, UIWebViewDelegate {
 
     func loadInfo() {
         UserDefaults.standard.register(defaults: ["UserAgent": "ReunionApp"])
-        if self.networkMonitor!.isReachableViaWiFi || self.networkMonitor!.isReachableViaWWAN {
-            let url = NSURL(string: "https://go.carleton.edu/apphome2")
-            let request = NSMutableURLRequest(url: url! as URL)
-            request.setValue(Utils.getUserAgent(), forHTTPHeaderField: "UserAgent")
-            webView.loadRequest(request as URLRequest)
-        } else {
-            let url = Bundle.main.path(forResource: "no-connection", ofType: "html")
-            let requesturl = NSURL(string: url!)
-            let request = NSURLRequest(url: requesturl! as URL)
-            webView.loadRequest(request as URLRequest)
+        switch self.networkMonitor.connection {
+            case .wifi:
+                fallthrough
+            case .cellular:
+                let url = NSURL(string: "https://go.carleton.edu/apphome2")
+                let request = NSMutableURLRequest(url: url! as URL)
+                request.setValue(Utils.getUserAgent(), forHTTPHeaderField: "UserAgent")
+                webView.loadRequest(request as URLRequest)
+                break
+            default:
+                let url = Bundle.main.path(forResource: "no-connection", ofType: "html")
+                let requesturl = NSURL(string: url!)
+                let request = NSURLRequest(url: requesturl! as URL)
+                webView.loadRequest(request as URLRequest)
         }
     }
 }
