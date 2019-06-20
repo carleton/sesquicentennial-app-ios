@@ -15,44 +15,24 @@
 		606E4BB81DEE3EFC00A64876 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 606E4BB21DEE3EFC00A64876 /* Alamofire.framework */; };
 		606E4BB91DEE3EFC00A64876 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 606E4BB31DEE3EFC00A64876 /* AlamofireImage.framework */; };
 		606E4BBD1DEE3EFC00A64876 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 606E4BB71DEE3EFC00A64876 /* SwiftyJSON.framework */; };
-		630B0B4F1C7446D000876031 /* QuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630B0B4E1C7446D000876031 /* QuestViewController.swift */; };
-		630B0B511C744A8700876031 /* QuestContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630B0B501C744A8700876031 /* QuestContentViewController.swift */; };
-		63291F361C5971A30064C296 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63291F351C5971A30064C296 /* TimelineViewController.swift */; };
-		63291F381C5979730064C296 /* TimelineTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63291F371C5979730064C296 /* TimelineTableCells.swift */; };
 		634AD3A31C780D26005EBE9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 634AD3A21C780D26005EBE9C /* Assets.xcassets */; };
 		6353259E1C7A44700027F6E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6353259D1C7A44700027F6E3 /* SystemConfiguration.framework */; };
-		6357E6F21C4ED3BC00A28D00 /* HistoricalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAF1BC6FC1500B9F81B /* HistoricalViewController.swift */; };
 		6357E6F31C4ED3BC00A28D00 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		63A99A6B1C75859D007E6F25 /* QuestModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99A6A1C75859D007E6F25 /* QuestModalViewController.swift */; };
-		63A99A6D1C763AEA007E6F25 /* WaypointsModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99A6C1C763AEA007E6F25 /* WaypointsModalViewController.swift */; };
-		63A99A6F1C763D97007E6F25 /* WaypointTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99A6E1C763D97007E6F25 /* WaypointTableCell.swift */; };
-		63F5E9A01C72B60D00CFCB38 /* QuestPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F5E99F1C72B60D00CFCB38 /* QuestPlayingViewController.swift */; };
-		6A3094401BD9CD4600A16342 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A30943F1BD9CD4600A16342 /* Landmark.swift */; };
 		711704131BF3EB9E00566464 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711704121BF3EB9E00566464 /* utils.swift */; };
 		71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */; };
 		71294DB81BC6FC1500B9F81B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71294DB61BC6FC1500B9F81B /* LaunchScreen.storyboard */; };
 		71294DCE1BC6FC1500B9F81B /* Carleton150UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71294DCD1BC6FC1500B9F81B /* Carleton150UITests.swift */; };
-		71340E581C5214A2007F9E2F /* QuestDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71340E571C5214A2007F9E2F /* QuestDataService.swift */; };
-		71340E5A1C5216C8007F9E2F /* HistoricalDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71340E591C5216C8007F9E2F /* HistoricalDataService.swift */; };
 		71340E5C1C5217C3007F9E2F /* CalendarDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71340E5B1C5217C3007F9E2F /* CalendarDataService.swift */; };
 		713910501CE26FCB008089DF /* CalendarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7139104F1CE26FCB008089DF /* CalendarDetailViewController.swift */; };
 		714C58B01C5ABF1600D6C33E /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C58AF1C5ABF1600D6C33E /* Endpoints.swift */; };
-		71573EB41C707E5400B3E265 /* TimelineTextDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71573EB31C707E5400B3E265 /* TimelineTextDetailView.swift */; };
-		715AE47E1C4EADF200C8F0C9 /* WayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */; };
-		715AE4801C4EB08D00C8F0C9 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715AE47F1C4EB08D00C8F0C9 /* Quest.swift */; };
 		7160F69E1CE19BFD00A8D41F /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7160F69D1CE19BFD00A8D41F /* CalendarViewController.swift */; };
-		7173509E1CD6FF6F00B9DA7A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7173509D1CD6FF6F00B9DA7A /* Event.swift */; };
-		7180A72E1C685DAA0080F121 /* TimelineTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7180A72D1C685DAA0080F121 /* TimelineTitleView.swift */; };
 		71A08C201CE233D30071DADA /* CalendarTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A08C1F1CE233D30071DADA /* CalendarTableCell.swift */; };
 		71ABAA641CD0189700D6BFFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71ABAA631CD0189700D6BFFE /* Main.storyboard */; };
 		71ABAA661CD01A9B00D6BFFE /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ABAA651CD01A9B00D6BFFE /* InfoViewController.swift */; };
-		71B379B91C7928F40057B5B8 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B379B81C7928F40057B5B8 /* TutorialViewController.swift */; };
 		71CB7A801CF7595C0005171A /* calendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CB7A7F1CF7595C0005171A /* calendarEvent.swift */; };
 		71CC5F791BE944220065AA4C /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CC5F781BE944220065AA4C /* DataServiceTest.swift */; };
-		71F0C7C01C7273920063EDB1 /* TimelineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F0C7BF1C7273920063EDB1 /* TimelineDetailView.swift */; };
 		71F4E1D11CE39D5B00A69728 /* no-connection.html in Resources */ = {isa = PBXBuildFile; fileRef = 71F4E1D01CE39D5B00A69728 /* no-connection.html */; };
 		71F4E1D51CE3DFE600A69728 /* UpdateFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F4E1D41CE3DFE600A69728 /* UpdateFailureViewController.swift */; };
-		71FF6D371C72B2CD004A2B3D /* TimelineImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FF6D361C72B2CD004A2B3D /* TimelineImageDetailView.swift */; };
 		861792FA2BE9B89065546779 /* Pods_Carleton150UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9A04D864C7E2306C14DD7C /* Pods_Carleton150UITests.framework */; };
 		B167A9102AFC94A4CD904C33 /* Pods_Carleton150UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49825BBA6AC99C5E89663F38 /* Pods_Carleton150UITests.framework */; };
 /* End PBXBuildFile section */
@@ -86,38 +66,21 @@
 		606E4BB31DEE3EFC00A64876 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = "../../Library/Developer/Xcode/DerivedData/Carleton150-ahrtisziefccxcghzkyhbcuhvtsm/Build/Products/Debug-iphonesimulator/AlamofireImage/AlamofireImage.framework"; sourceTree = "<group>"; };
 		606E4BB61DEE3EFC00A64876 /* ReachabilitySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReachabilitySwift.framework; path = "../../Library/Developer/Xcode/DerivedData/Carleton150-ahrtisziefccxcghzkyhbcuhvtsm/Build/Products/Debug-iphonesimulator/ReachabilitySwift/ReachabilitySwift.framework"; sourceTree = "<group>"; };
 		606E4BB71DEE3EFC00A64876 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/Carleton150-ahrtisziefccxcghzkyhbcuhvtsm/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
-		630B0B4E1C7446D000876031 /* QuestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestViewController.swift; sourceTree = "<group>"; };
-		630B0B501C744A8700876031 /* QuestContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestContentViewController.swift; sourceTree = "<group>"; };
-		63291F351C5971A30064C296 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
-		63291F371C5979730064C296 /* TimelineTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableCells.swift; sourceTree = "<group>"; };
 		634AD3A21C780D26005EBE9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6353259D1C7A44700027F6E3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		63A99A6A1C75859D007E6F25 /* QuestModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestModalViewController.swift; sourceTree = "<group>"; };
-		63A99A6C1C763AEA007E6F25 /* WaypointsModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointsModalViewController.swift; sourceTree = "<group>"; };
-		63A99A6E1C763D97007E6F25 /* WaypointTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointTableCell.swift; sourceTree = "<group>"; };
-		63F5E99F1C72B60D00CFCB38 /* QuestPlayingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestPlayingViewController.swift; sourceTree = "<group>"; };
-		6A30943F1BD9CD4600A16342 /* Landmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
 		711704121BF3EB9E00566464 /* utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		71294DAA1BC6FC1500B9F81B /* Carleton150.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carleton150.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71294DAD1BC6FC1500B9F81B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		71294DAF1BC6FC1500B9F81B /* HistoricalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewController.swift; sourceTree = "<group>"; };
 		71294DB71BC6FC1500B9F81B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71294DB91BC6FC1500B9F81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71294DC91BC6FC1500B9F81B /* Carleton150UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Carleton150UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		71294DCD1BC6FC1500B9F81B /* Carleton150UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carleton150UITests.swift; sourceTree = "<group>"; };
 		71294DCF1BC6FC1500B9F81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		71340E571C5214A2007F9E2F /* QuestDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestDataService.swift; sourceTree = "<group>"; };
-		71340E591C5216C8007F9E2F /* HistoricalDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoricalDataService.swift; sourceTree = "<group>"; };
 		71340E5B1C5217C3007F9E2F /* CalendarDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDataService.swift; sourceTree = "<group>"; };
 		7139104F1CE26FCB008089DF /* CalendarDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDetailViewController.swift; sourceTree = "<group>"; };
 		714C58AF1C5ABF1600D6C33E /* Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
-		71573EB31C707E5400B3E265 /* TimelineTextDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTextDetailView.swift; sourceTree = "<group>"; };
-		715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WayPoint.swift; sourceTree = "<group>"; };
-		715AE47F1C4EB08D00C8F0C9 /* Quest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		7160F69D1CE19BFD00A8D41F /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		71676CC11BDED61700F1183D /* Carleton150-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Carleton150-Bridging-Header.h"; sourceTree = "<group>"; };
-		7173509D1CD6FF6F00B9DA7A /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		7180A72D1C685DAA0080F121 /* TimelineTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTitleView.swift; sourceTree = "<group>"; };
 		7194ED581C715066007F55D4 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		7194ED591C715066007F55D4 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		7194ED5A1C715066007F55D4 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
@@ -130,15 +93,12 @@
 		71A08C1F1CE233D30071DADA /* CalendarTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTableCell.swift; sourceTree = "<group>"; };
 		71ABAA631CD0189700D6BFFE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		71ABAA651CD01A9B00D6BFFE /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		71B379B81C7928F40057B5B8 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		71CB7A7F1CF7595C0005171A /* calendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = calendarEvent.swift; sourceTree = "<group>"; };
 		71CC5F6E1BE942CF0065AA4C /* Carleton150Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Carleton150Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		71CC5F721BE942CF0065AA4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71CC5F781BE944220065AA4C /* DataServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
-		71F0C7BF1C7273920063EDB1 /* TimelineDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineDetailView.swift; sourceTree = "<group>"; };
 		71F4E1D01CE39D5B00A69728 /* no-connection.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "no-connection.html"; sourceTree = "<group>"; };
 		71F4E1D41CE3DFE600A69728 /* UpdateFailureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateFailureViewController.swift; sourceTree = "<group>"; };
-		71FF6D361C72B2CD004A2B3D /* TimelineImageDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineImageDetailView.swift; sourceTree = "<group>"; };
 		7E617F5FEF43ACBD11D7AD8A /* Pods-Carleton150Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150Tests.debug.xcconfig"; path = "Target Support Files/Pods-Carleton150Tests/Pods-Carleton150Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		8BB5E4400873EDD490418BDF /* Pods_Carleton150.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carleton150.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		922B056C53D9C66EAC3FA395 /* Pods-Carleton150Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carleton150Tests.release.xcconfig"; path = "Target Support Files/Pods-Carleton150Tests/Pods-Carleton150Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -192,24 +152,6 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
-		63036B311C4CB55C00193A78 /* Historical */ = {
-			isa = PBXGroup;
-			children = (
-				6A30943F1BD9CD4600A16342 /* Landmark.swift */,
-				7173509D1CD6FF6F00B9DA7A /* Event.swift */,
-				71B379B81C7928F40057B5B8 /* TutorialViewController.swift */,
-				71294DAF1BC6FC1500B9F81B /* HistoricalViewController.swift */,
-				63291F351C5971A30064C296 /* TimelineViewController.swift */,
-				63291F371C5979730064C296 /* TimelineTableCells.swift */,
-				71340E591C5216C8007F9E2F /* HistoricalDataService.swift */,
-				71FF6D361C72B2CD004A2B3D /* TimelineImageDetailView.swift */,
-				71573EB31C707E5400B3E265 /* TimelineTextDetailView.swift */,
-				71F0C7BF1C7273920063EDB1 /* TimelineDetailView.swift */,
-				7180A72D1C685DAA0080F121 /* TimelineTitleView.swift */,
-			);
-			name = Historical;
-			sourceTree = "<group>";
-		};
 		63036B351C4CB6CD00193A78 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,22 +163,6 @@
 				71A08C1F1CE233D30071DADA /* CalendarTableCell.swift */,
 			);
 			name = Calendar;
-			sourceTree = "<group>";
-		};
-		63036B361C4CB72800193A78 /* Quest */ = {
-			isa = PBXGroup;
-			children = (
-				715AE47D1C4EADF200C8F0C9 /* WayPoint.swift */,
-				715AE47F1C4EB08D00C8F0C9 /* Quest.swift */,
-				71340E571C5214A2007F9E2F /* QuestDataService.swift */,
-				630B0B4E1C7446D000876031 /* QuestViewController.swift */,
-				630B0B501C744A8700876031 /* QuestContentViewController.swift */,
-				63F5E99F1C72B60D00CFCB38 /* QuestPlayingViewController.swift */,
-				63A99A6A1C75859D007E6F25 /* QuestModalViewController.swift */,
-				63A99A6C1C763AEA007E6F25 /* WaypointsModalViewController.swift */,
-				63A99A6E1C763D97007E6F25 /* WaypointTableCell.swift */,
-			);
-			name = Quest;
 			sourceTree = "<group>";
 		};
 		63036B391C4CB86F00193A78 /* Common */ = {
@@ -282,8 +208,6 @@
 				7194ED561C715059007F55D4 /* Fonts */,
 				63036B391C4CB86F00193A78 /* Common */,
 				63036B351C4CB6CD00193A78 /* Calendar */,
-				63036B311C4CB55C00193A78 /* Historical */,
-				63036B361C4CB72800193A78 /* Quest */,
 				634AD3A21C780D26005EBE9C /* Assets.xcassets */,
 				71294DB91BC6FC1500B9F81B /* Info.plist */,
 				71676CC11BDED61700F1183D /* Carleton150-Bridging-Header.h */,
@@ -719,38 +643,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63F5E9A01C72B60D00CFCB38 /* QuestPlayingViewController.swift in Sources */,
 				71ABAA661CD01A9B00D6BFFE /* InfoViewController.swift in Sources */,
 				711704131BF3EB9E00566464 /* utils.swift in Sources */,
-				71340E5A1C5216C8007F9E2F /* HistoricalDataService.swift in Sources */,
-				63291F361C5971A30064C296 /* TimelineViewController.swift in Sources */,
-				6357E6F21C4ED3BC00A28D00 /* HistoricalViewController.swift in Sources */,
 				71CB7A801CF7595C0005171A /* calendarEvent.swift in Sources */,
-				7173509E1CD6FF6F00B9DA7A /* Event.swift in Sources */,
-				630B0B4F1C7446D000876031 /* QuestViewController.swift in Sources */,
 				6357E6F31C4ED3BC00A28D00 /* (null) in Sources */,
-				63291F381C5979730064C296 /* TimelineTableCells.swift in Sources */,
-				71FF6D371C72B2CD004A2B3D /* TimelineImageDetailView.swift in Sources */,
-				63A99A6F1C763D97007E6F25 /* WaypointTableCell.swift in Sources */,
 				71340E5C1C5217C3007F9E2F /* CalendarDataService.swift in Sources */,
 				7160F69E1CE19BFD00A8D41F /* CalendarViewController.swift in Sources */,
 				452EDC9E227B8C7500DE8B34 /* MapViewController.swift in Sources */,
-				63A99A6B1C75859D007E6F25 /* QuestModalViewController.swift in Sources */,
-				715AE4801C4EB08D00C8F0C9 /* Quest.swift in Sources */,
 				71F4E1D51CE3DFE600A69728 /* UpdateFailureViewController.swift in Sources */,
-				63A99A6D1C763AEA007E6F25 /* WaypointsModalViewController.swift in Sources */,
-				630B0B511C744A8700876031 /* QuestContentViewController.swift in Sources */,
-				715AE47E1C4EADF200C8F0C9 /* WayPoint.swift in Sources */,
-				71340E581C5214A2007F9E2F /* QuestDataService.swift in Sources */,
-				71B379B91C7928F40057B5B8 /* TutorialViewController.swift in Sources */,
 				714C58B01C5ABF1600D6C33E /* Endpoints.swift in Sources */,
-				7180A72E1C685DAA0080F121 /* TimelineTitleView.swift in Sources */,
 				71A08C201CE233D30071DADA /* CalendarTableCell.swift in Sources */,
 				713910501CE26FCB008089DF /* CalendarDetailViewController.swift in Sources */,
-				6A3094401BD9CD4600A16342 /* Landmark.swift in Sources */,
 				71294DAE1BC6FC1500B9F81B /* AppDelegate.swift in Sources */,
-				71573EB41C707E5400B3E265 /* TimelineTextDetailView.swift in Sources */,
-				71F0C7C01C7273920063EDB1 /* TimelineDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
