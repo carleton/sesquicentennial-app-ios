@@ -21,17 +21,17 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.0</string>
+	<string>2.0.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>12</string>
+	<string>13</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>The Carleton App requires access to your phone’s location to notify you when you enter or leave points of interest!</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>In order to do a live historical tour of the campus through the app, we'll need your location to find out if you're close to cool stuff!</string>
+	<string>In order to do a live historical tour of the campus through the app, we&apos;ll need your location to find out if you&apos;re close to cool stuff!</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Roboto-Black.ttf</string>
